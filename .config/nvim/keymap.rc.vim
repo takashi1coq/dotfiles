@@ -11,6 +11,8 @@ autocmd FileType vim nnoremap <buffer> q <C-w>c
 nnoremap <C-w> <C-w>w
 "新しいタブをtt
 nnoremap tt :<C-u>tabnew<Cr>
+"アクティブ以外閉じるをto
+nnoremap to :<C-u>tabo<Cr>
 "C-vで最新レジスタ貼り付け vim では*だった
 noremap! <C-v> <C-r>+
 "gfを必ず新しいタブで開く
