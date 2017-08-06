@@ -9,9 +9,9 @@ hook_source = '''
 source ~/.config/nvim/plugins/denite.rc.vim
 '''
 hook_add = '''
-    nnoremap <silent> ,u :<C-u>Denite file_rec buffer -default-action=tabopen<CR>
-    nnoremap <silent> ,g :<C-u>Denite -auto_preview grep -default-action=tabopen<CR>
-    nnoremap <silent> ,r :<C-u>Denite file_mru -default-action=tabopen<CR>
-    nnoremap <silent> ,v :<C-u>Denite file_rec:~/.config/nvim -default-action=tabopen<CR>
-    nnoremap <silent> ,w :<C-u>Denite file_rec:~/work/src -default-action=tabopen<CR>
+    nnoremap <silent> <Space>u :<C-u>Denite file_rec buffer -default-action=tabopen<CR>
+    nnoremap <silent> <Space>g :<C-u>Denite -auto_preview grep -default-action=tabopen<CR>
+    nnoremap <silent> <Space>r :<C-u>Denite file_mru -default-action=tabopen<CR>
+    nnoremap <silent> <Space>v :<C-u>Denite file_rec:~/.config/nvim -default-action=tabopen<CR>
+    nnoremap <silent> <Space>w :<C-u>Denite file_rec:~/work/src -default-action=tabopen<CR>
 '''

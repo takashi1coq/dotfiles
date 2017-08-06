@@ -41,3 +41,12 @@ repo = 'glidenote/memolist.vim'
 hook_add = '''
 source ~/.config/nvim/plugins/memolist.rc.vim
 '''
+
+[[plugins]]
+repo = 'kannokanno/previm'
+hook_add = '''
+let g:previm_open_cmd = 'chromium'
+nnoremap <silent> <Space>p :<C-u>PrevimOpen<CR>
+'''
+
+
