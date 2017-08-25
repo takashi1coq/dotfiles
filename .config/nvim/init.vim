@@ -38,5 +38,6 @@ endif
 filetype plugin indent on
 syntax enable
 
+runtime! myfunction.rc.vim
 runtime! options.rc.vim
 runtime! keymap.rc.vim

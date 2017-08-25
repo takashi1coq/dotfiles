@@ -5,12 +5,15 @@ repo = 'Shougo/dein.vim'
 # color
 # gkjgh/cobalt
 # tomasr/molokai
+# morhetz/gruvbox
+# KKPMW/moonshine-vim
 # ==========================================================
 
 [[plugins]]
 repo = 'morhetz/gruvbox'
 hook_add = '''
 source ~/.config/nvim/plugins/gruvbox.rc.vim
+au MyAutoCmd VimEnter * highlight Visual ctermbg=216
 '''
 
 # ==========================================================
