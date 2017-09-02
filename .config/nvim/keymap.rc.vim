@@ -9,6 +9,8 @@ nmap ;; <sid>(command-line-enter)
 autocmd FileType vim nnoremap <buffer> q <C-w>c
 "ウィドウ間の移動をswとする
 nnoremap <C-w> <C-w>w
+" ウィンドウ回転
+nnoremap <silent>s <C-w>H
 "新しいタブをtt
 nnoremap tt :<C-u>tabnew<Cr>
 "アクティブ以外閉じるをto
