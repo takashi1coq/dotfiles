@@ -4,8 +4,6 @@ let g:deoplete#omni#input_patterns = {}
 let g:deoplete#omni#input_patterns.python = ''
 let g:deoplete#omni#functions = {}
 
-" deoplete がうまいこと起動しないのでとりあえずここへ
-"autocmd MyAutoCmd VimEnter * call deoplete#enable()
 " <TAB>: completion.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -18,3 +16,6 @@ endfunction"}}}
 
 " <S-TAB>: completion back.
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" jedi
+autocmd FileType python setlocal completeopt-=preview

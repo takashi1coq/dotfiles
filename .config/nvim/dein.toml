@@ -51,5 +51,3 @@ hook_add = '''
 let g:previm_open_cmd = 'chromium'
 nnoremap <silent> <Space>p :<C-u>PrevimOpen<CR>
 '''
-
-
