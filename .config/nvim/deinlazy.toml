@@ -15,3 +15,4 @@ hook_add = '''
     nnoremap <silent> <Space>v :<C-u>Denite file_rec:~/.config/nvim -default-action=tabopen<CR>
     nnoremap <silent> <Space>w :<C-u>Denite file_rec:~/work/src -default-action=tabopen<CR>
 '''
+
