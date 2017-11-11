@@ -3,17 +3,14 @@ repo = 'Shougo/dein.vim'
 
 # ==========================================================
 # color
-# gkjgh/cobalt
-# tomasr/molokai
 # morhetz/gruvbox
-# KKPMW/moonshine-vim
+# shawncplus/skittles_berry
 # ==========================================================
 
 [[plugins]]
-repo = 'morhetz/gruvbox'
+repo = 'shawncplus/skittles_berry'
 hook_add = '''
-source ~/.config/nvim/plugins/gruvbox.rc.vim
-au MyAutoCmd VimEnter * highlight Visual ctermbg=216
+source ~/.config/nvim/plugins/skittles_berry.rc.vim
 '''
 
 # ==========================================================

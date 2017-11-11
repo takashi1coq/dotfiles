@@ -1,12 +1,14 @@
 set modifiable
 set write
 
-"key mapping
+" key mapping
 autocmd FileType vimfiler call s:vimfier_my_settings()
 function! s:vimfier_my_settings()
     nmap <silent><buffer> <ESC><ESC> q
     imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
+
+nnoremap <Space>f :<C-u>VimFilerTab<Cr>
 
 " Textmate icons
 let g:vimfiler_tree_leaf_icon = ' '
