@@ -1,7 +1,3 @@
-if &compatible
-  set nocompatible
-endif
-
 augroup MyAutoCmd
   autocmd!
 augroup END

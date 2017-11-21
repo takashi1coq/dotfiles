@@ -42,6 +42,10 @@ nmap * *zz
 nmap # #zz
 " Ctrl-p で連続コピー
 vnoremap <silent> <C-p> "0p<CR>
+" set filetype?
+au BufNewFile,BufRead *.toml setf conf
+au BufNewFile,BufRead *.vue setf html
+
 
 " terminal
 tnoremap <silent> <ESC> <C-\><C-n>

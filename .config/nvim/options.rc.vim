@@ -22,3 +22,5 @@ set shiftwidth=4
 au BufEnter * execute 'lcd ' fnameescape(expand('%:p:h'))
 " カーソル行をハイライト
 set cursorline
+" *でV選択を検索
+vnoremap * "zy:let @/ = @z<CR>n
