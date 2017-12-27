@@ -18,9 +18,17 @@ set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-"とにかくファイル開いたときにそのバッファのパスにチェンジする※最高
-au BufEnter * execute 'lcd ' fnameescape(expand('%:p:h'))
 " カーソル行をハイライト
 set cursorline
-" *でV選択を検索
-vnoremap * "zy:let @/ = @z<CR>n
+
+"とにかくファイル開いたときにそのバッファのパスにチェンジする
+au BufEnter * execute 'lcd ' fnameescape(expand('%:p:h'))
+" set filetype
+au BufNewFile,BufRead *.toml setf conf
+au BufNewFile,BufRead *.vue setf html
+"Rename コマンド
+command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
+" x削除でレジスタに格納しない
+nnoremap x "_x
+" いらない空白削除コマンド
+command! EndSpaceDel :%s/\s\+$//ge

@@ -10,3 +10,11 @@ endif
 " 選択をvimマッピング
 call denite#custom#map('insert', '<C-j>','<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-k>','<denite:move_to_previous_line>', 'noremap')
+
+" customize ignore globs
+call denite#custom#source('file_rec','matchers',['matcher_fuzzy','matcher_ignore_globs'])
+call denite#custom#filter('matcher_ignore_globs','ignore_globs',
+        \ [
+        \ '.git/', 'build/', '__pycache__/', 'node_modules/',
+        \ 'images/', 'img/',
+        \ '*.o', '*.make' ])

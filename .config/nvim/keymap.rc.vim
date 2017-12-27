@@ -1,12 +1,12 @@
 "ノーマルモード時のみ;と:を入れ替える
 nnoremap ; :
 nnoremap : ;
-"helpをqで閉じられるように
-autocmd FileType help nnoremap <buffer> q <C-w>c
 "コマンド履歴
 nnoremap <sid>(command-line-enter) q:
 nmap ;; <sid>(command-line-enter)
 autocmd FileType vim nnoremap <buffer> q <C-w>c
+"helpもqで閉じられるように
+autocmd FileType help nnoremap <buffer> q <C-w>c
 "ウィドウ間の移動をwとする
 nnoremap <C-w> <C-w>w
 " ウィンドウ回転
@@ -21,31 +21,24 @@ noremap! <C-v> <C-r>+
 nnoremap gf <C-w>gf
 "aaで全選択
 nmap <silent> aa ggVG$
-"Rename
-command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 "C-l,C-h,でタブ移動
 nnoremap <silent> <c-l> gt
 nnoremap <silent> <c-h> gT
-"ハイライト解除
+"esc2回でハイライト解除
 ret hlsearch
 nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
-" x削除でレジスタに格納しない
-nnoremap x "_x
 " ビジュアルモードで選択した部分を*で検索できる
 vnoremap * "zy:let @/ = @z<CR>n
-" 末尾空白削除
-command! EndSpaceDel :%s/\s\+$//ge
 " 検索結果を真ん中
 nmap n nzz
 nmap N Nzz
 nmap * *zz
 nmap # #zz
-" Ctrl-p で連続コピー
+" Ctrl-p で差し替え後も連続コピー
 vnoremap <silent> <C-p> "0p<CR>
-" set filetype?
-au BufNewFile,BufRead *.toml setf conf
-au BufNewFile,BufRead *.vue setf html
-
-
-" terminal
+" *でV選択を検索
+vnoremap * "zy:let @/ = @z<CR>n
+" terminal escで閉じる
 tnoremap <silent> <ESC> <C-\><C-n>
+" ルートで上書き コマンドではないのでマップにする
+cmap w!! w !sudo tee % > /dev/null
