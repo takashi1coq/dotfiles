@@ -1,5 +1,5 @@
 #!/bin/bash
-DOT_FILES=( .config/nvim )
+DOT_FILES=( .config/nvim .gitconfig .gitignore_global )
 
 for file in ${DOT_FILES[@]}
 do
