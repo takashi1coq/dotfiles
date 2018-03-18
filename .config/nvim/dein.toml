@@ -5,12 +5,14 @@ repo = 'Shougo/dein.vim'
 # color
 # morhetz/gruvbox
 # shawncplus/skittles_berry
+# tomasr/molokai
 # ==========================================================
 
 [[plugins]]
-repo = 'shawncplus/skittles_berry'
+repo = 'tomasr/molokai'
 hook_add = '''
-source ~/.config/nvim/plugins/skittles_berry.rc.vim
+source ~/.config/nvim/plugins/molokai.rc.vim
+let loaded_matchparen = 1
 '''
 
 # ==========================================================
