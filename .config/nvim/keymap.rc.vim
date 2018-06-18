@@ -40,5 +40,5 @@ vnoremap <silent> <C-p> "0p<CR>
 vnoremap * "zy:let @/ = @z<CR>n
 " terminal escで閉じる
 tnoremap <silent> <ESC> <C-\><C-n>
-" ルートで上書き コマンドではないのでマップにする
+" rootで上書き(設定ファイルなど) コマンドではないのでマップにする
 cmap w!! w !sudo tee % > /dev/null

@@ -21,8 +21,8 @@ set shiftwidth=4
 " カーソル行をハイライト
 set cursorline
 
-"とにかくファイル開いたときにそのバッファのパスにチェンジする
-au BufEnter * execute 'lcd ' fnameescape(expand('%:p:h'))
+"ターミナル以外はバッファ開いたらパスをチェンジ
+au BufEnter * if &buftype !=# 'terminal' | execute 'lcd ' fnameescape(expand('%:p:h')) | endif
 " set filetype
 au BufNewFile,BufRead *.toml setf conf
 au BufNewFile,BufRead *.vue setf html
