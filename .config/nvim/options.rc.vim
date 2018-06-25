@@ -1,9 +1,14 @@
-"各種設定
+" 行番号
 set number
+" スワップファイルを作成しない
 set noswapfile
+" 折り返さない
 set nowrap
+" undoFileを/tmpに作成
 set undofile
 set undodir=/tmp
+" 大文字小文字を区別しない
+set ignorecase
 "エンコーディング
 set fileencodings=utf-8,euc-jp,ucs-bom,iso-2022-jp,sjis,cp932,latin1
 "ステータスライン
