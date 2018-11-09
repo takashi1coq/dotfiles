@@ -16,25 +16,6 @@ let loaded_matchparen = 1
 '''
 
 # ==========================================================
-# deoplete
-# ==========================================================
-
-[[plugins]]
-repo = 'zchee/deoplete-jedi'
-on_ft = 'python'
-hook_source = '''
-let g:python_host_prog = ''
-let g:python3_host_prog = system('which python3')
-'''
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = '''
-let g:deoplete#enable_at_startup = 1
-source ~/.config/nvim/plugins/deoplete.rc.vim
-'''
-
-# ==========================================================
 # basic
 # ==========================================================
 
@@ -63,4 +44,41 @@ repo = 'Shougo/vimfiler.vim'
 depends = 'unite.vim'
 hook_add = '''
 source ~/.config/nvim/plugins/vimfiler.rc.vim
+'''
+
+# ==========================================================
+# denite
+# ==========================================================
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+depends = ['neomru.vim']
+on_cmd = 'Denite'
+hook_source = '''
+source ~/.config/nvim/plugins/denite.rc.vim
+'''
+hook_add = '''
+source ~/.config/nvim/plugins/denite_keymap.rc.vim
+'''
+
+# ==========================================================
+# deoplete
+# ==========================================================
+
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
+on_ft = 'python'
+hook_source = '''
+let g:python_host_prog = ''
+let g:python3_host_prog = system('which python3')
+'''
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+let g:deoplete#enable_at_startup = 1
+source ~/.config/nvim/plugins/deoplete.rc.vim
 '''

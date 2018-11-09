@@ -28,3 +28,8 @@ endfunction
 
 command! -nargs=0 CopyPath     call CopyPath()
 command! -nargs=0 CopyFileName call CopyFileName()
+
+"Rename コマンド
+command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
+" いらない空白削除コマンド
+command! EndSpaceDel :%s/\s\+$//ge

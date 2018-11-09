@@ -20,7 +20,6 @@ if dein#load_state(s:dein_cache_path)
     call dein#begin(s:dein_cache_path)
 
     call dein#load_toml('~/.config/nvim/dein.toml', {'lazy' : 0})
-    call dein#load_toml('~/.config/nvim/deinlazy.toml', {'lazy' : 1})
 
     call dein#end()
     call dein#save_state()

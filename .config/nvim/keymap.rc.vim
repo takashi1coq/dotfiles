@@ -27,8 +27,6 @@ nnoremap <silent> <c-h> gT
 "esc2回でハイライト解除
 ret hlsearch
 nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
-" ビジュアルモードで選択した部分を*で検索できる
-vnoremap * "zy:let @/ = @z<CR>n
 " 検索結果を真ん中
 nmap n nzz
 nmap N Nzz
@@ -38,7 +36,7 @@ nmap # #zz
 vnoremap <silent> <C-p> "0p<CR>
 " *でV選択を検索
 vnoremap * "zy:let @/ = @z<CR>n
-" terminal escで閉じる
+" terminal escでinsert modeから抜ける
 tnoremap <silent> <ESC> <C-\><C-n>
 " rootで上書き(設定ファイルなど) コマンドではないのでマップにする
 cmap w!! w !sudo tee % > /dev/null
