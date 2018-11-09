@@ -2,7 +2,7 @@
 
 ### Arch NeoVim インストール
 
-- `pip`は使用しないこと`pacman`でインストールする
+- `python-neovim`も同時にインストール
 
 ```
 sudo pacman -S neovim
