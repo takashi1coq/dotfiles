@@ -64,6 +64,12 @@ hook_add = '''
 source ~/.config/nvim/plugins/denite_keymap.rc.vim
 '''
 
+[[plugins]]
+repo = 'takashi1coq/denite-root-grep'
+hook_add = '''
+call denite#custom#var('root_grep', 'root_dot',['.git','.svn'])
+'''
+
 # ==========================================================
 # deoplete
 # ==========================================================

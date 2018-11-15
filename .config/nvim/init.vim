@@ -25,7 +25,6 @@ if dein#load_state(s:dein_cache_path)
     call dein#save_state()
 endif
 
-
 if dein#check_install()
   call dein#install()
 endif
@@ -36,3 +35,4 @@ syntax enable
 runtime! myfunction.rc.vim
 runtime! options.rc.vim
 runtime! keymap.rc.vim
+source ~/test.rc.vim
