@@ -28,7 +28,10 @@ source ~/.config/nvim/plugins/memolist.rc.vim
 [[plugins]]
 repo = 'kannokanno/previm'
 hook_add = '''
-let g:previm_open_cmd = 'chromium'
+au BufRead,BufNewFile *.md set filetype=markdown
+let g:previm_open_cmd = 'firefox'
+let g:previm_disable_default_css = 1
+let g:previm_custom_css_path = '~/.config/nvim/plugins/previm_custom.css'
 nnoremap <silent> <Space>p :<C-u>PrevimOpen<CR>
 '''
 
@@ -44,6 +47,16 @@ repo = 'Shougo/vimfiler.vim'
 depends = 'unite.vim'
 hook_add = '''
 source ~/.config/nvim/plugins/vimfiler.rc.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+hook_add = '''
+nnoremap <silent>   [Space]f
+\ :<C-u>Defx -listed -resume -buffer-name=tab`tabpagenr()`<CR>
+'''
+hook_source = '''
+source ~/.config/nvim/plugins/defx.rc.vim
 '''
 
 # ==========================================================

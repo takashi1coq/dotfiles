@@ -2,9 +2,9 @@
 nnoremap <silent> <Space>u :<C-u>Denite file_rec buffer<CR>
 
 " grep
-nnoremap <silent> <Space>g :<C-u>Denite grep -buffer-name=grep-buffer-denite<CR>
+nnoremap <silent> <Space>g :<C-u>Denite root_grep -buffer-name=grep-buffer-denite<CR>
 " visual grep
-vnoremap <silent> <Space>g :<C-u>DeniteCursorWord grep -buffer-name=grep-buffer-denite<CR>
+vnoremap <silent> <Space>g :<C-u>DeniteCursorWord root_grep -buffer-name=grep-buffer-denite<CR>
 " grep buffer list
 nnoremap <silent> <Space>r :<C-u>Denite -resume -buffer-name=grep-buffer-denite<CR>
 " grep list jump

@@ -40,3 +40,5 @@ vnoremap * "zy:let @/ = @z<CR>n
 tnoremap <silent> <ESC> <C-\><C-n>
 " rootで上書き(設定ファイルなど) コマンドではないのでマップにする
 cmap w!! w !sudo tee % > /dev/null
+" 再読込
+nnoremap <silent> <C-r> :source $MYVIMRC<CR>
