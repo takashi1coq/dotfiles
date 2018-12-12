@@ -1,4 +1,1 @@
-autocmd MyAutoCmd FileType dexf call s:dexf_my_settings()
-function! s:dexf_my_settings() abort
-
-endfunction
+nnoremap <silent><buffer><expr> <CR> defx#do_action('drop')

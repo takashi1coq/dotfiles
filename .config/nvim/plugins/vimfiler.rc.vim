@@ -8,7 +8,7 @@ function! s:vimfier_my_settings()
     imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
 
-nnoremap <Space>f :<C-u>VimFilerTab<Cr>
+"nnoremap <Space>f :<C-u>VimFilerTab<Cr>
 
 " Textmate icons
 let g:vimfiler_tree_leaf_icon = ' '

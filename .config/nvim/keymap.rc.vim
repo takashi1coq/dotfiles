@@ -41,4 +41,9 @@ tnoremap <silent> <ESC> <C-\><C-n>
 " rootで上書き(設定ファイルなど) コマンドではないのでマップにする
 cmap w!! w !sudo tee % > /dev/null
 " 再読込
-nnoremap <silent> <C-r> :source $MYVIMRC<CR>
+nnoremap <silent> <F2> :source $MYVIMRC<CR>
+" コード変換モード
+noremap! <C-t> <C-v>
+" バッファの移動
+nnoremap <silent> <C-j> :bprev<CR>
+nnoremap <silent> <C-k> :bnext<CR>

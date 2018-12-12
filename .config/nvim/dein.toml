@@ -35,6 +35,9 @@ let g:previm_custom_css_path = '~/.config/nvim/plugins/previm_custom.css'
 nnoremap <silent> <Space>p :<C-u>PrevimOpen<CR>
 '''
 
+[[plugins]]
+repo = 'airblade/vim-rooter'
+
 # ==========================================================
 # filer
 # ==========================================================
@@ -52,10 +55,12 @@ source ~/.config/nvim/plugins/vimfiler.rc.vim
 [[plugins]]
 repo = 'Shougo/defx.nvim'
 hook_add = '''
-nnoremap <silent>   [Space]f
+nnoremap <silent> <Space>f
 \ :<C-u>Defx -listed -resume -buffer-name=tab`tabpagenr()`<CR>
 '''
-hook_source = '''
+
+[plugins.ftplugin]
+defx = '''
 source ~/.config/nvim/plugins/defx.rc.vim
 '''
 
@@ -78,10 +83,7 @@ source ~/.config/nvim/plugins/denite_keymap.rc.vim
 '''
 
 [[plugins]]
-repo = 'takashi1coq/denite-root-grep'
-hook_add = '''
-call denite#custom#var('root_grep', 'root_dot',['.git','.svn'])
-'''
+repo = 'neoclide/denite-git'
 
 # ==========================================================
 # deoplete
@@ -92,7 +94,7 @@ repo = 'zchee/deoplete-jedi'
 on_ft = 'python'
 hook_source = '''
 let g:python_host_prog = ''
-let g:python3_host_prog = system('which python3')
+let g:python3_host_prog = system('which python3 | tr -d "\n"')
 '''
 
 [[plugins]]

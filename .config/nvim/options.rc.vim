@@ -25,11 +25,12 @@ set softtabstop=4
 set shiftwidth=4
 " カーソル行をハイライト
 set cursorline
-
-"ターミナル以外はバッファ開いたらパスをチェンジ
-au BufEnter * if &buftype !=# 'terminal' | execute 'lcd ' fnameescape(expand('%:p:h')) | endif
 " set filetype
 au BufNewFile,BufRead *.toml setf conf
 au BufNewFile,BufRead *.vue setf html
 " x削除でレジスタに格納しない
 nnoremap x "_x
+
+"ターミナル以外はバッファ開いたらパスをチェンジ
+"au BufEnter * if &buftype !=# 'terminal' | execute 'lcd ' fnameescape(expand('%:p:h')) | endif
+
