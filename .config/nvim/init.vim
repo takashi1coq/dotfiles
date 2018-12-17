@@ -2,6 +2,9 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
+let g:python_host_prog = ''
+let g:python3_host_prog = system('which python3 | tr -d "\n"')
+
 if has('nvim')
   let s:dein_cache_path = expand('~/.cache/nvim/dein')
 endif

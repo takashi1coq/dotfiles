@@ -25,6 +25,8 @@ set softtabstop=4
 set shiftwidth=4
 " カーソル行をハイライト
 set cursorline
+" タブページを常に表示
+set showtabline=2
 " set filetype
 au BufNewFile,BufRead *.toml setf conf
 au BufNewFile,BufRead *.vue setf html
@@ -33,4 +35,3 @@ nnoremap x "_x
 
 "ターミナル以外はバッファ開いたらパスをチェンジ
 "au BufEnter * if &buftype !=# 'terminal' | execute 'lcd ' fnameescape(expand('%:p:h')) | endif
-

@@ -4,9 +4,9 @@ nnoremap : ;
 "コマンド履歴
 nnoremap <sid>(command-line-enter) q:
 nmap ;; <sid>(command-line-enter)
-autocmd FileType vim nnoremap <buffer> q <C-w>c
+autocmd MyAutoCmd FileType vim nnoremap <buffer> q <C-w>c
 "helpもqで閉じられるように
-autocmd FileType help nnoremap <buffer> q <C-w>c
+autocmd MyAutoCmd FileType help nnoremap <buffer> q <C-w>c
 "ウィドウ間の移動をwとする
 nnoremap <C-w> <C-w>w
 " ウィンドウ回転

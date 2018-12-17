@@ -43,20 +43,10 @@ repo = 'airblade/vim-rooter'
 # ==========================================================
 
 [[plugins]]
-repo = 'Shougo/unite.vim'
-
-[[plugins]]
-repo = 'Shougo/vimfiler.vim'
-depends = 'unite.vim'
-hook_add = '''
-source ~/.config/nvim/plugins/vimfiler.rc.vim
-'''
-
-[[plugins]]
 repo = 'Shougo/defx.nvim'
 hook_add = '''
-nnoremap <silent> <Space>f
-\ :<C-u>Defx -listed -resume -buffer-name=tab`tabpagenr()`<CR>
+nnoremap <silent> <Space>f :<C-u>Defx -buffer-name=myDefx
+\ -show-ignored-files -split=horizontal `expand('%:p:h')` -search=`expand('%:p')`<CR>
 '''
 
 [plugins.ftplugin]
@@ -93,8 +83,6 @@ repo = 'neoclide/denite-git'
 repo = 'zchee/deoplete-jedi'
 on_ft = 'python'
 hook_source = '''
-let g:python_host_prog = ''
-let g:python3_host_prog = system('which python3 | tr -d "\n"')
 '''
 
 [[plugins]]
