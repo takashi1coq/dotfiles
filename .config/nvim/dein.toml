@@ -12,7 +12,6 @@ repo = 'Shougo/dein.vim'
 repo = 'tomasr/molokai'
 hook_add = '''
 source ~/.config/nvim/plugins/molokai.rc.vim
-let loaded_matchparen = 1
 '''
 
 # ==========================================================
@@ -37,6 +36,9 @@ nnoremap <silent> <Space>p :<C-u>PrevimOpen<CR>
 
 [[plugins]]
 repo = 'airblade/vim-rooter'
+hook_add = '''
+let g:rooter_patterns = ['.myroot', '.myroot/', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
+'''
 
 # ==========================================================
 # filer
@@ -45,13 +47,12 @@ repo = 'airblade/vim-rooter'
 [[plugins]]
 repo = 'Shougo/defx.nvim'
 hook_add = '''
-nnoremap <silent> <Space>f :<C-u>Defx -buffer-name=myDefx
-\ -show-ignored-files -split=horizontal `expand('%:p:h')` -search=`expand('%:p')`<CR>
+source ~/.config/nvim/plugins/defx.rc.vim
 '''
 
 [plugins.ftplugin]
 defx = '''
-source ~/.config/nvim/plugins/defx.rc.vim
+source ~/.config/nvim/plugins/defx_keymap.rc.vim
 '''
 
 # ==========================================================

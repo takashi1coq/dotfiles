@@ -32,6 +32,8 @@ au BufNewFile,BufRead *.toml setf conf
 au BufNewFile,BufRead *.vue setf html
 " x削除でレジスタに格納しない
 nnoremap x "_x
+" 括弧のハイライトなくす
+let loaded_matchparen = 1
 
 "ターミナル以外はバッファ開いたらパスをチェンジ
 "au BufEnter * if &buftype !=# 'terminal' | execute 'lcd ' fnameescape(expand('%:p:h')) | endif
