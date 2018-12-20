@@ -3,7 +3,7 @@ function! DefxExplorer(dir)
         \ 'Defx',
         \ '-buffer-name=myDefx',
         \ '-show-ignored-files',
-        \ '-split=horizontal',
+        \ '-split=vertical',
         \ '-columns=git:mark:filename:type:time:size'
         \ ], ' ')
     execute l:cmd. ' '. a:dir

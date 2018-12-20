@@ -3,7 +3,7 @@ au MyAutoCmd ColorScheme * highlight Comment ctermfg=63
 " CursorLine
 au MyAutoCmd ColorScheme * highlight CursorLine ctermbg=236
 " Search
-au MyAutoCmd ColorScheme * highlight Search ctermbg=193
+au MyAutoCmd ColorScheme * highlight Search ctermbg=55 ctermfg=226
 " Visual
 au MyAutoCmd ColorScheme * highlight Visual ctermbg=239
 " TabLine
