@@ -12,7 +12,7 @@ nnoremap <C-w> <C-w>w
 " ウィンドウ回転
 nnoremap <silent>s <C-w>H
 "新しいタブをtt
-nnoremap tt :<C-u>tabnew<Cr>
+nnoremap <silent> tt :<C-u>tabnew<CR>
 "アクティブ以外閉じるをto
 nnoremap to :<C-u>tabo<Cr>
 "C-vで最新レジスタ貼り付け vim では*だった
@@ -43,7 +43,7 @@ command! -nargs=* Terminal split | terminal <args>
 " rootで上書き(設定ファイルなど) コマンドではないのでマップにする
 cmap w!! w !sudo tee % > /dev/null
 " 再読込
-nnoremap <silent> <F2> :source $MYVIMRC<CR>
+nnoremap <silent> <F2> :ReloadMYVIMRC<CR>
 " コード変換モード
 noremap! <C-t> <C-v>
 " バッファの移動

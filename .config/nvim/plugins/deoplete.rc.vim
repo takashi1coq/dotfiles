@@ -18,4 +18,4 @@ endfunction"}}}
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " jedi
-autocmd FileType python setlocal completeopt-=preview
+autocmd MyAutoCmd FileType python setlocal completeopt-=preview

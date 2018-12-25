@@ -28,8 +28,9 @@ set cursorline
 " タブページを常に表示
 set showtabline=2
 " set filetype
-au BufNewFile,BufRead *.toml setf conf
-au BufNewFile,BufRead *.vue setf html
+au MyAutoCmd BufNewFile,BufRead *.toml setf conf
+au MyAutoCmd BufNewFile,BufRead *.vue setf html
+au MyAutoCmd BufRead,BufNewFile *.md set filetype=markdown
 " x削除でレジスタに格納しない
 nnoremap x "_x
 " 括弧のハイライトなくす

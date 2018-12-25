@@ -19,6 +19,8 @@ if &runtimepath !~ '/dein.vim'
   execute 'set runtimepath+=' . fnamemodify(s:dein_dir, ':p')
 endif
 
+let g:dein#install_log_filename = '~/dein.log'
+
 if dein#load_state(s:dein_cache_path)
     call dein#begin(s:dein_cache_path)
 
