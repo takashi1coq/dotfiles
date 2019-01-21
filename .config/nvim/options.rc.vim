@@ -35,6 +35,8 @@ au MyAutoCmd BufRead,BufNewFile *.md set filetype=markdown
 nnoremap x "_x
 " 括弧のハイライトなくす
 let loaded_matchparen = 1
+" 右にスプリット(defx用にすべて適応)
+set splitright
 
 "ターミナル以外はバッファ開いたらパスをチェンジ
 "au BufEnter * if &buftype !=# 'terminal' | execute 'lcd ' fnameescape(expand('%:p:h')) | endif

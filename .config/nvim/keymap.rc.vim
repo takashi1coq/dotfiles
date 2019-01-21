@@ -39,7 +39,8 @@ vnoremap * "zy:let @/ = @z<CR>n
 " terminal escでinsert modeから抜ける
 tnoremap <silent> <ESC> <C-\><C-n>
 " terminal T split
-command! -nargs=* Terminal split | terminal <args>
+"command! -nargs=* Terminal split | terminal <args>
+command! -nargs=* Terminal tabnew | term <args>
 " rootで上書き(設定ファイルなど) コマンドではないのでマップにする
 cmap w!! w !sudo tee % > /dev/null
 " 再読込
@@ -47,5 +48,5 @@ nnoremap <silent> <F2> :ReloadMYVIMRC<CR>
 " コード変換モード
 noremap! <C-t> <C-v>
 " バッファの移動
-nnoremap <silent> <C-j> :bprev<CR>
-nnoremap <silent> <C-k> :bnext<CR>
+nnoremap <silent> <C-j> :silent bprev<CR>
+nnoremap <silent> <C-k> :silent bnext<CR>

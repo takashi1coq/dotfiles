@@ -13,3 +13,9 @@ endfunction
 nnoremap <silent> <Space>f :call DefxExplorer("`expand('%:p:h')`")<CR>
 " work folder
 nnoremap <silent> <Space>w :call DefxExplorer("`expand('~/work/src')`")<CR>
+
+" defx filename size
+call defx#custom#column('filename', {
+      \ 'min_width': 40,
+      \ 'max_width': 40,
+      \ })

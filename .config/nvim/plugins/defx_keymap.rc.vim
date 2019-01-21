@@ -16,3 +16,7 @@ nnoremap <silent><buffer><expr> m defx#do_action('move')
 nnoremap <silent><buffer><expr> p defx#do_action('paste')
 nnoremap <silent><buffer><expr> n defx#do_action('toggle_select')
 nnoremap <silent><buffer><expr> <ESC><ESC> defx#do_action('quit')
+
+" buffer chenge disable
+nnoremap <buffer> <C-j> <Nop>
+nnoremap <buffer> <C-k> <Nop>

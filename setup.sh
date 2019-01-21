@@ -4,7 +4,6 @@ if [ ! -e $HOME/.config ]; then
     mkdir $HOME/.config
 fi
 
-
 for file in ${DOT_FILES[@]}
 do
     ln -sfn $HOME/dotfiles/$file $HOME/$file
