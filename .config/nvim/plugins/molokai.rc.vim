@@ -10,5 +10,7 @@ au MyAutoCmd ColorScheme * highlight Visual ctermbg=239
 au MyAutoCmd ColorScheme * highlight TabLine ctermbg=None ctermfg=15
 " TabLineSel
 au MyAutoCmd ColorScheme * highlight TabLineSel ctermbg=255 ctermfg=0
+" TabLineFill
+au MyAutoCmd ColorScheme * highlight TabLineFill cterm=bold ctermbg=240 ctermfg=49
 
 au MyAutoCmd VimEnter * nested colorscheme molokai

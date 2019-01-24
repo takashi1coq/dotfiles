@@ -25,8 +25,15 @@ set softtabstop=4
 set shiftwidth=4
 " カーソル行をハイライト
 set cursorline
+
+" ---tabpage
 " タブページを常に表示
 set showtabline=2
+" マウス操作ON
+set mouse=a
+" tabline
+set tabline=%!MakeTabLine()
+
 " set filetype
 au MyAutoCmd BufNewFile,BufRead *.toml setf conf
 au MyAutoCmd BufNewFile,BufRead *.vue setf html

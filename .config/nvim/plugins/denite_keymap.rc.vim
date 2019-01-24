@@ -1,5 +1,7 @@
 " current list
 nnoremap <silent> <Space>u :<C-u>Denite file_rec<CR>
+" buffer list
+nnoremap <silent> <Space>b :<C-u>Denite buffer<CR>
 
 " grep
 nnoremap <silent> <Space>g :<C-u>Denite grep -buffer-name=grep-buffer-denite<CR>
@@ -18,7 +20,16 @@ nnoremap <silent> <Space>v :<C-u>Denite file_rec:~/.config/nvim<CR>
 call denite#custom#map('insert', '<C-j>','<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-k>','<denite:move_to_previous_line>', 'noremap')
 " new tab open
-call denite#custom#map('insert', '<C-t>','<denite:do_action:tabopen>')
+call denite#custom#map('insert', '<C-t>','<denite:do_action:my_tabopen>')
+call denite#custom#action('file,buffer', 'my_tabopen', 'MyDeniteTabOpen', {'is_quit' : 'v:true'})
+function! MyDeniteTabOpen(context) abort
+    for target in a:context['targets']
+        let path = target['action__path']
+        if filereadable(path)
+            silent execute ':$tabnew '. path
+        endif
+    endfor
+endfunction
 
 " select
 call denite#custom#map('insert', '<C-n>', '<denite:toggle_select>')
