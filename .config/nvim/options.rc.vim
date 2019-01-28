@@ -12,7 +12,7 @@ set ignorecase
 "エンコーディング
 set fileencodings=utf-8,euc-jp,ucs-bom,iso-2022-jp,sjis,cp932,latin1
 "ステータスライン
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [%{getcwd()}]
+set statusline=[FORMAT=%{&ff}]\ [TYPE=%Y]\ [%{getcwd()}]\ [LOW=%l/%L]
 "クリップボード共有 Nvimの場合はxselが必須
 set clipboard+=unnamedplus
 "タブもろもろ可視化

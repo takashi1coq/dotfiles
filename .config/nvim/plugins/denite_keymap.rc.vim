@@ -14,7 +14,7 @@ nnoremap <silent> <C-n> :<C-u>Denite -resume -buffer-name=grep-buffer-denite -se
 nnoremap <silent> <C-b> :<C-u>Denite -resume -buffer-name=grep-buffer-denite -select=-1 -immediately<CR>
 
 " nvim cofig list
-nnoremap <silent> <Space>v :<C-u>Denite file_rec:~/.config/nvim<CR>
+nnoremap <silent> <Space>v :<C-u>Denite file_rec:~/dotfiles<CR>
 
 " list move
 call denite#custom#map('insert', '<C-j>','<denite:move_to_next_line>', 'noremap')

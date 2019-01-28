@@ -16,6 +16,14 @@ sudo pacman -S xsel
 ```
 http://chakku.hatenablog.com/entry/2015/12/03/004348
 
+- trans google
+```
+git clone https://github.com/soimort/translate-shell
+cd translate-shell/
+make
+sudo make install
+```
+
 ### セットアップ
 
 ```

@@ -50,3 +50,5 @@ noremap! <C-t> <C-v>
 " バッファの移動
 nnoremap <silent> <C-j> :silent bprev<CR>
 nnoremap <silent> <C-k> :silent bnext<CR>
+" 日本語訳
+vnoremap <silent> <C-g> :w !trans -b -sl=en -tl=ja<CR>

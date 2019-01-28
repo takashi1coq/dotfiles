@@ -3,7 +3,9 @@ function! DefxExplorer(dir, max_w, min_w, tabflg)
     let l:my_split = 'vertical'
     if a:tabflg
         let l:my_split = 'no'
-        $tabnew
+        if expand('%:p') !=# ''
+            $tabnew
+        endif
     endif
 
     call defx#custom#column('filename', {
