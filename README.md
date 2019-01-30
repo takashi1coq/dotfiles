@@ -24,6 +24,11 @@ make
 sudo make install
 ```
 
+- neovim-remote
+```
+pip3 install neovim-remote
+```
+
 ### セットアップ
 
 ```

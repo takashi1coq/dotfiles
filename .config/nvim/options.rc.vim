@@ -30,7 +30,7 @@ set cursorline
 " タブページを常に表示
 set showtabline=2
 " マウス操作ON
-set mouse=a
+"set mouse=a
 " tabline
 set tabline=%!MakeTabLine()
 

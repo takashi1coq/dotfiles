@@ -38,8 +38,7 @@ vnoremap <silent> <C-p> "0p<CR>
 vnoremap * "zy:let @/ = @z<CR>n
 " terminal escでinsert modeから抜ける
 tnoremap <silent> <ESC> <C-\><C-n>
-" terminal T split
-"command! -nargs=* Terminal split | terminal <args>
+" terminal
 command! -nargs=* Terminal $tabnew | term <args>
 " rootで上書き(設定ファイルなど) コマンドではないのでマップにする
 cmap w!! w !sudo tee % > /dev/null
