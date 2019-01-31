@@ -34,6 +34,3 @@ endfunction
 " select
 call denite#custom#map('insert', '<C-n>', '<denite:toggle_select>')
 call denite#custom#map('insert', '<C-a>', '<denite:toggle_select_all>')
-
-" denite-git
-command! Gitstatus Denite gitstatus

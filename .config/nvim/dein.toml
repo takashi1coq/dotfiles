@@ -69,9 +69,6 @@ hook_add = '''
 source ~/.config/nvim/plugins/denite_keymap.rc.vim
 '''
 
-[[plugins]]
-repo = 'neoclide/denite-git'
-
 # ==========================================================
 # deoplete
 # ==========================================================
@@ -90,3 +87,16 @@ on_ft = 'python'
 [[plugins]]
 repo = 'Shougo/neco-vim'
 on_ft = 'vim'
+
+# ==========================================================
+# git
+# ==========================================================
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-fugitive.rc.vim
+'''

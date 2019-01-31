@@ -15,6 +15,8 @@ nnoremap <silent>s <C-w>H
 nnoremap <silent> tt :<C-u>$tabnew<CR>
 "アクティブ以外閉じるをto
 nnoremap to :<C-u>tabo<Cr>
+"タブを閉じる
+nnoremap tq :<C-u>tabc<Cr>
 "C-vで最新レジスタ貼り付け vim では*だった
 noremap! <C-v> <C-r>+
 "gfを必ず新しいタブで開く
@@ -38,8 +40,6 @@ vnoremap <silent> <C-p> "0p<CR>
 vnoremap * "zy:let @/ = @z<CR>n
 " terminal escでinsert modeから抜ける
 tnoremap <silent> <ESC> <C-\><C-n>
-" terminal
-command! -nargs=* Terminal $tabnew | term <args>
 " rootで上書き(設定ファイルなど) コマンドではないのでマップにする
 cmap w!! w !sudo tee % > /dev/null
 " 再読込

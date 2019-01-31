@@ -110,3 +110,21 @@ function! MakeTabLine()
     return tabpages. '%='. info
 endfunction
 " }}}
+
+" tabnew
+command! -nargs=0 MyTabNew call s:my_tabnew()
+
+function! s:my_tabnew()
+    if expand('%:p') !=# ''
+        $tabnew
+    endif
+endfunction
+
+" terminal
+command! -nargs=0 Terminal call s:my_terminal()
+
+function! s:my_terminal()
+    MyTabNew
+    terminal
+endfunction
+
