@@ -111,13 +111,16 @@ function! MakeTabLine()
 endfunction
 " }}}
 
-" tabnew
-" deniteとの整合性とる
-command! -nargs=0 MyTabNew call s:my_tabnew()
+" tabnew うんcode
+command! -nargs=? MyTabNew call s:my_tabnew(<f-args>)
 
-function! s:my_tabnew()
+function! s:my_tabnew(...)
+    let path = ''
+    if a:0 >= 1
+        let path = a:1
+    endif
     if expand('%:p') !=# ''
-        $tabnew
+        silent execute ':$tabnew '. path
     endif
 endfunction
 
@@ -128,4 +131,3 @@ function! s:my_terminal()
     MyTabNew
     terminal
 endfunction
-
