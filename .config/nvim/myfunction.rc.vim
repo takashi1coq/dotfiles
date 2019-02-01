@@ -112,6 +112,7 @@ endfunction
 " }}}
 
 " tabnew
+" deniteとの整合性とる
 command! -nargs=0 MyTabNew call s:my_tabnew()
 
 function! s:my_tabnew()
