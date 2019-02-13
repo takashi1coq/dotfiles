@@ -26,6 +26,9 @@ nmap <silent> aa ggVG$
 "C-l,C-h,でタブ移動
 nnoremap <silent> <c-l> gt
 nnoremap <silent> <c-h> gT
+"C-l,C-h,でタブそのものを移動
+nnoremap <silent> <F9> :<C-u>tabm -1<CR>
+nnoremap <silent> <F10> :<C-u>tabm +1<CR>
 "esc2回でハイライト解除
 ret hlsearch
 nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
