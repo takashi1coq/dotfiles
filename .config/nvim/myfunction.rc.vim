@@ -131,3 +131,7 @@ function! s:my_terminal()
     MyTabNew
     terminal
 endfunction
+
+" 無名バッファ開いて、差分チェック
+command! -nargs=0 DiffNewFile :vs | enew | difft | wincmd w | difft | wincmd w
+

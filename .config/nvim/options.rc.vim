@@ -42,7 +42,7 @@ au MyAutoCmd BufRead,BufNewFile *.md set filetype=markdown
 nnoremap x "_x
 " 括弧のハイライトなくす
 let loaded_matchparen = 1
-" 右にスプリット(defx用にすべて適応)
+" 右にスプリット
 set splitright
 
 "ターミナル以外はバッファ開いたらパスをチェンジ
