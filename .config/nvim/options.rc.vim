@@ -14,7 +14,9 @@ set fileencodings=utf-8,euc-jp,ucs-bom,iso-2022-jp,sjis,cp932,latin1
 "ステータスライン
 set statusline=[FORMAT=%{&ff}]\ [TYPE=%Y]\ [%{getcwd()}]\ [LOW=%l/%L]
 "クリップボード共有 Nvimの場合はxselが必須
-set clipboard+=unnamedplus
+if has("clipboard")
+    set clipboard+=unnamedplus
+endif
 "タブもろもろ可視化
 set list
 set listchars=tab:>-,trail:_,extends:>,precedes:<

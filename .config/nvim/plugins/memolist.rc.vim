@@ -1,5 +1,5 @@
 " path
-let g:memolist_path = "~/work/memo"
+let g:memolist_path = "~/work/memo/docs"
 
 " date format (default %Y-%m-%d %H:%M)
 let g:memolist_memo_date = "%Y-%m-%d"

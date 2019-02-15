@@ -1,19 +1,14 @@
-" copy path
-if exists("g:loaded_copypath")
+" function loaded check
+if exists("g:loaded_function")
     finish
 endif
 
-let g:loaded_copypath = 1
-
-" if option is set then use open.
-if !exists('g:copypath_copy_to_unnamed_register')
-    let g:copypath_copy_to_unnamed_register = 0
-endif
+let g:loaded_function = 1
 
 function! CopyPath()
     let @+=expand('%:p')
     " copy unnamed register.
-    if g:copypath_copy_to_unnamed_register
+    if !has('clipboard')
         let @"=expand('%:p')
     endif
 endfunction
@@ -21,7 +16,7 @@ endfunction
 function! CopyFileName()
     let @+=expand('%:t')
     " copy unnamed register.
-    if g:copypath_copy_to_unnamed_register
+    if !has('clipboard')
         let @"=expand('%:t')
     endif
 endfunction
@@ -29,7 +24,7 @@ endfunction
 command! -nargs=0 CopyPath     call CopyPath()
 command! -nargs=0 CopyFileName call CopyFileName()
 
-" いらない空白削除コマンド
+" いらない空白削除
 command! EndSpaceDel :%s/\s\+$//ge
 
 " Capture コマンド実行結果をキャプチャー {{{
@@ -135,3 +130,8 @@ endfunction
 " 無名バッファ開いて、差分チェック
 command! -nargs=0 DiffNewFile :vs | enew | difft | wincmd w | difft | wincmd w
 
+" ハイライト部分置換コマンド
+command! -nargs=1 ReplaceHihl call s:replace_hihl(<f-args>)
+function! s:replace_hihl(word)
+    silent execute ':%s//'. a:word. '/g'
+endfunction

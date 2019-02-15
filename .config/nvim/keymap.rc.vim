@@ -1,6 +1,8 @@
-"ノーマルモード時のみ;と:を入れ替える
+"n,vモード時のみ;と:を入れ替える
 nnoremap ; :
 nnoremap : ;
+vnoremap ; :
+vnoremap : ;
 "コマンド履歴
 nnoremap <sid>(command-line-enter) q:
 nmap ;; <sid>(command-line-enter)
@@ -18,7 +20,11 @@ nnoremap to :<C-u>tabo<Cr>
 "タブを閉じる
 nnoremap tq :<C-u>tabc<Cr>
 "C-vで最新レジスタ貼り付け vim では*だった
-noremap! <C-v> <C-r>+
+if has('clipboard')
+    noremap! <C-v> <C-r>+
+else
+    noremap! <C-v> <C-r>"
+endif
 "gfを必ず新しいタブで開く
 nnoremap gf <C-w>gf
 "aaで全選択
