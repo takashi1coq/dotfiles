@@ -1,4 +1,7 @@
+# ctags
+tags
+
+# nodejs create files
 node_modules/
 package-lock.json
 dist/js/index.js*
-tags
