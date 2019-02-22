@@ -25,5 +25,5 @@ endfunction
 " current
 nnoremap <silent> <Space>f :call DefxExplorer("`expand('%:p:h')`", 35, 35, 0)<CR>
 " work folder
-nnoremap <silent> <Space>w :call DefxExplorer("`expand('~/work/src')`", 60, 60, 1)<CR>
+nnoremap <silent> <Space>w :call DefxExplorer("`expand('~/work/')`", 60, 60, 1)<CR>
 

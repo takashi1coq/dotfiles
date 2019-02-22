@@ -1,10 +1,13 @@
-" function loaded check
+" function loaded check うんcode
 if exists("g:loaded_function")
     finish
 endif
 
 let g:loaded_function = 1
 
+" ==========================================================
+"  CopyPath & CopyFileName
+" ==========================================================
 function! CopyPath()
     let @+=expand('%:p')
     " copy unnamed register.
@@ -24,10 +27,15 @@ endfunction
 command! -nargs=0 CopyPath     call CopyPath()
 command! -nargs=0 CopyFileName call CopyFileName()
 
-" いらない空白削除
+" ==========================================================
+"  unused space delete
+" ==========================================================
 command! EndSpaceDel :%s/\s\+$//ge
 
-" Capture コマンド実行結果をキャプチャー {{{
+
+" ==========================================================
+"  Open ExCommond result whth New tabpage
+" ==========================================================
 command!
     \ -nargs=+
     \ -complete=command
@@ -46,9 +54,10 @@ function! s:cmd_capture(args)
     silent put =C(join(a:args))
     1,2delete _
 endfunction
-" }}}
 
-" 再読込 {{{
+" ==========================================================
+"  vimrc reload for dein
+" ==========================================================
 if has('vim_starting')
     command!
         \ -nargs=0
@@ -61,9 +70,11 @@ if has('vim_starting')
         call dein#recache_runtimepath()
     endfunction
 endif
-" }}}
+"
 
-" tabline {{{
+" ==========================================================
+"  create tabline
+" ==========================================================
 function! s:tabpage_label(n)
     let title = gettabvar(a:n, 'title')
     if title !=# ''
@@ -104,9 +115,11 @@ function! MakeTabLine()
     let info = expand('%:p:h') " タブ情報
     return tabpages. '%='. info
 endfunction
-" }}}
 
-" tabnew うんcode
+
+" ==========================================================
+"  MyTabNew うんcode
+" ==========================================================
 command! -nargs=? MyTabNew call s:my_tabnew(<f-args>)
 
 function! s:my_tabnew(...)
@@ -119,18 +132,36 @@ function! s:my_tabnew(...)
     endif
 endfunction
 
-" terminal
+" ==========================================================
+"  Open Terminal whth New tabpage
+" ==========================================================
 command! -nargs=0 Terminal call s:my_terminal()
 
 function! s:my_terminal()
-    MyTabNew
-    terminal
+    if (!exists('g:my_tabnew_terminal'))
+        MyTabNew
+        terminal
+    else
+        let wids = win_findbuf(g:my_tabnew_terminal)
+        if empty(wids)
+            MyTabNew
+            terminal
+        else
+            call win_gotoid(wids[0])
+        endif
+    endif
+    " うんcode
+    let g:my_tabnew_terminal = bufnr("%")
 endfunction
 
-" 無名バッファ開いて、差分チェック
+" ==========================================================
+"  do not use file, Diff うんcode
+" ==========================================================
 command! -nargs=0 DiffNewFile :vs | enew | difft | wincmd w | difft | wincmd w
 
-" ハイライト部分置換コマンド
+" ==========================================================
+"  Replace highlight
+" ==========================================================
 command! -nargs=1 ReplaceHihl call s:replace_hihl(<f-args>)
 function! s:replace_hihl(word)
     silent execute ':%s//'. a:word. '/g'
