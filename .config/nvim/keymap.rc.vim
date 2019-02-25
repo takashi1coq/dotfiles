@@ -47,6 +47,12 @@ nnoremap <silent> bq :<C-u>bp<bar>sp<bar>bn<bar>bd<CR>
 "  terminal
 " ==========================================================
 
+" terminal起動 (メイン)
+nnoremap <silent> <F11> :Terminal<CR>
+
+" terminal起動 (サブ)
+nnoremap <silent> <F12> :sp<CR>:terminal<CR>5<C-w>_
+
 " terminal escでinsert modeから抜ける
 tnoremap <silent> <ESC> <C-\><C-n>
 
