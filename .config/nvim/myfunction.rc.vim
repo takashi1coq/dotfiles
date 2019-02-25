@@ -163,6 +163,7 @@ command! -nargs=0 DiffNewFile :vs | enew | difft | wincmd w | difft | wincmd w
 "  Replace highlight
 " ==========================================================
 command! -nargs=1 ReplaceHihl call s:replace_hihl(<f-args>)
+
 function! s:replace_hihl(word)
     silent execute ':%s//'. a:word. '/g'
 endfunction

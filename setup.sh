@@ -1,5 +1,5 @@
 #!/bin/bash
-DOT_FILES=( .config/nvim .gitconfig .gitignore_global .ctags )
+DOT_FILES=( .config/nvim .gitconfig .gitignore_global .ctags .aliases )
 mkdir -p $HOME/.config
 mkdir -p $HOME/work/src
 for file in ${DOT_FILES[@]}

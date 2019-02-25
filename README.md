@@ -29,6 +29,10 @@ sudo make install
 pip3 install neovim-remote
 ```
 
+- install tig (using configure)
+
+http://jonas.github.io/tig/
+
 ### セットアップ
 
 ```

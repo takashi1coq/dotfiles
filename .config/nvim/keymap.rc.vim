@@ -2,11 +2,17 @@
 "  window
 " ==========================================================
 
-"ウィドウ間の移動をwとする
+"ウィドウ間の移動
 nnoremap <C-w> <C-w>w
 
-" ウィンドウ回転
+" 回転
 nnoremap <silent>s <C-w>H
+
+" サイズ変更
+nnoremap <Up> <C-w>-
+nnoremap <Down> <C-w>+
+nnoremap <Right> <C-w>>
+nnoremap <Left> <C-w><
 
 " ==========================================================
 "  tabpage
@@ -22,13 +28,13 @@ nnoremap to :<C-u>tabo<Cr>
 nnoremap tq :<C-u>tabc<Cr>
 
 "gfを必ず新しいタブで開く
-nnoremap gf <C-w>gf
+nnoremap gf <C-w>gf:<C-u>tabm $<CR>
 
 "C-l,C-h,でタブ移動
 nnoremap <silent> <c-l> gt
 nnoremap <silent> <c-h> gT
 
-"C-l,C-h,でタブそのものを移動
+"<F9>,<F10>,でタブそのものを移動
 nnoremap <silent> <F9> :<C-u>tabm -1<CR>
 nnoremap <silent> <F10> :<C-u>tabm +1<CR>
 
@@ -47,8 +53,17 @@ nnoremap <silent> bq :<C-u>bp<bar>sp<bar>bn<bar>bd<CR>
 "  terminal
 " ==========================================================
 
-" terminal escでinsert modeから抜ける
+" メイン
+nnoremap <silent> <F11> :Terminal<CR>
+
+" サブ
+nnoremap <silent> <F12> :sp<CR>:terminal<CR>5<C-w>_
+
+" escでinsert modeから抜ける
 tnoremap <silent> <ESC> <C-\><C-n>
+
+" qでターミナル終了
+
 
 " ==========================================================
 "  others
@@ -112,4 +127,4 @@ cmap w!! w !sudo tee % > /dev/null
 nnoremap <silent> <F2> :ReloadMYVIMRC<CR>
 
 " 日本語訳
-vnoremap <silent> <Space><Space> :w !trans -b -sl=en -tl=ja<CR>
+vnoremap <silent> <Space> :w !trans -b -sl=en -tl=ja<CR>

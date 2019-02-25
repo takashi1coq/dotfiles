@@ -1,0 +1,4 @@
+# my alias
+alias l='ls -artl --color=auto'
+alias n='nvim -c Terminal'
+alias shutdown='sudo shutdown -h now'
