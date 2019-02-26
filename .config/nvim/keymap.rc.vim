@@ -68,10 +68,6 @@ nnoremap <silent> <F11> :Terminal<CR>
 " terminal起動 (サブ)
 nnoremap <silent> <F12> :sp<CR>:terminal<CR>5<C-w>_
 
-" terminal escでinsert modeから抜ける
->>>>>>> 7da34a451db4fa8781c5b832a7ed9c14d7ef7f59
-tnoremap <silent> <ESC> <C-\><C-n>
-
 " qでターミナル終了
 
 
