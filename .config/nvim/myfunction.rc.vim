@@ -34,7 +34,7 @@ command! EndSpaceDel :%s/\s\+$//ge
 
 
 " ==========================================================
-"  Open ExCommond result whth New tabpage
+"  open excommond result whth new tabpage
 " ==========================================================
 command!
     \ -nargs=+
@@ -50,8 +50,9 @@ function! C(cmd)
 endfunction
 
 function! s:cmd_capture(args)
-    $tabnew
-    silent put =C(join(a:args))
+    let l:res = C(join(a:args))
+    MyTabNew
+    silent put =l:res
     1,2delete _
 endfunction
 
@@ -116,35 +117,40 @@ function! MakeTabLine()
     return tabpages. '%='. info
 endfunction
 
-
 " ==========================================================
 "  MyTabNew うんcode
+"  0:count
+"  1:path
 " ==========================================================
-command! -nargs=? MyTabNew call s:my_tabnew(<f-args>)
+command! -nargs=* MyTabNew call s:both_ends_tabnew(<f-args>)
 
-function! s:my_tabnew(...)
-    let path = ''
+function! s:both_ends_tabnew(...)
+    let l:res = ['$','']
     if a:0 >= 1
-        let path = a:1
+        let l:count = 0
+        for n in a:000
+            let res[l:count] = n
+            let l:count += 1
+        endfor
     endif
     if expand('%:p') !=# ''
-        silent execute ':$tabnew '. path
+        silent execute ':'. l:res[0]. 'tabnew' .l:res[1]
     endif
 endfunction
 
 " ==========================================================
-"  Open Terminal whth New tabpage
+"  open terminal whth new tabpage
 " ==========================================================
 command! -nargs=0 Terminal call s:my_terminal()
 
 function! s:my_terminal()
     if (!exists('g:my_tabnew_terminal'))
-        MyTabNew
+        MyTabNew 0
         terminal
     else
         let wids = win_findbuf(g:my_tabnew_terminal)
         if empty(wids)
-            MyTabNew
+            MyTabNew 0
             terminal
         else
             call win_gotoid(wids[0])
@@ -160,10 +166,37 @@ endfunction
 command! -nargs=0 DiffNewFile :vs | enew | difft | wincmd w | difft | wincmd w
 
 " ==========================================================
-"  Replace highlight
+"  replace highlight
 " ==========================================================
 command! -nargs=1 ReplaceHihl call s:replace_hihl(<f-args>)
 
 function! s:replace_hihl(word)
     silent execute ':%s//'. a:word. '/g'
 endfunction
+
+" ==========================================================
+"  trans
+" ==========================================================
+command! -nargs=? JpEnTrans call s:jp_en_trans(<f-args>)
+
+function! MyVisual()
+    let [lnum1, col1] = getpos("'<")[1:2]
+    let [lnum2, col2] = getpos("'>")[1:2]
+    let lines = getline(lnum1, lnum2)
+    if lnum1 == 0 && lnum2 == 0 && col1 == 0 && col2 == 0
+        return ''
+    endif
+    let lines[-1] = lines[-1][:col2 - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][col1 - 1:]
+    return join(lines, " ")
+endfunction
+
+function! s:jp_en_trans(...)
+    let l:str = MyVisual()
+    if a:0 >= 1
+        let l:str = a:1
+    endif
+    echomsg system('trans -b -sl=en -tl=ja '. '"'. l:str. '"')
+endfunction
+
+

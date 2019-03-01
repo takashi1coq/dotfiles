@@ -14,6 +14,9 @@ nnoremap <Down> <C-w>+
 nnoremap <Right> <C-w>>
 nnoremap <Left> <C-w><
 
+" 閉じる
+nnoremap q <C-w>c
+
 " ==========================================================
 "  tabpage
 " ==========================================================
@@ -31,8 +34,8 @@ nnoremap tq :<C-u>tabc<Cr>
 nnoremap gf <C-w>gf:<C-u>tabm $<CR>
 
 "C-l,C-h,でタブ移動
-nnoremap <silent> <c-l> gt
-nnoremap <silent> <c-h> gT
+nnoremap <silent> <C-l> gt
+nnoremap <silent> <C-h> gT
 
 "<F9>,<F10>,でタブそのものを移動
 nnoremap <silent> <F9> :<C-u>tabm -1<CR>
@@ -84,10 +87,6 @@ vnoremap : ;
 "コマンド履歴
 nnoremap <sid>(command-line-enter) q:
 nmap ;; <sid>(command-line-enter)
-autocmd MyAutoCmd FileType vim nnoremap <buffer> q <C-w>c
-
-"helpもqで閉じられるように
-autocmd MyAutoCmd FileType help nnoremap <buffer> q <C-w>c
 
 " C-vで最新レジスタ貼り付け
 if has('clipboard')
@@ -133,4 +132,4 @@ cmap w!! w !sudo tee % > /dev/null
 nnoremap <silent> <F2> :ReloadMYVIMRC<CR>
 
 " 日本語訳
-vnoremap <silent> <Space> :w !trans -b -sl=en -tl=ja<CR>
+vnoremap <F1> :<C-u>JpEnTrans<CR>

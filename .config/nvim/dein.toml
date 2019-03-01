@@ -94,9 +94,13 @@ on_ft = 'vim'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
+hook_add = '''
+set updatetime=100
+'''
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 hook_add = '''
-source ~/.config/nvim/plugins/vim-fugitive.rc.vim
+set diffopt+=vertical
+nnoremap <silent> <C-g> :$tab sp<CR>:Gstatus<CR>5<C-w>_
 '''
