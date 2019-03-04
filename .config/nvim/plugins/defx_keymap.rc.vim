@@ -15,6 +15,7 @@ nnoremap <silent><buffer><expr> dd defx#do_action('remove')
 nnoremap <silent><buffer><expr> m defx#do_action('move')
 nnoremap <silent><buffer><expr> p defx#do_action('paste')
 nnoremap <silent><buffer><expr> n defx#do_action('toggle_select')
+nnoremap <silent><buffer><expr> . defx#do_action('new_file'). '.myroot<CR>'
 
 " buffer chenge disable
 nnoremap <buffer> <C-j> <Nop>
