@@ -36,3 +36,5 @@ echo 'git email='$email
 echo '[user]' > ~/.gitconfig.local
 echo '    name = '$username >> ~/.gitconfig.local
 echo '    email = '$email >> ~/.gitconfig.local
+
+echo '[ source ~/.aliases ] in sh'

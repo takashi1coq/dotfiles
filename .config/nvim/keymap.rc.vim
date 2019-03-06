@@ -65,12 +65,6 @@ nnoremap <silent> <F12> :sp<CR>:terminal<CR>5<C-w>_
 " escでinsert modeから抜ける
 tnoremap <silent> <ESC> <C-\><C-n>
 
-" terminal起動 (メイン)
-nnoremap <silent> <F11> :Terminal<CR>
-
-" terminal起動 (サブ)
-nnoremap <silent> <F12> :sp<CR>:terminal<CR>5<C-w>_
-
 " qでターミナル終了
 
 
@@ -133,7 +127,7 @@ nnoremap k gk
 cmap w!! w !sudo tee % > /dev/null
 
 " 再読込
-nnoremap <silent> <F2> :ReloadMYVIMRC<CR>
+nnoremap <silent> <F3> :ReloadMYVIMRC<CR>
 
 " 日本語訳
 vnoremap <F1> :<C-u>JpEnTrans<CR>

@@ -33,6 +33,11 @@ pip3 install neovim-remote
 
 http://jonas.github.io/tig/
 
+- isntall lsp (archlinux)
+```
+sudo pacman -S python-language-server
+```
+
 ### セットアップ
 
 ```

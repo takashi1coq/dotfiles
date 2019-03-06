@@ -76,8 +76,13 @@ source ~/.config/nvim/plugins/denite_keymap.rc.vim
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 hook_add = '''
-let g:deoplete#enable_at_startup = 1
 source ~/.config/nvim/plugins/deoplete.rc.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+hook_add = '''
+source ~/.config/nvim/plugins/neosnippet.rc.vim
 '''
 
 [[plugins]]
@@ -87,6 +92,18 @@ on_ft = 'python'
 [[plugins]]
 repo = 'Shougo/neco-vim'
 on_ft = 'vim'
+
+# ==========================================================
+# LanguageClient-neovim
+# ==========================================================
+
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+rev = 'next'
+build = 'bash install.sh'
+hook_add = '''
+source ~/.config/nvim/plugins/LanguageClient-neovim.rc.vim
+'''
 
 # ==========================================================
 # git
