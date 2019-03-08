@@ -66,7 +66,7 @@ au MyAutoCmd BufNewFile,BufRead *.vue setf html
 au MyAutoCmd BufNewFile,BufRead *.md setf markdown
 
 " ==========================================================
-"  buf
+"  dust
 " ==========================================================
 
 "ターミナル以外はバッファ開いたらパスをチェンジ
