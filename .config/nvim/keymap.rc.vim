@@ -4,6 +4,7 @@
 
 "ウィドウ間の移動
 nnoremap <C-w> <C-w>w
+nnoremap <C-e> <C-w>
 
 " 回転
 nnoremap <silent>s <C-w>H
@@ -11,8 +12,8 @@ nnoremap <silent>s <C-w>H
 " サイズ変更
 nnoremap <Up> <C-w>-
 nnoremap <Down> <C-w>+
-nnoremap <Right> <C-w>>
-nnoremap <Left> <C-w><
+nnoremap <Right> <C-w><
+nnoremap <Left> <C-w>>
 
 " 閉じる
 nnoremap q <C-w>c
@@ -50,7 +51,7 @@ nnoremap <silent> <C-j> :silent bprev<CR>
 nnoremap <silent> <C-k> :silent bnext<CR>
 
 " バッファのみ閉じる（window,tabpegeに影響なし）
-nnoremap <silent> bq :<C-u>bp<bar>sp<bar>bn<bar>bd<CR>
+nnoremap <silent> bd :<C-u>bp<bar>sp<bar>bn<bar>bd<bar>tabc<CR>
 
 " ==========================================================
 "  terminal
@@ -60,13 +61,10 @@ nnoremap <silent> bq :<C-u>bp<bar>sp<bar>bn<bar>bd<CR>
 nnoremap <silent> <F11> :Terminal<CR>
 
 " サブ
-nnoremap <silent> <F12> :sp<CR>:terminal<CR>5<C-w>_
+nnoremap <silent> <F12> :sp<CR>:terminal<CR>10<C-w>_
 
 " escでinsert modeから抜ける
 tnoremap <silent> <ESC> <C-\><C-n>
-
-" qでターミナル終了
-
 
 " ==========================================================
 "  others
@@ -81,6 +79,10 @@ vnoremap : ;
 "コマンド履歴
 nnoremap <sid>(command-line-enter) q:
 nmap ;; <sid>(command-line-enter)
+
+"検索履歴
+nnoremap <sid>(search-line-enter) q/
+nmap // <sid>(search-line-enter)
 
 " C-vで最新レジスタ貼り付け
 if has('clipboard')
@@ -127,7 +129,7 @@ nnoremap k gk
 cmap w!! w !sudo tee % > /dev/null
 
 " 再読込
-nnoremap <silent> <F3> :ReloadMYVIMRC<CR>
+nnoremap <silent> <F2> :ReloadMYVIMRC<CR>
 
 " 日本語訳
 vnoremap <F1> :<C-u>JpEnTrans<CR>

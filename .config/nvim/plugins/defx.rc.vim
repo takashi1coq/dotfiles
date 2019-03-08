@@ -1,4 +1,4 @@
-function! DefxExplorer(dir, max_w, min_w, tabflg)
+function! DefxExplorer(dir, min_w, max_w, tabflg)
 
     let l:my_split = 'vertical'
     if a:tabflg
@@ -23,7 +23,7 @@ function! DefxExplorer(dir, max_w, min_w, tabflg)
 endfunction
 
 " current
-nnoremap <silent> <Space>f :call DefxExplorer("`expand('%:p:h')`", 35, 35, 0)<CR>
+nnoremap <silent> <Space>f :call DefxExplorer("`expand('%:p:h')`", 35, 35, 0)<CR>60<C-w><bar>
 " work folder
 nnoremap <silent> <Space>w :call DefxExplorer("`expand('~/work/')`", 60, 60, 1)<CR>
 

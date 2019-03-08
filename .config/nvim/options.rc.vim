@@ -15,6 +15,9 @@ set undodir=/tmp
 " 大文字小文字を区別しない
 set ignorecase
 
+" * での検索や text-object 等での選択時に - で切らない
+set iskeyword& iskeyword+=-
+
 " 一番したまでいったら上に戻る(検索)
 set wrapscan
 

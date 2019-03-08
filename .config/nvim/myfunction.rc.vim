@@ -199,4 +199,13 @@ function! s:jp_en_trans(...)
     echomsg system('trans -b -sl=en -tl=ja '. '"'. l:str. '"')
 endfunction
 
+" ==========================================================
+"  open window with new tabpage 運コード
+" ==========================================================
+command! -nargs=0 OpenWNT call s:open_wnt()
 
+function! s:open_wnt()
+    let path = expand('%:p')
+    execute ':q'
+    execute ':MyTabNew $ '. path
+endfunction
