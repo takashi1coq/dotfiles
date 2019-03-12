@@ -43,6 +43,9 @@ nnoremap <silent> <C-h> gT
 nnoremap <silent> <F9> :<C-u>tabm -1<CR>
 nnoremap <silent> <F10> :<C-u>tabm +1<CR>
 
+" 新しいタブで開きなおす
+nnoremap <silent> ts :<C-u>tab sp<bar>MakeWinOne<CR>
+
 " ==========================================================
 "  buffer
 " ==========================================================

@@ -200,12 +200,21 @@ function! s:jp_en_trans(...)
 endfunction
 
 " ==========================================================
-"  open window with new tabpage 運コード
+"  make window one
 " ==========================================================
-command! -nargs=0 OpenWNT call s:open_wnt()
+command! -nargs=0 MakeWinOne call s:win_one()
 
-function! s:open_wnt()
-    let path = expand('%:p')
-    execute ':q'
-    execute ':MyTabNew $ '. path
+function! s:win_one()
+    let winr = win_getid()
+    let winr_list = win_findbuf(bufnr('%'))
+
+    " 無ければ何もしない
+
+    for buf_winr in winr_list
+        if buf_winr != winr
+            call win_gotoid(buf_winr)
+            quit
+        endif
+    endfor
+    call win_gotoid(winr)
 endfunction
