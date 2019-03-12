@@ -60,6 +60,9 @@ let loaded_matchparen = 1
 " 同じファイルを複数タブで開かない用
 au MyAutoCmd BufEnter *.* MakeWinOne
 
+" ヘルプ開いたら移動
+autocmd MyAutoCmd FileType help TabSplit
+
 " ==========================================================
 "  set FileType
 " ==========================================================

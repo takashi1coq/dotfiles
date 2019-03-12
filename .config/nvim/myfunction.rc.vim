@@ -218,3 +218,13 @@ function! s:win_one()
     endfor
     call win_gotoid(winr)
 endfunction
+
+" ==========================================================
+"  tab sp
+" ==========================================================
+command! -nargs=0 TabSplit call s:tab_sp()
+
+function! s:tab_sp()
+    execute 'tab split'
+    execute 'MakeWinOne'
+endfunction
