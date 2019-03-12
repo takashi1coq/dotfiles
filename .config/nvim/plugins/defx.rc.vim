@@ -1,5 +1,11 @@
 function! DefxExplorer(dir, min_w, max_w, tabflg)
 
+    " 存在しない場合、homeを表示
+    let l:dir = a:dir
+    if !isdirectory(l:dir)
+        let l:dir = expand('~/')
+    endif
+
     let l:my_split = 'vertical'
     if a:tabflg
         let l:my_split = 'no'
@@ -18,7 +24,7 @@ function! DefxExplorer(dir, min_w, max_w, tabflg)
         \ '-split='. l:my_split,
         \ '-columns=git:mark:filename:type:time'
         \ ], ' ')
-    execute l:cmd. ' '. a:dir
+    execute l:cmd. ' '. l:dir
 
 endfunction
 
@@ -27,3 +33,11 @@ nnoremap <silent> <Space>f :call DefxExplorer("`expand('%:p:h')`", 35, 35, 0)<CR
 " work folder
 nnoremap <silent> <Space>w :call DefxExplorer("`expand('~/work/')`", 60, 60, 1)<CR>
 
+" icon
+call defx#custom#column('mark', {
+      \ 'directory_icon': '▸',
+      \ 'opened_icon': '▾',
+      \ 'readonly_icon': '✗',
+      \ 'root_icon': ' ',
+      \ 'selected_icon': '✓',
+      \ })
