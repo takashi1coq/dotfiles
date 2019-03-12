@@ -61,7 +61,7 @@ let loaded_matchparen = 1
 au MyAutoCmd BufEnter *.* MakeWinOne
 
 " ヘルプ開いたら移動
-autocmd MyAutoCmd FileType help TabSplit
+au MyAutoCmd BufEnter *.txt if &buftype == 'help' | execute 'TabSplit' | endif
 
 " ==========================================================
 "  set FileType
