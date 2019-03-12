@@ -61,7 +61,7 @@ let loaded_matchparen = 1
 au MyAutoCmd BufEnter *.* MakeWinOne
 
 " ==========================================================
-"  FileType
+"  set FileType
 " ==========================================================
 au MyAutoCmd BufNewFile,BufRead *.toml setf conf
 au MyAutoCmd BufNewFile,BufRead *.yml setf conf
