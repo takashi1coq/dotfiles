@@ -70,6 +70,9 @@ nnoremap <silent> <F12> :sp<CR>:terminal<CR>10<C-w>_
 " escでinsert modeから抜ける
 tnoremap <silent> <ESC> <C-\><C-n>
 
+" 貼り付け
+tnoremap <silent> <C-v> <C-\><C-n>pi
+
 " ==========================================================
 "  others
 " ==========================================================
