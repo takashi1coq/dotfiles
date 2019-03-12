@@ -1,8 +1,8 @@
-function! DefxExplorer(dir, min_w, max_w, tabflg)
+function! DefxExplorer(str, min_w, max_w, tabflg)
 
     " 存在しない場合、homeを表示
-    let l:dir = a:dir
-    if !isdirectory(l:dir)
+    let l:dir = expand(a:str)
+    if isdirectory(l:dir) == 0
         let l:dir = expand('~/')
     endif
 
@@ -29,9 +29,9 @@ function! DefxExplorer(dir, min_w, max_w, tabflg)
 endfunction
 
 " current
-nnoremap <silent> <Space>f :call DefxExplorer("`expand('%:p:h')`", 35, 35, 0)<CR>60<C-w><bar>
+nnoremap <silent> <Space>f :call DefxExplorer('%:p:h', 35, 35, 0)<CR>60<C-w><bar>
 " work folder
-nnoremap <silent> <Space>w :call DefxExplorer("`expand('~/work/')`", 60, 60, 1)<CR>
+nnoremap <silent> <Space>w :call DefxExplorer('~/work/', 60, 60, 1)<CR>
 
 " icon
 call defx#custom#column('mark', {
