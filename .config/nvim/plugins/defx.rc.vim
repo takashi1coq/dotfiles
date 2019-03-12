@@ -34,10 +34,13 @@ nnoremap <silent> <Space>f :call DefxExplorer('%:p:h', 35, 35, 0)<CR>60<C-w><bar
 nnoremap <silent> <Space>w :call DefxExplorer('~/work/', 60, 60, 1)<CR>
 
 " icon
-call defx#custom#column('mark', {
+call defx#custom#column('filename', {
       \ 'directory_icon': '▸',
       \ 'opened_icon': '▾',
-      \ 'readonly_icon': '✗',
       \ 'root_icon': ' ',
+      \ })
+
+call defx#custom#column('mark', {
+      \ 'readonly_icon': '✗',
       \ 'selected_icon': '✓',
       \ })
