@@ -113,6 +113,8 @@ source ~/.config/nvim/plugins/LanguageClient-neovim.rc.vim
 repo = 'airblade/vim-gitgutter'
 hook_add = '''
 set updatetime=100
+nnoremap <silent> <F5> :GitGutterNextHunk<CR>
+nnoremap <silent> <F6> :GitGutterPrevHunk<CR>
 '''
 
 [[plugins]]
