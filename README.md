@@ -36,7 +36,6 @@ http://jonas.github.io/tig/
 - isntall lsp (archlinux)
 ```
 sudo pacman -S python-language-server
-test
 ```
 
 ### セットアップ

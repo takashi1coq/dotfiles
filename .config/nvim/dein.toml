@@ -123,3 +123,10 @@ hook_add = '''
 set diffopt+=vertical
 nnoremap <silent> <C-g> :$tab sp<CR>:Gstatus<CR>5<C-w>_
 '''
+
+[[plugins]]
+repo = 'jreybert/vimagit'
+hook_add = '''
+'''
+
+
