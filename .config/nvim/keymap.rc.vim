@@ -128,6 +128,10 @@ vnoremap * "zy:let @/ = @z<CR>n
 nnoremap j gj
 nnoremap k gk
 
+" 進む、戻るを再マップ
+nnoremap <M-Right> <C-i>
+nnoremap <M-Left> <C-o>
+
 " ==========================================================
 "  dangerous
 " ==========================================================
