@@ -25,7 +25,7 @@ set wrapscan
 set fileencodings=utf-8,euc-jp,ucs-bom,iso-2022-jp,sjis,cp932,latin1
 
 " ステータスライン
-set statusline=[FORMAT=%{&ff}]\ [TYPE=%Y]\ [%{getcwd()}]\ [LOW=%l/%L]
+set statusline=%{getcwd()}%<\ %=[%{&ft},%{&fenc},%{&ff}]\ %l/%L
 
 " タブラインを常に表示
 set showtabline=2
