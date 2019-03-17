@@ -1,7 +1,9 @@
 " current list
-nnoremap <silent> <Space>u :<C-u>Denite file_rec<CR>
+nnoremap <silent> <Space>u :<C-u>Denite file/rec<CR>
 " buffer list
 nnoremap <silent> <Space>b :<C-u>Denite buffer<CR>
+" nvim cofig list
+nnoremap <silent> <Space>v :<C-u>Denite file/rec:~/dotfiles<CR>
 
 " grep
 nnoremap <silent> <Space>g :<C-u>Denite grep -buffer-name=grep-buffer-denite<CR>
@@ -12,9 +14,6 @@ nnoremap <silent> <Space>r :<C-u>Denite -resume -buffer-name=grep-buffer-denite<
 " grep list jump
 nnoremap <silent> <C-n> :<C-u>Denite -resume -buffer-name=grep-buffer-denite -select=+1 -immediately<CR>
 nnoremap <silent> <C-b> :<C-u>Denite -resume -buffer-name=grep-buffer-denite -select=-1 -immediately<CR>
-
-" nvim cofig list
-nnoremap <silent> <Space>v :<C-u>Denite file_rec:~/dotfiles<CR>
 
 " list move
 call denite#custom#map('insert', '<C-j>','<denite:move_to_next_line>', 'noremap')

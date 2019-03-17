@@ -14,7 +14,7 @@ let g:memolist_memo_date = "%Y-%m-%d"
 let g:memolist_denite = 1
 
 " use arbitrary denite source (default is 'file_rec')
-let g:memolist_denite_source = "file_rec"
+let g:memolist_denite_source = "file/rec"
 
 " use arbitrary denite option (default is empty)
 let g:memolist_denite_option = "buffer -default-action=tabopen"
