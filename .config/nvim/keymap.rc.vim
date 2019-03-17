@@ -129,8 +129,8 @@ nnoremap j gj
 nnoremap k gk
 
 " 進む、戻るを再マップ
-nnoremap <M-Right> <C-i>
-nnoremap <M-Left> <C-o>
+nnoremap <C-Right> <C-i>zz
+nnoremap <C-Left> <C-o>zz
 
 " ==========================================================
 "  dangerous
