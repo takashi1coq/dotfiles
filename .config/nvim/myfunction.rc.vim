@@ -208,11 +208,9 @@ function! s:win_one()
     let winr = win_getid()
     let winr_list = win_findbuf(bufnr('%'))
 
-    " 無ければ何もしない
-
-    for buf_winr in winr_list
-        if buf_winr != winr
-            call win_gotoid(buf_winr)
+    for dup_winr in winr_list
+        if dup_winr != winr
+            call win_gotoid(dup_winr)
             quit
         endif
     endfor
@@ -227,4 +225,20 @@ command! -nargs=0 TabSplit call s:tab_sp()
 function! s:tab_sp()
     execute 'tab split'
     execute 'MakeWinOne'
+endfunction
+
+" ==========================================================
+"  ファイルの存在しないバッファを閉じる
+" ==========================================================
+command! -bar DeleteNoFileBuffer :call s:delete_no_file_buffer()
+
+function! s:delete_no_file_buffer()
+    let list = filter(range(1, bufnr("$")),
+\        'bufexists(v:val) && !filereadable(expand("#".v:val.":p"))'
+\    )
+    for v in list
+        if getbufvar(v, '&buftype') != 'terminal'
+            execute "bd ".v
+        endif
+    endfor
 endfunction
