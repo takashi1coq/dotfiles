@@ -11,6 +11,9 @@ hook_add = '''
 source ~/.config/nvim/plugins/molokai.rc.vim
 '''
 
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+
 # ==========================================================
 # basic
 # ==========================================================

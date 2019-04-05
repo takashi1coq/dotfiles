@@ -1,20 +1,20 @@
 # dotfiles
 
-### Arch NeoVim インストール
+### Arch NeoVim install
 
-- `python-neovim`も同時にインストール
-
+- `python-neovim` is python client
 ```
 sudo pacman -S neovim
 sudo pacman -S python2-neovim python-neovim
 ```
 
-- neovim クリップボード
+### install tools
 
+- neovim clipboard (:h clipboard-tool)
+- X WindowSystem requied (not required on server)
 ```
 sudo pacman -S xsel
 ```
-http://chakku.hatenablog.com/entry/2015/12/03/004348
 
 - trans google
 ```
@@ -24,21 +24,25 @@ make
 sudo make install
 ```
 
-- neovim-remote
+- neovim-remote (nvr)
 ```
 pip3 install neovim-remote
 ```
 
-- install tig (using configure)
+### lsp
 
-http://jonas.github.io/tig/
-
-- isntall lsp (archlinux)
+- isntall pythoh lsp (archlinux)
 ```
 sudo pacman -S python-language-server
 ```
 
-### セットアップ
+- install javascript lsp (nodenv)
+```
+npm i -g javascript-typescript-langserver
+exec -l $SHELL
+```
+
+### setup
 
 ```
 git clone https://github.com/takashi1coq/dotfiles dotfiles
