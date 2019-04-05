@@ -6,6 +6,12 @@ let g:LanguageClient_serverCommands = {}
 if executable('pyls')
     let g:LanguageClient_serverCommands['python'] = ['pyls']
 endif
+" javascript / npm i -g javascript-typescript-langserver
+if executable('javascript-typescript-stdio')
+    let g:LanguageClient_serverCommands['javascript'] = ['javascript-typescript-stdio']
+    let g:LanguageClient_serverCommands['javascript.jsx'] = ['javascript-typescript-stdio']
+    let g:LanguageClient_serverCommands['typescript'] = ['javascript-typescript-stdio']
+endif
 
 " ==========================================================
 " mapping
@@ -13,8 +19,8 @@ endif
 function! LC_maps()
   if has_key(g:LanguageClient_serverCommands, &filetype)
     nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
-    nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-    nnoremap <buffer> <silent> rr :call LanguageClient#textDocument_rename()<CR>
+    nnoremap <buffer> <silent> D :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <buffer> <silent> R :call LanguageClient#textDocument_rename()<CR>
   endif
 endfunction
 

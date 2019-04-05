@@ -18,6 +18,9 @@ set ignorecase
 " * での検索や text-object 等での選択時に - で切らない
 set iskeyword& iskeyword+=-
 
+" jsonのダブルコーテーション表示用 非表示設定をすべてOFF
+set conceallevel=0
+
 " 一番したまでいったら上に戻る(検索)
 set wrapscan
 
@@ -70,6 +73,8 @@ au MyAutoCmd BufNewFile,BufRead *.toml setf conf
 au MyAutoCmd BufNewFile,BufRead *.yml setf conf
 au MyAutoCmd BufNewFile,BufRead *.vue setf html
 au MyAutoCmd BufNewFile,BufRead *.md setf markdown
+au MyAutoCmd BufNewFile,BufRead *.ts setf typescript
+au MyAutoCmd BufNewFile,BufRead *.tsx setf typescript
 
 " ==========================================================
 "  dust
