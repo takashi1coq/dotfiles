@@ -29,16 +29,22 @@ sudo make install
 pip3 install neovim-remote
 ```
 
-### lsp
+### lsp install
 
-- isntall pythoh lsp (archlinux)
+- pythoh lsp (archlinux)
 ```
 sudo pacman -S python-language-server
 ```
 
-- install javascript lsp (nodenv)
+- javascript lsp (nodenv)
 ```
 npm i -g javascript-typescript-langserver
+exec -l $SHELL
+```
+
+- html lsp (nodenv)
+```
+npm i -g vscode-html-languageserver-bin
 exec -l $SHELL
 ```
 
