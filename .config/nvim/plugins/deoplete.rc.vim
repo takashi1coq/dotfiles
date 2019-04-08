@@ -18,6 +18,3 @@ endfunction"}}}
 
 " <S-TAB>: completion back.
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
-
-" jedi
-autocmd MyAutoCmd FileType python setlocal completeopt-=preview

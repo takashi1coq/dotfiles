@@ -89,10 +89,6 @@ source ~/.config/nvim/plugins/neosnippet.rc.vim
 '''
 
 [[plugins]]
-repo = 'zchee/deoplete-jedi'
-on_ft = 'python'
-
-[[plugins]]
 repo = 'Shougo/neco-vim'
 on_ft = 'vim'
 
