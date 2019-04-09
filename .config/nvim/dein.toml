@@ -92,8 +92,7 @@ source ~/.config/nvim/plugins/neosnippet.rc.vim
 '''
 
 [[plugins]]
-repo = 'Shougo/neco-vim'
-on_ft = 'vim'
+repo = 'ujihisa/neco-look'
 
 # ==========================================================
 # LanguageClient-neovim

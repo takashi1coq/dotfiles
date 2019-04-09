@@ -29,6 +29,11 @@ sudo make install
 pip3 install neovim-remote
 ```
 
+- words (check `look` is installed)
+```
+sudo pacman -S words
+```
+
 ### lsp install
 
 - pythoh lsp (archlinux)
