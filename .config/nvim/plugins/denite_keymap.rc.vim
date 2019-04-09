@@ -4,6 +4,8 @@ nnoremap <silent> <Space>u :<C-u>Denite file/rec<CR>
 nnoremap <silent> <Space>b :<C-u>Denite buffer<CR>
 " nvim cofig list
 nnoremap <silent> <Space>v :<C-u>Denite file/rec:~/dotfiles<CR>
+" mark list
+nnoremap <silent> <Space>m :<C-u>Denite marks<CR>
 
 " grep
 nnoremap <silent> <Space>g :<C-u>Denite grep -buffer-name=grep-buffer-denite<CR>

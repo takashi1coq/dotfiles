@@ -72,6 +72,9 @@ hook_add = '''
 source ~/.config/nvim/plugins/denite_keymap.rc.vim
 '''
 
+[[plugins]]
+repo = 'yyotti/denite-marks'
+
 # ==========================================================
 # deoplete
 # ==========================================================

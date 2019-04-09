@@ -132,6 +132,10 @@ nnoremap k gk
 nnoremap <C-Right> <C-i>zz
 nnoremap <C-Left> <C-o>zz
 
+" file mark
+nnoremap <F7> mF
+nnoremap <F8> 'F
+
 " ==========================================================
 "  dangerous
 " ==========================================================
