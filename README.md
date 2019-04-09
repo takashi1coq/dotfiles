@@ -30,6 +30,7 @@ pip3 install neovim-remote
 ```
 
 - words (check `look` is installed)
+- look only works on `md` and `gitcommit`
 ```
 sudo pacman -S words
 ```
