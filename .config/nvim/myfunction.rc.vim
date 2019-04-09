@@ -160,10 +160,7 @@ function! s:my_terminal()
     let g:my_tabnew_terminal = bufnr("%")
 endfunction
 
-" ==========================================================
-"  do not use file, Diff うんcode
-" ==========================================================
-command! -nargs=0 DiffNewFile :vs | enew | difft | wincmd w | difft | wincmd w
+command! -nargs=0 DiffNewFile :vertical diffsplit /tmp/mydiff
 
 " ==========================================================
 "  replace highlight
