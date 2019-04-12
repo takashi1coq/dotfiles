@@ -160,6 +160,9 @@ function! s:my_terminal()
     let g:my_tabnew_terminal = bufnr("%")
 endfunction
 
+" ==========================================================
+"  DiffNewFile
+" ==========================================================
 command! -nargs=0 DiffNewFile :vertical diffsplit /tmp/mydiff
 
 " ==========================================================

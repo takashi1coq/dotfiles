@@ -19,6 +19,9 @@ nnoremap <Left> <C-w>>
 " 閉じる
 nnoremap q <C-w>c
 
+" その他のウィンドウを閉じる
+nnoremap <silent> wo :<C-u>only<Cr>
+
 " windowサイズをそろえる
 nnoremap == <C-w>=
 
@@ -30,10 +33,10 @@ nnoremap == <C-w>=
 nnoremap <silent> tt :<C-u>$tabnew<CR>
 
 "アクティブ以外閉じるをto
-nnoremap to :<C-u>tabo<Cr>
+nnoremap <silent> to :<C-u>tabo<Cr>
 
 "windowごとタブを閉じる
-nnoremap tq :<C-u>tabc<Cr>
+nnoremap <silent> tq :<C-u>tabc<Cr>
 
 "gfを必ず新しいタブで開く
 nnoremap gf <C-w>gf:<C-u>tabm $<CR>
