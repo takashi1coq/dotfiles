@@ -90,6 +90,10 @@ source ~/.config/nvim/plugins/neosnippet.rc.vim
 '''
 
 [[plugins]]
+repo = 'Shougo/neco-vim'
+on_ft = 'vim'
+
+[[plugins]]
 repo = 'ujihisa/neco-look'
 
 # ==========================================================

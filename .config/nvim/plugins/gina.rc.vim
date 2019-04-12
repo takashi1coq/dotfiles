@@ -16,9 +16,10 @@ nnoremap <silent> <Leader>gb :<C-u>Gina branch --opener=split --all<CR>
 " log
 call gina#custom#command#option('log', '--graph')
 call gina#custom#command#option('log', '--decorate=full')
-nnoremap <silent> <Leader>gl :<C-u>Gina log --opener=tabedit<CR>
+call gina#custom#command#option('log', '--opener', 'tabedit')
+nnoremap <silent> <Leader>gl :<C-u>Gina log<CR>
 
-" path?
+" patch?
 nnoremap <silent> <Leader>gp :<C-u>Gina patch<CR>
 
 " stash
