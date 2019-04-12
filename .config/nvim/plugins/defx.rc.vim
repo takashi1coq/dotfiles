@@ -1,3 +1,5 @@
+
+" defx stert function
 function! DefxExplorer(str, min_w, max_w, tabflg)
 
     " 存在しない場合、homeを表示

@@ -5,6 +5,25 @@ setlocal nomodifiable
 nnoremap <buffer> <C-j> <Nop>
 nnoremap <buffer> <C-k> <Nop>
 
+" open terminal remap
+function! DefxTerminalSubWindow(context) abort
+    let path = fnamemodify(a:context.targets[0], ':h')
+    new
+    execute ':lcd'. path
+    terminal
+endfunction
+
+function! DefxTerminal(context) abort
+    let path = fnamemodify(a:context.targets[0], ':h')
+    execute ':lcd'. path
+    terminal
+endfunction
+
+nnoremap <buffer> <F11> <Nop>
+nnoremap <silent><buffer><expr> <F12> defx#do_action('call', 'DefxTerminal')
+nnoremap <buffer> <F12> <Nop>
+nnoremap <silent><buffer><expr> <F12> defx#do_action('call', 'DefxTerminalSubWindow')
+
 " defx key mapping
 nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
 nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
