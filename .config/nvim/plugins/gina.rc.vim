@@ -38,6 +38,6 @@ command! -nargs=0 LogCurrentGit :execute 'Gina log :' . <SID>get_current_relpath
 command! -nargs=0 PatchGit :execute 'Gina patch'
 
 " stash
-command! -nargs=0 SaveStashGit :execute 'Gina stash save -u'
+command! -nargs=0 SaveStashGit :execute 'Gina stash save -u "gina stash"'
 command! -nargs=0 PopStashGit :execute 'Gina stash pop'
 command! -nargs=0 ListStashGit :execute 'Gina stash list --opener=vsplit'
