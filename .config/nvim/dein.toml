@@ -121,12 +121,6 @@ nnoremap <silent> < :GitGutterPrevHunk<CR>zz
 '''
 
 [[plugins]]
-repo = 'jreybert/vimagit'
-hook_add = '''
-nnoremap <silent> M :Magit<CR>
-'''
-
-[[plugins]]
 repo = 'lambdalisue/gina.vim'
 hook_add = '''
 source ~/.config/nvim/plugins/gina.rc.vim
