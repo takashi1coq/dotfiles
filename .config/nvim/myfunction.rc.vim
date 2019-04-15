@@ -230,7 +230,7 @@ endfunction
 " ==========================================================
 "  ファイルの存在しないバッファを閉じる
 " ==========================================================
-command! -bar DeleteNoFileBuffer :call s:delete_no_file_buffer()
+command! -bar DeleteNoFileBuffer call s:delete_no_file_buffer()
 
 function! s:delete_no_file_buffer()
     let list = filter(range(1, bufnr("$")),
