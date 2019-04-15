@@ -31,6 +31,9 @@ call gina#custom#command#option('log', '--decorate=full')
 call gina#custom#mapping#nmap('log', 'ch',
             \ ':call gina#action#call("changes:of:split")<CR>',
             \ {'noremap':1, 'silent': 1})
+call gina#custom#mapping#nmap('log', 'rr',
+            \ ':call gina#action#call("commit:reset")<CR>',
+            \ {'noremap':1, 'silent': 1})
 command! -nargs=0 LogGit :execute 'Gina log --opener=tabedit'
 command! -nargs=0 LogCurrentGit :execute 'Gina log :' . <SID>get_current_relpath()
 
