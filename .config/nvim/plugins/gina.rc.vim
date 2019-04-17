@@ -29,13 +29,11 @@ nnoremap <silent> <F5> :StatusGit<CR>
 " ==========================================================
 call gina#custom#command#option('commit', '--opener', 'vsplit')
 command! -nargs=0 CommitGit :execute 'Gina commit'
-nnoremap <silent> <F6> :CommitGit<CR>
 
 " ==========================================================
 "  Branch
 " ==========================================================
 call gina#custom#command#option('branch', '--opener', 'split')
-call gina#custom#command#option('branch', '--all')
 " new branch
 call gina#custom#mapping#nmap('branch', 'nn',
             \ ':call gina#action#call("branch:new")<CR>',
@@ -58,6 +56,8 @@ call gina#custom#mapping#nmap('branch', 'dd',
             \ {'noremap':1, 'silent': 1})
 command! -nargs=0 BranchGit :execute 'Gina branch'
 nnoremap <silent> <F7> :BranchGit<CR>
+command! -nargs=0 BranchGitAll :execute 'Gina branch --all'
+nnoremap <silent> <F8> :BranchGitAll<CR>
 
 " ==========================================================
 "  Log
@@ -73,7 +73,7 @@ call gina#custom#mapping#nmap('log', 'rr',
             \ ':call gina#action#call("commit:reset")<CR>',
             \ {'noremap':1, 'silent': 1})
 command! -nargs=0 LogGit :execute 'Gina log --opener=tabedit --branches --tags --remotes'
-nnoremap <silent> <F8> :LogGit<CR>
+nnoremap <silent> <F6> :LogGit<CR>
 command! -nargs=0 LogCurrentGit :execute 'Gina log :' . <SID>get_current_relpath()
 
 " ==========================================================
