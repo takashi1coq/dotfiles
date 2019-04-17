@@ -234,7 +234,7 @@ command! -bar DeleteNoFileBuffer call s:delete_no_file_buffer()
 
 function! s:delete_no_file_buffer()
     let list = filter(range(1, bufnr("$")),
-\        'bufexists(v:val) && !filereadable(expand("#".v:val.":p"))'
+\        'bufexists(bufname(v:val)) && !filereadable(expand("#".v:val.":p")) && buflisted(v:val)'
 \    )
     for v in list
         if getbufvar(v, '&buftype') != 'terminal'
