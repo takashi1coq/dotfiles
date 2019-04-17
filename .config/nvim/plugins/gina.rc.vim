@@ -22,12 +22,14 @@ endfunction
 call gina#custom#command#option('status', '-s')
 call gina#custom#command#option('status', '-b')
 command! -nargs=0 StatusGit :execute 'Gina status'
+nnoremap <silent> <F5> :StatusGit<CR>
 
 " ==========================================================
 "  Commit
 " ==========================================================
 call gina#custom#command#option('commit', '--opener', 'vsplit')
 command! -nargs=0 CommitGit :execute 'Gina commit'
+nnoremap <silent> <F6> :CommitGit<CR>
 
 " ==========================================================
 "  Branch
@@ -42,11 +44,20 @@ call gina#custom#mapping#nmap('branch', 'nn',
 call gina#custom#mapping#nmap('branch', 'fe',
             \ ':call gina#action#call("branch:refresh")<CR>',
             \ {'noremap':1, 'silent': 1})
+" chenge
+call gina#custom#mapping#nmap('branch', 'ch',
+            \ ':call gina#action#call("changes:of:vsplit")<CR>',
+            \ {'noremap':1, 'silent': 1})
 " marge
 call gina#custom#mapping#nmap('branch', 'ma',
-            \ ':call gina#action#call("commit:merge")<CR>',
+            \ ':call gina#action#call("commit:merge:no-ff")<CR>',
+            \ {'noremap':1, 'silent': 1})
+" delete
+call gina#custom#mapping#nmap('branch', 'dd',
+            \ ':call gina#action#call("branch:delete")<CR>',
             \ {'noremap':1, 'silent': 1})
 command! -nargs=0 BranchGit :execute 'Gina branch'
+nnoremap <silent> <F7> :BranchGit<CR>
 
 " ==========================================================
 "  Log
@@ -61,7 +72,8 @@ call gina#custom#mapping#nmap('log', 'ch',
 call gina#custom#mapping#nmap('log', 'rr',
             \ ':call gina#action#call("commit:reset")<CR>',
             \ {'noremap':1, 'silent': 1})
-command! -nargs=0 LogGit :execute 'Gina log --opener=tabedit'
+command! -nargs=0 LogGit :execute 'Gina log --opener=tabedit --branches --tags --remotes'
+nnoremap <silent> <F8> :LogGit<CR>
 command! -nargs=0 LogCurrentGit :execute 'Gina log :' . <SID>get_current_relpath()
 
 " ==========================================================
