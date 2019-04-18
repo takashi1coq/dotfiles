@@ -21,6 +21,7 @@ endfunction
 " ==========================================================
 call gina#custom#command#option('status', '-s')
 call gina#custom#command#option('status', '-b')
+call gina#custom#command#option('status', '--opener', 'split')
 command! -nargs=0 StatusGit :execute 'Gina status'
 nnoremap <silent> <F5> :StatusGit<CR>
 
@@ -38,21 +39,29 @@ call gina#custom#command#option('branch', '--opener', 'split')
 call gina#custom#mapping#nmap('branch', 'nn',
             \ ':call gina#action#call("branch:new")<CR>',
             \ {'noremap':1, 'silent': 1})
-" fetch
-call gina#custom#mapping#nmap('branch', 'fe',
-            \ ':call gina#action#call("branch:refresh")<CR>',
-            \ {'noremap':1, 'silent': 1})
-" chenge
-call gina#custom#mapping#nmap('branch', 'ch',
-            \ ':call gina#action#call("changes:of:vsplit")<CR>',
-            \ {'noremap':1, 'silent': 1})
-" marge
-call gina#custom#mapping#nmap('branch', 'ma',
-            \ ':call gina#action#call("commit:merge:no-ff")<CR>',
+" remotes checkout
+call gina#custom#mapping#nmap('branch', '<Space>',
+            \ ':call gina#action#call("commit:checkout:track")<CR>',
             \ {'noremap':1, 'silent': 1})
 " delete
 call gina#custom#mapping#nmap('branch', 'dd',
             \ ':call gina#action#call("branch:delete")<CR>',
+            \ {'noremap':1, 'silent': 1})
+" refresh
+call gina#custom#mapping#nmap('branch', 'rf',
+            \ ':call gina#action#call("branch:refresh")<CR>',
+            \ {'noremap':1, 'silent': 1})
+" marge --no-ff
+call gina#custom#mapping#nmap('branch', 'ma',
+            \ ':call gina#action#call("commit:merge:no-ff")<CR>',
+            \ {'noremap':1, 'silent': 1})
+" marge
+call gina#custom#mapping#nmap('branch', 'mf',
+            \ ':call gina#action#call("commit:merge:ff-only")<CR>',
+            \ {'noremap':1, 'silent': 1})
+" chenge
+call gina#custom#mapping#nmap('branch', 'ch',
+            \ ':call gina#action#call("changes:of:vsplit")<CR>',
             \ {'noremap':1, 'silent': 1})
 command! -nargs=0 BranchGit :execute 'Gina branch'
 nnoremap <silent> <F7> :BranchGit<CR>
@@ -67,6 +76,14 @@ call gina#custom#command#option('log', '--decorate=full')
 " chenge
 call gina#custom#mapping#nmap('log', 'ch',
             \ ':call gina#action#call("changes:of:split")<CR>',
+            \ {'noremap':1, 'silent': 1})
+" checkout commit
+call gina#custom#mapping#nmap('log', '<Space>',
+            \ ':call gina#action#call("commit:checkout:track")<CR>',
+            \ {'noremap':1, 'silent': 1})
+" marge --no-ff
+call gina#custom#mapping#nmap('log', 'ma',
+            \ ':call gina#action#call("commit:merge:no-ff")<CR>',
             \ {'noremap':1, 'silent': 1})
 " reset HEAD
 call gina#custom#mapping#nmap('log', 'rr',
