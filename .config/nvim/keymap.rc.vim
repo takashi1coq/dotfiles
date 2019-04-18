@@ -71,7 +71,7 @@ nnoremap <silent> bd :<C-u>bp<bar>sp<bar>bn<bar>bd<bar>tabc<CR>
 nnoremap <silent> <F11> :Terminal<CR>
 
 " サブ
-nnoremap <silent> <F12> :sp<CR>:terminal<CR>10<C-w>_
+nnoremap <silent> <F12> :sp<CR>:10wincmd_<CR>:terminal<CR>
 
 " escでinsert modeから抜ける
 tnoremap <silent> <ESC> <C-\><C-n>

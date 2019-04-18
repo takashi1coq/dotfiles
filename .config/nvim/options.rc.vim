@@ -66,6 +66,11 @@ au MyAutoCmd BufEnter *.* MakeWinOne
 " ヘルプ開いたら移動
 au MyAutoCmd BufEnter *.txt if &buftype == 'help' | execute 'TabSplit' | endif
 
+" terminal start insert mode
+if has('nvim')
+    autocmd TermOpen term://* startinsert
+endif
+
 " ==========================================================
 "  set FileType
 " ==========================================================
