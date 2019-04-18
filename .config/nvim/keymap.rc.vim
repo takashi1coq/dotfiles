@@ -151,6 +151,6 @@ nnoremap <silent> <F2> :ReloadMYVIMRC<CR>
 " 日本語訳
 vnoremap <F1> :<C-u>JpEnTrans<CR>
 
-" ファイル再読み込み (git stash 苦肉)
-nnoremap <silent> <F4> :tabdo !e<CR><bar>:DeleteNoFileBuffer<CR>
+" ファイル再読み込み
+nnoremap <silent> <F4> :RefreshFiles<CR>
 

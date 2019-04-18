@@ -230,9 +230,18 @@ endfunction
 " ==========================================================
 "  ファイルの存在しないバッファを閉じる
 " ==========================================================
-command! -bar DeleteNoFileBuffer call s:delete_no_file_buffer()
+command! -bar RefreshFiles call s:refresh_files()
 
-function! s:delete_no_file_buffer()
+function! s:refresh_files()
+
+    " refresh tabpage
+    let save_tab = tabpagenr()
+    let save_win = winnr()
+    execute 'tabdo e!'
+    execute 'tabnext '. save_tab
+    execute save_win. ' wincmd w'
+
+    " delete no file buffer
     let list = filter(range(1, bufnr("$")),
 \        'bufexists(bufname(v:val)) && !filereadable(expand("#".v:val.":p")) && buflisted(v:val)'
 \    )
@@ -241,4 +250,5 @@ function! s:delete_no_file_buffer()
             execute "bd ".v
         endif
     endfor
+
 endfunction
