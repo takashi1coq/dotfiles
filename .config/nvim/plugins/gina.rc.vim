@@ -40,7 +40,7 @@ call gina#custom#mapping#nmap('branch', 'nn',
             \ ':call gina#action#call("branch:new")<CR>',
             \ {'noremap':1, 'silent': 1})
 " remotes checkout
-call gina#custom#mapping#nmap('branch', '<Space>',
+call gina#custom#mapping#nmap('branch', 'ou',
             \ ':call gina#action#call("commit:checkout:track")<CR>',
             \ {'noremap':1, 'silent': 1})
 " delete
@@ -78,7 +78,7 @@ call gina#custom#mapping#nmap('log', 'ch',
             \ ':call gina#action#call("changes:of:split")<CR>',
             \ {'noremap':1, 'silent': 1})
 " checkout commit
-call gina#custom#mapping#nmap('log', '<Space>',
+call gina#custom#mapping#nmap('log', 'ou',
             \ ':call gina#action#call("commit:checkout:track")<CR>',
             \ {'noremap':1, 'silent': 1})
 " marge --no-ff
