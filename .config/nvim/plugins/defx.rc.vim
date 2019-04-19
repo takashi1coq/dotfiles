@@ -24,25 +24,32 @@ function! DefxExplorer(str, min_w, max_w, tabflg)
         \ '-buffer-name=myDefx',
         \ '-show-ignored-files',
         \ '-split='. l:my_split,
-        \ '-columns=git:mark:filename:type:time'
+        \ '-columns=indent:icon:mark:filename:type:time'
         \ ], ' ')
     execute l:cmd. ' '. l:dir
 
 endfunction
 
 " current
-nnoremap <silent> <Space>f :call DefxExplorer('%:p:h', 35, 35, 0)<CR>60<C-w><bar>
+nnoremap <silent> <Space>f :call DefxExplorer('%:p:h', 35, 35, 0)<CR>:60wincmd<bar><CR>
 " work folder
 nnoremap <silent> <Space>w :call DefxExplorer('~/work/', 60, 60, 1)<CR>
 
 " icon
-call defx#custom#column('filename', {
+call defx#custom#column('icon', {
       \ 'directory_icon': '▸',
       \ 'opened_icon': '▾',
       \ 'root_icon': ' ',
       \ })
 
+" mark
 call defx#custom#column('mark', {
       \ 'readonly_icon': '✗',
       \ 'selected_icon': '✓',
       \ })
+
+" indent
+call defx#custom#column('indent', {
+      \ 'indent': '   ',
+      \ })
+
