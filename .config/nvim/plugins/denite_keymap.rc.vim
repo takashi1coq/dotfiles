@@ -28,7 +28,7 @@ function! MyDeniteTabOpen(context) abort
     for target in a:context['targets']
         let l:path = target['action__path']
         if filereadable(l:path)
-            silent execute ':MyTabNew $ '. l:path
+            silent execute ':MyTabNew 0 '. l:path
         endif
     endfor
 endfunction
