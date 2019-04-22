@@ -19,4 +19,5 @@ endfunction"}}}
 " <S-TAB>: completion back.
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
 
+" neco-look
 call deoplete#custom#source('look', 'filetypes', ['markdown', 'gina-commit'])
