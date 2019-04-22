@@ -2,7 +2,7 @@
 "  main settings
 " ==========================================================
 set diffopt+=vertical
-let g:mapleader = ','
+"let g:mapleader = ','
 
 " ==========================================================
 "  function
