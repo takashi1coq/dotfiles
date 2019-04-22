@@ -91,7 +91,7 @@ call gina#custom#mapping#nmap('log', 'rr',
             \ {'noremap':1, 'silent': 1})
 command! -nargs=0 LogGit :execute 'Gina log --opener=tabedit --branches --tags --remotes'
 nnoremap <silent> <F6> :LogGit<CR>
-command! -nargs=0 LogCurrentGit :execute 'Gina log :' . <SID>get_current_relpath()
+command! -nargs=0 LogCurrentGit :execute 'Gina log :' . <SID>get_current_relpath(). ' --opener=split'
 
 " ==========================================================
 "  Patch
