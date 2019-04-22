@@ -55,7 +55,7 @@ call gina#custom#mapping#nmap('branch', 'rf',
 call gina#custom#mapping#nmap('branch', 'ma',
             \ ':call gina#action#call("commit:merge:no-ff")<CR>',
             \ {'noremap':1, 'silent': 1})
-" marge
+" marge --ff-only
 call gina#custom#mapping#nmap('branch', 'mf',
             \ ':call gina#action#call("commit:merge:ff-only")<CR>',
             \ {'noremap':1, 'silent': 1})
