@@ -125,7 +125,7 @@ endfunction
 command! -nargs=* MyTabNew call s:both_ends_tabnew(<f-args>)
 
 function! s:both_ends_tabnew(...)
-    let l:res = ['$','']
+    let l:res = ['0','']
     if a:0 >= 1
         let l:count = 0
         for n in a:000
