@@ -16,7 +16,7 @@ endfunction
 function! DefxTerminal(context) abort
     let path = fnamemodify(a:context.targets[0], ':h')
     execute ':lcd'. path
-    terminal
+    Terminal
 endfunction
 
 nnoremap <buffer> <F11> <Nop>
