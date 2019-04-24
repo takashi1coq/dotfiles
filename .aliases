@@ -2,3 +2,4 @@
 alias l='ls -artl --color=auto'
 alias n='nvim'
 alias shutdown='sudo shutdown -h now'
+alias q='exit'
