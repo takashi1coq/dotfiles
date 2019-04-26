@@ -34,6 +34,9 @@ endfunction
 nnoremap <silent> <Space>f :call DefxExplorer('%:p:h', 35, 35, 0)<CR>:60wincmd<bar><CR>
 " work folder
 nnoremap <silent> <Space>w :call DefxExplorer('~/work/', 60, 60, 1)<CR>
+" others
+command! -nargs=1 MyDefx call DefxExplorer(<f-args>, 60, 60, 1)
+
 
 " icon
 call defx#custom#column('icon', {
