@@ -223,7 +223,7 @@ endfunction
 command! -nargs=0 TabSplit call s:tab_sp()
 
 function! s:tab_sp()
-    execute 'tab split'
+    execute '0tab split'
     execute 'MakeWinOne'
 endfunction
 

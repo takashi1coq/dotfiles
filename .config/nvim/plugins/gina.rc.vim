@@ -1,8 +1,11 @@
 " ==========================================================
-"  main settings
+"  common settings
 " ==========================================================
 set diffopt+=vertical
 "let g:mapleader = ','
+
+" compare open on the left tab
+call gina#custom#command#option('compare', '--opener', '-1tabedit')
 
 " ==========================================================
 "  function
@@ -89,7 +92,7 @@ call gina#custom#mapping#nmap('log', 'ma',
 call gina#custom#mapping#nmap('log', 'rr',
             \ ':call gina#action#call("commit:reset")<CR>',
             \ {'noremap':1, 'silent': 1})
-command! -nargs=0 LogGit :execute 'Gina log --opener=tabedit --branches --tags --remotes'
+command! -nargs=0 LogGit :execute 'Gina log --opener=-1tabedit --branches --tags --remotes'
 nnoremap <silent> <F6> :LogGit<CR>
 command! -nargs=0 LogCurrentGit :execute 'Gina log :' . <SID>get_current_relpath(). ' --opener=split'
 
