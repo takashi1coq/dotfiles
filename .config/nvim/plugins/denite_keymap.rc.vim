@@ -45,7 +45,7 @@ function! MyDeniteSideBySide(context) abort
         endif
     endfor
     let l:str = join(l:mylist, ' | vs ')
-    execute ':$tabnew '. l:str
+    execute ':-1tabnew '. l:str
 endfunction
 
 
