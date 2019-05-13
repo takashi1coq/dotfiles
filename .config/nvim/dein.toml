@@ -51,7 +51,7 @@ source ~/.config/nvim/plugins/defx.rc.vim
 
 [plugins.ftplugin]
 defx = '''
-source ~/.config/nvim/plugins/defx_keymap.rc.vim
+source ~/.config/nvim/plugins/defx_buffer_map.rc.vim
 '''
 
 # ==========================================================
