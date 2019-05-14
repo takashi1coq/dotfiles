@@ -13,6 +13,7 @@ function! CopyPath()
     " copy unnamed register.
     if !has('clipboard')
         let @"=expand('%:p')
+        echomsg expand('%:p')
     endif
 endfunction
 
@@ -21,6 +22,7 @@ function! CopyFileName()
     " copy unnamed register.
     if !has('clipboard')
         let @"=expand('%:t')
+        echomsg expand('%:t')
     endif
 endfunction
 
@@ -113,7 +115,7 @@ function! MakeTabLine()
     let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
     let sep = ' ' "タブ間の区切り
     let tabpages = join(titles, sep). sep. '%#TabLineFill#%T'
-    let info = expand('%:p:h') " タブ情報
+    let info = '' " タブ情報
     return tabpages. '%='. info
 endfunction
 
