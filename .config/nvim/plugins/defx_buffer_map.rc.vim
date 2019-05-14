@@ -1,10 +1,6 @@
 " set modifiable
 setlocal nomodifiable
 
-" buffer chenge disable
-nnoremap <buffer> <C-j> <Nop>
-nnoremap <buffer> <C-k> <Nop>
-
 " open terminal remap
 function! DefxTerminalSubWindow(context) abort
     let path = fnamemodify(a:context.targets[0], ':h')

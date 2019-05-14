@@ -56,10 +56,6 @@ nnoremap <silent> ts :TabSplit<CR>
 "  buffer
 " ==========================================================
 
-" バッファ前後切り替え
-nnoremap <silent> <C-j> :silent bprev<CR>
-nnoremap <silent> <C-k> :silent bnext<CR>
-
 " バッファのみ閉じる（window,tabpegeに影響なし）
 nnoremap <silent> bd :<C-u>bp<bar>sp<bar>bn<bar>bd<bar>tabc<CR>
 
