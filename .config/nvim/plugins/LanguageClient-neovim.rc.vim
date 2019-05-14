@@ -21,11 +21,14 @@ endif
 " mapping
 " ==========================================================
 function! LC_maps()
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
-    nnoremap <buffer> <silent> D :call LanguageClient#textDocument_definition()<CR>
-    nnoremap <buffer> <silent> R :call LanguageClient#textDocument_rename()<CR>
-  endif
+    if has_key(g:LanguageClient_serverCommands, &filetype)
+        " jump
+        nnoremap <buffer> <silent> <C-k> :call LanguageClient#textDocument_definition()<CR>
+        " open document
+        nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
+        " rename
+        nnoremap <buffer> <silent> R :call LanguageClient#textDocument_rename()<CR>
+    endif
 endfunction
 
 autocmd MyAutoCmd FileType * call LC_maps()
