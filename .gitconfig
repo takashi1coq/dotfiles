@@ -10,6 +10,7 @@
     tool = vimdiff
 [core]
     excludesfile = ~/.gitignore_global
+    editor = nvr --remote-wait-silent
 [include]
     path = ~/.gitconfig.local
 [url "git@gitlab.com:"]
