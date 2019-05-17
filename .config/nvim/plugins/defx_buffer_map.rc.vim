@@ -3,14 +3,14 @@ setlocal nomodifiable
 
 " open terminal remap
 function! DefxTerminalSubWindow(context) abort
-    let path = fnamemodify(a:context.targets[0], ':h')
+    let path = a:context.cwd
     new
     execute ':lcd'. path
     terminal
 endfunction
 
 function! DefxTerminal(context) abort
-    let path = fnamemodify(a:context.targets[0], ':h')
+    let path = a:context.cwd
     execute ':lcd'. path
     Terminal
 endfunction
@@ -39,8 +39,8 @@ nnoremap <silent><buffer><expr> n defx#do_action('toggle_select')
 nnoremap <silent><buffer><expr> <ESC><ESC> ':<C-u>q<CR>'
 
 " test code, show context
-function! Test(context) abort
+function! ShowContext(context) abort
   echomsg string(a:context)
 endfunction
 nnoremap <silent><buffer><expr> ?
-\ defx#do_action('call', 'Test')
+\ defx#do_action('call', 'ShowContext')
