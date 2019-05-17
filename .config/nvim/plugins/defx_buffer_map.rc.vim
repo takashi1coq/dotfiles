@@ -37,3 +37,10 @@ nnoremap <silent><buffer><expr> m defx#do_action('move')
 nnoremap <silent><buffer><expr> p defx#do_action('paste')
 nnoremap <silent><buffer><expr> n defx#do_action('toggle_select')
 nnoremap <silent><buffer><expr> <ESC><ESC> ':<C-u>q<CR>'
+
+" test code, show context
+function! Test(context) abort
+  echomsg string(a:context)
+endfunction
+nnoremap <silent><buffer><expr> f
+\ defx#do_action('call', 'Test')
