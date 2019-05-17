@@ -42,5 +42,5 @@ nnoremap <silent><buffer><expr> <ESC><ESC> ':<C-u>q<CR>'
 function! Test(context) abort
   echomsg string(a:context)
 endfunction
-nnoremap <silent><buffer><expr> f
+nnoremap <silent><buffer><expr> ?
 \ defx#do_action('call', 'Test')
