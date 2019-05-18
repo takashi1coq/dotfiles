@@ -5,7 +5,7 @@ nnoremap <silent> <Space>b :<C-u>Denite buffer<CR>
 " nvim cofig list
 nnoremap <silent> <Space>v :<C-u>Denite file/rec:~/dotfiles<CR>
 " mark list
-nnoremap <silent> <Space>m :<C-u>Denite marks<CR>
+nnoremap <silent> <Space>m :<C-u>Denite mark<CR>
 
 " grep
 nnoremap <silent> <Space>g :<C-u>Denite grep -buffer-name=grep-buffer-denite<CR>
@@ -23,7 +23,7 @@ call denite#custom#map('insert', '<C-k>','<denite:move_to_previous_line>', 'nore
 
 " new tab open
 call denite#custom#map('insert', '<C-t>','<denite:do_action:my_tabopen>')
-call denite#custom#action('file,buffer', 'my_tabopen', 'MyDeniteTabOpen', {'is_quit' : 'v:true'})
+call denite#custom#action('file,buffer,mark', 'my_tabopen', 'MyDeniteTabOpen', {'is_quit' : 'v:true'})
 function! MyDeniteTabOpen(context) abort
     for target in a:context['targets']
         let l:path = target['action__path']
@@ -35,7 +35,7 @@ endfunction
 
 " display buffer side by side
 call denite#custom#map('insert', '<C-w>','<denite:do_action:denite_side_by_side>')
-call denite#custom#action('file,buffer', 'denite_side_by_side', 'MyDeniteSideBySide', {'is_quit' : 'v:true'})
+call denite#custom#action('file,buffer,mark', 'denite_side_by_side', 'MyDeniteSideBySide', {'is_quit' : 'v:true'})
 function! MyDeniteSideBySide(context) abort
     let l:mylist = []
     for target in a:context['targets']
