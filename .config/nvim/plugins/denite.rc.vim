@@ -14,3 +14,26 @@ call denite#custom#filter('matcher/ignore_globs','ignore_globs',
         \ '.git/', 'build/', '__pycache__/', 'node_modules/',
         \ 'images/', 'img/',
         \ '*.o', '*.make' ])
+
+let s:menus = {}
+
+let s:menus.rcs = {
+    \ 'description': 'create rc menus'
+    \ }
+let s:menus.rcs.file_candidates = [
+    \ ['bashrc', '~/.bashrc'],
+    \ ['bash profile', '~/.bash_profile'],
+    \ ['gitconfig local', '~/.gitconfig.local'],
+    \ ['ssh config', '~/.ssh/config'],
+    \ ['test vimrc', '~/test.rc.vim'],
+    \ ]
+
+"let s:menus.my_commands = {
+"    \ 'description': 'Example commands'
+"    \ }
+"let s:menus.my_commands.command_candidates = [
+"    \ ['Split the window', 'vnew'],
+"    \ ['Open config menu', 'Denite menu:config'],
+"    \ ]
+
+call denite#custom#var('menu', 'menus', s:menus)

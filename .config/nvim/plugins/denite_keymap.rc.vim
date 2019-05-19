@@ -6,6 +6,8 @@ nnoremap <silent> <Space>b :<C-u>Denite buffer<CR>
 nnoremap <silent> <Space>v :<C-u>Denite file/rec:~/dotfiles<CR>
 " mark list
 nnoremap <silent> <Space>m :<C-u>Denite mark<CR>
+" menus list (rc)
+nnoremap <silent> <Space>c :<C-u>Denite menu:rcs<CR>
 
 " grep
 nnoremap <silent> <Space>g :<C-u>Denite grep -buffer-name=grep-buffer-denite<CR>
