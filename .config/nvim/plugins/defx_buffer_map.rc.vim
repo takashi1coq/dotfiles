@@ -5,6 +5,7 @@ setlocal nomodifiable
 function! DefxTerminalSubWindow(context) abort
     let path = a:context.cwd
     new
+    execute ':10wincmd_'
     execute ':lcd'. path
     terminal
 endfunction
