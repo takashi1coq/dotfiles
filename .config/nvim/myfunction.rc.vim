@@ -147,12 +147,12 @@ command! -nargs=0 Terminal call s:my_terminal()
 
 function! s:my_terminal()
     if (!exists('g:my_tabnew_terminal'))
-        MyTabNew 0
+        MyTabNew $
         terminal
     else
         let wids = win_findbuf(g:my_tabnew_terminal)
         if empty(wids)
-            MyTabNew 0
+            MyTabNew $
             terminal
         else
             call win_gotoid(wids[0])

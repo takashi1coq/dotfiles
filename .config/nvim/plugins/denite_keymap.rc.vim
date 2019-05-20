@@ -24,9 +24,9 @@ call denite#custom#map('insert', '<C-j>','<denite:move_to_next_line>', 'noremap'
 call denite#custom#map('insert', '<C-k>','<denite:move_to_previous_line>', 'noremap')
 
 " new tab open
-call denite#custom#map('insert', '<C-t>','<denite:do_action:my_tabopen>')
-call denite#custom#action('file,buffer,mark', 'my_tabopen', 'MyDeniteTabOpen', {'is_quit' : 'v:true'})
-function! MyDeniteTabOpen(context) abort
+call denite#custom#map('insert', '<C-t>','<denite:do_action:left_tabopen>')
+call denite#custom#action('file,buffer,mark', 'left_tabopen', 'LeftDeniteTabOpen', {'is_quit' : 'v:true'})
+function! LeftDeniteTabOpen(context) abort
     for target in a:context['targets']
         let l:path = target['action__path']
         if filereadable(l:path)
@@ -34,11 +34,20 @@ function! MyDeniteTabOpen(context) abort
         endif
     endfor
 endfunction
+call denite#custom#action('file,buffer,mark', 'right_tabopen', 'RightDeniteTabOpen', {'is_quit' : 'v:true'})
+function! RightDeniteTabOpen(context) abort
+    for target in a:context['targets']
+        let l:path = target['action__path']
+        if filereadable(l:path)
+            silent execute ':MyTabNew $ '. l:path
+        endif
+    endfor
+endfunction
 
 " display buffer side by side
-call denite#custom#map('insert', '<C-w>','<denite:do_action:denite_side_by_side>')
-call denite#custom#action('file,buffer,mark', 'denite_side_by_side', 'MyDeniteSideBySide', {'is_quit' : 'v:true'})
-function! MyDeniteSideBySide(context) abort
+call denite#custom#map('insert', '<C-w>','<denite:do_action:denite_side_by_side_left>')
+call denite#custom#action('file,buffer,mark', 'denite_side_by_side_left', 'MyDeniteSideBySideLeft', {'is_quit' : 'v:true'})
+function! MyDeniteSideBySideLeft(context) abort
     let l:mylist = []
     for target in a:context['targets']
         let l:path = target['action__path']
@@ -49,7 +58,6 @@ function! MyDeniteSideBySide(context) abort
     let l:str = join(l:mylist, ' | vs ')
     execute ':-1tabnew '. l:str
 endfunction
-
 
 " select
 call denite#custom#map('insert', '<C-n>', '<denite:toggle_select>')
