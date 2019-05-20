@@ -254,3 +254,13 @@ function! s:refresh_files()
     endfor
 
 endfunction
+
+" ==========================================================
+"  echo $PATH
+" ==========================================================
+command! -bar EchoPath call s:echo_path()
+
+function! s:echo_path()
+    silent execute 'Capture !echo $PATH'
+    silent execute '%s/://g'
+endfunction
