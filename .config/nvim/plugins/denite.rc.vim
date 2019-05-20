@@ -23,6 +23,7 @@ let s:menus.rcs = {
 let s:menus.rcs.file_candidates = [
     \ ['bashrc', '~/.bashrc'],
     \ ['bash profile', '~/.bash_profile'],
+    \ ['etc profile (read only)', '/etc/profile'],
     \ ['gitconfig local', '~/.gitconfig.local'],
     \ ['ssh config', '~/.ssh/config'],
     \ ['test vimrc', '~/test.rc.vim'],
