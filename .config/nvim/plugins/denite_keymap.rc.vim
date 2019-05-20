@@ -1,13 +1,13 @@
 " current list
-nnoremap <silent> <Space>u :<C-u>Denite file/rec<CR>
+nnoremap <silent> <Space>u :<C-u>Denite file/rec -default-action=left_tabopen<CR>
 " buffer list
-nnoremap <silent> <Space>b :<C-u>Denite buffer<CR>
+nnoremap <silent> <Space>b :<C-u>Denite buffer -default-action=left_tabopen<CR>
 " nvim cofig list
-nnoremap <silent> <Space>v :<C-u>Denite file/rec:~/dotfiles<CR>
+nnoremap <silent> <Space>v :<C-u>Denite file/rec:~/dotfiles -default-action=left_tabopen<CR>
 " mark list
-nnoremap <silent> <Space>m :<C-u>Denite mark<CR>
+nnoremap <silent> <Space>m :<C-u>Denite mark -default-action=left_tabopen<CR>
 " menus list (rc)
-nnoremap <silent> <Space>c :<C-u>Denite menu:rcs<CR>
+nnoremap <silent> <Space>c :<C-u>Denite menu:rcs -default-action=left_tabopen<CR>
 
 " grep
 nnoremap <silent> <Space>g :<C-u>Denite grep -buffer-name=grep-buffer-denite<CR>
