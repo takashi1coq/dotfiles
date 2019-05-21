@@ -32,6 +32,7 @@ endfunction
 
 " current
 nnoremap <silent> <Space>f :call DefxExplorer('%:p:h', 35, 35, 0)<CR>:60wincmd<bar><CR>
+nnoremap <silent> F :call DefxExplorer('%:p:h', 60, 60, 1)<CR>
 " work folder
 nnoremap <silent> <Space>w :call DefxExplorer('~/work/', 60, 60, 1)<CR>
 " others
