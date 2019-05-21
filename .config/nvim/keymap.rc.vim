@@ -30,7 +30,7 @@ nnoremap == <C-w>=
 " ==========================================================
 
 "新しいタブをtt
-nnoremap <silent> tt :<C-u>$tabnew<CR>
+nnoremap <silent> tt :<C-u>-1tabnew<CR>
 
 "アクティブ以外閉じるをto
 nnoremap <silent> to :<C-u>tabo<Cr>
