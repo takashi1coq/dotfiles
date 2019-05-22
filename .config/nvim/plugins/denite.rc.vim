@@ -13,7 +13,7 @@ call denite#custom#filter('matcher/ignore_globs','ignore_globs',
         \ [
         \ '.git/', 'build/', '__pycache__/', 'node_modules/',
         \ 'images/', 'img/',
-        \ '*.o', '*.make' ])
+        \ '*.o', '*.make', '.myroot' ])
 
 let s:menus = {}
 
