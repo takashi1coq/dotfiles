@@ -17,9 +17,9 @@ function! DefxTerminal(context) abort
 endfunction
 
 nnoremap <buffer> <F11> <Nop>
-nnoremap <silent><buffer><expr> <F11> defx#do_action('call', 'DefxTerminal')
+nnoremap <silent><buffer><expr> <F11> defx#do_action('call', 'DefxTerminalSubWindow')
 nnoremap <buffer> <F12> <Nop>
-nnoremap <silent><buffer><expr> <F12> defx#do_action('call', 'DefxTerminalSubWindow')
+nnoremap <silent><buffer><expr> <F12> defx#do_action('call', 'DefxTerminal')
 
 " defx key mapping
 nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'

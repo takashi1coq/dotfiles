@@ -64,10 +64,10 @@ nnoremap <silent> bd :<C-u>bp<bar>sp<bar>bn<bar>bd<bar>tabc<CR>
 " ==========================================================
 
 " メイン
-nnoremap <silent> <F11> :Terminal<CR>
+nnoremap <silent> <F12> :Terminal<CR>
 
 " サブ
-nnoremap <silent> <F12> :sp<CR>:10wincmd_<CR>:terminal<CR>
+nnoremap <silent> <F11> :sp<CR>:10wincmd_<CR>:terminal<CR>
 
 " escでinsert modeから抜ける
 tnoremap <silent> <ESC> <C-\><C-n>
