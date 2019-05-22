@@ -1,9 +1,9 @@
 " current list
-nnoremap <silent> <Space>u :<C-u>Denite file/rec<CR>
+nnoremap <silent> <Space>u :<C-u>Denite file/rec -default-action=left_tabopen<CR>
 " buffer list
-nnoremap <silent> <Space>b :<C-u>Denite buffer<CR>
+nnoremap <silent> <Space>b :<C-u>Denite buffer -default-action=left_tabopen<CR>
 " nvim cofig list
-nnoremap <silent> <Space>v :<C-u>Denite file/rec:~/dotfiles<CR>
+nnoremap <silent> <Space>v :<C-u>Denite file/rec:~/dotfiles -default-action=left_tabopen<CR>
 " mark list
 nnoremap <silent> <Space>m :<C-u>Denite mark -default-action=left_tabopen<CR>
 " menus list (rc)
@@ -29,7 +29,7 @@ call denite#custom#action('file,buffer,mark', 'left_tabopen', 'LeftDeniteTabOpen
 function! LeftDeniteTabOpen(context) abort
     for target in a:context['targets']
         let l:path = target['action__path']
-        if filereadable(l:path)
+        if filereadable(expand(l:path))
             silent execute ':MyTabNew 0 '. l:path
         endif
     endfor
@@ -38,7 +38,7 @@ call denite#custom#action('file,buffer,mark', 'right_tabopen', 'RightDeniteTabOp
 function! RightDeniteTabOpen(context) abort
     for target in a:context['targets']
         let l:path = target['action__path']
-        if filereadable(l:path)
+        if filereadable(expand(l:path))
             silent execute ':MyTabNew $ '. l:path
         endif
     endfor
@@ -51,7 +51,7 @@ function! MyDeniteSideBySideLeft(context) abort
     let l:mylist = []
     for target in a:context['targets']
         let l:path = target['action__path']
-        if filereadable(l:path)
+        if filereadable(expand(l:path))
             call add(l:mylist, l:path)
         endif
     endfor

@@ -135,9 +135,15 @@ function! s:both_ends_tabnew(...)
             let l:count += 1
         endfor
     endif
-    if expand('%:p') !=# ''
-        silent execute ':'. l:res[0]. 'tabnew' .l:res[1]
-    endif
+    let num = l:res[0]
+    unlet l:res[0]
+    for path in l:res
+        if expand('%:p') !=# ''
+            silent execute ':'. l:num. 'tabnew' .path
+        else
+            silent execute ':e'.path
+        endif
+    endfor
 endfunction
 
 " ==========================================================
