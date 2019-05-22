@@ -17,7 +17,7 @@ let g:memolist_denite = 1
 let g:memolist_denite_source = "file/rec"
 
 " use arbitrary denite option (default is empty)
-let g:memolist_denite_option = "buffer -default-action=right_tabopen"
+let g:memolist_denite_option = "-default-action=right_tabopen"
 
 " mappings
 nnoremap <silent>mn :<C-u>MemoNew<CR>
