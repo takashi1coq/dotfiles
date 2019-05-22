@@ -1,5 +1,6 @@
 " dsable runtime snippets
 let g:neosnippet#disable_runtime_snippets = { '_' : 1 }
+let g:neosnippet#snippets_directory='~/.config/nvim/plugins/snippets'
 
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
