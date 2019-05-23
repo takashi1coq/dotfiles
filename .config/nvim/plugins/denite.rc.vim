@@ -15,6 +15,7 @@ call denite#custom#filter('matcher/ignore_globs','ignore_globs',
         \ 'images/', 'img/',
         \ '*.o', '*.make', '.myroot' ])
 
+" menus
 let s:menus = {}
 
 let s:menus.rcs = {

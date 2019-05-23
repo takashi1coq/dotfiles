@@ -24,30 +24,39 @@ call denite#custom#map('insert', '<C-j>','<denite:move_to_next_line>', 'noremap'
 call denite#custom#map('insert', '<C-k>','<denite:move_to_previous_line>', 'noremap')
 
 " new tab open
-call denite#custom#map('insert', '<C-t>','<denite:do_action:left_tabopen>')
-call denite#custom#action('file,buffer,mark', 'left_tabopen', 'LeftDeniteTabOpen', {'is_quit' : 'v:true'})
+" 調 denite#custom#actionのfunctionに引数渡す方法
 function! LeftDeniteTabOpen(context) abort
+    let l:mylist = []
     for target in a:context['targets']
         let l:path = target['action__path']
         if filereadable(expand(l:path))
-            silent execute ':MyTabNew 0 '. l:path
+            call add(l:mylist, l:path)
         endif
     endfor
+    let l:str = join(l:mylist, ' ')
+    silent execute ':MyTabNew 0 '.l:str
 endfunction
-call denite#custom#action('file,buffer,mark', 'right_tabopen', 'RightDeniteTabOpen', {'is_quit' : 'v:true'})
+call denite#custom#action('file,buffer,mark,menu',
+                        \ 'left_tabopen',
+                        \ 'LeftDeniteTabOpen',{'is_quit' : 'v:true'})
 function! RightDeniteTabOpen(context) abort
+    let l:mylist = []
     for target in a:context['targets']
         let l:path = target['action__path']
         if filereadable(expand(l:path))
-            silent execute ':MyTabNew $ '. l:path
+            call add(l:mylist, l:path)
         endif
     endfor
+    let l:str = join(l:mylist, ' ')
+    silent execute ':MyTabNew '.'$' . ' '. l:str
 endfunction
+call denite#custom#action('file,buffer,mark,menu',
+                        \ 'right_tabopen',
+                        \ 'RightDeniteTabOpen', {'is_quit' : 'v:true'})
+call denite#custom#map('insert', '<C-t>','<denite:do_action:left_tabopen>')
 
-" display buffer side by side
-call denite#custom#map('insert', '<C-w>','<denite:do_action:denite_side_by_side_left>')
-call denite#custom#action('file,buffer,mark', 'denite_side_by_side_left', 'MyDeniteSideBySideLeft', {'is_quit' : 'v:true'})
-function! MyDeniteSideBySideLeft(context) abort
+" two buffer display side by side
+function! MyDeniteSideBySide(context) abort
     let l:mylist = []
     for target in a:context['targets']
         let l:path = target['action__path']
@@ -58,6 +67,8 @@ function! MyDeniteSideBySideLeft(context) abort
     let l:str = join(l:mylist, ' | vs ')
     execute ':-1tabnew '. l:str
 endfunction
+call denite#custom#action('file,buffer,mark', 'denite_side_by_side', 'MyDeniteSideBySide', {'is_quit' : 'v:true'})
+call denite#custom#map('insert', '<C-w>','<denite:do_action:denite_side_by_side>')
 
 " select
 call denite#custom#map('insert', '<C-n>', '<denite:toggle_select>')
