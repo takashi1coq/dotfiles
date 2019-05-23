@@ -120,7 +120,7 @@ function! MakeTabLine()
 endfunction
 
 " ==========================================================
-"  MyTabNew うんcode
+"  MyTabNew うんこ
 "  0:count
 "  1:path
 " ==========================================================
@@ -135,16 +135,24 @@ function! s:both_ends_tabnew(...)
         for n in a:000
             call add(l:res, n)
         endfor
+    else
+        call add(l:res, '0')
     endif
     let num = l:res[0]
     unlet l:res[0]
-    for path in l:res
+    if len(l:res) != 0
+        for path in l:res
+            if expand('%:p') !=# ''
+                silent execute ':'. l:num. 'tabnew' .path
+            else
+                silent execute ':e'.path
+            endif
+        endfor
+    else
         if expand('%:p') !=# ''
-            silent execute ':'. l:num. 'tabnew' .path
-        else
-            silent execute ':e'.path
+            silent execute ':'. l:num. 'tabnew'
         endif
-    endfor
+    endif
 endfunction
 
 " ==========================================================
