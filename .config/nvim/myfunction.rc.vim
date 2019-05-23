@@ -127,12 +127,13 @@ endfunction
 command! -nargs=* MyTabNew call s:both_ends_tabnew(<f-args>)
 
 function! s:both_ends_tabnew(...)
-    let l:res = ['0','']
+    let l:res = []
     if a:0 >= 1
-        let l:count = 0
+        if filereadable(expand(a:000[0]))
+            call add(l:res, '0')
+        endif
         for n in a:000
-            let res[l:count] = n
-            let l:count += 1
+            call add(l:res, n)
         endfor
     endif
     let num = l:res[0]
