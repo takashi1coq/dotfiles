@@ -35,6 +35,7 @@ nnoremap <silent><buffer><expr> D defx#do_action('new_directory')
 nnoremap <silent><buffer><expr> r defx#do_action('rename')
 nnoremap <silent><buffer><expr> dd defx#do_action('remove')
 nnoremap <silent><buffer><expr> m defx#do_action('move')
+nnoremap <silent><buffer><expr> c defx#do_action('copy')
 nnoremap <silent><buffer><expr> p defx#do_action('paste')
 nnoremap <silent><buffer><expr> n defx#do_action('toggle_select')
 nnoremap <silent><buffer><expr> <ESC><ESC> ':<C-u>q<CR>'
