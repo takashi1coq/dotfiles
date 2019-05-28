@@ -53,6 +53,7 @@ endfunction
 call denite#custom#action('file,buffer,mark,menu',
                         \ 'right_tabopen',
                         \ 'RightDeniteTabOpen', {'is_quit' : 'v:true'})
+" new tab open keymap
 call denite#custom#map('insert', '<C-t>','<denite:do_action:left_tabopen>')
 
 " two buffer display side by side
