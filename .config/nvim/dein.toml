@@ -70,6 +70,9 @@ source ~/.config/nvim/plugins/denite.rc.vim
 source ~/.config/nvim/plugins/denite_keymap.rc.vim
 '''
 
+[[plugins]]
+repo = 'takashi1coq/denite-mymarks'
+
 # ==========================================================
 # deoplete
 # ==========================================================
