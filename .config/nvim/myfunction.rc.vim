@@ -279,3 +279,17 @@ function! s:echo_path()
     silent execute 'Capture !echo $PATH'
     silent execute '%s/://g'
 endfunction
+
+" ==========================================================
+"  my quit
+" ==========================================================
+command! -bar MyQuit call s:my_quit()
+
+function! s:my_quit()
+    let path = expand('%:p')
+    if l:path ==# ''
+        silent execute 'quit!'
+    else
+        silent execute 'wincmd c'
+    endif
+endfunction

@@ -17,7 +17,7 @@ nnoremap <Right> <C-w><
 nnoremap <Left> <C-w>>
 
 " 閉じる
-nnoremap q <C-w>c
+nnoremap q :MyQuit<CR>
 
 " その他のウィンドウを閉じる
 nnoremap <silent> wo :<C-u>only<Cr>
