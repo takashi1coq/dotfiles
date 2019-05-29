@@ -5,7 +5,7 @@ nnoremap <silent> <Space>b :<C-u>Denite buffer -default-action=left_tabopen<CR>
 " nvim cofig list
 nnoremap <silent> <Space>v :<C-u>Denite file/rec:~/dotfiles -default-action=left_tabopen<CR>
 " mark list
-nnoremap <silent> <Space>m :<C-u>Denite mymarks::a:: -default-action=left_tabopen<CR>
+nnoremap <silent> <Space>m :<C-u>Denite mymarks:upper -default-action=left_tabopen<CR>
 " menus list (rc)
 nnoremap <silent> <Space>c :<C-u>Denite menu:rcs -default-action=left_tabopen<CR>
 
