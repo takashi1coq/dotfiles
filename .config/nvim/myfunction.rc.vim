@@ -290,6 +290,10 @@ function! s:my_quit()
     if l:path ==# ''
         silent execute 'quit!'
     else
-        silent execute 'wincmd c'
+        if &diff
+            silent execute 'tabc'
+        else
+            silent execute 'wincmd c'
+        endif
     endif
 endfunction
