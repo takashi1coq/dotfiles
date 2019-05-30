@@ -1,7 +1,7 @@
 " current list
 nnoremap <silent> <Space>u :<C-u>Denite file/rec -default-action=left_tabopen<CR>
 " buffer list
-nnoremap <silent> <Space>b :<C-u>Denite buffer -default-action=left_tabopen<CR>
+nnoremap <silent> <Space>b :<C-u>Denite buffer -default-action=denite_side_by_side<CR>
 " nvim cofig list
 nnoremap <silent> <Space>v :<C-u>Denite file/rec:~/dotfiles -default-action=left_tabopen<CR>
 " mark list
