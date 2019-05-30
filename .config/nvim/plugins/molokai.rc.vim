@@ -14,5 +14,7 @@ au MyAutoCmd ColorScheme * highlight TabLineSel ctermbg=255 ctermfg=0
 au MyAutoCmd ColorScheme * highlight TabLineFill cterm=bold ctermbg=240 ctermfg=49
 " StatusLine
 au MyAutoCmd ColorScheme * highlight StatusLine ctermbg=226
+" SpellLocal
+au MyAutoCmd ColorScheme * highlight SpellLocal ctermbg=24 gui=undercurl guisp=#7070F0
 
 au MyAutoCmd VimEnter * nested colorscheme molokai
