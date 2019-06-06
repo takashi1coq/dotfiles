@@ -59,15 +59,15 @@ source ~/.config/nvim/plugins/defx_buffer_map.rc.vim
 # ==========================================================
 
 [[plugins]]
-repo = 'Shougo/neomru.vim'
-
-[[plugins]]
 repo = 'Shougo/denite.nvim'
-depends = ['neomru.vim']
 on_cmd = 'Denite'
 hook_add = '''
 source ~/.config/nvim/plugins/denite.rc.vim
-source ~/.config/nvim/plugins/denite_keymap.rc.vim
+'''
+
+[plugins.ftplugin]
+denite = '''
+source ~/.config/nvim/plugins/denite_buffer_map.rc.vim
 '''
 
 [[plugins]]

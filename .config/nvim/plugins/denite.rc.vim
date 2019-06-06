@@ -39,3 +39,92 @@ let s:menus.rcs.file_candidates = [
 "    \ ]
 
 call denite#custom#var('menu', 'menus', s:menus)
+
+" new tab open
+" 調 denite#custom#actionのfunctionに引数渡す方法
+function! LeftDeniteTabOpen(context) abort
+    let l:mylist = []
+    for target in a:context['targets']
+        let l:path = target['action__path']
+        if filereadable(expand(l:path))
+            call add(l:mylist, l:path)
+        endif
+    endfor
+    let l:str = join(l:mylist, ' ')
+    silent execute ':MyTabNew 0 '.l:str
+endfunction
+call denite#custom#action('file,buffer,mark,menu',
+                        \ 'left_tabopen',
+                        \ 'LeftDeniteTabOpen',{'is_quit' : 'v:true'})
+
+function! RightDeniteTabOpen(context) abort
+    let l:mylist = []
+    for target in a:context['targets']
+        let l:path = target['action__path']
+        if filereadable(expand(l:path))
+            call add(l:mylist, l:path)
+        endif
+    endfor
+    let l:str = join(l:mylist, ' ')
+    silent execute ':MyTabNew '.'$' . ' '. l:str
+endfunction
+call denite#custom#action('file,buffer,mark,menu',
+                        \ 'right_tabopen',
+                        \ 'RightDeniteTabOpen', {'is_quit' : 'v:true'})
+
+" two buffer display side by side
+function! MyDeniteSideBySide(context) abort
+    let l:mylist = []
+    for target in a:context['targets']
+        let l:path = target['action__path']
+        if filereadable(expand(l:path))
+            call add(l:mylist, l:path)
+        endif
+    endfor
+    let l:str = join(l:mylist, ' | vs ')
+    execute ':-1tabnew '. l:str
+endfunction
+call denite#custom#action('file,buffer,mark',
+                        \ 'denite_side_by_side',
+                        \ 'MyDeniteSideBySide', {'is_quit' : 'v:true'})
+
+" current list
+nnoremap <silent> <Space>u :<C-u>Denite file/rec
+                    \ -default-action=left_tabopen
+                    \ -start-filter<CR>
+" buffer list
+nnoremap <silent> <Space>b :<C-u>Denite buffer
+                    \ -default-action=denite_side_by_side<CR>
+" nvim cofig list
+nnoremap <silent> <Space>v :<C-u>Denite file/rec:~/dotfiles
+                    \ -default-action=left_tabopen
+                    \ -start-filter<CR>
+" mark list
+nnoremap <silent> <Space>m :<C-u>Denite mymarks:upper
+                    \ -default-action=left_tabopen<CR>
+" menus list (rc)
+nnoremap <silent> <Space>c :<C-u>Denite menu:rcs
+                    \ -default-action=left_tabopen<CR>
+
+" grep
+nnoremap <silent> <Space>g :<C-u>Denite grep
+                    \ -buffer-name=grep-buffer-denite<CR>
+" visual grep
+vnoremap <silent> <Space>g :<C-u>DeniteCursorWord grep
+                    \ -buffer-name=grep-buffer-denite<CR>
+" grep buffer list
+nnoremap <silent> <Space>r :<C-u>Denite
+                    \ -resume
+                    \ -buffer-name=grep-buffer-denite<CR>
+" grep list jump
+nnoremap <silent> <C-n> :<C-u>Denite
+                    \ -resume
+                    \ -buffer-name=grep-buffer-denite
+                    \ -cursor-pos=+1
+                    \ -immediately<CR>
+nnoremap <silent> <C-b> :<C-u>Denite
+                    \ -resume
+                    \ -buffer-name=grep-buffer-denite
+                    \ -cursor-pos=-1
+                    \ -immediately<CR>
+
