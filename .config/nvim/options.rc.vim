@@ -72,7 +72,7 @@ if has('nvim')
 endif
 
 " markdownでアンダーバーをエラーにしない
-au FileType markdown syn clear markdownError
+au FileType markdown hi link markdownError NONE
 
 " ==========================================================
 "  set FileType
