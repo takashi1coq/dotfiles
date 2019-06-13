@@ -71,6 +71,9 @@ if has('nvim')
     autocmd TermOpen term://* startinsert
 endif
 
+" markdownでアンダーバーをエラーにしない
+au FileType markdown syn clear markdownError
+
 " ==========================================================
 "  set FileType
 " ==========================================================
