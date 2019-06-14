@@ -71,8 +71,8 @@ if has('nvim')
     autocmd TermOpen term://* startinsert
 endif
 
-" markdownでアンダーバーをエラーにしない
-au FileType markdown hi link markdownError NONE
+" markdownでエラーをハイライトしない
+au MyAutoCmd FileType markdown hi link markdownError NONE
 
 " ==========================================================
 "  set FileType
