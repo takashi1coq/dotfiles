@@ -13,8 +13,8 @@ function! CopyPath()
     " copy unnamed register.
     if !has('clipboard')
         let @"=expand('%:p')
-        echomsg expand('%:p')
     endif
+    echomsg expand('%:p')
 endfunction
 
 function! CopyFileName()
@@ -22,8 +22,8 @@ function! CopyFileName()
     " copy unnamed register.
     if !has('clipboard')
         let @"=expand('%:t')
-        echomsg expand('%:t')
     endif
+    echomsg expand('%:t')
 endfunction
 
 command! -nargs=0 CopyPath     call CopyPath()
@@ -98,9 +98,9 @@ function! s:tabpage_label(n)
     let filename = fnamemodify(bufname(curbufnr), ':t')
 
     " カレントの前後でなければファイル名を'-'とする
-    if (a:n < tabpagenr() - 1 || a:n > tabpagenr() + 1)
-        let filename = '-'
-    endif
+"    if (a:n < tabpagenr() - 1 || a:n > tabpagenr() + 1)
+"        let filename = '-'
+"    endif
 
     " 無題設定
     let filename = filename ==# '' ? 'NO NAME' : filename
