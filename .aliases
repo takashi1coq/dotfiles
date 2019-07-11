@@ -4,3 +4,9 @@ alias n='nvim'
 alias shutdown='sudo shutdown -h now'
 alias q='exit'
 alias defx='nvr -c "MyDefx "$(pwd)'
+function ntab () {
+    for f in "$@"
+    do
+        nvr -c 'MyTabNew '"$f"
+    done
+}
