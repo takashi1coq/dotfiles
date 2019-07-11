@@ -143,7 +143,7 @@ function! s:both_ends_tabnew(...)
     if len(l:res) != 0
         for path in l:res
             if expand('%:p') !=# ''
-                silent execute ':'. l:num. 'tabnew' .path
+                silent execute ':'. l:num. 'tabnew ' .path
             else
                 silent execute ':e'.path
             endif

@@ -39,7 +39,7 @@ nnoremap <silent> to :<C-u>tabo<Cr>
 nnoremap <silent> tq :<C-u>tabc<Cr>
 
 "gfを必ず新しいタブで開く
-nnoremap gf <C-w>gf:<C-u>-1tabm<CR>
+nnoremap <silent> gf <C-w>gf:<C-u>-1tabm<CR>
 
 "C-l,C-h,でタブ移動
 nnoremap <silent> <C-l> gt
