@@ -128,3 +128,8 @@ nnoremap <silent> <C-b> :<C-u>Denite
                     \ -cursor-pos=-1
                     \ -immediately<CR>
 
+" denite-filter keymap
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+function! s:denite_filter_my_settings() abort
+    nmap <buffer> <Esc> <Plug>(denite_filter_quit)
+endfunction
