@@ -25,12 +25,9 @@ source ~/.config/nvim/plugins/memolist.rc.vim
 '''
 
 [[plugins]]
-repo = 'kannokanno/previm'
+repo = 'iamcco/markdown-preview.vim'
 hook_add = '''
-let g:previm_open_cmd = 'firefox'
-let g:previm_disable_default_css = 1
-let g:previm_custom_css_path = '~/.config/nvim/plugins/previm_custom.css'
-nnoremap <silent> <Space>p :<C-u>PrevimOpen<CR>
+nnoremap <silent> <Space>p :<C-u>MarkdownPreview<CR>
 '''
 
 [[plugins]]
