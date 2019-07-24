@@ -7,6 +7,6 @@ alias defx='nvr -c "MyDefx "$(pwd)'
 function ntab () {
     for f in "$@"
     do
-        nvr -c 'MyTabNew '"$f"
+        nvr -c 'MyTabNew '$(pwd)/"$f"
     done
 }
