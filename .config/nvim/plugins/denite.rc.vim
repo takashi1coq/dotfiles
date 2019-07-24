@@ -131,5 +131,7 @@ nnoremap <silent> <C-b> :<C-u>Denite
 " denite-filter keymap
 autocmd FileType denite-filter call s:denite_filter_my_settings()
 function! s:denite_filter_my_settings() abort
-    nmap <buffer> <Esc> <Plug>(denite_filter_quit)
+    inoremap <silent><buffer><expr> <Esc><Esc> denite#do_map('quit')
+"    imap <buffer> <Esc><Esc> <Plug>(denite_filter_quit)
+"    nmap <buffer> <Esc> <Plug>(denite_filter_quit)
 endfunction
