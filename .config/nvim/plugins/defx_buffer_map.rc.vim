@@ -38,4 +38,5 @@ nnoremap <silent><buffer><expr> m defx#do_action('move')
 nnoremap <silent><buffer><expr> yy defx#do_action('copy')
 nnoremap <silent><buffer><expr> p defx#do_action('paste')
 nnoremap <silent><buffer><expr> n defx#do_action('toggle_select')
+vnoremap <silent><buffer><expr> n defx#do_action('toggle_select_visual')
 nnoremap <silent><buffer><expr> <ESC><ESC> ':<C-u>q<CR>'
