@@ -25,7 +25,8 @@ source ~/.config/nvim/plugins/memolist.rc.vim
 '''
 
 [[plugins]]
-repo = 'iamcco/markdown-preview.vim'
+repo = 'iamcco/markdown-preview.nvim'
+build = 'cd app & yarn install'
 hook_add = '''
 nnoremap <silent> <Space>p :<C-u>MarkdownPreview<CR>
 '''
@@ -76,9 +77,9 @@ repo = 'takashi1coq/denite-mymarks'
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
-hook_add = '''
-source ~/.config/nvim/plugins/deoplete.rc.vim
-'''
+#hook_add = '''
+#source ~/.config/nvim/plugins/deoplete.rc.vim
+#'''
 
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
@@ -86,23 +87,30 @@ hook_add = '''
 source ~/.config/nvim/plugins/neosnippet.rc.vim
 '''
 
-[[plugins]]
-repo = 'Shougo/neco-vim'
-on_ft = 'vim'
-
-[[plugins]]
-repo = 'ujihisa/neco-look'
+#[[plugins]]
+#repo = 'Shougo/neco-vim'
+#on_ft = 'vim'
+#
+#[[plugins]]
+#repo = 'ujihisa/neco-look'
 
 # ==========================================================
-# LanguageClient-neovim
+# LSP client
 # ==========================================================
 
+#[[plugins]]
+#repo = 'autozimu/LanguageClient-neovim'
+#rev = 'next'
+#build = 'bash install.sh'
+#hook_add = '''
+#source ~/.config/nvim/plugins/LanguageClient-neovim.rc.vim
+#'''
+
 [[plugins]]
-repo = 'autozimu/LanguageClient-neovim'
-rev = 'next'
-build = 'bash install.sh'
+repo = 'neoclide/coc.nvim'
+build = './install.sh nightly'
 hook_add = '''
-source ~/.config/nvim/plugins/LanguageClient-neovim.rc.vim
+source ~/.config/nvim/plugins/coc.rc.vim
 '''
 
 # ==========================================================

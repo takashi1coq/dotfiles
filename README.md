@@ -61,3 +61,13 @@ git clone https://github.com/takashi1coq/dotfiles dotfiles
 sh ~/dotfiles/setup.sh
 ```
 
+### for Mac
+
+- System Preferences > Keyboard > Shortcuts > Locate "F11" and uncheck it for Show Desktop
+
+- bashrc
+
+```
+echo 'exec $SHELL -l' > ~/.bahsrc
+```
+

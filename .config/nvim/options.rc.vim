@@ -77,12 +77,12 @@ au MyAutoCmd FileType markdown hi link markdownError NONE
 " ==========================================================
 "  set FileType
 " ==========================================================
-au MyAutoCmd BufNewFile,BufRead *.toml setf conf
-au MyAutoCmd BufNewFile,BufRead *.yml setf conf
-au MyAutoCmd BufNewFile,BufRead *.vue setf html
-au MyAutoCmd BufNewFile,BufRead *.md setf markdown
-au MyAutoCmd BufNewFile,BufRead *.ts setf typescript
-au MyAutoCmd BufNewFile,BufRead *.tsx setf typescript
+au MyAutoCmd BufNewFile,BufRead *.toml set filetype=conf
+au MyAutoCmd BufNewFile,BufRead *.yml set filetype=conf
+au MyAutoCmd BufNewFile,BufRead *.vue set filetype=html
+au MyAutoCmd BufNewFile,BufRead *.md set filetype=markdown
+au MyAutoCmd BufNewFile,BufRead *.ts set filetype=typescript
+au MyAutoCmd BufNewFile,BufRead *.tsx set filetype=typescript
 
 " ==========================================================
 "  dust

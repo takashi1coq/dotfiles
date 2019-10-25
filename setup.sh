@@ -18,7 +18,7 @@ function GitEmail() {
     fi
 }
 
-DOT_FILES=( .config/nvim .gitconfig .gitignore_global .ctags .aliases )
+DOT_FILES=( .config/nvim .gitconfig .gitignore_global .ctags .mybashrc )
 mkdir -p $HOME/.config
 mkdir -p $HOME/work/src
 for file in ${DOT_FILES[@]}
@@ -37,4 +37,4 @@ echo '[user]' > ~/.gitconfig.local
 echo '    name = '$username >> ~/.gitconfig.local
 echo '    email = '$email >> ~/.gitconfig.local
 
-echo '[ source ~/.aliases ] in sh'
+echo '[ source ~/.mybashrc ] in sh'
