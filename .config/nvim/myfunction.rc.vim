@@ -103,7 +103,7 @@ function! s:tabpage_label(n)
 "    endif
 
     " 無題設定
-    let filename = filename ==# '' ? 'NO NAME' : filename
+    let filename = filename ==# '' ? 'NO NAME' : fnamemodify(bufname(curbufnr), ':p:h:t'). '/'. filename
 
     let label = ' '. mod. sp. filename. ' '
 
