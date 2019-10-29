@@ -82,29 +82,15 @@ repo = 'Shougo/deoplete.nvim'
 #'''
 
 [[plugins]]
-repo = 'Shougo/neosnippet.vim'
-hook_add = '''
-source ~/.config/nvim/plugins/neosnippet.rc.vim
-'''
+repo = 'Shougo/neco-vim'
+on_ft = 'vim'
 
-#[[plugins]]
-#repo = 'Shougo/neco-vim'
-#on_ft = 'vim'
-#
-#[[plugins]]
-#repo = 'ujihisa/neco-look'
+[[plugins]]
+repo = 'ujihisa/neco-look'
 
 # ==========================================================
 # LSP client
 # ==========================================================
-
-#[[plugins]]
-#repo = 'autozimu/LanguageClient-neovim'
-#rev = 'next'
-#build = 'bash install.sh'
-#hook_add = '''
-#source ~/.config/nvim/plugins/LanguageClient-neovim.rc.vim
-#'''
 
 [[plugins]]
 repo = 'neoclide/coc.nvim'
