@@ -15,3 +15,7 @@ inoremap <C-k> <C-y>
 nmap <silent> rr <Plug>(coc-rename)
 nmap <silent> gh <Plug>(coc-definition)
 nmap <silent> ff <Plug>(coc-diagnostic-info)
+
+au MyAutoCmd ColorScheme * highlight CocErrorHighlight ctermbg=52 ctermfg=226
+au MyAutoCmd ColorScheme * highlight CocWarningHighlight ctermbg=19 ctermfg=226
+au MyAutoCmd ColorScheme * highlight CocInfoHighlight ctermbg=19 ctermfg=226
