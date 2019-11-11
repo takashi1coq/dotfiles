@@ -45,11 +45,11 @@ endif
 set list
 set listchars=tab:>-,trail:_,extends:>,precedes:<
 
-" <Tab>を<Space>4
+" <Tab>を<Space>2
 set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 
 " カーソル行をハイライト
 set cursorline
