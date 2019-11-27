@@ -19,9 +19,6 @@ source ~/.config/nvim/plugins/molokai.rc.vim
 repo = 'leafgarland/typescript-vim'
 
 [[plugins]]
-repo = 'ianks/vim-tsx'
-
-[[plugins]]
 repo = 'cespare/vim-toml'
 
 [[plugins]]
@@ -29,6 +26,12 @@ repo = 'stephpy/vim-yaml'
 
 [[plugins]]
 repo = 'plasticboy/vim-markdown'
+hook_add = '''
+let g:vim_markdown_folding_disabled = 1
+'''
+
+[[plugins]]
+repo = 'peitalin/vim-jsx-typescript'
 
 # ==========================================================
 # basic
