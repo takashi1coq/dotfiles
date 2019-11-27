@@ -11,8 +11,24 @@ hook_add = '''
 source ~/.config/nvim/plugins/molokai.rc.vim
 '''
 
+# ==========================================================
+# syntax
+# ==========================================================
+
 [[plugins]]
 repo = 'leafgarland/typescript-vim'
+
+[[plugins]]
+repo = 'ianks/vim-tsx'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+
+[[plugins]]
+repo = 'stephpy/vim-yaml'
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
 
 # ==========================================================
 # basic
@@ -72,24 +88,7 @@ source ~/.config/nvim/plugins/denite_buffer_map.rc.vim
 repo = 'takashi1coq/denite-mymarks'
 
 # ==========================================================
-# deoplete
-# ==========================================================
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-#hook_add = '''
-#source ~/.config/nvim/plugins/deoplete.rc.vim
-#'''
-
-[[plugins]]
-repo = 'Shougo/neco-vim'
-on_ft = 'vim'
-
-[[plugins]]
-repo = 'ujihisa/neco-look'
-
-# ==========================================================
-# LSP client
+# COC - LSP client
 # ==========================================================
 
 [[plugins]]

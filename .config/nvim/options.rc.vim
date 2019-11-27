@@ -63,26 +63,13 @@ let loaded_matchparen = 1
 " 同じファイルを複数タブで開かない用
 au MyAutoCmd BufEnter *.* MakeWinOne
 
-" ヘルプ開いたら移動
+" ヘルプ開いたらTabSplit
 au MyAutoCmd BufEnter *.txt if &buftype == 'help' | execute 'TabSplit' | endif
 
 " terminal start insert mode
 if has('nvim')
     autocmd TermOpen term://* startinsert
 endif
-
-" markdownでエラーをハイライトしない
-au MyAutoCmd FileType markdown hi link markdownError NONE
-
-" ==========================================================
-"  set FileType
-" ==========================================================
-au MyAutoCmd BufNewFile,BufRead *.toml set filetype=conf
-au MyAutoCmd BufNewFile,BufRead *.yml set filetype=conf
-au MyAutoCmd BufNewFile,BufRead *.vue set filetype=html
-au MyAutoCmd BufNewFile,BufRead *.md set filetype=markdown
-au MyAutoCmd BufNewFile,BufRead *.ts set filetype=typescript
-au MyAutoCmd BufNewFile,BufRead *.tsx set filetype=typescript
 
 " ==========================================================
 "  dust
@@ -92,4 +79,4 @@ au MyAutoCmd BufNewFile,BufRead *.tsx set filetype=typescript
 "au BufEnter * if &buftype !=# 'terminal' | execute 'lcd ' fnameescape(expand('%:p:h')) | endif
 
 " マウス操作ON
-"set mouse=a
+set mouse=a
