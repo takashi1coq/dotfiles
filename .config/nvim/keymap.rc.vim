@@ -137,6 +137,9 @@ nnoremap k gk
 nnoremap <C-o> <C-i>zz
 nnoremap <C-i> <C-o>zz
 
+" 選択行全てにdot command
+vnoremap <silent> . :'<,'>normal .<CR>
+
 " ==========================================================
 "  dangerous
 " ==========================================================
