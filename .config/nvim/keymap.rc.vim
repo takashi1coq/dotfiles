@@ -56,8 +56,8 @@ nnoremap <silent> ts :TabSplit<CR>
 "  buffer
 " ==========================================================
 
-" バッファのみ閉じる（window,tabpegeに影響なし）
-nnoremap <silent> bd :<C-u>bp<bar>sp<bar>bn<bar>bd<bar>tabc<CR>
+" バッファのみ閉じる
+nnoremap <silent> bd :<C-u>bd<CR>
 
 " ==========================================================
 "  terminal
@@ -139,6 +139,9 @@ nnoremap <C-i> <C-o>zz
 
 " 選択行全てにdot command
 vnoremap <silent> . :'<,'>normal .<CR>
+
+" 選択行を//
+vnoremap <silent> // :'<,'>normal i//<CR>
 
 " ==========================================================
 "  dangerous
