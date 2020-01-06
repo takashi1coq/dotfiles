@@ -92,27 +92,35 @@ call denite#custom#action('file,buffer,mark',
 " current list
 nnoremap <silent> <Space>u :<C-u>Denite file/rec
                     \ -default-action=left_tabopen
-                    \ -start-filter<CR>
+                    \ -start-filter
+                    \ -split=floating<CR>
 " buffer list
 nnoremap <silent> <Space>b :<C-u>Denite buffer
-                    \ -default-action=denite_side_by_side<CR>
+                    \ -default-action=denite_side_by_side
+                    \ -split=floating<CR>
 " nvim cofig list
 nnoremap <silent> <Space>v :<C-u>Denite file/rec:~/dotfiles
                     \ -default-action=left_tabopen
-                    \ -start-filter<CR>
+                    \ -start-filter
+                    \ -split=floating<CR>
 " mark list
 nnoremap <silent> <Space>m :<C-u>Denite mymarks:upper
-                    \ -default-action=left_tabopen<CR>
+                    \ -default-action=left_tabopen
+                    \ -split=floating<CR>
 " menus list (rc)
 nnoremap <silent> <Space>c :<C-u>Denite menu:rcs
-                    \ -default-action=left_tabopen<CR>
-
+                    \ -default-action=left_tabopen
+                    \ -split=floating<CR>
 " grep
 nnoremap <silent> <Space>g :<C-u>Denite grep
-                    \ -buffer-name=grep-buffer-denite<CR>
+                    \ -buffer-name=grep-buffer-denite
+                    \ -winwidth=`&columns` -winheight=`&lines`
+                    \ -split=floating<CR>
 " visual grep
 vnoremap <silent> <Space>g :<C-u>DeniteCursorWord grep
-                    \ -buffer-name=grep-buffer-denite<CR>
+                    \ -buffer-name=grep-buffer-denite
+                    \ -winwidth=`&columns` -winheight=`&lines`
+                    \ -split=floating<CR>
 " grep buffer list
 nnoremap <silent> <Space>r :<C-u>Denite
                     \ -resume
