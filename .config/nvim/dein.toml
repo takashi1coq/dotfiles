@@ -51,6 +51,12 @@ nnoremap <silent> <Space>p :<C-u>MarkdownPreview<CR>
 '''
 
 [[plugins]]
+repo = 'mattn/vim-maketable'
+hook_add = '''
+vnoremap t :'<,'>MakeTable!<CR>
+'''
+
+[[plugins]]
 repo = 'airblade/vim-rooter'
 hook_add = '''
 let g:rooter_patterns = ['.myroot', '.myroot/', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
