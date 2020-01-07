@@ -97,6 +97,7 @@ nnoremap <silent> <Space>u :<C-u>Denite file/rec
 " buffer list
 nnoremap <silent> <Space>b :<C-u>Denite buffer
                     \ -default-action=denite_side_by_side
+                    \ -winwidth=`&columns`
                     \ -split=floating<CR>
 " nvim cofig list
 nnoremap <silent> <Space>v :<C-u>Denite file/rec:~/dotfiles
