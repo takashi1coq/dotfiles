@@ -35,23 +35,13 @@ pip3 install neovim-remote
 sudo pacman -S words
 ```
 
-### lsp install
+### coc
 
-- pythoh lsp (archlinux)
-```
-sudo pacman -S python-language-server
-```
+##### python
 
-- javascript lsp (nodenv)
+- black (cord format)
 ```
-npm i -g javascript-typescript-langserver
-exec -l $SHELL
-```
-
-- html lsp (nodenv)
-```
-npm i -g vscode-html-languageserver-bin
-exec -l $SHELL
+pip install black
 ```
 
 ### setup
@@ -65,7 +55,7 @@ sh ~/dotfiles/setup.sh
 
 - System Preferences > Keyboard > Shortcuts > Locate "F11" and uncheck it for Show Desktop
 
-- bashrc
+- create bashrc
 
 ```
 echo 'exec $SHELL -l' > ~/.bahsrc
