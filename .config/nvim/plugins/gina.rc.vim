@@ -64,7 +64,7 @@ call gina#custom#mapping#nmap('branch', 'mf',
             \ {'noremap':1, 'silent': 1})
 " chenge
 call gina#custom#mapping#nmap('branch', 'ch',
-            \ ':call gina#action#call("changes:of:vsplit")<CR>',
+            \ ':call gina#action#call("changes:between:vsplit")<CR>',
             \ {'noremap':1, 'silent': 1})
 command! -nargs=0 BranchGit :execute 'Gina branch'
 nnoremap <silent> <F7> :BranchGit<CR>
