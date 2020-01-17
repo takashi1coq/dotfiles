@@ -161,20 +161,8 @@ endfunction
 command! -nargs=0 Terminal call s:my_terminal()
 
 function! s:my_terminal()
-    if (!exists('g:my_tabnew_terminal'))
-        MyTabNew $
-        terminal
-    else
-        let wids = win_findbuf(g:my_tabnew_terminal)
-        if empty(wids)
-            MyTabNew $
-            terminal
-        else
-            call win_gotoid(wids[0])
-        endif
-    endif
-    " うんcode
-    let g:my_tabnew_terminal = bufnr("%")
+  MyTabNew $
+  terminal
 endfunction
 
 " ==========================================================
