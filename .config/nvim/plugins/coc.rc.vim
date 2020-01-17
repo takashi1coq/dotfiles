@@ -18,6 +18,15 @@ inoremap <C-k> <C-y>
 nmap <silent> rr <Plug>(coc-rename)
 nmap <silent> gh <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> <C-k> :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
