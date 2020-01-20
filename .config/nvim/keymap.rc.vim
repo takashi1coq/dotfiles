@@ -76,7 +76,7 @@ tnoremap <silent> <ESC> <C-\><C-n>
 tnoremap <silent> <C-v> <C-\><C-n>pi
 
 " defx 起動
-tnoremap <silent> <C-f> defx<CR>
+tnoremap <silent> <C-d> defx<CR>
 
 " ==========================================================
 "  others
