@@ -5,3 +5,16 @@ tags
 node_modules/
 package-lock.json
 dist/js/index.js*
+
+# 直面してhttps://github.com/github/gitignoreにあるものだけ写す
+
+#
+# python
+#
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Distribution / packaging
+*.egg-info/
+
