@@ -142,6 +142,7 @@ vnoremap <silent> . :'<,'>normal .<CR>
 
 " 選択行を//
 vnoremap <silent> // :'<,'>normal i//<CR>
+vnoremap <silent> # :'<,'>normal i#<CR>
 
 " ==========================================================
 "  dangerous
