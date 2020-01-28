@@ -1,6 +1,10 @@
 {
-    "javascript.suggestionActions.enabled": false,
-    "coc.source.word.filetypes": ["text", "markdown", "gina-commit"],
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
-    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
+  "javascript.suggestionActions.enabled": false,
+  "coc.source.word.filetypes": ["text", "markdown", "gina-commit"],
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "snippets.extends": {
+    "typescript": ["javascript"],
+    "typescriptreact": ["javascript"]
+  }
 }
