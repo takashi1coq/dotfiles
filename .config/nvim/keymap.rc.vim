@@ -144,6 +144,10 @@ vnoremap <silent> . :'<,'>normal .<CR>
 vnoremap <silent> // :'<,'>normal i//<CR>
 vnoremap <silent> # :'<,'>normal i#<CR>
 
+" ページ送りを見やすくする
+nnoremap <C-f> M13jzz
+nnoremap <C-u> M13kzz
+
 " ==========================================================
 "  dangerous
 " ==========================================================
