@@ -3,7 +3,7 @@
 function! DefxExplorer(str, min_w, max_w, my_sprit)
 
     " 存在しない場合、homeを表示
-    let l:dir = expand(a:str)
+    let l:dir = fnamemodify(expand(a:str), ":h")
     if isdirectory(l:dir) == 0
         let l:dir = expand('~/')
     endif
@@ -24,14 +24,15 @@ function! DefxExplorer(str, min_w, max_w, my_sprit)
         \ '-buffer-name=myDefx',
         \ '-show-ignored-files',
         \ '-split='. l:sprit,
-        \ '-columns=indent:icon:mark:filename:type:time'
+        \ '-columns=indent:icon:mark:filename:type:time',
+        \ '-search='. expand(a:str)
         \ ], ' ')
     execute l:cmd. ' '. l:dir
 
 endfunction
 
 " current
-nnoremap <silent> <Space>f :call DefxExplorer('%:p:h', 35, 35, 'vertical')<CR>:60wincmd<bar><CR>
+nnoremap <silent> <Space>f :call DefxExplorer('%:p', 35, 35, 'vertical')<CR>:60wincmd<bar><CR>
 nnoremap <silent> F :call DefxExplorer('%:p:h', 60, 60, 'mytab')<CR>
 " work folder
 nnoremap <silent> <Space>w :call DefxExplorer('~/work/', 60, 60, 'mytab')<CR>
