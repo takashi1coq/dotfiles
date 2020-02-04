@@ -2,10 +2,15 @@
 " defx stert function
 function! DefxExplorer(str, min_w, max_w, my_sprit)
 
-    " 存在しない場合、homeを表示
-    let l:dir = fnamemodify(expand(a:str), ":h")
-    if isdirectory(l:dir) == 0
+    " pattern : term, file, directory
+    if isdirectory(expand(a:str)) == 1
+      let l:dir = expand(a:str)
+    else
+      if isdirectory(fnamemodify(expand(a:str), ":p:h")) == 1
+        let l:dir = fnamemodify(expand(a:str), ":p:h")
+      else
         let l:dir = expand('~/')
+      endif
     endif
 
     let l:sprit = a:my_sprit
