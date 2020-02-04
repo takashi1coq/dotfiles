@@ -48,6 +48,7 @@ repo = 'iamcco/markdown-preview.nvim'
 build = 'cd app & yarn install'
 hook_add = '''
 nnoremap <silent> <Space>p :<C-u>MarkdownPreview<CR>
+let g:mkdp_auto_close = 0
 '''
 
 [[plugins]]
