@@ -1,21 +1,21 @@
 #!/bin/bash
 function GitUserName() {
 
-    echo 'git username?'
-    read username
+  echo 'git username?'
+  read username
 
-    if [ -z $username ]; then
-        GitUserName
-    fi
+  if [ -z $username ]; then
+      GitUserName
+  fi
 }
 function GitEmail() {
 
-    echo 'git email?'
-    read email
+  echo 'git email?'
+  read email
 
-    if [ -z $email ]; then
-        GitEmail
-    fi
+  if [ -z $email ]; then
+      GitEmail
+  fi
 }
 
 DOT_FILES=( .config/nvim .gitconfig .gitignore_global .ctags .mybashrc )
@@ -23,7 +23,8 @@ mkdir -p $HOME/.config
 mkdir -p $HOME/work/src
 for file in ${DOT_FILES[@]}
 do
-    ln -sfn $HOME/dotfiles/$file $HOME/$file
+  # -fnは上書きオプション
+  ln -sfn $HOME/dotfiles/$file $HOME/$file
 done
 
 touch ~/test.rc.vim
