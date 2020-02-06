@@ -1,17 +1,5 @@
-[merge]
-    tool = vimdiff
-[mergetool]
-    prompt = true
-[mergetool "vimdiff"]
-    cmd = nvim -d $LOCAL $REMOTE
-[difftool]
-    prompt = false
-[diff]
-    tool = vimdiff
 [core]
     excludesfile = ~/.gitignore_global
     editor = nvr --remote-wait-silent
 [include]
     path = ~/.gitconfig.local
-[url "git@gitlab.com:"]
-    insteadOf = https://gitlab.com/
