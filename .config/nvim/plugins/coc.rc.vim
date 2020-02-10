@@ -1,6 +1,12 @@
 set hidden
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
+
+let g:coc_global_extensions = [
+      \ 'coc-python', 'coc-snippets',
+      \ 'coc-tsserver', 'coc-word']
+let g:coc_snippet_next = '<c-k>'
+
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 2
