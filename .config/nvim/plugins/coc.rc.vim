@@ -4,7 +4,7 @@ set updatetime=300
 
 let g:coc_global_extensions = [
       \ 'coc-python', 'coc-snippets',
-      \ 'coc-tsserver', 'coc-word']
+      \ 'coc-tsserver', 'coc-word', 'https://github.com/andys8/vscode-jest-snippets']
 let g:coc_snippet_next = '<c-k>'
 
 " use <tab> for trigger completion and navigate to the next complete item
