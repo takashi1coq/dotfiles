@@ -285,3 +285,20 @@ function! s:my_quit()
         endif
     endif
 endfunction
+
+" ==========================================================
+"  not active buffer close
+" ==========================================================
+command! -nargs=0 NotActiveBufClose call s:not_active_buf_close()
+
+function! s:not_active_buf_close()
+  " let buffers = filter(range(1, bufnr('$')), 'bufexists(v:val)')
+  let buffers = nvim_list_bufs()
+  for bufnr in l:buffers
+    if buflisted(l:bufnr) != 0
+      if win_findbuf(l:bufnr) == []
+        execute 'bd '. l:bufnr
+      endif
+    endif
+  endfor
+endfunction

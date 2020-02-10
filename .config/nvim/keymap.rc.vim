@@ -59,6 +59,9 @@ nnoremap <silent> ts :TabSplit<CR>
 " バッファのみ閉じる
 nnoremap <silent> bd :<C-u>bd<CR>
 
+" 開いているウィンドウのバッファ以外全て閉じる
+nnoremap <silent> bo :NotActiveBufClose<CR>
+
 " ==========================================================
 "  terminal
 " ==========================================================
