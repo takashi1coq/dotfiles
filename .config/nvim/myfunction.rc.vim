@@ -297,7 +297,7 @@ function! s:not_active_buf_close()
   for bufnr in l:buffers
     if buflisted(l:bufnr) != 0
       if win_findbuf(l:bufnr) == []
-        execute 'bd '. l:bufnr
+        execute 'bd! '. l:bufnr
       endif
     endif
   endfor
