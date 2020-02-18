@@ -38,7 +38,7 @@ endfunction
 
 " current
 nnoremap <silent> <Space>f :call DefxExplorer('%:p', 35, 35, 'vertical')<CR>:60wincmd<bar><CR>
-nnoremap <silent> F :call DefxExplorer('%:p:h', 60, 60, 'mytab')<CR>
+nnoremap <silent> <C-d> :call DefxExplorer('%:p:h', 60, 60, 'mytab')<CR>
 " work folder
 nnoremap <silent> <Space>w :call DefxExplorer('~/work/', 60, 60, 'mytab')<CR>
 " others
