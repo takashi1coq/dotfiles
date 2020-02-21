@@ -15,3 +15,12 @@ function ntab () {
         nvr -c 'MyTabNew '$(pwd)/"$f"
     done
 }
+function gclonecd () {
+  git clone "$1" && cd "$(basename "$1" .git)"
+}
+function reload () {
+  exec -l $SHELL
+}
+function gistrow () {
+  curl -OLsS "$1"
+}
