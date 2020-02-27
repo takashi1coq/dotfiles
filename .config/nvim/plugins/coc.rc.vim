@@ -5,7 +5,9 @@ set updatetime=300
 let g:coc_global_extensions = [
       \ 'coc-python', 'coc-snippets',
       \ 'coc-tsserver', 'coc-word', 'https://github.com/andys8/vscode-jest-snippets']
-let g:coc_snippet_next = '<c-k>'
+
+let g:coc_snippet_next = '<C-k>'
+let g:coc_snippet_prev = '<C-j>'
 
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
@@ -19,7 +21,6 @@ inoremap <silent><expr> <Tab>
       \ coc#refresh()
 
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <C-k> <C-y>
 
 nmap <silent> rr <Plug>(coc-rename)
 nmap <silent> gh <Plug>(coc-definition)
@@ -36,6 +37,7 @@ endfunction
 
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
 nmap <silent> ff <Plug>(coc-format)
 
 au MyAutoCmd ColorScheme * highlight CocErrorHighlight ctermbg=52 ctermfg=226

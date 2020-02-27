@@ -9,3 +9,91 @@ snippet doc-long "comment"
  * @returns ${3:Return}
  */
 endsnippet
+
+snippet constFunction "const function"
+const $1 = ($2): $3 => {
+  return $4
+}
+export default $1
+endsnippet
+
+snippet interface "interface snippet"
+export interface $1 {
+  $2: $3
+}
+endsnippet
+
+snippet tagDouble "html tag double"
+<${1}>
+</${1}>
+endsnippet
+
+snippet tagSingle "html tag single"
+<${1}
+/>
+endsnippet
+
+snippet actionName "create ActionName"
+${1} = '${2}/${1}',
+endsnippet
+
+snippet redux-type-action "redux action"
+export interface ${1:IReduxActionInterface} extends Action {
+  type: ${2}
+  ${3:data}: ${4:interface or generic}
+}
+export const ${5:reduxActionFunction} = (${6:obj or item}: ${4}): ${1} => ({
+  type: ${2},
+  ${3}: ${6},
+})
+endsnippet
+
+snippet redux-type-reducer "redux reducer"
+export const ${1:initial~~}: ${2} = {
+  ${3}: $4
+}
+const reducer = (state: ${2} = ${1}, action: ${5:All action type}): ${2} => {
+  switch (action.type) {
+    case ${6}: {
+      return {
+        ...state,
+        ${3}: ${7:action state..}
+      }
+    }
+    default: return state
+  }
+}
+export default reducer
+endsnippet
+
+snippet redux-dispatcher "redux dispatcher"
+export default class ${1} {
+  constructor(private dispath: Dispatch<${2:All actions type}>){
+    this.dispath = dispath
+  }
+
+  public ${3:functionName}(${4:obj or item}: ${5:interface or generic}) {
+    this.dispath(${6:Action}(${4}))
+  }
+}
+endsnippet
+
+snippet redux-container "redux container"
+export interface ${1:IState} {
+  ${2}: ${3}
+}
+export interface ${4:IDispatcher} {
+  ${5}: ${6}
+}
+
+const ${7:HogeContainer}: React.FC = (): ReactElement => {
+  const state: ${1} = {
+    ${2}: useSelector<ReduxStates, ${3}>(state => state.${8:store reducer}),
+  }
+  const dispatcher: ${4} = {
+    ${5}: new ${6}(useDispatch()),
+  }
+  return <${9:View} state={state} dispatcher={dispatcher} />
+}
+export default ${7}
+endsnippet
