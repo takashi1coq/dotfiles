@@ -55,6 +55,7 @@ let g:mkdp_auto_close = 0
 repo = 'mattn/vim-maketable'
 hook_add = '''
 vnoremap t :'<,'>MakeTable!<CR>
+nnoremap c :UnmakeTable<CR>
 '''
 
 [[plugins]]
