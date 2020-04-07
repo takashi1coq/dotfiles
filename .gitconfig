@@ -1,5 +1,7 @@
 [core]
-    excludesfile = ~/.gitignore_global
-    editor = nvr --remote-wait-silent
+  excludesfile = ~/.gitignore_global
+  editor = nvr --remote-wait-silent
 [include]
-    path = ~/.gitconfig.local
+  path = ~/.gitconfig.local
+[alias]
+  p = !git push origin `git rev-parse --abbrev-ref HEAD`
