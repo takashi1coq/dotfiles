@@ -1,8 +1,7 @@
 #!/bin/bash
 function GitUserName() {
 
-  echo 'git username?'
-  read username
+  read -p 'git username?' username
 
   if [ -z $username ]; then
       GitUserName
@@ -10,8 +9,7 @@ function GitUserName() {
 }
 function GitEmail() {
 
-  echo 'git email?'
-  read email
+  read -p 'git email?' email
 
   if [ -z $email ]; then
       GitEmail
@@ -30,12 +28,13 @@ done
 touch ~/test.rc.vim
 
 GitUserName
-echo 'git username='$username
 GitEmail
-echo 'git email='$email
 
 echo '[user]' > ~/.gitconfig.local
 echo '    name = '$username >> ~/.gitconfig.local
 echo '    email = '$email >> ~/.gitconfig.local
 
-echo '[ source ~/.mybashrc ] in sh'
+echo 'create ~/.gitconfig.local'
+echo 'username='$username
+echo 'email='$email
+echo ' set [ source ~/.mybashrc ] to shrc'
