@@ -107,6 +107,9 @@ else
     noremap! <C-v> <C-r>"
 endif
 
+" insert datetime
+inoremap <C-d> <C-r>=strftime("%Y%m%d (%a)")<CR>
+
 " コード変換モード
 noremap! <C-t> <C-v>
 
