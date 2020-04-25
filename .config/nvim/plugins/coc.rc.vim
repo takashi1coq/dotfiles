@@ -3,7 +3,7 @@ set hidden
 set updatetime=300
 
 let g:coc_global_extensions = [
-      \ 'coc-python', 'coc-snippets',
+      \ 'coc-python', 'coc-snippets', 'coc-docker',
       \ 'coc-tsserver', 'coc-word', 'https://github.com/andys8/vscode-jest-snippets']
 
 let g:coc_snippet_next = '<C-k>'
