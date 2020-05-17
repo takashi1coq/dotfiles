@@ -37,7 +37,6 @@ command! -nargs=0 CommitGit :execute 'Gina commit'
 " ==========================================================
 "  Branch
 " ==========================================================
-call gina#custom#command#option('branch', '--opener', 'split')
 " new branch
 call gina#custom#mapping#nmap('branch', 'nn',
             \ ':call gina#action#call("branch:new")<CR>',
@@ -66,9 +65,9 @@ call gina#custom#mapping#nmap('branch', 'mf',
 call gina#custom#mapping#nmap('branch', 'ch',
             \ ':call gina#action#call("changes:between:vsplit")<CR>',
             \ {'noremap':1, 'silent': 1})
-command! -nargs=0 BranchGit :execute 'Gina branch'
+command! -nargs=0 BranchGit :execute 'Gina branch --opener=split'
 nnoremap <silent> <F7> :BranchGit<CR>
-command! -nargs=0 BranchGitAll :execute 'Gina branch --all'
+command! -nargs=0 BranchGitAll :execute 'Gina branch --all --opener=split'
 nnoremap <silent> <F8> :BranchGitAll<CR>
 
 " ==========================================================

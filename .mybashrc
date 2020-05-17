@@ -4,6 +4,8 @@ alias n='nvim'
 alias shutdown='sudo shutdown -h now'
 alias q='exit'
 alias defx='nvr -c "MyDefx "$(pwd)'
+alias ginalog='nvr -c "0tabnew | lcd "$(pwd)" | Gina log --branches --tags --remotes"'
+alias branch='nvr -c "0tabnew | lcd "$(pwd)" | Gina branch --all"'
 
 # bash setting
 export PS1="\[\e[36m\]\w\[\e[m\] \\$ "
