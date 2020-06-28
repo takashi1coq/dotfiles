@@ -3,7 +3,7 @@
 " ==========================================================
 
 " 行番号
-set number
+set number relativenumber
 
 " スワップファイルを作成しない
 set noswapfile
