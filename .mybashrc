@@ -26,3 +26,6 @@ function reload () {
 function gistrow () {
   curl -OLsS "$1"
 }
+function findportprosess () {
+  lsof -i :"$1"
+}
