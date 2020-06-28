@@ -25,6 +25,10 @@ endfunction
 call gina#custom#command#option('status', '-s')
 call gina#custom#command#option('status', '-b')
 call gina#custom#command#option('status', '--opener', 'split')
+" checkout HEAD
+call gina#custom#mapping#map('status', 'ch',
+            \ ':call gina#action#call("checkout:HEAD")<CR>',
+            \ {'noremap':1, 'silent': 1})
 command! -nargs=0 StatusGit :execute 'Gina status'
 nnoremap <silent> <F5> :StatusGit<CR>
 
@@ -91,7 +95,7 @@ call gina#custom#mapping#nmap('log', 'ma',
 call gina#custom#mapping#nmap('log', 'rr',
             \ ':call gina#action#call("commit:reset")<CR>',
             \ {'noremap':1, 'silent': 1})
-command! -nargs=0 LogGit :execute 'Gina log --opener=-1tabedit --branches --tags --remotes'
+command! -nargs=0 LogGit :execute 'Gina log --opener=-1tabedit --branches --tags'
 nnoremap <silent> <F6> :LogGit<CR>
 command! -nargs=0 LogCurrentGit :execute 'Gina log :' . <SID>get_current_relpath(). ' --opener=split'
 
