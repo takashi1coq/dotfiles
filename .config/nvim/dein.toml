@@ -62,7 +62,7 @@ nnoremap c :UnmakeTable<CR>
 [[plugins]]
 repo = 'airblade/vim-rooter'
 hook_add = '''
-let g:rooter_patterns = ['.myroot', '.myroot/', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
+let g:rooter_patterns = ['.myroot', '.myroot/', 'package.json', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
 '''
 
 # ==========================================================

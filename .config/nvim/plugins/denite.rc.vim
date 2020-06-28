@@ -29,6 +29,7 @@ let s:menus.rcs.file_candidates = [
     \ ['gitconfig local', '~/.gitconfig.local'],
     \ ['ssh config', '~/.ssh/config'],
     \ ['test vimrc', '~/test.rc.vim'],
+    \ ['etc hosts (read only)', '/etc/hosts'],
     \ ]
 
 "let s:menus.my_commands = {
