@@ -44,6 +44,13 @@ sudo pacman -S words
 pip install black
 ```
 
+##### ruby
+
+- solargraph
+```
+gem install solargraph
+```
+
 ### setup
 
 ```
