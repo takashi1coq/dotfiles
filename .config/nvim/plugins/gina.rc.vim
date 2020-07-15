@@ -45,6 +45,10 @@ command! -nargs=0 CommitGit :execute 'Gina commit'
 call gina#custom#mapping#nmap('branch', 'nn',
             \ ':call gina#action#call("branch:new")<CR>',
             \ {'noremap':1, 'silent': 1})
+" rename
+call gina#custom#mapping#nmap('branch', 'rr',
+            \ ':call gina#action#call("branch:move")<CR>',
+            \ {'noremap':1, 'silent': 1})
 " remotes checkout
 call gina#custom#mapping#nmap('branch', 'ou',
             \ ':call gina#action#call("commit:checkout:track")<CR>',
