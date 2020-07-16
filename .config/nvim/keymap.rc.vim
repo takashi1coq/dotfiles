@@ -2,11 +2,6 @@
 "  window
 " ==========================================================
 
-" ウィドウ間の移動
-nnoremap <C-w> <C-w>w
-" 再マップ
-nnoremap <C-e> <C-w>
-
 " 回転
 nnoremap <silent>s <C-w>H
 
