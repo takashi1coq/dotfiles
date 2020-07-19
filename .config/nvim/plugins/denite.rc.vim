@@ -75,7 +75,7 @@ call denite#custom#action('file,buffer,mark,menu',
                         \ 'RightDeniteTabOpen', {'is_quit' : 'v:true'})
 
 " two buffer display side by side
-function! MyDeniteSideBySide(context) abort
+function! MyDeniteVsplit(context) abort
     let l:mylist = []
     for target in a:context['targets']
         let l:path = target['action__path']
@@ -87,8 +87,8 @@ function! MyDeniteSideBySide(context) abort
     execute ':-1tabnew '. l:str
 endfunction
 call denite#custom#action('file,buffer,mark',
-                        \ 'denite_side_by_side',
-                        \ 'MyDeniteSideBySide', {'is_quit' : 'v:true'})
+                        \ 'denite_vsplit',
+                        \ 'MyDeniteVsplit', {'is_quit' : 'v:true'})
 
 " current list
 nnoremap <silent> <Space>u :<C-u>Denite file/rec
@@ -97,7 +97,12 @@ nnoremap <silent> <Space>u :<C-u>Denite file/rec
                     \ -split=floating<CR>
 " buffer list
 nnoremap <silent> <Space>b :<C-u>Denite buffer
-                    \ -default-action=denite_side_by_side
+                    \ -default-action=denite_vsplit
+                    \ -winwidth=`&columns`
+                    \ -split=floating<CR>
+" tab buffer list
+nnoremap <silent> <Space>t :NotActiveBufClose<CR>:<C-u>Denite buffer
+                    \ -default-action=denite_vsplit
                     \ -winwidth=`&columns`
                     \ -split=floating<CR>
 " nvim cofig list
