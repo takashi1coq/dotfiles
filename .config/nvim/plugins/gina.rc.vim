@@ -26,7 +26,7 @@ call gina#custom#command#option('status', '-s')
 call gina#custom#command#option('status', '-b')
 call gina#custom#command#option('status', '--opener', 'split')
 " checkout HEAD
-call gina#custom#mapping#map('status', 'ch',
+call gina#custom#mapping#map('status', 'del',
             \ ':call gina#action#call("checkout:HEAD")<CR>',
             \ {'noremap':1, 'silent': 1})
 command! -nargs=0 StatusGit :execute 'Gina status'
@@ -70,7 +70,7 @@ call gina#custom#mapping#nmap('branch', 'mf',
             \ ':call gina#action#call("commit:merge:ff-only")<CR>',
             \ {'noremap':1, 'silent': 1})
 " chenge
-call gina#custom#mapping#nmap('branch', 'ch',
+call gina#custom#mapping#nmap('branch', 'df',
             \ ':call gina#action#call("changes:between:vsplit")<CR>',
             \ {'noremap':1, 'silent': 1})
 command! -nargs=0 BranchGit :execute 'Gina branch --opener=split'
