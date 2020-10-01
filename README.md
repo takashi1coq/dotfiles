@@ -25,8 +25,9 @@ sudo make install
 ```
 
 - neovim-remote (nvr)
+- pynvim
 ```
-pip3 install neovim-remote
+pip install pynvim neovim-remote
 ```
 
 - words (check `look` is installed)
