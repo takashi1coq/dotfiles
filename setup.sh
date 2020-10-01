@@ -16,7 +16,7 @@ function GitEmail() {
   fi
 }
 
-DOT_FILES=( .config/nvim .gitconfig .gitignore_global .ctags .mybashrc )
+DOT_FILES=( .config/nvim .gitconfig .gitignore_global .ctags .myshrc )
 mkdir -p $HOME/.config
 mkdir -p $HOME/work/src
 for file in ${DOT_FILES[@]}
@@ -37,4 +37,4 @@ echo '    email = '$email >> ~/.gitconfig.local
 echo 'create ~/.gitconfig.local'
 echo 'username='$username
 echo 'email='$email
-echo ' set [ source ~/.mybashrc ] to shrc'
+echo ' set [ source ~/.myshrc ] to shrc'

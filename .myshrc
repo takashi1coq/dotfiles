@@ -8,7 +8,9 @@ alias ginalog='nvr -c "0tabnew | lcd "$(pwd)" | Gina log --graph --decorate=full
 alias branch='nvr -c "OpenFloatingWindowExecCommand Gina branch --all"'
 
 # bash setting
-export PS1="\[\e[36m\]\w\[\e[m\] \\$ "
+# export PS1="\[\e[36m\]\w\[\e[m\] \\$ "
+# zsh setting
+export PROMPT='%n %~ %# '
 
 # my function
 function ntab () {
