@@ -39,6 +39,15 @@ call gina#custom#command#option('commit', '--opener', 'vsplit')
 command! -nargs=0 CommitGit :execute 'Gina commit'
 
 " ==========================================================
+"  Blame
+" ==========================================================
+" show commit
+call gina#custom#mapping#map('blame', 'cm',
+            \ ':call gina#action#call("show:commit:top")<CR>',
+            \ {'noremap':1, 'silent': 1})
+command! -nargs=0 BlameGit :execute 'Gina blame'
+
+" ==========================================================
 "  Branch
 " ==========================================================
 " new branch
@@ -99,8 +108,8 @@ call gina#custom#mapping#nmap('log', 'ma',
 call gina#custom#mapping#nmap('log', 'rr',
             \ ':call gina#action#call("commit:reset")<CR>',
             \ {'noremap':1, 'silent': 1})
-command! -nargs=0 LogGit :execute 'Gina log --opener=-1tabedit --branches --tags'
-nnoremap <silent> <F6> :LogGit<CR>
+command! -nargs=0 LogGitAll :execute 'Gina log --opener=-1tabedit --branches --tags --remotes'
+nnoremap <silent> <F6> :LogGitAll<CR>
 command! -nargs=0 LogCurrentGit :execute 'Gina log :' . <SID>get_current_relpath(). ' --opener=split'
 
 " ==========================================================
