@@ -19,6 +19,7 @@ function GitEmail() {
 DOT_FILES=( .config/nvim .gitconfig .gitignore_global .ctags .myshrc )
 mkdir -p $HOME/.config
 mkdir -p $HOME/work/src
+mkdir -p $HOME/work/compile
 for file in ${DOT_FILES[@]}
 do
   # -fnは上書きオプション
