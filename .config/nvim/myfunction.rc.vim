@@ -59,6 +59,30 @@ function! s:cmd_capture(args)
 endfunction
 
 " ==========================================================
+"  open floating window, exec command
+" ==========================================================
+command!
+    \ -nargs=?
+    \ -complete=command
+    \ OpenFloatingWindowExecCommand
+    \ call s:open_floating_window_exec_command(<f-args>)
+
+function! s:open_floating_window_exec_command(...)
+    call nvim_open_win(0, v:true, {
+    \   'width': &columns / 2,
+    \   'height': &lines / 2,
+    \   'relative': 'editor',
+    \   'anchor': 'NW',
+    \   'col': (&columns / 2) - (&columns / 4),
+    \   'row': (&lines / 2) - (&lines / 4),
+    \   'external': v:false,
+    \})
+    if a:0 >= 1
+      execute a:1
+    endif
+endfunction
+
+" ==========================================================
 "  vimrc reload for dein
 " ==========================================================
 if has('vim_starting')
@@ -230,6 +254,15 @@ command! -nargs=0 TabSplit call s:tab_sp()
 function! s:tab_sp()
     execute '0tab split'
     execute 'MakeWinOne'
+endfunction
+
+" ==========================================================
+"  toggle relativenumber
+" ==========================================================
+command! -nargs=0 NumberToggleRelative call s:toggle_relative_number()
+
+function! s:toggle_relative_number()
+    execute 'setlocal relativenumber!'
 endfunction
 
 " ==========================================================
