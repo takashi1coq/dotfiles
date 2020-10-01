@@ -22,11 +22,19 @@ inoremap <silent><expr> <Tab>
 
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" rename
 nmap <silent> rr <Plug>(coc-rename)
-nmap <silent> gh <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-implementation)
+" 呼び出し先
 nmap <silent> gr <Plug>(coc-references)
-nnoremap <silent> <C-k> :call <SID>show_documentation()<CR>
+" 定義
+"nmap <silent> gh <Plug>(coc-definition)
+nnoremap <silent> <C-k> :<C-u>call CocActionAsync('jumpDefinition', '0tabnew')<CR>
+" 実装
+"nmap <silent> gy <Plug>(coc-implementation)
+nnoremap <silent> gy :<C-u>call CocActionAsync('jumpImplementation')<CR>
+
+" ドキュメント
+nnoremap <silent> gd :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
