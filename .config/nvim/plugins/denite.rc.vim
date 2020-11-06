@@ -123,6 +123,7 @@ nnoremap <silent> <Space>c :<C-u>Denite menu:rcs
 nnoremap <silent> <Space>g :<C-u>Denite grep
                     \ -buffer-name=grep-buffer-denite
                     \ -winwidth=`&columns` -winheight=`&lines`
+                    \ -default-action=left_tabopen
                     \ -split=floating<CR>
 " visual grep
 vnoremap <silent> <Space>g :<C-u>DeniteCursorWord grep
