@@ -6,6 +6,14 @@ let g:coc_global_extensions = [
       \ 'coc-python', 'coc-snippets', 'coc-docker', 'coc-solargraph',
       \ 'coc-tsserver', 'coc-word', 'https://github.com/andys8/vscode-jest-snippets']
 
+" to disable auto preview of location list
+let g:coc_enable_locationlist = 0
+" custom auto preview of location list
+augroup Vimrc_coc
+  autocmd!
+  autocmd User CocLocationsChange CocList --top --normal location
+augroup END
+
 let g:coc_snippet_next = '<C-k>'
 let g:coc_snippet_prev = '<C-j>'
 
@@ -27,11 +35,9 @@ nmap <silent> rr <Plug>(coc-rename)
 " 呼び出し先
 nmap <silent> gr <Plug>(coc-references)
 " 定義
-"nmap <silent> gh <Plug>(coc-definition)
-nnoremap <silent> <C-k> :<C-u>call CocActionAsync('jumpDefinition', '0tabnew')<CR>
-" 実装
-"nmap <silent> gy <Plug>(coc-implementation)
-nnoremap <silent> gy :<C-u>call CocActionAsync('jumpImplementation')<CR>
+nmap <silent> <C-k> <Plug>(coc-definition)
+" クラスの実装およびメソッドの実装
+nmap <silent> gh <Plug>(coc-implementation)
 
 " ドキュメント
 nnoremap <silent> gd :call <SID>show_documentation()<CR>
