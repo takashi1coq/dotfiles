@@ -19,18 +19,18 @@ call denite#custom#filter('matcher/ignore_globs','ignore_globs',
 " menus
 let s:menus = {}
 
-let s:menus.rcs = {
-    \ 'description': 'create rc menus'
+let s:menus.my_setting_files = {
+    \ 'description': 'setting files menu'
     \ }
-let s:menus.rcs.file_candidates = [
-    \ ['bashrc', '~/.bashrc'],
-    \ ['bash profile', '~/.bash_profile'],
-    \ ['zshrc', '~/.zshrc'],
-    \ ['gitconfig local', '~/.gitconfig.local'],
-    \ ['ssh config', '~/.ssh/config'],
-    \ ['test vimrc', '~/test.rc.vim'],
-    \ ['etc profile (read only)', '/etc/profile'],
-    \ ['etc hosts (read only)', '/etc/hosts'],
+let s:menus.my_setting_files.file_candidates = [
+    \ [' ~/.bashrc', '~/.bashrc'],
+    \ [' ~/.bash_profile', '~/.bash_profile'],
+    \ [' ~/.zshrc', '~/.zshrc'],
+    \ [' ~/.gitconfig.local', '~/.gitconfig.local'],
+    \ [' ~/.ssh/config', '~/.ssh/config'],
+    \ [' ~/test.rc.vim', '~/test.rc.vim'],
+    \ [' /etc/profile (read only)', '/etc/profile'],
+    \ [' /etc/hosts (read only)', '/etc/hosts'],
     \ ]
 
 "let s:menus.my_commands = {
@@ -116,7 +116,7 @@ nnoremap <silent> <Space>m :<C-u>Denite mymarks:upper
                     \ -default-action=left_tabopen
                     \ -split=floating<CR>
 " menus list (rc)
-nnoremap <silent> <Space>c :<C-u>Denite menu:rcs
+nnoremap <silent> <Space>c :<C-u>Denite menu:my_setting_files
                     \ -default-action=left_tabopen
                     \ -split=floating<CR>
 " grep
