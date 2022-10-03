@@ -82,9 +82,9 @@ call gina#custom#mapping#nmap('branch', 'mf',
 call gina#custom#mapping#nmap('branch', 'df',
             \ ':call gina#action#call("changes:between:vsplit")<CR>',
             \ {'noremap':1, 'silent': 1})
-command! -nargs=0 BranchGit :execute 'Gina branch --opener=split'
+command! -nargs=0 BranchGit :execute 'OpenFloatingWindowExecCommand Gina branch'
 nnoremap <silent> <F7> :BranchGit<CR>
-command! -nargs=0 BranchGitAll :execute 'Gina branch --all --opener=split'
+command! -nargs=0 BranchGitAll :execute 'OpenFloatingWindowExecCommand Gina branch --all'
 nnoremap <silent> <F8> :BranchGitAll<CR>
 
 " ==========================================================
@@ -122,4 +122,4 @@ command! -nargs=0 PatchGit :execute 'Gina patch'
 " ==========================================================
 command! -nargs=0 SaveStashGit :execute 'Gina stash save -u "gina stash"'
 command! -nargs=0 PopStashGit :execute 'Gina stash pop'
-command! -nargs=0 ListStashGit :execute 'Gina stash list --opener=vsplit'
+command! -nargs=0 ListStashGit :execute 'OpenFloatingWindowExecCommand Gina stash list'

@@ -6,6 +6,7 @@ alias q='exit'
 alias defx='nvr -c "MyDefx "$(pwd)'
 alias ginalog='nvr -c "0tabnew | lcd "$(pwd)" | Gina log --graph --decorate=full"'
 alias branch='nvr -c "OpenFloatingWindowExecCommand Gina branch --all"'
+alias reload='exec -l $SHELL'
 
 # bash setting
 # export PS1="\[\e[36m\]\w\[\e[m\] \\$ "
@@ -22,12 +23,6 @@ function ntab () {
 function gclonecd () {
   git clone "$1" && cd "$(basename "$1" .git)"
 }
-function reload () {
-  exec -l $SHELL
-}
 function gistrow () {
   curl -OLsS "$1"
-}
-function findportprosess () {
-  lsof -i :"$1"
 }

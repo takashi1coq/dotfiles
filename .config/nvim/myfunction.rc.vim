@@ -87,7 +87,7 @@ endfunction
 " ==========================================================
 if has('vim_starting')
     command!
-        \ -nargs=0
+        \ -nargs=?
         \ -complete=command
         \ ReloadMYVIMRC
         \ call s:myvimrc_refresh()
@@ -322,9 +322,9 @@ endfunction
 " ==========================================================
 "  not active buffer close
 " ==========================================================
-command! -nargs=0 NotActiveBufClose call s:not_active_buf_close()
+command! -nargs=0 CloseInactiveBuffers call s:close_inactive_buffers()
 
-function! s:not_active_buf_close()
+function! s:close_inactive_buffers()
   " let buffers = filter(range(1, bufnr('$')), 'bufexists(v:val)')
   let buffers = nvim_list_bufs()
   for bufnr in l:buffers
@@ -334,4 +334,29 @@ function! s:not_active_buf_close()
       endif
     endif
   endfor
+endfunction
+
+" ==========================================================
+"  command to open terminal
+" ==========================================================
+command!
+    \ -nargs=1
+    \ CommandToOpenTerminal
+    \ call s:command_to_open_terminal(<f-args>)
+
+function! s:command_to_open_terminal(arge)
+    Terminal
+    silent put =a:arge
+endfunction
+
+" ==========================================================
+"  insert gist row
+" ==========================================================
+command!
+    \ -nargs=1
+    \ InsertGistRow
+    \ call s:insert_gist_row(<f-args>)
+
+function! s:insert_gist_row(arge)
+    r!curl -OLsS a:arge
 endfunction

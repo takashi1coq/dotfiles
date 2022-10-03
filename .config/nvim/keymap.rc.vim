@@ -55,7 +55,7 @@ nnoremap <silent> ts :TabSplit<CR>
 nnoremap <silent> bd :<C-u>bd<CR>
 
 " 開いているウィンドウのバッファ以外全て閉じる
-nnoremap <silent> bo :NotActiveBufClose<CR>
+nnoremap <silent> bo :CloseInactiveBuffers<CR>
 
 " ==========================================================
 "  terminal
@@ -112,7 +112,7 @@ noremap! <C-t> <C-v>
 nmap <silent> aa ggVG$
 
 "esc2回でハイライト解除
-ret hlsearch
+set hlsearch
 nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
 
 " 検索結果を真ん中

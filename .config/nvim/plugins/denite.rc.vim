@@ -20,26 +20,74 @@ call denite#custom#filter('matcher/ignore_globs','ignore_globs',
 let s:menus = {}
 
 let s:menus.my_setting_files = {
-    \ 'description': 'setting files menu'
+    \ 'description': 'Setting Files Menu'
     \ }
 let s:menus.my_setting_files.file_candidates = [
-    \ [' ~/.bashrc', '~/.bashrc'],
-    \ [' ~/.bash_profile', '~/.bash_profile'],
-    \ [' ~/.zshrc', '~/.zshrc'],
-    \ [' ~/.gitconfig.local', '~/.gitconfig.local'],
-    \ [' ~/.ssh/config', '~/.ssh/config'],
-    \ [' ~/test.rc.vim', '~/test.rc.vim'],
-    \ [' /etc/profile (read only)', '/etc/profile'],
-    \ [' /etc/hosts (read only)', '/etc/hosts'],
+    \ ['File : ~/.bashrc', '~/.bashrc'],
+    \ ['File : ~/.bash_profile', '~/.bash_profile'],
+    \ ['File : ~/.zshrc', '~/.zshrc'],
+    \ ['File : ~/.gitconfig.local', '~/.gitconfig.local'],
+    \ ['File : ~/.ssh/config', '~/.ssh/config'],
+    \ ['File : ~/test.rc.vim', '~/test.rc.vim'],
+    \ ['File : /etc/profile (read only)', '/etc/profile'],
+    \ ['File : /etc/hosts (read only)', '/etc/hosts'],
     \ ]
 
-"let s:menus.my_commands = {
-"    \ 'description': 'Example commands'
-"    \ }
-"let s:menus.my_commands.command_candidates = [
-"    \ ['Split the window', 'vnew'],
-"    \ ['Open config menu', 'Denite menu:config'],
-"    \ ]
+let s:menus.dein = {
+    \ 'description': 'Plugin Management'
+    \ }
+let s:menus.dein.command_candidates = [
+    \ ['Dein : Dein Plugin List', 'Denite dein -split=floating'],
+    \ ['Dein : ★ Dein Plugin Update', 'call dein#update()'],
+    \ ]
+
+let s:menus.gina = {
+    \ 'description': 'Gina Command'
+    \ }
+let s:menus.gina.command_candidates = [
+    \ ['Gina : <F5> Status :StatusGit', 'StatusGit'],
+    \ ['Gina : Stash List :ListStashGit', 'ListStashGit'],
+    \ ['Gina : <F8> All Branch :BranchGitAll', 'BranchGitAll'],
+    \ ['Gina : <F6> All Logs :LogGitAll', 'LogGitAll'],
+    \ ]
+
+let s:menus.my_command = {
+    \ 'description': 'My Command'
+    \ }
+let s:menus.my_command.command_candidates = [
+    \ ['* Remove EndSpace', 'EndSpaceDel'],
+    \ ['* Number setting toggle', 'NumberToggleRelative'],
+    \ ['* Close inactive baffers', 'CloseInactiveBuffers'],
+    \ ['* <F2> Refresh vimrc', 'ReloadMYVIMRC'],
+    \ ['* <F4> Refresh files', 'RefreshFiles'],
+    \ ['* <F9> Move tab left', '<C-u>tabm -1'],
+    \ ['* <F10> Move tab right', '<C-u>tabm +1'],
+    \ ['* <F11> Right open terminal', 'Terminal'],
+    \ ['* <F12> Left open terminal', 'sp<CR>:10wincmd_<CR>:terminal'],
+    \ ]
+
+let s:menus.my_terminal_command = {
+    \ 'description': 'My Terminal Commands'
+    \ }
+let s:menus.my_terminal_command.command_candidates = [
+    \ ['* Find port prosess [lsof -i :<PORT>]', 'CommandToOpenTerminal lsof -i :'],
+    \ ['* Docker prune [docker system prune]', 'CommandToOpenTerminal docker system prune'],
+    \ ['* chmod [execute permission]', 'CommandToOpenTerminal chmod u+x '],
+    \ ['* Sort File [LANG=C sort <Raw File> > <Sort File>]', 'CommandToOpenTerminal LANG=C sort '],
+    \ ['* lines that disappear in both file [comm -3 <A File> <B File>]', 'CommandToOpenTerminal comm -3 '],
+    \ ['* split big file [split -l 10000 <File>]', 'CommandToOpenTerminal split -l 10000 '],
+    \ ]
+
+let s:menus.my_menus = {
+    \ 'description': 'Menus'
+    \ }
+let s:menus.my_menus.command_candidates = [
+    \ ['* My Commands', 'Denite menu:my_command -split=floating'],
+    \ ['* My Terminal Commands', 'Denite menu:my_terminal_command -split=floating'],
+    \ ['* Plugin Management', 'Denite menu:dein -split=floating'],
+    \ ['* Setting File Menu', 'Denite menu:my_setting_files -default-action=left_tabopen -split=floating'],
+    \ ['* Gina Commands', 'Denite menu:gina -split=floating'],
+    \ ]
 
 call denite#custom#var('menu', 'menus', s:menus)
 
@@ -102,7 +150,7 @@ nnoremap <silent> <Space>b :<C-u>Denite buffer
                     \ -winwidth=`&columns`
                     \ -split=floating<CR>
 " tab buffer list
-nnoremap <silent> <Space>t :NotActiveBufClose<CR>:<C-u>Denite buffer
+nnoremap <silent> <Space>t :CloseInactiveBuffers<CR>:<C-u>Denite buffer
                     \ -default-action=denite_vsplit
                     \ -winwidth=`&columns`
                     \ -split=floating<CR>
@@ -115,9 +163,8 @@ nnoremap <silent> <Space>v :<C-u>Denite file/rec:~/dotfiles
 nnoremap <silent> <Space>m :<C-u>Denite mymarks:upper
                     \ -default-action=left_tabopen
                     \ -split=floating<CR>
-" menus list (rc)
-nnoremap <silent> <Space>c :<C-u>Denite menu:my_setting_files
-                    \ -default-action=left_tabopen
+" my menu
+nnoremap <silent> <Space>c :<C-u>Denite menu:my_menus
                     \ -split=floating<CR>
 " grep
 nnoremap <silent> <Space>g :<C-u>Denite grep
