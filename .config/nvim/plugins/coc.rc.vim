@@ -3,8 +3,13 @@ set hidden
 set updatetime=300
 
 let g:coc_global_extensions = [
-      \ 'coc-python', 'coc-snippets', 'coc-docker', 'coc-solargraph',
-      \ 'coc-tsserver', 'coc-word', 'https://github.com/andys8/vscode-jest-snippets']
+      \ 'coc-snippets', 'coc-word'
+      \ , 'coc-docker'
+      \ , 'coc-python'
+      \ , 'coc-solargraph'
+      \ , 'coc-tsserver', 'https://github.com/andys8/vscode-jest-snippets'
+      \ , 'coc-phpls'
+      \ ]
 
 " to disable auto preview of location list
 let g:coc_enable_locationlist = 0
