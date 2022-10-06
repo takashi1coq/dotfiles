@@ -41,6 +41,8 @@ nnoremap <silent> <Space>f :call DefxExplorer('%:p', 35, 35, 'vertical')<CR>:60w
 nnoremap <silent> <C-d> :call DefxExplorer('%:p:h', 60, 60, 'mytab')<CR>
 " work folder
 nnoremap <silent> <Space>w :call DefxExplorer('~/work/', 60, 60, 'mytab')<CR>
+" download folder
+nnoremap <silent> <Space>d :call DefxExplorer('~/Downloads/', 60, 60, 'mytab')<CR>
 " others
 command! -nargs=1 MyDefx call DefxExplorer(<f-args>, 60, 60, 'no')
 
