@@ -148,11 +148,13 @@ nnoremap <silent> <Space>u :<C-u>Denite file/rec
 nnoremap <silent> <Space>b :<C-u>Denite buffer
                     \ -default-action=denite_vsplit
                     \ -winwidth=`&columns`
+                    \ -start-filter
                     \ -split=floating<CR>
 " tab buffer list
 nnoremap <silent> <Space>t :CloseInactiveBuffers<CR>:<C-u>Denite buffer
                     \ -default-action=denite_vsplit
                     \ -winwidth=`&columns`
+                    \ -start-filter
                     \ -split=floating<CR>
 " nvim cofig list
 nnoremap <silent> <Space>v :<C-u>Denite file/rec:~/dotfiles

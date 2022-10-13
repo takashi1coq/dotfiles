@@ -28,7 +28,6 @@ nnoremap <silent><buffer><expr> <C-k> defx#do_action('open_or_close_tree')
 nnoremap <silent><buffer><expr> <C-a> defx#do_action('open_tree_recursive')
 nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
 nnoremap <silent><buffer><expr> l defx#do_action('open_directory')
-"nnoremap <silent><buffer><expr> <CR> defx#do_action('open', 'wincmd w \| drop'). '<C-w>w'. ':<C-u>q<CR>'
 nnoremap <silent><buffer><expr> <CR> defx#do_action('open'). ':<C-u>TabSplit<CR>'
 nnoremap <silent><buffer><expr> N defx#do_action('new_multiple_files')
 nnoremap <silent><buffer><expr> . defx#do_action('new_file'). '.myroot<CR>'
