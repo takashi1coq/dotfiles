@@ -74,9 +74,12 @@ let s:menus.my_terminal_command.command_candidates = [
     \ ['* Docker prune [docker system prune]', 'CommandToOpenTerminal docker system prune'],
     \ ['* chmod [execute permission]', 'CommandToOpenTerminal chmod u+x '],
     \ ['* Sort File [LANG=C sort <Raw File> > <Sort File>]', 'CommandToOpenTerminal LANG=C sort '],
-    \ ['* lines that disappear in both file [comm -3 <A File> <B File>]', 'CommandToOpenTerminal comm -3 '],
-    \ ['* split big file [split -l 10000 <File>]', 'CommandToOpenTerminal split -l 10000 '],
+    \ ['* Outputs the difference in both file [comm -3 <A File> <B File>]', 'CommandToOpenTerminal comm -3 '],
+    \ ['* Split big file [split -l 10000 <File>]', 'CommandToOpenTerminal split -l 10000 '],
     \ ]
+let s:menus.local_menus = {
+    \ 'description': 'Local menus'
+    \ }
 
 let s:menus.my_menus = {
     \ 'description': 'Menus'
@@ -85,8 +88,9 @@ let s:menus.my_menus.command_candidates = [
     \ ['* My Commands', 'Denite menu:my_command -split=floating'],
     \ ['* My Terminal Commands', 'Denite menu:my_terminal_command -split=floating'],
     \ ['* Plugin Management', 'Denite menu:dein -split=floating'],
-    \ ['* Setting File Menu', 'Denite menu:my_setting_files -default-action=left_tabopen -split=floating'],
+    \ ['* Setting Files', 'Denite menu:my_setting_files -default-action=left_tabopen -split=floating'],
     \ ['* Gina Commands', 'Denite menu:gina -split=floating'],
+    \ ['* Local menus', 'Denite menu:local_menus -split=floating'],
     \ ]
 
 call denite#custom#var('menu', 'menus', s:menus)
