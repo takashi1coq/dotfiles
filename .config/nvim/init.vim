@@ -40,4 +40,4 @@ syntax enable
 runtime! myfunction.rc.vim
 runtime! options.rc.vim
 runtime! keymap.rc.vim
-source ~/test.rc.vim
+source ~/local.rc.vim

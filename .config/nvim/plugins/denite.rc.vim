@@ -28,7 +28,7 @@ let s:menus.my_setting_files.file_candidates = [
     \ ['File : ~/.zshrc', '~/.zshrc'],
     \ ['File : ~/.gitconfig.local', '~/.gitconfig.local'],
     \ ['File : ~/.ssh/config', '~/.ssh/config'],
-    \ ['File : ~/test.rc.vim', '~/test.rc.vim'],
+    \ ['File : ~/local.rc.vim', '~/local.rc.vim'],
     \ ['File : /etc/profile (read only)', '/etc/profile'],
     \ ['File : /etc/hosts (read only)', '/etc/hosts'],
     \ ]

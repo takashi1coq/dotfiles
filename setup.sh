@@ -26,7 +26,7 @@ do
   ln -sfn $HOME/dotfiles/$file $HOME/$file
 done
 
-touch ~/test.rc.vim
+touch ~/local.rc.vim
 
 GitUserName
 GitEmail
