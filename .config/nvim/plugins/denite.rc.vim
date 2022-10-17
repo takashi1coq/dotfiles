@@ -52,7 +52,7 @@ let s:menus.gina.command_candidates = [
     \ ]
 
 let s:menus.my_command = {
-    \ 'description': 'My Command'
+    \ 'description': 'My Vim Command'
     \ }
 let s:menus.my_command.command_candidates = [
     \ ['* Remove EndSpace', 'EndSpaceDel'],
@@ -82,11 +82,11 @@ let s:menus.my_menus = {
     \ 'description': 'Menus'
     \ }
 let s:menus.my_menus.command_candidates = [
-    \ ['* My Commands', 'Denite menu:my_command -split=floating'],
+    \ ['* Gina Commands', 'Denite menu:gina -split=floating'],
+    \ ['* Setting Files', 'Denite menu:my_setting_files -default-action=left_tabopen -split=floating'],
+    \ ['* My Vim Commands', 'Denite menu:my_command -split=floating'],
     \ ['* My Terminal Commands', 'Denite menu:my_terminal_command -split=floating'],
     \ ['* Plugin Management', 'Denite menu:dein -split=floating'],
-    \ ['* Setting Files', 'Denite menu:my_setting_files -default-action=left_tabopen -split=floating'],
-    \ ['* Gina Commands', 'Denite menu:gina -split=floating'],
     \ ]
 
 call denite#custom#var('menu', 'menus', s:menus)
