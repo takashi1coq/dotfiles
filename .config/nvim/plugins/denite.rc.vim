@@ -56,8 +56,9 @@ let s:menus.my_command = {
     \ }
 let s:menus.my_command.command_candidates = [
     \ ['* Remove EndSpace', 'EndSpaceDel'],
-    \ ['* Number setting toggle', 'NumberToggleRelative'],
+    \ ['* Toggle number setting', 'NumberToggleRelative'],
     \ ['* Close inactive baffers', 'CloseInactiveBuffers'],
+    \ ['* Mark A,(B,C)', 'MmmA'],
     \ ['* <F2> Refresh vimrc', 'ReloadMYVIMRC'],
     \ ['* <F4> Refresh files', 'RefreshFiles'],
     \ ['* <F9> Move tab left', '<C-u>tabm -1'],

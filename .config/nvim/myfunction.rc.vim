@@ -360,3 +360,15 @@ command!
 function! s:insert_gist_row(arge)
     r!curl -OLsS a:arge
 endfunction
+
+" ==========================================================
+"  mark function
+" ==========================================================
+command! -nargs=0 MmmA call s:my_mark_function('A')
+command! -nargs=0 MmmB call s:my_mark_function('B')
+command! -nargs=0 MmmC call s:my_mark_function('C')
+
+function! s:my_mark_function(arge)
+  execute 'mark '. a:arge
+endfunction
+
