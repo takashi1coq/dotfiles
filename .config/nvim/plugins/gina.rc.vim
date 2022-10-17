@@ -120,6 +120,7 @@ command! -nargs=0 PatchGit :execute 'Gina patch'
 " ==========================================================
 "  Stash
 " ==========================================================
-command! -nargs=0 SaveStashGit :execute 'Gina stash save -u "gina stash"'
-command! -nargs=0 PopStashGit :execute 'Gina stash pop'
-command! -nargs=0 ListStashGit :execute 'OpenFloatingWindowExecCommand Gina stash list'
+command! -nargs=0 StashSave :execute 'Gina stash save -u "gina stash"'
+command! -nargs=0 StashPop :execute 'Gina stash pop'
+command! -nargs=0 StashList :execute 'OpenFloatingWindowExecCommand Gina stash list'
+command! -nargs=0 StashClear :execute 'Gina stash clear'

@@ -46,9 +46,9 @@ let s:menus.gina = {
     \ }
 let s:menus.gina.command_candidates = [
     \ ['Gina : <F5> Status :StatusGit', 'StatusGit'],
-    \ ['Gina : Stash List :ListStashGit', 'ListStashGit'],
     \ ['Gina : <F8> All Branch :BranchGitAll', 'BranchGitAll'],
     \ ['Gina : <F6> All Logs :LogGitAll', 'LogGitAll'],
+    \ ['Gina : Stash List :StashList', 'StashList'],
     \ ]
 
 let s:menus.my_command = {
