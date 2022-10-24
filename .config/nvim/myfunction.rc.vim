@@ -376,3 +376,8 @@ endfunction
 "  indent
 " ==========================================================
 command! -nargs=0 Indent :execute 'normal gg=G'
+
+" ==========================================================
+"  mark A open
+" ==========================================================
+command! -nargs=0 OpenMarkA :execute 'normal `A'

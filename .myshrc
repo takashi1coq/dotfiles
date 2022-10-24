@@ -1,6 +1,6 @@
 # my alias
 alias l='ls -artl'
-alias n='nvim'
+alias n="nvim -c 'OpenMarkA'"
 alias shutdown='sudo shutdown -h now'
 alias q='exit'
 alias defx='nvr -c "MyDefx "$(pwd)'
