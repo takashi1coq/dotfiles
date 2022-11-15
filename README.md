@@ -11,6 +11,12 @@ anyenv install nodenv
 anyenv install phpenv
 ```
 
+### install yarn
+
+```
+npm install -g yarn
+```
+
 ### neovim install
 
 see neovim wiki..
