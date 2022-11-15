@@ -124,6 +124,10 @@ nmap # #zz
 " Ctrl-p で差し替え後も連続コピー
 vnoremap <silent> <C-p> "0p<CR>
 
+" 選択範囲を囲む
+vnoremap ' xi''<ESC>P
+vnoremap " xi""<ESC>P
+
 " x削除でレジスタに格納しない
 nnoremap x "_x
 
