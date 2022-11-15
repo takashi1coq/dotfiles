@@ -38,4 +38,4 @@ echo '    email = '$email >> ~/.gitconfig.local
 echo 'create ~/.gitconfig.local'
 echo 'username='$username
 echo 'email='$email
-echo ' set [ source ~/.myshrc ] to shrc'
+echo 'echo "source ~/.myshrc" >> .zshrc'

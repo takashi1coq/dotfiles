@@ -27,6 +27,18 @@ see neovim wiki..
 pip install pynvim neovim-remote
 ```
 
+### Homebrew
+
+- ripgrep
+
+```
+brew install ripgrep
+```
+
+- gawk
+```
+brew install ripgrep
+```
 
 ### install tools
 

@@ -9,12 +9,12 @@ if executable('rg')
 endif
 
 " customize ignore globs
-call denite#custom#source('file/rec','matchers',['converter/tail_path','matcher/fuzzy','matcher/ignore_globs'])
+call denite#custom#source('file/rec','matchers',['matcher/fuzzy','matcher/ignore_globs'])
 call denite#custom#filter('matcher/ignore_globs','ignore_globs',
         \ [
         \ '.git/', 'build/', '__pycache__/', 'node_modules/', '.node-version',
-        \ 'images/', 'img/',
-        \ '*.o', '*.make', '.myroot' ])
+        \ '.myroot',
+        \ '*.o', '*.make' ])
 
 " menus
 let s:menus = {}
