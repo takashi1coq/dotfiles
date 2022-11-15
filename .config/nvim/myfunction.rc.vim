@@ -9,20 +9,22 @@ let g:loaded_function = 1
 "  CopyPath & CopyFileName
 " ==========================================================
 function! CopyPath()
-  let @+=expand('%:p')
+  let l:path = substitute(expand('%:p'), getcwd(), '', 'g')
+  let @+=l:path
   " copy unnamed register.
   if !has('clipboard')
-    let @"=expand('%:p')
+    let @"=l:path
   endif
-  echomsg expand('%:p')
+  echomsg l:path
 endfunction
 
 function! CopyFileName()
-  let @+=expand('%:t')
+  let @+=expand('%:t:r')
   " copy unnamed register.
   if !has('clipboard')
-    let @"=expand('%:t')
+    let @"=expand('%:t:r')
   endif
+  echomsg expand('%:t:r')
   echomsg expand('%:t')
 endfunction
 
@@ -33,7 +35,6 @@ command! -nargs=0 CopyFileName call CopyFileName()
 "  unused space delete
 " ==========================================================
 command! EndSpaceDel :%s/\s\+$//ge
-
 
 " ==========================================================
 "  open excommond result whth new tabpage
@@ -364,9 +365,10 @@ endfunction
 " ==========================================================
 "  mark
 " ==========================================================
-command! -nargs=0 MmmA call s:my_mark_function('A')
-command! -nargs=0 MmmB call s:my_mark_function('B')
-command! -nargs=0 MmmC call s:my_mark_function('C')
+command!
+      \ -nargs=1
+      \ MarkFile
+      \ call s:my_mark_function(<f-args>)
 
 function! s:my_mark_function(arge)
   execute 'mark '. a:arge
