@@ -383,3 +383,18 @@ command! -nargs=0 Indent :execute 'normal gg=G'
 "  mark A open
 " ==========================================================
 command! -nargs=0 OpenMarkA :execute 'normal `A'
+
+" ==========================================================
+"  sed -i .env
+" ==========================================================
+command!
+      \ -nargs=*
+      \ SedIEnv
+      \ call s:sed_i_file(<f-args>)
+
+function! s:sed_i_file(...)
+  let l:name = a:1
+  let l:val = a:2
+  let l:file = a:3
+  execute "CommandToOpenTerminal ". "sed -i "."'s/". l:name. "=.*/". l:name. "=". l:val. "/g' ". l:file
+endfunction
