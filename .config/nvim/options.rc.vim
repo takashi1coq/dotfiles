@@ -27,9 +27,6 @@ set wrapscan
 " エンコード
 set fileencodings=utf-8,euc-jp,ucs-bom,iso-2022-jp,sjis,cp932,latin1
 
-" ステータスライン
-set statusline=%{getcwd()}%<\ %=[%{gina#component#repo#branch()}][%{&ft},%{&fenc},%{&ff}][%{bufnr()}]\ %l,%c
-
 " タブラインを常に表示
 set showtabline=2
 

@@ -1,5 +1,8 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
+hook_add = '''
+let g:dein#auto_recache = 1
+'''
 
 # ==========================================================
 # color
@@ -13,17 +16,7 @@ source ~/.config/nvim/plugins/molokai.rc.vim
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
-let g:lightline = {
-      \ 'colorscheme': 'molokai',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'rootPath', 'filename', 'modified', 'branchName' ] ]
-      \ },
-      \ 'component': {
-      \   'rootPath': getcwd(),
-      \   'branchName': gina#component#repo#branch(),
-      \ },
-      \ }
+source ~/.config/nvim/plugins/lightline.rc.vim
 '''
 
 # ==========================================================
