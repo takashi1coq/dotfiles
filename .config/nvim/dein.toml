@@ -10,6 +10,21 @@ repo = 'tomasr/molokai'
 hook_add = '''
 source ~/.config/nvim/plugins/molokai.rc.vim
 '''
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline = {
+      \ 'colorscheme': 'molokai',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'rootPath', 'filename', 'modified', 'branchName' ] ]
+      \ },
+      \ 'component': {
+      \   'rootPath': getcwd(),
+      \   'branchName': gina#component#repo#branch(),
+      \ },
+      \ }
+'''
 
 # ==========================================================
 # syntax
