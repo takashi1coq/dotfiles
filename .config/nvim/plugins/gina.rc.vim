@@ -37,6 +37,7 @@ nnoremap <silent> <F5> :StatusGit<CR>
 " ==========================================================
 call gina#custom#command#option('commit', '--opener', 'vsplit')
 command! -nargs=0 CommitGit :execute 'Gina commit'
+command! -nargs=0 CommitGitNoVerify :execute 'Gina commit -no-verify'
 
 " ==========================================================
 "  Blame
