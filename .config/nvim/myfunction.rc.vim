@@ -260,7 +260,7 @@ endfunction
 " ==========================================================
 "  toggle relativenumber
 " ==========================================================
-command! -nargs=0 NumberToggleRelative call s:toggle_relative_number()
+command! -nargs=0 ToggleRelative call s:toggle_relative_number()
 
 function! s:toggle_relative_number()
   execute 'setlocal relativenumber!'
