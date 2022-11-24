@@ -68,12 +68,5 @@ if has('nvim')
     autocmd TermOpen term://* startinsert
 endif
 
-" ==========================================================
-"  dust
-" ==========================================================
-
-"ターミナル以外はバッファ開いたらパスをチェンジ
-"au BufEnter * if &buftype !=# 'terminal' | execute 'lcd ' fnameescape(expand('%:p:h')) | endif
-
 " マウス操作ON
-set mouse=a
+set mouse=n
