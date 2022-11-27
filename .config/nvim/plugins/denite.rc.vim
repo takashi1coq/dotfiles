@@ -56,7 +56,7 @@ let s:menus.my_command = {
     \ }
 let s:menus.my_command.command_candidates = [
     \ ['* Remove EndSpace :EndSpaceDel', 'EndSpaceDel'],
-    \ ['* Toggle number setting :ToggleRelative', 'ToggleRelative'],
+    \ ['* Toggle number setting :ToggleNumber', 'ToggleNumber'],
     \ ['* Close inactive baffers :CloseInactiveBuffers', 'CloseInactiveBuffers'],
     \ ['* Mark A,(B,C) :MarkFile A,(B,C)', 'MarkFile A'],
     \ ['* Auto Indent :Indent', 'Indent'],

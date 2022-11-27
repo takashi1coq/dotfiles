@@ -25,7 +25,6 @@ function! CopyFileName()
     let @"=expand('%:t:r')
   endif
   echomsg expand('%:t:r')
-  echomsg expand('%:t')
 endfunction
 
 command! -nargs=0 CopyPath     call CopyPath()
@@ -260,7 +259,7 @@ endfunction
 " ==========================================================
 "  toggle relativenumber
 " ==========================================================
-command! -nargs=0 ToggleRelative call s:toggle_relative_number()
+command! -nargs=0 ToggleNumber call s:toggle_relative_number()
 
 function! s:toggle_relative_number()
   execute 'setlocal relativenumber!'
