@@ -371,7 +371,10 @@ command!
 
 function! s:my_mark_function(arge)
   execute 'mark '. a:arge
+  echomsg 'mark '. a:arge
 endfunction
+
+nnoremap <silent> mm :MarkFile A<CR>
 
 " ==========================================================
 "  indent
