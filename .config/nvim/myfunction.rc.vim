@@ -9,7 +9,9 @@ let g:loaded_function = 1
 "  CopyPath & CopyFileName
 " ==========================================================
 function! CopyPath()
-  let l:path = substitute(expand('%:p'), getcwd(), '', 'g')
+  let l:path = expand('%:p')
+  let l:path = substitute(l:path, getcwd(), '', 'g')
+  let l:path = substitute(l:path, '^/', '', '')
   let @+=l:path
   " copy unnamed register.
   if !has('clipboard')
