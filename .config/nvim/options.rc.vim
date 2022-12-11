@@ -16,7 +16,7 @@ set undodir=/tmp
 set ignorecase
 
 " * での検索や text-object 等での選択時に - で切らない
-set iskeyword& iskeyword+=-
+"set iskeyword& iskeyword+=-
 
 " jsonのダブルコーテーション表示用 非表示設定をすべてOFF
 set conceallevel=0
