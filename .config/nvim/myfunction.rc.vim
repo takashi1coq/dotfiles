@@ -190,6 +190,19 @@ function! s:my_terminal()
 endfunction
 
 " ==========================================================
+"  open bottom terminal
+" ==========================================================
+command!
+      \ -nargs=0
+      \ TerminalBottom
+      \ call s:terminal_bottom()
+
+function! s:terminal_bottom()
+  execute 'botright split'
+  execute 'terminal'
+endfunction
+
+" ==========================================================
 "  DiffNewFile
 " ==========================================================
 command! -nargs=0 DiffNewFile :vertical diffsplit /tmp/mydiff

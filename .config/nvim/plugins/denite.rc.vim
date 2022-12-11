@@ -65,8 +65,8 @@ let s:menus.my_vim_command.command_candidates = [
     \ ['* <F4> Refresh files', 'RefreshFiles'],
     \ ['* <F9> Move tab left', '<C-u>tabm -1'],
     \ ['* <F10> Move tab right', '<C-u>tabm +1'],
-    \ ['* <F11> Right open terminal', 'Terminal'],
-    \ ['* <F12> Left open terminal', 'sp<CR>:10wincmd_<CR>:terminal'],
+    \ ['* <F11> bottom open terminal {*if mac pc, setting chenge}', 'TerminalBottom'],
+    \ ['* <F12> Right open terminal', 'Terminal'],
     \ ]
 
 let s:menus.my_terminal_command = {

@@ -65,7 +65,7 @@ nnoremap <silent> bo :CloseInactiveBuffers<CR>
 nnoremap <silent> <F12> :Terminal<CR>
 
 " サブ
-nnoremap <silent> <F11> :sp<CR>:10wincmd_<CR>:terminal<CR>
+nnoremap <silent> <F11> :TerminalBottom<CR>
 
 " escでinsert modeから抜ける
 tnoremap <silent> <ESC> <C-\><C-n>
