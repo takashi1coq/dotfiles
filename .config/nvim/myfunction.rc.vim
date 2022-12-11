@@ -411,3 +411,9 @@ endfunction
 " ==========================================================
 command! -nargs=0 OpenFileBrowser :silent execute '!open %'
 command! -nargs=0 OpenDirExplorer :silent execute '!open %:h'
+
+" ==========================================================
+"  tab size
+" ==========================================================
+command! -nargs=0 SetTabSize2 :silent execute 'set tabstop=2 softtabstop=2 shiftwidth=2'
+command! -nargs=0 SetTabSize4 :silent execute 'set tabstop=4 softtabstop=4 shiftwidth=4'

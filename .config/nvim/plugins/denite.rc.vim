@@ -60,6 +60,7 @@ let s:menus.my_vim_command.command_candidates = [
     \ ['* Close inactive baffers :CloseInactiveBuffers', 'CloseInactiveBuffers'],
     \ ['* Mark A,(B,C) :MarkFile A,(B,C)', 'MarkFile A'],
     \ ['* Auto Indent :Indent', 'Indent'],
+    \ ['* Set tab size :SetTabSize2<or4>', 'SetTabSize2'],
     \ ['* <F2> Refresh vimrc', 'ReloadMYVIMRC'],
     \ ['* <F4> Refresh files', 'RefreshFiles'],
     \ ['* <F9> Move tab left', '<C-u>tabm -1'],
