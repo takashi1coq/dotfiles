@@ -398,5 +398,16 @@ function! s:sed_i_file(...)
   let l:name = a:1
   let l:val = a:2
   let l:file = a:3
-  execute "CommandToOpenTerminal ". "sed -i "."'s/". l:name. "=.*/". l:name. "=". l:val. "/g' ". l:file
+  let command = "sed -i "."'s/". l:name. "=.*/". l:name. "=". l:val. "/g' ". l:file
+  let @+=l:command
+  if !has('clipboard')
+    let @"=l:command
+  endif
+  echomsg l:command
 endfunction
+
+" ==========================================================
+"  open anything
+" ==========================================================
+command! -nargs=0 OpenFileBrowser :silent execute '!open %'
+command! -nargs=0 OpenDirExplorer :silent execute '!open %:h'

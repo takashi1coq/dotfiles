@@ -51,10 +51,10 @@ let s:menus.gina.command_candidates = [
     \ ['Gina : Stash List :StashList', 'StashList'],
     \ ]
 
-let s:menus.my_command = {
+let s:menus.my_vim_command = {
     \ 'description': 'My Vim Command'
     \ }
-let s:menus.my_command.command_candidates = [
+let s:menus.my_vim_command.command_candidates = [
     \ ['* Remove EndSpace :EndSpaceDel', 'EndSpaceDel'],
     \ ['* Toggle number setting :ToggleNumber', 'ToggleNumber'],
     \ ['* Close inactive baffers :CloseInactiveBuffers', 'CloseInactiveBuffers'],
@@ -86,7 +86,7 @@ let s:menus.my_menus = {
 let s:menus.my_menus.command_candidates = [
     \ ['* Gina Commands', 'Denite menu:gina -split=floating'],
     \ ['* Setting Files', 'Denite menu:my_setting_files -default-action=left_tabopen -split=floating'],
-    \ ['* My Vim Commands', 'Denite menu:my_command -split=floating'],
+    \ ['* My Vim Commands', 'Denite menu:my_vim_command -split=floating'],
     \ ['* My Terminal Commands', 'Denite menu:my_terminal_command -split=floating'],
     \ ['* Plugin Management', 'Denite menu:dein -split=floating'],
     \ ]
