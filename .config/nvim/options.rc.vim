@@ -70,3 +70,6 @@ endif
 
 " マウス操作ON
 set mouse=n
+
+" コメントアウト改行時にコメントアウトしないようにする
+au MyAutoCmd BufEnter * setlocal formatoptions-=ro
