@@ -24,7 +24,7 @@ endfunction
 " ==========================================================
 call gina#custom#command#option('status', '-s')
 call gina#custom#command#option('status', '-b')
-call gina#custom#command#option('status', '--opener', 'split')
+call gina#custom#command#option('status', '--opener', '-1tabedit')
 " checkout HEAD
 call gina#custom#mapping#map('status', 'del',
             \ ':call gina#action#call("checkout:HEAD")<CR>',
