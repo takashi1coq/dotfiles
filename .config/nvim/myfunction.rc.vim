@@ -432,8 +432,3 @@ command! -nargs=0 OpenDirExplorer :silent execute '!open %:h'
 " ==========================================================
 command! -nargs=0 SetTabSize2 :silent execute 'set tabstop=2 softtabstop=2 shiftwidth=2'
 command! -nargs=0 SetTabSize4 :silent execute 'set tabstop=4 softtabstop=4 shiftwidth=4'
-
-" ==========================================================
-"  add hyphen
-" ==========================================================
-command! -nargs=0 AddWordHyphen :silent execute 'setlocal isk+=-'
