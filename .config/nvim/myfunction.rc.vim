@@ -99,51 +99,6 @@ if has('vim_starting')
     call dein#recache_runtimepath()
   endfunction
 endif
-"
-
-" ==========================================================
-"  create tabline
-" ==========================================================
-function! s:tabpage_label(n)
-  let title = gettabvar(a:n, 'title')
-  if title !=# ''
-    retrun title
-  endif
-
-  " tabpage内のバッファリスト
-  let bufnrs = tabpagebuflist(a:n)
-
-  " カレントタブページかどうかでハイライトを切り替える
-  let hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
-
-  " tabpage内に変更中のバッファがあれば'+'をつける
-  let mod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
-  let sp = mod ==# '' ? '' : ' ' " 隙間開ける
-
-  let curbufnr = bufnrs[tabpagewinnr(a:n) - 1] " tabpagewinnr() は 1 origin
-  let filename = fnamemodify(bufname(curbufnr), ':t')
-
-  " カレントの前後でなければファイル名を'-'とする
-  "    if (a:n < tabpagenr() - 1 || a:n > tabpagenr() + 1)
-  "        let filename = '-'
-  "    endif
-
-  " 無題設定
-  let filename = filename ==# '' ? 'NO NAME' : fnamemodify(bufname(curbufnr), ':p:h:t'). '/'. filename
-
-  let label = ' '. mod. sp. filename. ' '
-
-  return '%'. a:n. 'X'. hi. label. '%X%#TabLineFill#'
-
-endfunction
-
-function! MakeTabLine()
-  let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
-  let sep = ' ' "タブ間の区切り
-  let tabpages = join(titles, sep). sep. '%#TabLineFill#%T'
-  let info = '' " タブ情報
-  return tabpages. '%='. info
-endfunction
 
 " ==========================================================
 "  MyTabNew うんこ

@@ -30,9 +30,6 @@ set fileencodings=utf-8,euc-jp,ucs-bom,iso-2022-jp,sjis,cp932,latin1
 " タブラインを常に表示
 set showtabline=2
 
-" タブライン作成
-set tabline=%!MakeTabLine()
-
 " クリップボード共有 Nvimの場合はxselが必須
 if has("clipboard")
     set clipboard+=unnamedplus
