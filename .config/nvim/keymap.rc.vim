@@ -65,7 +65,7 @@ nnoremap <silent> bo :CloseInactiveBuffers<CR>
 nnoremap <silent> <F12> :Terminal<CR>
 
 " サブ
-nnoremap <silent> <F11> :TerminalBottom<CR>
+nnoremap <silent> <Space>j :TerminalBottom<CR>
 
 " escでinsert modeから抜ける
 tnoremap <silent> <ESC> <C-\><C-n>
@@ -137,6 +137,11 @@ vnoremap * "zy:let @/ = @z<CR>n
 " wrap設定の場合、一行づつ移動する
 nnoremap j gj
 nnoremap k gk
+
+noremap H b
+noremap L w
+noremap J 10j
+noremap K 10k
 
 " 進む、戻るを再マップ
 nnoremap <C-o> <C-i>zz

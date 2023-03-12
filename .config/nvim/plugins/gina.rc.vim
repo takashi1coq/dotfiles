@@ -86,7 +86,7 @@ call gina#custom#mapping#nmap('branch', 'df',
 command! -nargs=0 BranchGit :execute 'OpenFloatingWindowExecCommand Gina branch'
 nnoremap <silent> <F7> :BranchGit<CR>
 command! -nargs=0 BranchGitAll :execute 'OpenFloatingWindowExecCommand Gina branch --all'
-nnoremap <silent> <F8> :BranchGitAll<CR>
+nnoremap <silent> <Space>k :BranchGitAll<CR>
 
 " ==========================================================
 "  Log

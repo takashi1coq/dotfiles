@@ -1,6 +1,6 @@
 
 " defx stert function
-function! DefxExplorer(str, min_w, max_w, my_sprit)
+function! DefxExplorer(str, min_w, max_w, my_sprit, sort)
 
     " pattern : term, file, directory
     if isdirectory(expand(a:str)) == 1
@@ -30,19 +30,20 @@ function! DefxExplorer(str, min_w, max_w, my_sprit)
         \ '-show-ignored-files',
         \ '-split='. l:sprit,
         \ '-columns=indent:icon:mark:filename:type:time',
-        \ '-search='. expand(a:str)
+        \ '-search='. expand(a:str),
+        \ '-sort='. a:sort,
         \ ], ' ')
     execute l:cmd. ' '. l:dir
 
 endfunction
 
 " current
-nnoremap <silent> <Space>f :call DefxExplorer('%:p', 35, 35, 'vertical')<CR>:60wincmd<bar><CR>
-nnoremap <silent> <C-d> :call DefxExplorer('%:p:h', 60, 60, 'mytab')<CR>
+nnoremap <silent> <Space>f :call DefxExplorer('%:p', 35, 35, 'vertical', 'filename')<CR>:60wincmd<bar><CR>
+nnoremap <silent> <C-d> :call DefxExplorer('%:p:h', 120, 120, 'mytab', 'filename')<CR>
 " work folder
-nnoremap <silent> <Space>w :call DefxExplorer('~/work/', 60, 60, 'mytab')<CR>
+nnoremap <silent> <Space>w :call DefxExplorer('~/work/', 120, 120, 'mytab', 'filename')<CR>
 " download folder
-nnoremap <silent> <Space>d :call DefxExplorer('~/Downloads/', 60, 60, 'mytab')<CR>
+nnoremap <silent> <Space>d :call DefxExplorer('~/Downloads/', 120, 120, 'mytab', 'time')<CR>
 " others
 command! -nargs=1 MyDefx call DefxExplorer(<f-args>, 60, 60, 'no')
 
