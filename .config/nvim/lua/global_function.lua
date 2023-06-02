@@ -132,5 +132,4 @@ function _G.MyTerminal(bufOpenCmd, cmd, path)
   vim.api.nvim_put({cmd}, 'c', false, true)
 end
 vim.keymap.set('n', '<Space>j', function () MyTerminal('botright new', nil, nil) end)
-vim.api.nvim_create_user_command('Terminal', function () MyTerminal('$tabnew', nil, nil) end, { nargs = 0 }
-)
+vim.api.nvim_create_user_command('Terminal', function () MyTerminal('$tabnew', nil, nil) end, { nargs = 0 })
