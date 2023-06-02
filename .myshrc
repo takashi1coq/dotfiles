@@ -1,11 +1,8 @@
 # my alias
 alias l='ls -artl'
-alias n="nvim -c 'OpenMarkA'"
+alias n="nvim -c 'OpenMrwFile 5'"
 alias shutdown='sudo shutdown -h now'
 alias q='exit'
-alias defx='nvr -c "MyDefx "$(pwd)'
-alias ginalog='nvr -c "0tabnew | lcd "$(pwd)" | Gina log --graph --decorate=full"'
-alias branch='nvr -c "OpenFloatingWindowExecCommand Gina branch --all"'
 alias reload='exec -l $SHELL'
 
 # bash setting
@@ -13,13 +10,6 @@ alias reload='exec -l $SHELL'
 # zsh setting
 export PROMPT='%n %~ %# '
 
-# my function
-function ntab () {
-    for f in "$@"
-    do
-        nvr -c 'MyTabNew '$(pwd)/"$f"
-    done
-}
 function gclonecd () {
   git clone "$1" && cd "$(basename "$1" .git)"
 }
