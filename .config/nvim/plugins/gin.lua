@@ -5,11 +5,7 @@
 vim.g.gin_status_default_args = {
   '++opener=tabnew'
 }
-vim.api.nvim_create_user_command(
-  'Status'
-  , function () vim.cmd('GinStatus') end
-  , { nargs = 0 }
-)
+vim.keymap.set('n', '<Space>l', function () vim.cmd('GinStatus') end)
 -- log
 vim.g.gin_log_default_args = {
   '++opener=tabnew'
