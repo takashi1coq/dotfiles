@@ -16,4 +16,4 @@ vim.api.nvim_create_user_command(
   end
   , { nargs = '+' }
 )
-vim.g['mr#threshold'] = 10
+vim.g['mr#threshold'] = 50
