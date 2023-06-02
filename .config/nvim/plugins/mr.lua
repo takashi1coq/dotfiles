@@ -6,7 +6,9 @@ vim.api.nvim_create_user_command(
     for i in ipairs(files) do
       if i <= count then
         if vim.fn.getftype(files[i]) then
-          vim.cmd('tabe '..files[i])
+          if not(string.match(files[i], '.git')) then
+            vim.cmd('tabe '..files[i])
+          end
         end
       end
     end
