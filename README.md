@@ -1,5 +1,11 @@
 # dotfiles
 
+### install deno
+
+```
+brew install deno
+```
+
 ### install env
 
 - anyenv
