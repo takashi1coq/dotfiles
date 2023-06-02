@@ -18,12 +18,13 @@ vim.g.gin_log_default_args = {
 }
 vim.api.nvim_create_user_command(
   'LogBranch'
-  , function () vim.cmd('GinLog '..vim.fn['gin#component#branch#ascii']()) end
+  , function () vim.cmd('GinLog '..vim.fn['gin#component#branch#unicode']()) end
   , { nargs = 0 }
 )
 vim.api.nvim_create_user_command(
   'LogCurrent'
-  , function () vim.cmd('GinLog %') end
+  -- TODO ....?
+  , function () vim.cmd('GinBuffer ++opener=tabnew log %') end
   , { nargs = 0 }
 )
 
