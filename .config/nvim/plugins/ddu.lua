@@ -128,7 +128,7 @@ vim.keymap.set('n', '<Space>r', function () vim.fn['ddu#start']({
 }) end)
 vim.keymap.set('n', '<Space>c', function ()
   local selects = {
-    { 'File : ~/local_vim.lua', function () FileOpen('~/local_vim.lua') end }
+    { 'File : ~/.config/nvim/lua/local.lua', function () FileOpen('~/.config/nvim/lua/local.lua') end }
     , { 'File : ~/.zshrc', function () FileOpen('~/.zshrc') end }
     , { 'File : ~/.bashrc', function () FileOpen('~/.bashrc') end }
     , { 'File : ~/.gitconfig.local', function () FileOpen('~/.gitconfig.local') end }

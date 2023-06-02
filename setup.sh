@@ -26,8 +26,6 @@ do
   ln -sfn $HOME/dotfiles/$file $HOME/$file
 done
 
-touch ~/local_vim.lua
-
 GitUserName
 GitEmail
 
