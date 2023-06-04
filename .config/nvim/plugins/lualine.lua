@@ -8,11 +8,12 @@ local function fileFullName()
   if IsEmpty(vim.bo.buftype) then
     path = vim.fn.expand('%:p')
     path = path:gsub(vim.fn.getcwd()..'/', '')
+    path = path:gsub('%%', '')
     if IsEmpty(path) then
       path = '[No Name]'
     end
   end
-  local modified = vim.bo.modified and ' *' or ''
+  local modified = vim.bo.modified and ' [+]' or ''
   return path..modified
 end
 

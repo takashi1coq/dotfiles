@@ -99,15 +99,8 @@ end)
 vim.keymap.set('n', '<Space>m', function () vim.fn['ddu#start']({
   ui = 'ff'
   , sources = {{ name = 'mr', params = { kind = 'mrw' } }}
-  , uiParams = { ff = { startFilter = true } }
 }) end)
-vim.keymap.set({'n', 'v'}, '<Space>g', function () dduGrep('root grep: ', false) end)
-vim.keymap.set({'n', 'v'}, '<Space>G', function () dduGrep('under grep: ', true) end)
-function dduGrep(inputTitle, underFlag)
-  local path = vim.fn.getcwd()
-  if underFlag then
-    path = vim.fn.expand('%:p:h')
-  end
+local function dduGrep(inputTitle, path)
   local word = GetVisual()
   if IsEmpty(word) then
     word = vim.fn.input(inputTitle)
@@ -123,27 +116,74 @@ function dduGrep(inputTitle, underFlag)
     }
   })
 end
+vim.keymap.set({'n', 'v'}, '<Space>g', function () dduGrep('root grep: ', vim.fn.getcwd()) end)
+vim.keymap.set({'n', 'v'}, '<Space>G', function () dduGrep('under grep: ', vim.fn.expand('%:p:h')) end)
 vim.keymap.set('n', '<Space>r', function () vim.fn['ddu#start']({
   ui = 'ff', resume = 1
 }) end)
 vim.keymap.set('n', '<Space>c', function ()
   local selects = {
-    { 'File : ~/.config/nvim/lua/local.lua', function () FileOpen('~/.config/nvim/lua/local.lua') end }
-    , { 'File : ~/.zshrc', function () FileOpen('~/.zshrc') end }
-    , { 'File : ~/.bashrc', function () FileOpen('~/.bashrc') end }
-    , { 'File : ~/.gitconfig.local', function () FileOpen('~/.gitconfig.local') end }
-    , { 'File : ~/.ssh/config', function () FileOpen('~/.ssh/config') end }
-    , { 'File : /etc/profile (read only)', function () FileOpen('/etc/profile') end }
-    , { 'File : /etc/hosts (read only)', function () FileOpen('/etc/profile') end }
-    , { 'Dein : Dein Plugin Update', function () vim.cmd('call dein#update()') end }
-    , { 'ExCmd : Toggle number setting :ToggleNumber', function () vim.cmd('ToggleNumber') end }
-    , { 'Command : Find port prosess [lsof -i :<PORT>] (open bottom terminal)', function () MyTerminal('botright new', 'lsof -i :', nil) end }
-    , { 'Command : Docker prune [docker system prune] (yank)', function () StoreYank('docker system prune') end }
-    , { 'Command : File permission chmod [chmod u+x <FILE>] (open bottom terminal)', function () MyTerminal('botright new', 'chmod u+x ', nil) end }
+    {
+      'File : ~/.config/nvim/lua/local.lua'
+      , function () FileOpen('~/.config/nvim/lua/local.lua') end
+    }
+    , {
+      'File : ~/.zshrc'
+      , function () FileOpen('~/.zshrc') end
+    }
+    , {
+      'File : ~/.bashrc'
+      , function () FileOpen('~/.bashrc') end
+    }
+    , {
+      'File : ~/.gitconfig.local'
+      , function () FileOpen('~/.gitconfig.local') end
+    }
+    , {
+      'File : ~/.ssh/config'
+      , function () FileOpen('~/.ssh/config') end
+    }
+    , {
+      'File : /etc/profile (read only)'
+      , function () FileOpen('/etc/profile') end
+    }
+    , {
+      'File : /etc/hosts (read only)'
+      , function () FileOpen('/etc/profile') end
+    }
+    , {
+      'Dein : Dein Plugin Update'
+      , function () vim.cmd('call dein#update()') end
+    }
+    , {
+      'ExCmd : Toggle number setting :ToggleNumber'
+      , function () vim.cmd('ToggleNumber') end
+    }
+    , {
+      'Command : Find port prosess [lsof -i :<PORT>] (open bottom terminal)'
+      , function () MyTerminal('botright new', 'lsof -i :', nil) end
+    }
+    , {
+      'Command : Docker prune [docker system prune] (yank)'
+      , function () StoreYank('docker system prune') end
+    }
+    , {
+      'Command : File permission chmod [chmod u+x <FILE>] (open bottom terminal)'
+      , function () MyTerminal('botright new', 'chmod u+x ', nil) end
+    }
     -- TODO create sort and diff function
-    , { 'Command : Sort File [LANG=C sort <Raw File> > <Sort File>] (yank)', function () StoreYank('LANG=C sort ') end }
-    , { 'Command : Outputs the difference in both file [comm -3 <A File> <B File>] (yank)', function () StoreYank('comm -3 ') end }
-    , { 'Command : Big file split [split -l 10000 <File>] (yank)', function () StoreYank('split -l 10000 ') end }
+    , {
+      'Command : Sort File [LANG=C sort <Raw File> > <Sort File>] (yank)'
+      , function () StoreYank('LANG=C sort ') end
+    }
+    , {
+      'Command : Outputs the difference in both file [comm -3 <A File> <B File>] (yank)'
+      , function () StoreYank('comm -3 ') end
+    }
+    , {
+      'Command : Big file split [split -l 10000 <File>] (yank)'
+      , function () StoreYank('split -l 10000 ') end
+    }
   }
   local selectName = Map(selects, function(v) return v[1] end)
   vim.ui.select(selectName, {}, function(c,i)
@@ -160,6 +200,7 @@ fileType['ddu-ff'] = function ()
     vim.fn['ddu#ui#do_action']('openFilterWindow')
   end)
   VimBufferKeymapSet('n', 'dd', function ()
+    -- TODO mr delete ..
     vim.fn['ddu#ui#do_action']('itemAction', { name = 'delete' })
   end)
 --  VimBufferKeymapSet('n', 'p', function ()

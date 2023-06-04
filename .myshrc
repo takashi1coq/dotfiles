@@ -1,6 +1,6 @@
 # my alias
 alias l='ls -artl'
-alias n="nvim -c 'OpenMrwFile 5'"
+alias n="nvim -c 'OpenMrwFile'"
 alias shutdown='sudo shutdown -h now'
 alias q='exit'
 alias reload='exec -l $SHELL'
