@@ -89,7 +89,7 @@ keymapSet('n', '<Right>', '<C-w><')
 keymapSet('n', '<Left>', '<C-w>>')
 
 -- 閉じる
-keymapSet('n', 'q', function() vimCmd('MyQuit') end)
+keymapSet('n', 'q', function () MyQuit() end)
 
 -- windowサイズをそろえる
 keymapSet('n', '==', '<C-w>=')

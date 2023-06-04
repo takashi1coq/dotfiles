@@ -27,6 +27,7 @@ function _G.IsEmpty(s)
 end
 
 -- map
+-- TODO table.map = function () ...
 function _G.Map(value, fn)
   local result = {}
   for i = 1, #value do
@@ -78,6 +79,7 @@ function _G.FileOpen(f)
 end
 
 -- filter
+-- TODO table.filter = function () ...
 function _G.Filter(fn, tbl)
   local result = {}
   for i in ipairs(tbl) do
@@ -115,6 +117,7 @@ function _G.VimBufferKeymapSet (type, key, fn, option)
   vim.keymap.set(type, key, fn, option)
 end
 
+-- terminal
 function _G.MyTerminal(bufOpenCmd, cmd, path)
   vim.cmd(bufOpenCmd)
   vim.fn.termopen(
@@ -133,3 +136,30 @@ function _G.MyTerminal(bufOpenCmd, cmd, path)
 end
 vim.keymap.set('n', '<Space>j', function () MyTerminal('botright new', nil, nil) end)
 vim.api.nvim_create_user_command('Terminal', function () MyTerminal('$tabnew', nil, nil) end, { nargs = 0 })
+
+-- quit
+function _G.MyQuit ()
+  local lastWinNr = vim.fn.winnr('$')
+  local targetTabNr = vim.fn.tabpagenr()
+  local lastTabNr = vim.fn.tabpagenr('$')
+  local idDiff = vim.wo.diff
+  if lastWinNr == 1 or idDiff then
+    vim.cmd('tabclose')
+  else
+    vim.cmd('q')
+  end
+  if (lastWinNr == 1 or idDiff) and not(targetTabNr == 1) and not(lastTabNr == 1) and targetTabNr < lastTabNr then
+    vim.cmd('tabprev')
+  end
+end
+
+-- delete no name buffer
+function _G.DeleteNoNameBuffer ()
+  local noNameList = Filter(function (v)
+    return vim.fn.bufname(v) == ''
+  end, vim.fn.range(1, vim.fn.bufnr('$')))
+  for i = 1, #noNameList do
+    vim.cmd('bdelete '..noNameList[i])
+  end
+end
+

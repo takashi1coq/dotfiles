@@ -84,21 +84,6 @@ myCommand(
 )
 
 myCommand(
-  'MyQuit'
-  , function ()
-    if vim.fn.winnr('$') == 1
-    and vim.fn.tabpagenr('$') > 1
-    and vim.fn.tabpagenr() > 1
-    and vim.fn.tabpagenr() < vim.fn.tabpagenr("$") then
-      vim.cmd('tabclose|tabprev')
-    else
-      vim.cmd('q')
-    end
-  end
-  , { nargs = 0 }
-)
-
-myCommand(
   'ToggleNumber'
   , function ()
       vim.cmd('setlocal relativenumber!')
