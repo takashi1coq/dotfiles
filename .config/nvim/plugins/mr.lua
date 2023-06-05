@@ -12,24 +12,24 @@ vim.api.nvim_create_user_command(
     local markDownFiles = {}
     local count = 10
     for i in ipairs(list) do
-      if vim.filetype.match({filename = list[i]}) == 'markdown' then
-        table.insert(markDownFiles, list[i])
-      else
-        table.insert(files, list[i])
+      if vim.fn.getftype(list[i]) then
+        if vim.filetype.match({filename = list[i]}) == 'markdown' then
+          table.insert(markDownFiles, list[i])
+          count = count + 1
+        else
+          if i <= count then
+            table.insert(files, list[i])
+          end
+        end
       end
     end
     for i in ipairs(markDownFiles) do
-      if vim.fn.getftype(markDownFiles[i]) then
-        vim.cmd('tabe '..markDownFiles[i])
-      end
+      vim.cmd('tabe '..markDownFiles[i])
     end
     files = Reverse(files);
     for i in ipairs(files) do
-      if vim.fn.getftype(files[i]) then
-        vim.cmd('tabe '..files[i])
-      end
+      vim.cmd('tabe '..files[i])
     end
-    vim.cmd('tabe '..files[1])
     DeleteNoNameBuffer()
   end
   , { nargs = 0 }
