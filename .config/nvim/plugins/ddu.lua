@@ -120,6 +120,7 @@ vim.keymap.set({'n', 'v'}, '<Space>g', function () dduGrep('root grep: ', vim.fn
 vim.keymap.set({'n', 'v'}, '<Space>G', function () dduGrep('under grep: ', vim.fn.expand('%:p:h')) end)
 vim.keymap.set('n', '<Space>r', function () vim.fn['ddu#start']({
   ui = 'ff', resume = 1
+  , uiParams = { ff = { startFilter = false } }
 }) end)
 vim.keymap.set('n', '<Space>c', function ()
   local selects = {
