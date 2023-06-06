@@ -109,6 +109,17 @@ vim.keymap.set(
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, {result})
   end
 )
+vim.keymap.set(
+  'v', '<F2>'
+  , function ()
+    local visualStr = GetVisual()
+    visualStr = visualStr:gsub('"', '')
+    local result = vim.fn.system('trans -b -sl=ja -tl=en '.. '"'.. visualStr.. '"')
+    result = result:gsub('\n', '')
+    local buf = OpenFloatingWindow()
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, {result})
+  end
+)
 
 -- refresh
 vim.keymap.set(
