@@ -18,7 +18,8 @@ vim.fn['ddu#custom#patch_global']({
   }
   , sourceOptions = {
     _ = {
-      matchers = {'matcher_substring'}
+      ignoreCase = true
+      , matchers = {'matcher_substring'}
     }
     , file = {
       columns = {'filename'}
