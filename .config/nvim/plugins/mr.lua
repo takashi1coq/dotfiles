@@ -10,7 +10,7 @@ vim.api.nvim_create_user_command(
     local list = vim.fn['mr#mrw#list']()
     local files = {}
     local markDownFiles = {}
-    local count = 10
+    local count = 5
     for i in ipairs(list) do
       if vim.fn.getftype(list[i]) then
         if vim.filetype.match({filename = list[i]}) == 'markdown' then
