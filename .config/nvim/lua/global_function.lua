@@ -118,8 +118,12 @@ function _G.VimBufferKeymapSet (type, key, fn, option)
 end
 
 -- terminal
-function _G.MyTerminal(bufOpenCmd, cmd, path)
-  vim.cmd(bufOpenCmd)
+function _G.MyTerminal(cmdNum, cmd, path)
+  local bufOpenCmd = {
+    'botright new'
+    , '0tabnew'
+  }
+  vim.cmd(bufOpenCmd[cmdNum])
   vim.fn.termopen(
     '$SHELL'
     , {
@@ -134,8 +138,8 @@ function _G.MyTerminal(bufOpenCmd, cmd, path)
   )
   vim.api.nvim_put({cmd}, 'c', false, true)
 end
-vim.keymap.set('n', '<Space>j', function () MyTerminal('botright new', nil, nil) end)
-vim.api.nvim_create_user_command('Terminal', function () MyTerminal('$tabnew', nil, nil) end, { nargs = 0 })
+vim.keymap.set('n', '<Space>j', function () MyTerminal(1, nil, nil) end)
+vim.api.nvim_create_user_command('Terminal', function () MyTerminal(2, nil, nil) end, { nargs = 0 })
 
 -- quit
 function _G.MyQuit ()
