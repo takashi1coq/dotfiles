@@ -163,7 +163,7 @@ vim.keymap.set('n', '<Space>c', function ()
     }
     , {
       'Command : Find port prosess [lsof -i :<PORT>] (open bottom terminal)'
-      , function () MyTerminal(1, 'lsof -i :', nil) end
+      , function () MyTerminal('myCommand', 1, 'lsof -i :', nil) end
     }
     , {
       'Command : Docker prune [docker system prune] (yank)'
@@ -171,7 +171,7 @@ vim.keymap.set('n', '<Space>c', function ()
     }
     , {
       'Command : File permission chmod [chmod u+x <FILE>] (open bottom terminal)'
-      , function () MyTerminal(1, 'chmod u+x ', nil) end
+      , function () MyTerminal('myCommand', 1, 'chmod u+x ', nil) end
     }
     -- TODO create sort and diff function
     , {
@@ -255,7 +255,7 @@ vim.keymap.set('n', '<Space>d', function () vim.fn['ddu#start']({
 }) end)
 
 vim.fn['ddu#custom#action']('ui', 'filer', 'terminalOpen', function (args)
-  MyTerminal(1, nil, args.context.path)
+  MyTerminal('filerTerminalOpen', 1, nil, args.context.path)
 end)
 
 fileType['ddu-filer'] = function ()

@@ -25,6 +25,9 @@ end
 function _G.IsEmpty(s)
   return s == nil or s == ''
 end
+function _G.IsEmptyTable(t)
+  return next(t) == nil
+end
 
 -- map
 -- TODO table.map = function () ...
@@ -34,6 +37,13 @@ function _G.Map(value, fn)
     table.insert(result, fn(value[i]))
   end
   return result
+end
+
+-- foreach
+function _G.Foreach(fn, value)
+  for i = 1, #value do
+    fn(value[i])
+  end
 end
 
 -- store yank
@@ -118,14 +128,29 @@ function _G.VimBufferKeymapSet (type, key, fn, option)
 end
 
 -- terminal
-function _G.MyTerminal(cmdNum, cmd, path)
+function _G.MyTerminal(name, openNum, cmd, path)
   local bufOpenCmd = {
     'botright new'
     , '0tabnew'
   }
-  vim.cmd(bufOpenCmd[cmdNum])
+  local openBufnr = Filter(function (v)
+    local _, count = string.gsub(vim.fn.bufname(v), name, "");
+    return not(count == 0)
+  end, vim.fn.range(1, vim.fn.bufnr("$")))
+  if not(IsEmptyTable(openBufnr)) then
+    if IsEmpty(vim.fn.input('already exists. open buffer? :')) then
+      Foreach(function (v)
+        local bufname = vim.fn.bufname(v)
+        local num = string.sub(bufname, string.len(bufname))
+        vim.cmd(bufOpenCmd[tonumber(num)])
+        vim.cmd(v..'b')
+      end, openBufnr)
+      return
+    end
+  end
+  vim.cmd(bufOpenCmd[openNum])
   vim.fn.termopen(
-    '$SHELL'
+    '$SHELL;#'..name..openNum
     , {
       on_exit = function ()
         vim.cmd('q')
@@ -138,8 +163,8 @@ function _G.MyTerminal(cmdNum, cmd, path)
   )
   vim.api.nvim_put({cmd}, 'c', false, true)
 end
-vim.keymap.set('n', '<Space>j', function () MyTerminal(1, nil, nil) end)
-vim.api.nvim_create_user_command('Terminal', function () MyTerminal(2, nil, nil) end, { nargs = 0 })
+vim.keymap.set('n', '<Space>j', function () MyTerminal('spaceJ', 1, nil, nil) end)
+vim.api.nvim_create_user_command('Terminal', function () MyTerminal('Terminal', 2, nil, nil) end, { nargs = 0 })
 
 -- quit
 function _G.MyQuit ()
