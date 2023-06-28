@@ -43,6 +43,7 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
   'LogCurrent'
   , function ()
+    vim.cmd('silent! /'..vim.fn.expand('%:t'))
     vim.cmd('GinLog -- %')
   end
   , { nargs = 0 }
