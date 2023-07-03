@@ -46,6 +46,13 @@ function _G.Foreach(fn, value)
   end
 end
 
+-- replace
+function _G.Replace(str, what, with)
+    what = string.gsub(what, "[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%1")
+    with = string.gsub(with, "[%%]", "%%%%")
+    return string.gsub(str, what, with)
+end
+
 -- store yank
 function _G.StoreYank(w)
   vim.fn.setreg('+', w)

@@ -6,8 +6,7 @@ end
 local function fileFullName()
   local path = vim.bo.filetype
   if IsEmpty(vim.bo.buftype) then
-    path = vim.fn.expand('%:p')
-    path = path:gsub(vim.fn.getcwd()..'/', '')
+    path = Replace(vim.fn.expand('%:p'), vim.fn.getcwd()..'/', '')
     path = path:gsub('%%', '')
     if IsEmpty(path) then
       path = '[No Name]'

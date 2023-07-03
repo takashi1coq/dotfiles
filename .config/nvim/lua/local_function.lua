@@ -4,8 +4,7 @@ local myCommand = vim.api.nvim_create_user_command
 myCommand(
   'CopyPath'
   , function ()
-    local path = vim.fn.expand('%:p')
-    path = path:gsub(vim.fn.getcwd()..'/', '')
+    local path = Replace(vim.fn.expand('%:p'), vim.fn.getcwd()..'/', '')
     StoreYank(path)
   end
   , { nargs = 0 }
