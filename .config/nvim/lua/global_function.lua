@@ -21,6 +21,11 @@ function _G.Explode(inputstr, sep)
   return t
 end
 
+-- implode
+function _G.Implode(t, sep)
+  return table.concat(t, sep)
+end
+
 -- is empty
 function _G.IsEmpty(s)
   return s == nil or s == ''
@@ -196,6 +201,39 @@ function _G.DeleteNoNameBuffer ()
   end, vim.fn.range(1, vim.fn.bufnr('$')))
   for i = 1, #noNameList do
     vim.cmd('bdelete '..noNameList[i])
+  end
+end
+
+-- create csv
+function _G.CreateCsv(path, data, count, sep)
+  if data == nil then
+    data = {
+      {
+        'id'
+        , function () return '' end
+      }
+      , {
+        'key'
+        , function (i) return string.format("%09d",i) end
+      }
+    }
+  end
+  if count == nil then
+    count = 10
+  end
+  local t = {}
+  table.insert(t, Implode(Map(data, function (d)
+    return d[1]
+  end), sep))
+  for i = 1, count do
+    table.insert(t, Implode(Map(data, function (d)
+      return d[2](i)
+    end), sep))
+  end
+  local f = io.open(path, 'w')
+  if f then
+    f:write(Implode(t, '\n'))
+    f:close()
   end
 end
 
