@@ -204,8 +204,8 @@ function _G.DeleteNoNameBuffer ()
   end
 end
 
--- create csv
-function _G.CreateCsv(path, data, count, sep)
+-- create delimiter file
+function _G.CreateDelimiterFile(path, data, count, sep)
   if data == nil then
     data = {
       {
