@@ -4,6 +4,7 @@ local fileType = {}
 -- ##################################
 vim.fn['ddu#custom#patch_global']({
   ui = 'ff'
+  , refresh = true
   , uiParams = {
     _ = {
       split = 'no'
@@ -58,6 +59,11 @@ vim.keymap.set('n', '<Space>u', function () vim.fn['ddu#start']({
   ui = 'ff'
   , sources = {{ name = 'file_rec' }}
   , uiParams = { ff = { startFilter = true } }
+  , sourceOptions = {
+    file_rec = {
+      path = vim.fn.getcwd()
+    }
+  }
 }) end)
 vim.keymap.set('n', '<Space>U', function () vim.fn['ddu#start']({
   ui = 'ff'
