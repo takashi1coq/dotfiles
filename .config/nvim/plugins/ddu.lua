@@ -220,15 +220,23 @@ end
 -- ##################################
 -- # filer
 -- ##################################
-vim.keymap.set('n', '<Space>f', function () vim.fn['ddu#start']({
-  ui = 'filer'
-  , sources = {{ name = 'file', params = {} }}
-  , sourceOptions = {
-    file = {
-      path = vim.fn.expand('%:p:h')
+
+local function dduFiler()
+  local filename = vim.fn.expand('%:t')
+  filename = Explode(filename, '.')[1]
+  vim.cmd('silent! /'..filename)
+  vim.fn['ddu#start']({
+    ui = 'filer'
+    , sources = {{ name = 'file', params = {} }}
+    , sourceOptions = {
+      file = {
+        path = vim.fn.expand('%:p:h')
+      }
     }
-  }
-}) end)
+  })
+end
+
+vim.keymap.set('n', '<Space>f', function () dduFiler() end)
 vim.keymap.set('n', '<Space>w', function () vim.fn['ddu#start']({
   ui = 'filer'
   , sources = {{ name = 'file', params = {} }}
