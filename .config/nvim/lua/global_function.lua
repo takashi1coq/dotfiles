@@ -100,6 +100,21 @@ function _G.FileOpen(f)
   vim.cmd('tabe '..vim.fn.expand(f))
 end
 
+-- craete file (if exists)
+function _G.IfNotExistsFileCreate(name, text)
+  if text == nil then text = '' end
+  local fr = io.open(name, 'r')
+  if fr == nil then
+    local fw = io.open(name,"w")
+    if fw ~= nil then
+      fw:write(text)
+      io.close(fw)
+    end
+  else
+    io.close(fr)
+  end
+end
+
 -- filter
 -- TODO table.filter = function () ...
 function _G.Filter(fn, tbl)
