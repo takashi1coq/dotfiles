@@ -205,7 +205,11 @@ function _G.DeleteNoNameBuffer ()
 end
 
 -- create delimiter file
+-- etc) CreateDelimiterFile('/tmp/CreateDelimiterFile.csv', nil, nil, nil)
 function _G.CreateDelimiterFile(path, data, count, sep)
+  if path == nil then
+    path = '/tmp/CreateDelimiterFile.csv'
+  end
   if data == nil then
     data = {
       {
@@ -220,6 +224,9 @@ function _G.CreateDelimiterFile(path, data, count, sep)
   end
   if count == nil then
     count = 10
+  end
+  if sep == nil then
+    sep = ','
   end
   local t = {}
   table.insert(t, Implode(Map(data, function (d)

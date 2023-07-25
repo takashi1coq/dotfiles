@@ -96,6 +96,22 @@ myCommand(
   , { nargs = 0 }
 )
 
+myCommand(
+  'DiffCheck'
+  , function ()
+    local a_path= '/tmp/nvim_DiffCheckA';
+    local b_path = '/tmp/nvim_DiffCheckB';
+    local a = io.open(a_path,"w")
+    if a~=nil then io.close(a) end
+    local b = io.open(b_path,"w")
+    if b~=nil then io.close(b) end
+    vim.cmd('tabnew '..a_path)
+    vim.cmd('vert diffsplit '..b_path)
+    vim.cmd('wincmd w')
+  end
+  , { nargs = 0 }
+)
+
 -- translate-shell
 vim.keymap.set(
   'v', '<F1>'
