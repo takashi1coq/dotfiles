@@ -209,6 +209,12 @@ function _G.MyQuit ()
   end
 end
 
+-- avoid E162
+function _G.EmptyBufferSettingCmd(cmd)
+  vim.cmd(cmd)
+  vim.cmd('setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile')
+end
+
 -- delete no name buffer
 function _G.DeleteNoNameBuffer ()
   local noNameList = Filter(function (v)

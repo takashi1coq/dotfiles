@@ -100,7 +100,7 @@ keymapSet('n', '==', '<C-w>=')
 ============================================================]]
 
 -- 新しいタブ
-keymapSet('n', 'tt', function () vimCmd('tabnew') end)
+keymapSet('n', 'tt', function () EmptyBufferSettingCmd('tabnew') end)
 
 -- タブ移動
 keymapSet('n', '<C-l>', 'gt')

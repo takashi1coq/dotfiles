@@ -99,8 +99,8 @@ myCommand(
 myCommand(
   'DiffCheck'
   , function ()
-    vim.cmd('tabnew DiffA')
-    vim.cmd('vert diffsplit DiffB')
+    EmptyBufferSettingCmd('tabnew DiffA')
+    EmptyBufferSettingCmd('vert diffsplit DiffB')
     vim.cmd('wincmd w')
   end
   , { nargs = 0 }
