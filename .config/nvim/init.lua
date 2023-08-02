@@ -6,4 +6,3 @@ require("dein_init")
 require("option")
 require("keymap")
 require("local")
-

@@ -1,8 +1,6 @@
 vim.cmd("autocmd!")
 
-local autoCmd = vim.api.nvim_create_autocmd
-
-autoCmd(
+vim.api.nvim_create_autocmd(
   'BufWritePre'
   , {
     pattern = '*'
@@ -10,7 +8,7 @@ autoCmd(
   }
 )
 
-autoCmd(
+vim.api.nvim_create_autocmd(
   'BufEnter'
   , {
     pattern = '*'
@@ -23,13 +21,24 @@ autoCmd(
   }
 )
 
-autoCmd(
+vim.api.nvim_create_autocmd(
   'TermOpen'
   , {
     pattern = '*'
     , callback = function ()
         vim.cmd([[startinsert]])
         vim.cmd([[setlocal isk+=-]])
+      end
+  }
+
+)
+
+vim.api.nvim_create_autocmd(
+  'FileType'
+  , {
+    pattern = '*'
+    , callback = function ()
+        vim.opt_local.formatoptions:remove {'r', 'o'}
       end
   }
 

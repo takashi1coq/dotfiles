@@ -11,7 +11,7 @@ keymapSet({'n','v'}, ';', ':')
 keymapSet({'n','v'}, ':', ';')
 
 -- コマンド履歴
-keymapSet('n', ';;', 'q:', { nowait = 1 })
+keymapSet('n', ';;', 'q:')
 
 -- 検索履歴
 keymapSet('n', '//', 'q/')
@@ -33,8 +33,11 @@ keymapSet({'i','c'}, '<C-t>', '<C-v>')
 keymapSet('n', 'aa', 'ggVG$')
 
 -- 選択範囲を囲む
-keymapSet('v', "'", "xi''<ESC>P")
-keymapSet('v', '"', 'xi""<ESC>P')
+keymapSet('v', "'", "c''<ESC>P")
+keymapSet('v', '"', 'c""<ESC>P')
+keymapSet('v', "(", "c()<ESC>P")
+keymapSet('v', '{', 'c{}<ESC>P')
+keymapSet('v', '[', 'c[]<ESC>P')
 
 -- x削除でレジスタに格納しない
 keymapSet('n', 'x', '"_x')
@@ -55,7 +58,7 @@ keymapSet('n', '<C-u>', '13<C-y>')
 keymapSet('n', '<C-o>', '<C-i>zz')
 keymapSet('n', '<C-i>', '<C-o>zz')
 
--- 選択業にdot command TODO lua function..
+-- 選択業にdot command
 keymapSet('v', '.', ":'<,'>normal .<CR>")
 
 -- keywordにハイフンを含める
