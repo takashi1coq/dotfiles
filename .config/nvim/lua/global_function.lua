@@ -127,6 +127,34 @@ function _G.Filter(fn, tbl)
   return result
 end
 
+-- permutation
+local function permgen (a, n)
+  if n == 0 then
+    coroutine.yield(a)
+  else
+    for i=1,n do
+
+      -- put i-th element as the last one
+      a[n], a[i] = a[i], a[n]
+
+      -- generate all permutations of the other elements
+      permgen(a, n - 1)
+
+      -- restore i-th element
+      a[n], a[i] = a[i], a[n]
+
+    end
+  end
+end
+function _G.Perm (a)
+  local n = #a
+  local co = coroutine.create(function () permgen(a, n) end)
+  return function ()   -- iterator
+    local _, res = coroutine.resume(co)
+    return res
+  end
+end
+
 -- file type keymap set
 function _G.SetFileTypeKeyMap(fileType, autocmdGroup)
   vim.api.nvim_create_augroup(autocmdGroup, {})

@@ -107,15 +107,29 @@ vim.keymap.set('n', '<Space>m', function () vim.fn['ddu#start']({
   ui = 'ff'
   , sources = {{ name = 'mr', params = { kind = 'mrw' } }}
 }) end)
+local function createPermutationGrepWord (t)
+  local b = {}
+  for p in Perm(t) do
+    local str = Implode(p, '.*')
+    table.insert(b, str)
+  end
+  return '('..Implode(b, ')|(')..')'
+end
+local function createVimSearchWord (t)
+  local test = [[\(]]..Implode(t, [[\|]])..[[\)]]
+  return test
+end
 local function dduGrep(inputTitle, path)
   local word = GetVisual()
   if IsEmpty(word) then
     word = vim.fn.input(inputTitle)
   end
-  vim.cmd('silent! /'..word)
+  local grepWord = createPermutationGrepWord(Explode(word, ' '))
+  local seachWord = createVimSearchWord(Explode(word, ' '))
+  vim.cmd('silent! /'..seachWord)
   vim.fn['ddu#start']({
     ui = 'ff'
-    , sources = {{ name = 'rg', params = { input = word } }}
+    , sources = {{ name = 'rg', params = { input = grepWord } }}
     , sourceOptions = {
       rg = {
         path = path
