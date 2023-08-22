@@ -115,18 +115,22 @@ local function createPermutationGrepWord (t)
   end
   return '('..Implode(b, ')|(')..')'
 end
-local function createVimSearchWord (t)
-  local test = [[\(]]..Implode(t, [[\|]])..[[\)]]
-  return test
-end
+--local function createVimSearchWord (t)
+--  local b = {}
+--  for p in Perm(t) do
+--    local str = Implode(p, '.*')
+--    table.insert(b, str)
+--  end
+--  return [[\(]]..[[\(]]..Implode(b, [[\)\|\(]])..[[\)]]..[[\)]]
+--end
 local function dduGrep(inputTitle, path)
   local word = GetVisual()
   if IsEmpty(word) then
     word = vim.fn.input(inputTitle)
   end
   local grepWord = createPermutationGrepWord(Explode(word, ' '))
-  local seachWord = createVimSearchWord(Explode(word, ' '))
-  vim.cmd('silent! /'..seachWord)
+  --local seachWord = createVimSearchWord(Explode(word, ' '))
+  vim.cmd('silent! /'..Explode(word, ' ')[1])
   vim.fn['ddu#start']({
     ui = 'ff'
     , sources = {{ name = 'rg', params = { input = grepWord } }}
