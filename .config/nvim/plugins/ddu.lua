@@ -127,6 +127,9 @@ local function dduGrep(inputTitle, path)
   local word = GetVisual()
   if IsEmpty(word) then
     word = vim.fn.input(inputTitle)
+    if IsEmpty(word) then
+      return
+    end
   end
   local grepWord = createPermutationGrepWord(Explode(word, ' '))
   --local seachWord = createVimSearchWord(Explode(word, ' '))
