@@ -152,3 +152,36 @@ vim.keymap.set(
   end
 )
 
+-- toggle case
+local function ToggleWordCase(word)
+  local result = word
+  if word:find('[a-z][A-Z]') then
+    result = word:gsub('([a-z])([A-Z])', '%1_%2'):lower()
+  elseif word:find('_[a-z]') then
+    result = word:gsub('(_)([a-z])', function(_, l) return l:upper() end)
+  elseif word:find('-[a-z]') then
+    result = word:gsub('(-)([a-z])', function(_, l) return l:upper() end)
+  end
+  return result
+end
+local function ChangeWordCaseHyphen(word)
+  local result = word
+  if word:find('[a-z][A-Z]') then
+    result = word:gsub('([a-z])([A-Z])', '%1-%2'):lower()
+  elseif word:find('_[a-z]') then
+    result = word:gsub('(_)([a-z])', function(_, l) return '-'..l end)
+  end
+  return result
+end
+vim.keymap.set(
+  'v', 'tg'
+  , function ()
+    SetVisual(ToggleWordCase(GetVisual()))
+  end
+)
+vim.keymap.set(
+  'v', '--'
+  , function ()
+    SetVisual(ChangeWordCaseHyphen(GetVisual()))
+  end
+)

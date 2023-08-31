@@ -95,6 +95,17 @@ function _G.GetVisual()
   return result
 end
 
+-- set visual
+function _G.SetVisual(word)
+  local mode = vim.fn.mode()
+  if mode == 'v' or mode == 'V' then
+    local memo = vim.fn.getreginfo('z')
+    vim.fn.setreg('z', word)
+    vim.cmd('noautocmd normal! "zp')
+    vim.fn.setreg('z', memo)
+  end
+end
+
 -- file open
 function _G.FileOpen(f)
   vim.cmd('tabe '..vim.fn.expand(f))
