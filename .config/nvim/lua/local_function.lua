@@ -174,7 +174,7 @@ local function ChangeWordCaseHyphen(word)
   return result
 end
 vim.keymap.set(
-  'v', 'tg'
+  'v', 'cc'
   , function ()
     SetVisual(ToggleWordCase(GetVisual()))
   end
