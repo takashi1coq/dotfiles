@@ -35,19 +35,18 @@ myCommand(
 myCommand(
   'SeparatorChange'
   , function (opts)
-    local function change(v)
+    local function change(v, isPrev)
+      v = (v == 'enter') and ((isPrev) and [[\n]] or [[\r]]) or v
       v = (v == 'space') and ' ' or v
       v = (v == 'tab') and '\t' or v
-      v = (v == 'enter') and '\r' or v
       v = (v == 'comma') and ',' or v
       v = (v == 'period') and '\\.' or v
       v = (v == 'colon') and ':' or v
       v = (v == 'semicolon') and ';' or v
       return v
     end
-    local prev = change(opts.fargs[1])
-    local next = change(opts.fargs[2])
-
+    local prev = change(opts.fargs[1], true)
+    local next = change(opts.fargs[2], false)
     vim.fn.execute('%s/'..prev..'/'..next..'/g')
   end
   , {
