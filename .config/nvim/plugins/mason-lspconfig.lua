@@ -24,3 +24,12 @@ mason_lspconfig.setup_handlers({ function(server_name)
   end
   lspconfig[server_name].setup(opts)
 end })
+vim.lsp.handlers['testDocument/definition'] = function (_, results, _, _)
+  local loclist = vim.lsp.util.locations_to_item(results, 'utf-8')
+  if loclist == 1 then
+    vim.cmd('tabnew '..loclist[1].filename)
+  else
+    vim.fn.setloclist(0, loclist, ' ')
+    vim.cmd('lopen')
+  end
+end
