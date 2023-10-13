@@ -10,7 +10,12 @@ vim.fn['ddu#custom#patch_global']({
       split = 'no'
     }
     , ff = {
-      -- TODO preview
+      autoAction = {
+        name = 'preview'
+      }
+      , startAutoAction = true
+      , previewSplit = 'vertical'
+      , previewWidth = vim.opt.columns:get() / 2
     }
     , filer = {
       sortTreesFirst = true
@@ -115,14 +120,6 @@ local function createPermutationGrepWord (t)
   end
   return '('..Implode(b, ')|(')..')'
 end
---local function createVimSearchWord (t)
---  local b = {}
---  for p in Perm(t) do
---    local str = Implode(p, '.*')
---    table.insert(b, str)
---  end
---  return [[\(]]..[[\(]]..Implode(b, [[\)\|\(]])..[[\)]]..[[\)]]
---end
 local function dduGrep(inputTitle, path)
   local word = GetVisual()
   if IsEmpty(word) then
@@ -132,8 +129,6 @@ local function dduGrep(inputTitle, path)
     end
   end
   local grepWord = createPermutationGrepWord(Explode(word, ' '))
-  --local seachWord = createVimSearchWord(Explode(word, ' '))
-  vim.cmd('silent! /'..Explode(word, ' ')[1])
   vim.fn['ddu#start']({
     ui = 'ff'
     , sources = {{ name = 'rg', params = { input = grepWord } }}
@@ -232,9 +227,6 @@ fileType['ddu-ff'] = function ()
     -- TODO mr delete ..
     vim.fn['ddu#ui#do_action']('itemAction', { name = 'delete' })
   end)
---  VimBufferKeymapSet('n', 'p', function ()
---    vim.fn['ddu#ui#do_action']('preview')
---  end)
   VimBufferKeymapSet('n', 'q', function ()
     vim.fn['ddu#ui#do_action']('quit')
   end)
