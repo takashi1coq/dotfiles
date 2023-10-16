@@ -1,8 +1,3 @@
-vim.fn['ddc#custom#patch_filetype'](
-  {'lua', 'typescript'}
-  , 'sources'
-  , {'nvim-lsp'}
-)
 vim.fn['ddc#custom#patch_global']({
   ui = 'pum'
   , sources = { 'around' }
@@ -25,6 +20,11 @@ vim.fn['ddc#custom#patch_global']({
     }
   }
 })
+--vim.fn['ddc#custom#patch_filetype'](
+--  {'lua', 'typescript'}
+--  , 'sources'
+--  , {'nvim-lsp'}
+--)
 
 vim.keymap.set('i', '<TAB>', function ()
   if vim.fn['pum#visible']() then

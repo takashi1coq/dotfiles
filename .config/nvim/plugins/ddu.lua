@@ -210,7 +210,7 @@ vim.keymap.set('n', '<Space>c', function ()
     }
   }
   local selectName = Map(selects, function(v) return v[1] end)
-  vim.ui.select(selectName, {}, function(c,i)
+  vim.ui.select(selectName, {}, function(_,i)
     selects[i][2]()
   end)
   -- TODO error when not selected
@@ -284,6 +284,9 @@ vim.keymap.set('n', '<Space>d', function () vim.fn['ddu#start']({
 vim.fn['ddu#custom#action']('ui', 'filer', 'terminalOpen', function (args)
   MyTerminal('filerTerminalOpen', 1, nil, args.context.path)
 end)
+vim.fn['ddu#custom#action']('ui', 'filer', 'explorerOpen', function (args)
+  vim.cmd('silent !open '..args.context.path)
+end)
 
 fileType['ddu-filer'] = function ()
   VimBufferKeymapSet('n', '<CR>', function ()
@@ -318,6 +321,9 @@ fileType['ddu-filer'] = function ()
   end)
   VimBufferKeymapSet('n', 't', function ()
     vim.fn['ddu#ui#filer#do_action']('terminalOpen')
+  end)
+  VimBufferKeymapSet('n', 'e', function ()
+    vim.fn['ddu#ui#filer#do_action']('explorerOpen')
   end)
   VimBufferKeymapSet('n', '<F4>', function ()
     vim.fn['ddu#redraw'](vim.b['ddu_ui_name'], {refreshItems = 1})
