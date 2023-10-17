@@ -173,7 +173,7 @@ vim.keymap.set('n', '<Space>c', function ()
     }
     , {
       'File : /etc/hosts (read only)'
-      , function () FileOpen('/etc/profile') end
+      , function () FileOpen('/etc/hosts') end
     }
     , {
       'Dein : Dein Plugin Update'
