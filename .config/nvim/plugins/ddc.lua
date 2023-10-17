@@ -1,6 +1,6 @@
 vim.fn['ddc#custom#patch_global']({
   ui = 'pum'
-  , sources = { 'around' }
+  , sources = { 'around', 'look' }
   , autoCompleteEvents = {
       'InsertEnter', 'TextChangedI', 'TextChangedP',
       'CmdlineEnter', 'CmdlineChanged', 'TextChangedT',
@@ -17,6 +17,9 @@ vim.fn['ddc#custom#patch_global']({
     }
     , around = {
       mark = ':AROUND'
+    }
+    , look = {
+      mark = ':look'
     }
   }
 })

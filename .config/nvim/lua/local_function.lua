@@ -1,7 +1,5 @@
 
-local myCommand = vim.api.nvim_create_user_command
-
-myCommand(
+vim.api.nvim_create_user_command(
   'CopyPath'
   , function ()
     local path = Replace(vim.fn.expand('%:p'), vim.fn.getcwd()..'/', '')
@@ -9,7 +7,7 @@ myCommand(
   end
   , { nargs = 0 }
 )
-myCommand(
+vim.api.nvim_create_user_command(
   'CopyFileName'
   , function ()
     local filename = vim.fn.expand('%:t')
@@ -19,7 +17,7 @@ myCommand(
   , { nargs = 0 }
 )
 
-myCommand(
+vim.api.nvim_create_user_command(
   'Capture'
   , function (opts)
     local buf = OpenFloatingWindow()
@@ -32,7 +30,7 @@ myCommand(
   }
 )
 
-myCommand(
+vim.api.nvim_create_user_command(
   'SeparatorChange'
   , function (opts)
     local function change(v, isPrev)
@@ -65,7 +63,7 @@ myCommand(
   }
 )
 
-myCommand(
+vim.api.nvim_create_user_command(
   'WinOne'
   , function ()
     local winId = vim.fn.win_getid()
@@ -81,7 +79,7 @@ myCommand(
   , { nargs = 0 }
 )
 
-myCommand(
+vim.api.nvim_create_user_command(
   'ToggleNumber'
   , function ()
       vim.cmd('setlocal relativenumber!')
@@ -89,13 +87,13 @@ myCommand(
   , { nargs = 0 }
 )
 
-myCommand(
+vim.api.nvim_create_user_command(
   'Messages'
   , function () vim.cmd('Capture messages') end
   , { nargs = 0 }
 )
 
-myCommand(
+vim.api.nvim_create_user_command(
   'DiffCheck'
   , function ()
     EmptyBufferSettingCmd('tabnew DiffA')
@@ -103,6 +101,14 @@ myCommand(
     vim.cmd('wincmd w')
   end
   , { nargs = 0 }
+)
+
+vim.api.nvim_create_user_command(
+  'SaveForceAsRoot'
+  , function ()
+    vim.cmd('w !sudo tee %')
+    vim.cmd('q!')
+  end
 )
 
 -- translate-shell

@@ -121,6 +121,9 @@ hook_add = '''
 luafile ~/.config/nvim/plugins/mason-lspconfig.lua
 '''
 
+# ==========================================================
+# ddc
+# ==========================================================
 [[plugins]]
 repo = 'Shougo/ddc.vim'
 on_event = 'InsertEnter'
@@ -157,6 +160,9 @@ repo = 'Shougo/ddc-matcher_head'
 on_source = 'ddc.vim'
 [[plugins]]
 repo = 'Shougo/ddc-sorter_rank'
+on_source = 'ddc.vim'
+[[plugins]]
+repo = 'octaltree/cmp-look'
 on_source = 'ddc.vim'
 
 # ==========================================================
