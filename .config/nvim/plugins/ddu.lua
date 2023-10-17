@@ -169,11 +169,19 @@ vim.keymap.set('n', '<Space>c', function ()
     }
     , {
       'File : /etc/profile (read only)'
-      , function () FileOpen('/etc/profile') end
+      , function ()
+        local path = '/etc/profile'
+        StoreYank('sudo nvim '..path)
+        FileOpen(path)
+      end
     }
     , {
       'File : /etc/hosts (read only)'
-      , function () FileOpen('/etc/hosts') end
+      , function ()
+        local path = '/etc/hosts'
+        StoreYank('sudo nvim '..path)
+        FileOpen(path)
+      end
     }
     , {
       'Dein : Dein Plugin Update'
