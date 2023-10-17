@@ -103,15 +103,6 @@ vim.api.nvim_create_user_command(
   , { nargs = 0 }
 )
 
-vim.api.nvim_create_user_command(
-  'SaveForceAsRoot'
-  , function ()
-    vim.cmd('w !sudo tee %')
-    vim.cmd('q!')
-  end
-  , { nargs = 0 }
-)
-
 -- translate-shell
 vim.keymap.set(
   'v', '<F1>'
