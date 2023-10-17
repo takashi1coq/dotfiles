@@ -109,6 +109,7 @@ vim.api.nvim_create_user_command(
     vim.cmd('w !sudo tee %')
     vim.cmd('q!')
   end
+  , { nargs = 0 }
 )
 
 -- translate-shell
