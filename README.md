@@ -1,43 +1,36 @@
 # dotfiles
 
-### install env
+### install Homebrew
 
-- anyenv
-  - see anyenv wiki ...
-- any env
+### brew install
+
 ```
-anyenv install pyenv
+brew install neovim
+brew install deno
+brew install anyenv
+brew install ripgrep
+```
+
+### anyenv
+```
+anyenv init
+anyenv install --init
+* echo 'eval "$(anyenv init -)" >> ~~~'
+```
+
+### nodenv
+
+```
 anyenv install nodenv
-anyenv install phpenv
+nodenv install --list
+nodenv install xx.xx.xx
+nodenv global xx.xx.xx
 ```
 
 ### install yarn
 
 ```
 npm install -g yarn
-```
-
-### neovim install
-
-see neovim wiki..
-
-- neovim-remote (nvr)
-- pynvim
-```
-pip install pynvim neovim-remote
-```
-
-### Homebrew
-
-- ripgrep
-
-```
-brew install ripgrep
-```
-
-- gawk
-```
-brew install ripgrep
 ```
 
 ### install tools
@@ -58,11 +51,7 @@ sudo make install
 git clone https://github.com/takashi1coq/dotfiles dotfiles
 sh ~/dotfiles/setup.sh
 ```
-### Mac
-
-- System Preferences > Keyboard > Shortcuts > Locate "F11" and uncheck it for Show Desktop
-
-### Arch linux
+### Arch linux ...
 
 - neovim clipboard (:h clipboard-tool)
 - X WindowSystem requied (not required on server)
