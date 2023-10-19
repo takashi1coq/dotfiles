@@ -1,101 +1,97 @@
--- mode -> :h map
-local keymapSet = vim.keymap.set
-local vimCmd = vim.cmd
-
 --[[==========================================================
  main
 ============================================================]]
 
 -- n,vモード時のみ;と:を入れ替える
-keymapSet({'n','v'}, ';', ':')
-keymapSet({'n','v'}, ':', ';')
+vim.keymap.set({'n','v'}, ';', ':')
+vim.keymap.set({'n','v'}, ':', ';')
 
 -- コマンド履歴
-keymapSet('n', ';;', 'q:')
+vim.keymap.set('n', ';;', 'q:')
 
 -- 検索履歴
-keymapSet('n', '//', 'q/')
+vim.keymap.set('n', '//', 'q/')
 
 -- 貼り付け
-keymapSet({'i','c'}, '<C-v>', '<C-r>+')
-keymapSet('t', '<C-v>', [[<C-\><C-n>pi]])
+vim.keymap.set({'i','c'}, '<C-v>', '<C-r>+')
+vim.keymap.set('t', '<C-v>', [[<C-\><C-n>pi]])
 
 -- Ctrl-p で差し替え後もペースト
-keymapSet('v', '<C-p>', '"0p<CR>')
+vim.keymap.set('v', '<C-p>', '"0p<CR>')
 
 -- insert datetime TODO lua function..
-keymapSet('i', '<C-d>', '<C-r>=strftime("%Y%m%d (%a)")<CR>')
+vim.keymap.set('i', '<C-d>', '<C-r>=strftime("%Y%m%d (%a)")<CR>')
 
 -- コード変換をC-t
-keymapSet({'i','c'}, '<C-t>', '<C-v>')
+vim.keymap.set({'i','c'}, '<C-t>', '<C-v>')
 
 -- "aaで全選択
-keymapSet('n', 'aa', 'ggVG$')
+vim.keymap.set('n', 'aa', 'ggVG$')
 
 -- 選択範囲を囲む
-keymapSet('v', "'", "c''<ESC>P")
-keymapSet('v', '"', 'c""<ESC>P')
-keymapSet('v', "(", "c()<ESC>P")
-keymapSet('v', '{', 'c{}<ESC>P')
-keymapSet('v', '[', 'c[]<ESC>P')
+vim.keymap.set('v', "'", "c''<ESC>P")
+vim.keymap.set('v', '"', 'c""<ESC>P')
+vim.keymap.set('v', "(", "c()<ESC>P")
+vim.keymap.set('v', '{', 'c{}<ESC>P')
+vim.keymap.set('v', '[', 'c[]<ESC>P')
 
 -- x削除でレジスタに格納しない
-keymapSet('n', 'x', '"_x')
+vim.keymap.set('n', 'x', '"_x')
 
 -- wrap設定の場合、一行づつ移動する
-keymapSet('n', 'j', 'gj')
-keymapSet('n', 'k', 'gk')
+vim.keymap.set('n', 'j', 'gj')
+vim.keymap.set('n', 'k', 'gk')
 
 -- 移動
-keymapSet({'n','v'}, 'H', 'b')
-keymapSet({'n','v'}, 'L', 'w')
-keymapSet({'n','v'}, 'J', '10j')
-keymapSet({'n','v'}, 'K', '10k')
-keymapSet('n', '<C-f>', '13<C-e>')
-keymapSet('n', '<C-u>', '13<C-y>')
+vim.keymap.set({'n','v'}, 'H', 'b')
+vim.keymap.set({'n','v'}, 'L', 'w')
+vim.keymap.set({'n','v'}, 'J', '10j')
+vim.keymap.set({'n','v'}, 'K', '10k')
+vim.keymap.set('n', '<C-f>', '13<C-e>')
+vim.keymap.set('n', '<C-u>', '13<C-y>')
 
 -- 進む、戻るを逆に
-keymapSet('n', '<C-o>', '<C-i>zz')
-keymapSet('n', '<C-i>', '<C-o>zz')
+vim.keymap.set('n', '<C-o>', '<C-i>zz')
+vim.keymap.set('n', '<C-i>', '<C-o>zz')
 
 -- 選択業にdot command
-keymapSet('v', '.', ":'<,'>normal .<CR>")
+vim.keymap.set('v', '.', ":'<,'>normal .<CR>")
 
 -- keywordにハイフンを含める
-keymapSet('n', '--', function () vimCmd('setlocal isk+=-') end)
+vim.keymap.set('n', '--', function () vim.cmd('setlocal isk+=-') end)
 
 --[[==========================================================
  seach
 ============================================================]]
 
 -- 検索ハイライト
-vimCmd('set hlsearch')
-keymapSet('n', '<ESC><ESC>', function () vimCmd('nohlsearch') end)
+vim.cmd('set hlsearch')
+vim.keymap.set('n', '<ESC><ESC>', function () vim.cmd('nohlsearch') end)
 
 -- *で単語検索
-keymapSet('v', '*', '"zy:let @/ = @z<CR>n')
+vim.keymap.set('v', '*', '"zy:let @/ = @z<CR>n')
 
 -- 検索結果を中央表示
-keymapSet('n', 'n', 'nzz')
-keymapSet('n', 'N', 'Nzz')
-keymapSet('n', '*', '*zz')
-keymapSet('n', '#', '#zz')
+vim.keymap.set('n', 'n', 'nzz')
+vim.keymap.set('n', 'N', 'Nzz')
+vim.keymap.set('n', '*', '*zz')
+vim.keymap.set('n', '#', '#zz')
 
 --[[==========================================================
  window
 ============================================================]]
 
 -- サイズ変更
-keymapSet('n', '<Up>', '<C-w>-')
-keymapSet('n', '<Down>', '<C-w>+')
-keymapSet('n', '<Right>', '<C-w><')
-keymapSet('n', '<Left>', '<C-w>>')
+vim.keymap.set('n', '<Up>', '<C-w>-')
+vim.keymap.set('n', '<Down>', '<C-w>+')
+vim.keymap.set('n', '<Right>', '<C-w><')
+vim.keymap.set('n', '<Left>', '<C-w>>')
 
 -- 閉じる
-keymapSet('n', 'q', function () MyQuit() end)
+vim.keymap.set('n', 'q', function () MyQuit() end)
 
 -- windowサイズをそろえる
-keymapSet('n', '==', '<C-w>=')
+vim.keymap.set('n', '==', '<C-w>=')
 
 
 --[[==========================================================
@@ -103,14 +99,14 @@ keymapSet('n', '==', '<C-w>=')
 ============================================================]]
 
 -- 新しいタブ
-keymapSet('n', 'tt', function () EmptyBufferSettingCmd('tabnew') end)
+vim.keymap.set('n', 'tt', function () EmptyBufferSettingCmd('tabnew') end)
 
 -- タブ移動
-keymapSet('n', '<C-l>', 'gt')
-keymapSet('n', '<C-h>', 'gT')
+vim.keymap.set('n', '<C-l>', 'gt')
+vim.keymap.set('n', '<C-h>', 'gT')
 
 -- "アクティブ以外閉じるをto
-keymapSet('n', 'to', function () vimCmd('tabo') end)
+vim.keymap.set('n', 'to', function () vim.cmd('tabo') end)
 
 -- タブそのものを移動 TODO ボタン決める
 
@@ -119,7 +115,7 @@ keymapSet('n', 'to', function () vimCmd('tabo') end)
 ============================================================]]
 
 -- escでinsert modeから抜ける
-keymapSet('t', '<ESC>', [[<C-\><C-n>]])
+vim.keymap.set('t', '<ESC>', [[<C-\><C-n>]])
 
 
 
