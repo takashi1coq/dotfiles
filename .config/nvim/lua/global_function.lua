@@ -58,6 +58,14 @@ function _G.Replace(str, what, with)
     return string.gsub(str, what, with)
 end
 
+-- locate
+function _G.Rocate(table, value)
+  for i = 1, #table do
+    if table[i] == value then return true end
+  end
+  return false
+end
+
 -- store yank
 function _G.StoreYank(w)
   vim.fn.setreg('+', w)
@@ -248,7 +256,7 @@ function _G.MyQuit ()
   end
 end
 
--- avoid E162
+-- avoid E162. open empty buffer
 function _G.EmptyBufferSettingCmd(cmd)
   vim.cmd(cmd)
   vim.cmd('setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile')

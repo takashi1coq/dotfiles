@@ -10,9 +10,13 @@ vim.api.nvim_create_user_command(
     local list = vim.fn['mr#mrw#list']()
     local files = {}
     local count = 5
+    local except = {
+      'markdown'
+      , 'lua'
+    }
     for i in ipairs(list) do
       if vim.fn.getftype(list[i]) then
-        if vim.filetype.match({filename = list[i]}) == 'markdown' then
+        if Rocate(except, vim.filetype.match({filename = list[i]})) then
           count = count + 1
         else
           if i <= count then
