@@ -50,3 +50,6 @@ vim.cmd([[
   cabbrev help tab help
   cabbrev h tab h
 ]])
+
+-- E518: 未知のオプション
+vim.api.nvim_set_option('modeline', false)
