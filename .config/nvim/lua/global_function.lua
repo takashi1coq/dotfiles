@@ -119,6 +119,12 @@ function _G.FileOpen(f)
   vim.cmd('tabe '..vim.fn.expand(f))
 end
 
+-- get projectDirName
+function _G.ProjectDirName()
+  local path = vim.fn.split(vim.fn.getcwd(), '/')
+  return path[#path]
+end
+
 -- craete file (if exists)
 function _G.IfNotExistsFileCreate(name, text)
   if text == nil then text = '' end
@@ -237,7 +243,7 @@ function _G.MyTerminal(name, openNum, cmd, path)
   )
   vim.api.nvim_put({cmd}, 'c', false, true)
 end
-vim.keymap.set('n', '<Space>j', function () MyTerminal('spaceJ', 1, nil, nil) end)
+vim.keymap.set('n', '<Space>j', function () MyTerminal('terminal_'..ProjectDirName(), 1, nil, nil) end)
 vim.api.nvim_create_user_command('Terminal', function () MyTerminal('Terminal', 2, nil, nil) end, { nargs = 0 })
 
 -- quit

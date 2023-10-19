@@ -1,8 +1,3 @@
-local function projectDirName()
-  local path = vim.fn.split(vim.fn.getcwd(), '/')
-  return path[#path]
-end
-
 local function fileFullName()
   local path = vim.bo.filetype
   if IsEmpty(vim.bo.buftype) then
@@ -44,7 +39,7 @@ require('lualine').setup {
     , lualine_c = {}
     , lualine_x = {}
     , lualine_y = {}
-    , lualine_z = { projectDirName }
+    , lualine_z = { ProjectDirName }
   }
   , winbar = {}
   , inactive_winbar = {}
