@@ -10,11 +10,6 @@ vim.fn['ddu#custom#patch_global']({
       split = 'no'
     }
     , ff = {
-      autoAction = {
-        name = 'preview'
-      }
-      , startAutoAction = true
-      , previewSplit = 'vertical'
     }
     , filer = {
       sortTreesFirst = true
@@ -130,6 +125,15 @@ local function dduGrep(inputTitle, path)
   local grepWord = createPermutationGrepWord(Explode(word, ' '))
   vim.fn['ddu#start']({
     ui = 'ff'
+    , uiParams = {
+      ff = {
+        autoAction = {
+          name = 'preview'
+        }
+        , startAutoAction = true
+        , previewSplit = 'vertical'
+      }
+    }
     , sources = {{ name = 'rg', params = { input = grepWord } }}
     , sourceOptions = {
       rg = {
