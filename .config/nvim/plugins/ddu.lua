@@ -15,7 +15,6 @@ vim.fn['ddu#custom#patch_global']({
       }
       , startAutoAction = true
       , previewSplit = 'vertical'
-      , previewWidth = vim.opt.columns:get() / 2
     }
     , filer = {
       sortTreesFirst = true
