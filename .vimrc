@@ -2,9 +2,6 @@
 set number
 " スワップファイルを作成しない
 set noswapfile
-" undoFileを/tmpに作成
-set undofile
-set undodir=/tmp
 " 大文字小文字を区別しない
 set ignorecase
 " 一番下までいったら上に戻る(検索)
@@ -25,12 +22,6 @@ nnoremap ; :
 nnoremap : ;
 vnoremap ; :
 vnoremap : ;
-"コマンド履歴
-nnoremap <sid>(command-line-enter) q:
-nmap ;; <sid>(command-line-enter)
-"検索履歴
-nnoremap <sid>(search-line-enter) q/
-nmap // <sid>(search-line-enter)
 " 検索結果を真ん中へ
 nmap n nzz
 nmap N Nzz
