@@ -8,6 +8,7 @@ set ignorecase
 set wrapscan
 " クリップボード共有
 set clipboard+=unnamedplus
+set clipboard+=unnamed
 " タブスペース可視化
 set list
 set listchars=tab:>-,trail:_,extends:>,precedes:<
@@ -42,4 +43,7 @@ nnoremap <C-u> 13<C-y>
 "C-l,C-h,でタブ移動
 nnoremap <silent> <C-l> gt
 nnoremap <silent> <C-h> gT
-
+" aaで全選択
+nmap <silent> aa ggVG$
+" 貼り付け
+noremap! <C-v> <C-r>*
