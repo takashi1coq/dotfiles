@@ -46,4 +46,5 @@ nnoremap <silent> <C-h> gT
 " aaで全選択
 nmap <silent> aa ggVG$
 " 貼り付け
-noremap! <C-v> <C-r>*
+inoremap <C-v> <C-r>*
+cnoremap <C-v> <C-r>*
