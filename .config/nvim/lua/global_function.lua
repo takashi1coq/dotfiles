@@ -278,6 +278,18 @@ function _G.DeleteNoNameBuffer ()
   end
 end
 
+-- exec mac chrome open cmd
+function _G.OpenBrowser(url, profile)
+  if url == nil then
+    url = 'chrome://version'
+  end
+  if profile == nil then
+    profile = 'Default'
+  end
+  local command = '!open -a "Google Chrome" '..url..' --args --profile-directory="'..profile..'"'
+  vim.cmd('silent '..command)
+end
+
 -- create delimiter file
 -- etc) CreateDelimiterFile('/tmp/CreateDelimiterFile.csv', nil, nil, nil)
 function _G.CreateDelimiterFile(path, data, count, sep)
