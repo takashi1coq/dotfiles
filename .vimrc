@@ -48,3 +48,6 @@ nmap <silent> aa ggVG$
 " 貼り付け
 inoremap <C-v> <C-r>*
 cnoremap <C-v> <C-r>*
+" 進む、戻るを再マップ
+nnoremap <C-o> <C-i>zz
+nnoremap <C-i> <C-o>zz
