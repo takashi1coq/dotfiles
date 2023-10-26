@@ -51,3 +51,6 @@ cnoremap <C-v> <C-r>*
 " 進む、戻るを再マップ
 nnoremap <C-o> <C-i>zz
 nnoremap <C-i> <C-o>zz
+" 閉じる
+nnoremap q :<C-u>quit<CR>
+
