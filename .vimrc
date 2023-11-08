@@ -55,3 +55,26 @@ nnoremap <C-i> <C-o>zz
 nnoremap q :<C-u>quit<CR>
 " タブを全て閉じる
 nnoremap to :<C-u>tabo<CR>
+" copyPath
+function! CopyPath()
+  let l:path = expand('%:p')
+  let l:path = substitute(l:path, getcwd(), '', 'g')
+  let l:path = substitute(l:path, '^/', '', '')
+  let @+=l:path
+  " copy unnamed register.
+  if !has('clipboard')
+    let @"=l:path
+  endif
+  echomsg l:path
+endfunction
+command! -nargs=0 CopyPath     call CopyPath()
+" copyFileName
+function! CopyFileName()
+  let @+=expand('%:t:r')
+  " copy unnamed register.
+  if !has('clipboard')
+    let @"=expand('%:t:r')
+  endif
+  echomsg expand('%:t:r')
+endfunction
+command! -nargs=0 CopyFileName call CopyFileName()
