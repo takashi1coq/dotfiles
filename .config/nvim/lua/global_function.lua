@@ -330,3 +330,13 @@ function _G.CreateDelimiterFile(path, data, count, sep)
   end
 end
 
+-- json file to table
+function _G.JsonToTable(path)
+  local content = ''
+  local file = io.open(path, 'r')
+  if file then
+    content = file:read('*a')
+    return vim.fn.json_decode(content)
+  end
+  return {}
+end

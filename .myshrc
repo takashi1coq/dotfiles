@@ -16,3 +16,7 @@ function gclonecd () {
 function gistrow () {
   curl -OLsS "$1"
 }
+function mkddate () {
+  local prefix=${1:-tkcTemp_}
+  mkdir $prefix`date '+%Y%m%d'`
+}
