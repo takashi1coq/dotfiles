@@ -345,4 +345,20 @@ fileType['ddu-filer'] = function ()
   end)
 end
 
+-- TODO
+vim.api.nvim_create_user_command(
+  'OpenTerminal'
+  , function ()
+    vim.fn['ddu#ui#filer#do_action']('terminalOpen')
+  end
+  , { nargs = 0 }
+)
+vim.api.nvim_create_user_command(
+  'OpenExplorer'
+  , function ()
+    vim.fn['ddu#ui#filer#do_action']('explorerOpen')
+  end
+  , { nargs = 0 }
+)
+
 SetFileTypeKeyMap(fileType, 'ddu_augroup')
