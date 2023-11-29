@@ -67,7 +67,8 @@ function _G.Rocate(table, value)
 end
 
 -- store yank
-function _G.StoreYank(w)
+function _G.StoreYank(word)
+  local w = tostring(word)
   vim.fn.setreg('+', w)
   vim.fn.setreg('"', w)
   print('yank word => [ '..w..' ]')
@@ -105,10 +106,11 @@ end
 
 -- set visual
 function _G.SetVisual(word)
+  local w = tostring(word)
   local mode = vim.fn.mode()
   if mode == 'v' or mode == 'V' then
     local memo = vim.fn.getreginfo('z')
-    vim.fn.setreg('z', word)
+    vim.fn.setreg('z', w)
     vim.cmd('noautocmd normal! "zp')
     vim.fn.setreg('z', memo)
   end

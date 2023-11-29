@@ -182,3 +182,11 @@ vim.keymap.set(
     SetVisual(ChangeWordCaseHyphen(GetVisual()))
   end
 )
+vim.keymap.set(
+  'v', '=='
+  , function ()
+    local func = assert(load("return " .. GetVisual()))
+    SetVisual(func())
+  end
+)
+
