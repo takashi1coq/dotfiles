@@ -220,8 +220,8 @@ vim.keymap.set('n', '<Space>c', function ()
       , function () StoreYank('split -l 10000 ') end
     }
     , {
-      [[Command : jq command [jq '.[] *.json' > filename.json] (yank)]]
-      , function () StoreYank([[jq '.[] *.json' > filename.json]]) end
+      [[Command : jq command [jq '.[]' *.json > filename.json] (yank)]]
+      , function () StoreYank([[jq '.[]' *.json > filename.json]]) end
     }
   }
   local selectName = Map(selects, function(v) return v[1] end)
