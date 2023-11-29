@@ -219,6 +219,10 @@ vim.keymap.set('n', '<Space>c', function ()
       'Command : Big file split [split -l 10000 <File>] (yank)'
       , function () StoreYank('split -l 10000 ') end
     }
+    , {
+      [[Command : jq command [jq '.[] *.json' > filename.json] (yank)]]
+      , function () StoreYank([[jq '.[] *.json' > filename.json]]) end
+    }
   }
   local selectName = Map(selects, function(v) return v[1] end)
   vim.ui.select(selectName, {}, function(_,i)
@@ -293,7 +297,7 @@ vim.keymap.set('n', '<Space>d', function () vim.fn['ddu#start']({
 }) end)
 
 vim.fn['ddu#custom#action']('ui', 'filer', 'terminalOpen', function (args)
-  MyTerminal('filerTerminalOpen', 1, nil, args.context.path)
+  MyTerminal('filerTerminalOpen', 2, nil, args.context.path)
 end)
 vim.fn['ddu#custom#action']('ui', 'filer', 'explorerOpen', function (args)
   vim.cmd('silent !open '..args.context.path)
