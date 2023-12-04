@@ -342,3 +342,9 @@ function _G.JsonToTable(path)
   end
   return {}
 end
+
+-- create extension
+function _G.CreateExtension(filePath)
+  local explodeFilePath = Explode(filePath, '.')
+  return explodeFilePath[#explodeFilePath]
+end

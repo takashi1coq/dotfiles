@@ -10,17 +10,26 @@ vim.api.nvim_create_user_command(
     local list = vim.fn['mr#mrw#list']()
     local files = {}
     local count = 5
-    local except = {
+    local exceptFiletype = {
       'markdown'
       , 'lua'
+      , 'csv'
+      , 'json'
+    }
+    local exceptExtension = {
+      'log'
     }
     for i in ipairs(list) do
-      if vim.fn.getftype(list[i]) then
-        if Rocate(except, vim.filetype.match({filename = list[i]})) then
+      local filePath = list[i]
+      local extension = CreateExtension(filePath)
+      if vim.fn.getftype(filePath) then
+        if Rocate(exceptFiletype, vim.filetype.match({filename = filePath})) then
+          count = count + 1
+        elseif Rocate(exceptExtension, extension) then
           count = count + 1
         else
           if i <= count then
-            table.insert(files, list[i])
+            table.insert(files, filePath)
           end
         end
       end
