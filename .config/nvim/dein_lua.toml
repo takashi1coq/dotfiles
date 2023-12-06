@@ -10,7 +10,7 @@ let g:dein#auto_recache = 1
 [[plugins]]
 repo = 'airblade/vim-rooter'
 hook_add = '''
-let g:rooter_patterns = ['.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
+let g:rooter_patterns = ['.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/', '.myRoot']
 '''
 [[plugins]]
 repo = 'vim-denops/denops.vim'
