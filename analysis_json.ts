@@ -1,4 +1,4 @@
-import jsonFile "./example.json" with { type: 'json' };
+import jsonFile from "./example.json" with { type: 'json' };
 
 const ConversionUnixTimeStamp = (unixtimestamp13: number) => {
   const dateInstance = new Date(unixtimestamp13)
@@ -9,6 +9,7 @@ const ConversionUnixTimeStamp = (unixtimestamp13: number) => {
     , millisecond: dateInstance.getTime().toString().slice(-3)
   }
 }
+const ComparisonString = (str1: string, str2: string) => { return str1.indexOf(str2) > -1 }
 
 Object.values(jsonFile).forEach((value) => {
   console.log(value)
