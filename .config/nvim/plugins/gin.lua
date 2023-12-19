@@ -34,6 +34,7 @@ vim.g.gin_log_default_args = {
   '++opener=tabnew'
   , '--graph'
   , '--decorate=full'
+  , '--max-count=50'
 }
 vim.api.nvim_create_user_command(
   'LogBranch'
