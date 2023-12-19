@@ -1,3 +1,14 @@
+-- global variable
+MY_DDU_SELECT = {}
+function _G.SetMyDduSelect(t)
+  for i = 1, #t do
+    table.insert(MY_DDU_SELECT, t[i])
+  end
+end
+function _G.GetMyDduSelect()
+  return MY_DDU_SELECT
+end
+
 -- var dump
 function _G.Dd(...)
   local objects = {}
