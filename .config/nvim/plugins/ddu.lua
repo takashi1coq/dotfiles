@@ -257,32 +257,27 @@ end
 -- ##################################
 -- # filer
 -- ##################################
-
-local function dduFiler()
-  local filename = vim.fn.expand('%:t')
-  filename = Explode(filename, '.')[1]
-  vim.cmd('silent! /'..filename)
+function _G.OpenDduFiler(path)
   vim.fn['ddu#start']({
     ui = 'filer'
     , sources = {{ name = 'file', params = {} }}
     , sourceOptions = {
       file = {
-        path = vim.fn.expand('%:p:h')
+        path = path
       }
     }
   })
 end
 
+local function dduFiler()
+  local filename = vim.fn.expand('%:t')
+  filename = Explode(filename, '.')[1]
+  vim.cmd('silent! /'..filename)
+  OpenDduFiler(vim.fn.expand('%:p:h'))
+end
+
 vim.keymap.set('n', '<Space>f', function () dduFiler() end)
-vim.keymap.set('n', '<Space>w', function () vim.fn['ddu#start']({
-  ui = 'filer'
-  , sources = {{ name = 'file', params = {} }}
-  , sourceOptions = {
-    file = {
-      path = vim.fn.expand('~/work')
-    }
-  }
-}) end)
+vim.keymap.set('n', '<Space>w', function () OpenDduFiler(vim.fn.expand('~/work')) end)
 vim.keymap.set('n', '<Space>d', function () vim.fn['ddu#start']({
   ui = 'filer'
   , sources = {{ name = 'file', params = {} }}
