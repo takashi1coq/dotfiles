@@ -149,7 +149,7 @@ vim.keymap.set('n', '<Space>r', function () vim.fn['ddu#start']({
   , uiParams = { ff = { startFilter = false } }
 }) end)
 
-function _G.OpenDddSelect(selects)
+function _G.OpenDduSelect(selects)
   local selectName = Map(selects, function(v) return v[1] end)
   vim.ui.select(selectName, {}, function(_,i)
     selects[i][2]()
@@ -157,7 +157,7 @@ function _G.OpenDddSelect(selects)
   -- TODO error when not selected
 end
 vim.keymap.set('n', '<Space>c', function ()
-  OpenDddSelect({
+  OpenDduSelect({
     {
       'File : ~/.config/nvim/lua/local.lua'
       , function () FileOpen('~/.config/nvim/lua/local.lua') end
