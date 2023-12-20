@@ -3,7 +3,7 @@ os.yyyy = function () return os.date('%Y') end
 os.mm = function () return os.date('%m') end
 os.dd = function () return os.date('%d') end
 os.hhmmss = function () return os.date('%X') end
-os.yyyymmdd = function () return os.date('%Y%m%x') end
+os.yyyymmdd = function () return os.date('%Y%m%d') end
 os.all = function () return os.date('%c') end
 os.formatdate = function () return os.date('%x') end
 
