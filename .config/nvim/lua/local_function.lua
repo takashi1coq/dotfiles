@@ -3,7 +3,7 @@ vim.api.nvim_create_user_command(
   'CopyPath'
   , function ()
     local path = Replace(vim.fn.expand('%:p'), vim.fn.getcwd()..'/', '')
-    StoreYank(path)
+    StoreYank(path, true)
   end
   , { nargs = 0 }
 )
@@ -12,7 +12,7 @@ vim.api.nvim_create_user_command(
   , function ()
     local filename = vim.fn.expand('%:t')
     filename = Explode(filename, '.')[1]
-    StoreYank(filename)
+    StoreYank(filename, true)
   end
   , { nargs = 0 }
 )

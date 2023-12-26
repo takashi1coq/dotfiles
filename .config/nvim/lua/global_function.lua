@@ -76,11 +76,13 @@ function _G.Rocate(table, value)
 end
 
 -- store yank
-function _G.StoreYank(word)
+function _G.StoreYank(word, printFlag)
   local w = tostring(word)
   vim.fn.setreg('+', w)
   vim.fn.setreg('"', w)
-  print('yank word => [ '..w..' ]')
+  if not(printFlag == nil) then
+    print('yank word => [ '..w..' ]')
+  end
 end
 
 -- open floating window
