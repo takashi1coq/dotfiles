@@ -6,6 +6,13 @@ os.hhmmss = function () return os.date('%X') end
 os.yyyymmdd = function () return os.date('%Y%m%d') end
 os.all = function () return os.date('%c') end
 os.formatdate = function () return os.date('%x') end
+-- string.myFind
+string.patternEscape = function (pattern)
+  return string.gsub(pattern, "[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%1")
+end
+string.myFind = function (s, pattern)
+  return string.find(s, string.patternEscape(pattern))
+end
 
 -- var dump
 function _G.Dd(...)
@@ -227,8 +234,8 @@ function _G.MyTerminal(name, openNum, cmd, path)
     , '0tabnew'
   }
   local openBufnr = Filter(function (v)
-    local _, count = string.gsub(vim.fn.bufname(v), name, "");
-    return not(count == 0)
+    local gotchaFirstNum = string.myFind(vim.fn.bufname(v), name)
+    return not(gotchaFirstNum == nil)
   end, vim.fn.range(1, vim.fn.bufnr("$")))
   if not(IsEmptyTable(openBufnr)) then
     if IsEmpty(vim.fn.input('already exists. open buffer? :')) then

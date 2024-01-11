@@ -13,10 +13,7 @@ vim.api.nvim_create_autocmd(
   , {
     pattern = '*'
     , callback = function ()
-        local buftype = vim.o.buftype
-        if IsEmpty(buftype) then
-          vim.cmd([[WinOne]])
-        end
+        vim.cmd([[WinOne]])
       end
   }
 )
