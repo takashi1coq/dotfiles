@@ -98,11 +98,6 @@ on_source = 'ddu.vim'
 # markdown
 # ==========================================================
 [[plugins]]
-repo = 'glidenote/memolist.vim'
-hook_add = '''
-luafile ~/.config/nvim/plugins/memolist.lua
-'''
-[[plugins]]
 repo = 'mattn/vim-maketable'
 hook_add = '''
 luafile ~/.config/nvim/plugins/vim-maketable.lua

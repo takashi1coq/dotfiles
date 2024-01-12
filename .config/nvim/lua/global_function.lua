@@ -84,6 +84,19 @@ function _G.Rocate(table, value)
   return false
 end
 
+-- return command result as table
+function _G.CommandResultAsTable(cmd)
+  local result = {}
+  local handle, err = io.popen(cmd)
+  if (handle) then
+    result = Explode(handle:read("*a"))
+    handle:close()
+  else
+    Dd('CommandResultAsTable error code : '..err)
+  end
+  return result
+end
+
 -- store yank
 function _G.StoreYank(word, printFlag)
   local w = tostring(word)
