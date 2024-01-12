@@ -9,7 +9,7 @@ vim.api.nvim_create_user_command(
   , function ()
     local list = vim.fn['mr#mrw#list']()
     local files = {}
-    local count = 5
+    local count = 1
     local exceptFiletype = {
       'markdown'
       , 'lua'
