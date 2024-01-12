@@ -106,23 +106,24 @@ vim.keymap.set('n', '<Space>m', function () vim.fn['ddu#start']({
   ui = 'ff'
   , sources = {{ name = 'mr', params = { kind = 'mrw' } }}
 }) end)
+-- ex. "(vim.*set)|(set.*vim)"
 local function createPermutationGrepWord (t)
   local b = {}
-  for p in Perm(t) do
-    local str = Implode(p, '.*')
+  for p in os.permutation(t) do
+    local str = string.implode(p, '.*')
     table.insert(b, str)
   end
-  return '('..Implode(b, ')|(')..')'
+  return '('..string.implode(b, ')|(')..')'
 end
 local function dduGrep(inputTitle, path)
-  local word = GetVisual()
-  if IsEmpty(word) then
+  local word = vim.fn.getVisual()
+  if string.isEmpty(word) then
     word = vim.fn.input(inputTitle)
-    if IsEmpty(word) then
+    if string.isEmpty(word) then
       return
     end
   end
-  local grepWord = createPermutationGrepWord(Explode(word, ' '))
+  local grepWord = createPermutationGrepWord(table.explode(word, ' '))
   vim.fn['ddu#start']({
     ui = 'ff'
     , uiParams = {
@@ -149,49 +150,50 @@ vim.keymap.set('n', '<Space>r', function () vim.fn['ddu#start']({
   , uiParams = { ff = { startFilter = false } }
 }) end)
 
-function _G.OpenDduSelect(selects)
-  local selectName = Map(selects, function(v) return v[1] end)
+vim.fn.openDduSelect = function (selects)
+  local selectName = table.map(selects, function(v) return v[1] end)
   vim.ui.select(selectName, {}, function(_,i)
     selects[i][2]()
   end)
   -- TODO error when not selected
 end
+
 vim.keymap.set('n', '<Space>c', function ()
-  OpenDduSelect({
+  vim.fn.openDduSelect({
     {
       'File : ~/.config/nvim/lua/local.lua'
-      , function () FileOpen('~/.config/nvim/lua/local.lua') end
+      , function () vim.fn.openFileInTab('~/.config/nvim/lua/local.lua') end
     }
     , {
       'File : ~/.zshrc'
-      , function () FileOpen('~/.zshrc') end
+      , function () vim.fn.openFileInTab('~/.zshrc') end
     }
     , {
       'File : ~/.bashrc'
-      , function () FileOpen('~/.bashrc') end
+      , function () vim.fn.openFileInTab('~/.bashrc') end
     }
     , {
       'File : ~/.gitconfig.local'
-      , function () FileOpen('~/.gitconfig.local') end
+      , function () vim.fn.openFileInTab('~/.gitconfig.local') end
     }
     , {
       'File : ~/.ssh/config'
-      , function () FileOpen('~/.ssh/config') end
+      , function () vim.fn.openFileInTab('~/.ssh/config') end
     }
     , {
       'File : /etc/profile (read only)'
       , function ()
         local path = '/etc/profile'
-        StoreYank('sudo nvim '..path)
-        FileOpen(path)
+        vim.fn.storeYank('sudo nvim '..path)
+        vim.fn.openFileInTab(path)
       end
     }
     , {
       'File : /etc/hosts (read only)'
       , function ()
         local path = '/etc/hosts'
-        StoreYank('sudo nvim '..path)
-        FileOpen(path)
+        vim.fn.storeYank('sudo nvim '..path)
+        vim.fn.openFileInTab(path)
       end
     }
     , {
@@ -204,60 +206,60 @@ vim.keymap.set('n', '<Space>c', function ()
     }
     , {
       'Command : Find port prosess [lsof -i :<PORT>] (open bottom terminal)'
-      , function () MyTerminal('myCommand', 1, 'lsof -i :', nil) end
+      , function () vim.fn.myTerminal('myCommand', 1, 'lsof -i :', nil) end
     }
     , {
       'Command : Docker prune [docker system prune] (yank)'
-      , function () StoreYank('docker system prune') end
+      , function () vim.fn.storeYank('docker system prune') end
     }
     , {
       'Command : File permission chmod [chmod u+x <FILE>] (open bottom terminal)'
-      , function () MyTerminal('myCommand', 1, 'chmod u+x ', nil) end
+      , function () vim.fn.myTerminal('myCommand', 1, 'chmod u+x ', nil) end
     }
     -- TODO create sort and diff function
     , {
       'Command : Sort File [LANG=C sort <Raw File> > <Sort File>] (yank)'
-      , function () StoreYank('LANG=C sort ') end
+      , function () vim.fn.storeYank('LANG=C sort ') end
     }
     , {
       'Command : Outputs the difference in both file [comm -3 <A File> <B File>] (yank)'
-      , function () StoreYank('comm -3 ') end
+      , function () vim.fn.storeYank('comm -3 ') end
     }
     , {
       'Command : Big file split [split -l 10000 <File>] (yank)'
-      , function () StoreYank('split -l 10000 ') end
+      , function () vim.fn.storeYank('split -l 10000 ') end
     }
     , {
       [[Command : jq command [jq '.[]' *.json > filename.json] (yank)]]
-      , function () StoreYank([[jq '.[]' *.json > filename.json]]) end
+      , function () vim.fn.storeYank([[jq '.[]' *.json > filename.json]]) end
     }
   })
 end)
 
 fileType['ddu-ff'] = function ()
-  VimBufferKeymapSet('n', '<CR>', function ()
+  vim.fn.bufferKeymapSet('n', '<CR>', function ()
     vim.fn['ddu#ui#do_action']('itemAction', { params = { command = 'tabedit' } })
   end)
-  VimBufferKeymapSet('n', 'i', function ()
+  vim.fn.bufferKeymapSet('n', 'i', function ()
     vim.fn['ddu#ui#do_action']('openFilterWindow')
   end)
-  VimBufferKeymapSet('n', 'dd', function ()
+  vim.fn.bufferKeymapSet('n', 'dd', function ()
     -- TODO mr delete ..
     vim.fn['ddu#ui#do_action']('itemAction', { name = 'delete' })
   end)
-  VimBufferKeymapSet('n', 'q', function ()
+  vim.fn.bufferKeymapSet('n', 'q', function ()
     vim.fn['ddu#ui#do_action']('quit')
   end)
 end
 fileType['ddu-ff-filter'] = function ()
-  VimBufferKeymapSet('i', '<CR>', '<Esc><Cmd>close<CR>')
-  VimBufferKeymapSet('n', '<CR>', '<Cmd>close<CR>')
+  vim.fn.bufferKeymapSet('i', '<CR>', '<Esc><Cmd>close<CR>')
+  vim.fn.bufferKeymapSet('n', '<CR>', '<Cmd>close<CR>')
 end
 
 -- ##################################
 -- # filer
 -- ##################################
-function _G.OpenDduFiler(path)
+vim.fn.openDduFiler = function (path)
   vim.fn['ddu#start']({
     ui = 'filer'
     , sources = {{ name = 'file', params = {} }}
@@ -271,13 +273,13 @@ end
 
 local function dduFiler()
   local filename = vim.fn.expand('%:t')
-  filename = Explode(filename, '.')[1]
+  filename = table.explode(filename, '.')[1]
   vim.cmd('silent! /'..filename)
-  OpenDduFiler(vim.fn.expand('%:p:h'))
+  vim.fn.openDduFiler(vim.fn.expand('%:p:h'))
 end
 
 vim.keymap.set('n', '<Space>f', function () dduFiler() end)
-vim.keymap.set('n', '<Space>w', function () OpenDduFiler(vim.fn.expand('~/work')) end)
+vim.keymap.set('n', '<Space>w', function () vim.fn.openDduFiler(vim.fn.expand('~/work')) end)
 vim.keymap.set('n', '<Space>d', function () vim.fn['ddu#start']({
   ui = 'filer'
   , sources = {{ name = 'file', params = {} }}
@@ -295,7 +297,7 @@ vim.keymap.set('n', '<Space>d', function () vim.fn['ddu#start']({
 }) end)
 
 vim.fn['ddu#custom#action']('ui', 'filer', 'terminalOpen', function (args)
-  MyTerminal('filerTerminalOpen', 2, nil, args.context.path)
+  vim.fn.myTerminal('filerTerminalOpen', 2, nil, args.context.path)
 end)
 vim.fn['ddu#custom#action']('ui', 'filer', 'explorerOpen', function (args)
   vim.cmd('silent !open '..args.context.path)
@@ -307,49 +309,49 @@ vim.fn['ddu#custom#action']('ui', 'filer', 'createMyRoot', function (args)
 end)
 
 fileType['ddu-filer'] = function ()
-  VimBufferKeymapSet('n', '<CR>', function ()
+  vim.fn.bufferKeymapSet('n', '<CR>', function ()
     vim.fn['ddu#ui#do_action']('itemAction', { name = 'open', params = { command = 'tabedit' } })
   end)
-  VimBufferKeymapSet('n', 'yy', function ()
+  vim.fn.bufferKeymapSet('n', 'yy', function ()
     vim.fn['ddu#ui#do_action']('itemAction', { name = 'copy' })
   end)
-  VimBufferKeymapSet('n', 'p', function ()
+  vim.fn.bufferKeymapSet('n', 'p', function ()
     vim.fn['ddu#ui#do_action']('itemAction', { name = 'paste' })
   end)
-  VimBufferKeymapSet('n', 'rr', function ()
+  vim.fn.bufferKeymapSet('n', 'rr', function ()
     vim.fn['ddu#ui#do_action']('itemAction', { name = 'rename' })
   end)
-  VimBufferKeymapSet('n', 'mm', function ()
+  vim.fn.bufferKeymapSet('n', 'mm', function ()
     vim.fn['ddu#ui#do_action']('itemAction', { name = 'move' })
   end)
-  VimBufferKeymapSet('n', 'dd', function ()
+  vim.fn.bufferKeymapSet('n', 'dd', function ()
     vim.fn['ddu#ui#do_action']('itemAction', { name = 'delete' })
   end)
-  VimBufferKeymapSet('n', 'N', function ()
+  vim.fn.bufferKeymapSet('n', 'N', function ()
     vim.fn['ddu#ui#do_action']('itemAction', { name = 'newFile' })
   end)
-  VimBufferKeymapSet('n', 'D', function ()
+  vim.fn.bufferKeymapSet('n', 'D', function ()
     vim.fn['ddu#ui#do_action']('itemAction', { name = 'newDirectory' })
   end)
-  VimBufferKeymapSet('n', '.', function ()
+  vim.fn.bufferKeymapSet('n', '.', function ()
     vim.fn['ddu#ui#filer#do_action']('createMyRoot')
   end)
-  VimBufferKeymapSet('n', 'l', function ()
+  vim.fn.bufferKeymapSet('n', 'l', function ()
     vim.fn['ddu#ui#do_action']('itemAction', { name = 'narrow' })
   end)
-  VimBufferKeymapSet('n', 'h', function ()
+  vim.fn.bufferKeymapSet('n', 'h', function ()
     vim.fn['ddu#ui#do_action']('itemAction', { name = 'narrow', params = { path = '..' } })
   end)
-  VimBufferKeymapSet('n', 'q', function ()
+  vim.fn.bufferKeymapSet('n', 'q', function ()
     vim.fn['ddu#ui#filer#do_action']('quit')
   end)
-  VimBufferKeymapSet('n', 't', function ()
+  vim.fn.bufferKeymapSet('n', 't', function ()
     vim.fn['ddu#ui#filer#do_action']('terminalOpen')
   end)
-  VimBufferKeymapSet('n', 'e', function ()
+  vim.fn.bufferKeymapSet('n', 'e', function ()
     vim.fn['ddu#ui#filer#do_action']('explorerOpen')
   end)
-  VimBufferKeymapSet('n', '<F4>', function ()
+  vim.fn.bufferKeymapSet('n', '<F4>', function ()
     vim.fn['ddu#redraw'](vim.b['ddu_ui_name'], {refreshItems = 1})
   end)
 end
@@ -370,4 +372,4 @@ vim.api.nvim_create_user_command(
   , { nargs = 0 }
 )
 
-SetFileTypeKeyMap(fileType, 'ddu_augroup')
+vim.fn.createFileTypeAugroup(fileType, 'ddu_augroup')

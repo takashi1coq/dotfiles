@@ -1,6 +1,6 @@
 local fileType = {}
 fileType['markdown'] = function ()
-  VimBufferKeymapSet('v', 't', [[<Cmd>'<,'>MakeTable!<CR>]])
-  VimBufferKeymapSet('n', 'c', [[<Cmd>UnmakeTable<CR>]])
+  vim.fn.bufferKeymapSet('v', 't', [[<Cmd>'<,'>MakeTable!<CR>]])
+  vim.fn.bufferKeymapSet('n', 'c', [[<Cmd>UnmakeTable<CR>]])
 end
-SetFileTypeKeyMap(fileType, 'vim_maketable')
+vim.fn.createFileTypeAugroup(fileType, 'vim_maketable')

@@ -1,9 +1,9 @@
 local function fileFullName()
   local path = vim.bo.filetype
-  if IsEmpty(vim.bo.buftype) then
-    path = Replace(vim.fn.expand('%:p'), vim.fn.getcwd()..'/', '')
+  if string.isEmpty(vim.bo.buftype) then
+    path = string.replace(vim.fn.expand('%:p'), vim.fn.getcwd()..'/', '')
     path = path:gsub('%%', '')
-    if IsEmpty(path) then
+    if string.isEmpty(path) then
       path = '[No Name]'
     end
   end
@@ -39,7 +39,7 @@ require('lualine').setup {
     , lualine_c = {}
     , lualine_x = {}
     , lualine_y = {}
-    , lualine_z = { ProjectDirName }
+    , lualine_z = { vim.fn.getProjectDirName }
   }
   , winbar = {}
   , inactive_winbar = {}

@@ -19,13 +19,13 @@ vim.api.nvim_create_user_command(
     local exceptExtension = {
       'log'
     }
-    for i in ipairs(list) do
+    for i = 1, #list do
       local filePath = list[i]
-      local extension = CreateExtension(filePath)
+      local extension = string.getExtension(filePath)
       if vim.fn.getftype(filePath) then
-        if Rocate(exceptFiletype, vim.filetype.match({filename = filePath})) then
+        if table.locate(exceptFiletype, vim.filetype.match({filename = filePath})) then
           count = count + 1
-        elseif Rocate(exceptExtension, extension) then
+        elseif table.locate(exceptExtension, extension) then
           count = count + 1
         else
           if i <= count then
@@ -35,10 +35,13 @@ vim.api.nvim_create_user_command(
       end
     end
     files = Reverse(files);
-    for i in ipairs(files) do
-      vim.cmd('tabe '..files[i])
+    for i = 1, #files do
+      if i == 1 then
+        vim.cmd('e '..files[i])
+      else
+        vim.cmd('tabe '..files[i])
+      end
     end
-    DeleteNoNameBuffer()
   end
   , { nargs = 0 }
 )

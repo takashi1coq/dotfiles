@@ -1,18 +1,18 @@
 local memoPath = vim.fn.expand('~/work/memo/docs/mkmemo')
 
 local function createMemoFile(title)
-  if IsEmpty(title) then
+  if string.isEmpty(title) then
     title = vim.fn.input('memo title ? : ')
-    if IsEmpty(title) then
+    if string.isEmpty(title) then
       return
     end
   end
   os.execute("mkdir -p "..memoPath)
-  local header = Implode({
+  local header = string.implode({
     title
     , [[==========]]
   }, '\n')
-  local filePath = Implode({
+  local filePath = string.implode({
     memoPath
     , os.yyyymmddhhmmss()..'.md'
   }, '/')
@@ -21,13 +21,13 @@ local function createMemoFile(title)
     file:write(header)
     file:close()
   end
-  FileOpen(filePath)
+  vim.fn.openFileInTab(filePath)
 end
 
 local function createSelects(dir)
   local selects = {}
-  local files = CommandResultAsTable('ls -t '..dir)
-  Foreach(function (file)
+  local files = table.commandResultAsTable('ls -t '..dir)
+  table.myForeach(function (file)
     local filePath = dir..'/'..file
     local fileHandle, err = io.open(filePath, 'r')
     if fileHandle then
@@ -35,10 +35,10 @@ local function createSelects(dir)
       fileHandle:close()
       table.insert(selects, {
         firstLine
-        , function () FileOpen(filePath) end
+        , function () vim.fn.openFileInTab(filePath) end
       })
     else
-      Dd('createSelects not file open. error code: '..err)
+      os.dump('createSelects not file open. error code: '..err)
     end
   end, files)
   return selects
@@ -49,5 +49,5 @@ vim.keymap.set('n', 'mn', function ()
 end)
 
 vim.keymap.set('n', 'ml', function ()
-  OpenDduSelect(createSelects(memoPath))
+  vim.fn.openDduSelect(createSelects(memoPath))
 end)

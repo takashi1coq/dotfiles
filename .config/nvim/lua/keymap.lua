@@ -60,6 +60,9 @@ vim.keymap.set('v', '.', ":'<,'>normal .<CR>")
 -- keywordにハイフンを含める
 vim.keymap.set('n', '--', function () vim.cmd('setlocal isk+=-') end)
 
+-- urlを開く
+vim.keymap.set('n', 'oo', function () vim.cmd('normal gx') end)
+
 --[[==========================================================
  seach
 ============================================================]]
@@ -88,7 +91,7 @@ vim.keymap.set('n', '<Right>', '<C-w><')
 vim.keymap.set('n', '<Left>', '<C-w>>')
 
 -- 閉じる
-vim.keymap.set('n', 'q', function () MyQuit() end)
+vim.keymap.set('n', 'q', function () vim.fn.myQuit() end)
 
 -- windowサイズをそろえる
 vim.keymap.set('n', '==', '<C-w>=')
@@ -99,7 +102,7 @@ vim.keymap.set('n', '==', '<C-w>=')
 ============================================================]]
 
 -- 新しいタブ
-vim.keymap.set('n', 'tt', function () EmptyBufferSettingCmd('tabnew') end)
+vim.keymap.set('n', 'tt', function () vim.fn.openEmptyBuffer() end)
 
 -- タブ移動
 vim.keymap.set('n', '<C-l>', 'gt')
@@ -118,5 +121,88 @@ vim.keymap.set('n', 'to', function () vim.cmd('tabo') end)
 vim.keymap.set('t', '<ESC>', [[<C-\><C-n>]])
 
 
+--[[==========================================================
+ function
+============================================================]]
 
+-- translate-shell
+local function translate (slLang, tlLang)
+  local visualStr = vim.fn.getVisual()
+  visualStr = visualStr:gsub('"', '')
+  os.dump(lang)
+  local result = vim.fn.system('trans -b -sl='..slLang..' -tl='..tlLang..' '.. '"'.. visualStr.. '"')
+  result = result:gsub('\n', '')
+  local buf = vim.fn.openFloatingWindow()
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, {result})
+end
+vim.keymap.set('v', '<F1>', function () translate('en','ja') end)
+vim.keymap.set('v', '<F2>', function () translate('ja','en') end)
+
+-- refresh
+vim.keymap.set(
+  'n', '<F4>'
+  , function ()
+    local tabnr = vim.fn.tabpagenr()
+    vim.cmd('tabdo e!')
+    vim.cmd('tabnext '..tabnr)
+
+    local bufnrs = vim.fn.range(1, vim.fn.bufnr("$"))
+    local deleteBufners = table.filter(function (v)
+      local isBufexists = vim.fn.bufexists(vim.fn.bufname(v)) == 1
+      local isFilereadable = vim.fn.filereadable(vim.fn.expand("#"..v..":p")) == 1
+      local isBuflisted = vim.fn.buflisted(v) == 1
+      local isTerminal = vim.fn.getbufvar(v, '&buftype') == 'terminal'
+      return isBufexists and not(isFilereadable) and isBuflisted and not(isTerminal)
+    end, bufnrs)
+    for i in ipairs(deleteBufners) do
+      vim.cmd('bd '..deleteBufners[i])
+    end
+  end
+)
+-- show message
+vim.keymap.set(
+  'n', '<F12>'
+  , function () vim.cmd('Messages') end
+)
+
+-- toggle case
+local function ToggleWordCase(word)
+  local result = word
+  if word:find('[a-z][A-Z]') then
+    result = word:gsub('([a-z])([A-Z])', '%1_%2'):lower()
+  elseif word:find('_[a-z]') then
+    result = word:gsub('(_)([a-z])', function(_, l) return l:upper() end)
+  elseif word:find('-[a-z]') then
+    result = word:gsub('(-)([a-z])', function(_, l) return l:upper() end)
+  end
+  return result
+end
+local function ChangeWordCaseHyphen(word)
+  local result = word
+  if word:find('[a-z][A-Z]') then
+    result = word:gsub('([a-z])([A-Z])', '%1-%2'):lower()
+  elseif word:find('_[a-z]') then
+    result = word:gsub('(_)([a-z])', function(_, l) return '-'..l end)
+  end
+  return result
+end
+vim.keymap.set(
+  'v', 'cc'
+  , function ()
+    vim.fn.setVisual(ToggleWordCase(vim.fn.getVisual()))
+  end
+)
+vim.keymap.set(
+  'v', '--'
+  , function ()
+    vim.fn.setVisual(ChangeWordCaseHyphen(vim.fn.getVisual()))
+  end
+)
+vim.keymap.set(
+  'v', '=='
+  , function ()
+    local func = assert(load("return " .. vim.fn.getVisual()))
+    vim.fn.setVisual(func())
+  end
+)
 
