@@ -148,6 +148,11 @@ vim.keymap.set(
     end
   end
 )
+-- show message
+vim.keymap.set(
+  'n', '<F12>'
+  , function () vim.cmd('Messages') end
+)
 
 -- toggle case
 local function ToggleWordCase(word)
