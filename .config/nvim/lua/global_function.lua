@@ -2,10 +2,12 @@
 os.yyyy = function () return os.date('%Y') end
 os.mm = function () return os.date('%m') end
 os.dd = function () return os.date('%d') end
-os.hhmmss = function () return os.date('%X') end
 os.yyyymmdd = function () return os.date('%Y%m%d') end
+os.hhmmss = function () return os.date('H%M%S') end
+os.yyyymmddhhmmss = function () return os.date('%Y%m%d%H%M%S') end
 os.all = function () return os.date('%c') end
 os.formatdate = function () return os.date('%x') end
+os.formathhmmss = function () return os.date('%X') end
 -- string.myFind
 string.patternEscape = function (pattern)
   return string.gsub(pattern, "[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%1")
@@ -284,8 +286,28 @@ end
 
 -- avoid E162. open empty buffer
 function _G.EmptyBufferSettingCmd(cmd)
+  if cmd == nil then
+    cmd = 'tabnew'
+  end
   vim.cmd(cmd)
   vim.cmd('setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile')
+end
+
+-- memo buffer
+function _G.MemoBuffer(name, text)
+  local openBufnr = Filter(function (v)
+    local firstNumFound = string.myFind(vim.fn.bufname(v), name)
+    return not(firstNumFound == nil)
+  end, vim.fn.range(1, vim.fn.bufnr("$")))
+  if not(IsEmptyTable(openBufnr)) then
+    Foreach(function (v)
+      EmptyBufferSettingCmd()
+      vim.cmd('b '..v)
+    end, openBufnr)
+  else
+    vim.fn.setreg('a', text)
+    vim.cmd('tabnew | setlocal buftype=nofile filetype=markdown | file '..name..' | normal "ap')
+  end
 end
 
 -- delete no name buffer
