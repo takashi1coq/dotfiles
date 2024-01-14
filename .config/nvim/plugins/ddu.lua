@@ -297,7 +297,7 @@ vim.keymap.set('n', '<Space>d', function () vim.fn['ddu#start']({
 }) end)
 
 vim.fn['ddu#custom#action']('ui', 'filer', 'terminalOpen', function (args)
-  vim.fn.myTerminal('filerTerminalOpen', 2, nil, args.context.path)
+  vim.fn.myTerminal('filerTerminalOpen', 1, nil, args.context.path)
 end)
 vim.fn['ddu#custom#action']('ui', 'filer', 'explorerOpen', function (args)
   vim.cmd('silent !open '..args.context.path)
@@ -306,6 +306,18 @@ vim.fn['ddu#custom#action']('ui', 'filer', 'createMyRoot', function (args)
   local path = args.context.path..'/.myRoot'
   vim.cmd('silent !touch '..path)
   vim.fn['ddu#redraw'](vim.b['ddu_ui_name'], {refreshItems = 1})
+end)
+vim.fn['ddu#custom#action']('ui', 'filer', 'dduFilerDiff', function ()
+  local path = vim.fn['ddu#ui#get_item']().treePath
+  if (string.isEmpty(vim.g.diffA)) or vim.g.diffA == path then
+    vim.g.diffA = path
+    print('diffA => [ '..vim.g.diffA..' ]')
+  else
+    vim.cmd('tabnew '..vim.g.diffA..'|diffthis')
+    vim.cmd('vsplit '..path..'|diffthis')
+    vim.g.diffA = ''
+    print('diffA => [ '..vim.g.diffA..' ]')
+  end
 end)
 
 fileType['ddu-filer'] = function ()
@@ -350,6 +362,9 @@ fileType['ddu-filer'] = function ()
   end)
   vim.fn.bufferKeymapSet('n', 'e', function ()
     vim.fn['ddu#ui#filer#do_action']('explorerOpen')
+  end)
+  vim.fn.bufferKeymapSet('n', 'c', function ()
+    vim.fn['ddu#ui#filer#do_action']('dduFilerDiff')
   end)
   vim.fn.bufferKeymapSet('n', '<F4>', function ()
     vim.fn['ddu#redraw'](vim.b['ddu_ui_name'], {refreshItems = 1})
