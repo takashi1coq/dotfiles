@@ -102,6 +102,13 @@ table.jsonDecode = function (path)
   end
   return {}
 end
+table.reverse = function (t)
+  local result = {}
+  for i=#t, 1, -1 do
+    result[#result+1] = t[i]
+  end
+  return result
+end
 
 -- string..
 string.implode = function (t, sep)

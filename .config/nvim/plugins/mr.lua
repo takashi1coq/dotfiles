@@ -22,10 +22,10 @@ vim.api.nvim_create_user_command(
     for i = 1, #list do
       local filePath = list[i]
       local extension = string.getExtension(filePath)
+      local isFileType = table.locate(exceptFiletype, vim.filetype.match({filename = filePath}))
+      local isExtension = table.locate(exceptExtension, extension)
       if vim.fn.getftype(filePath) then
-        if table.locate(exceptFiletype, vim.filetype.match({filename = filePath})) then
-          count = count + 1
-        elseif table.locate(exceptExtension, extension) then
+        if isFileType or isExtension then
           count = count + 1
         else
           if i <= count then
@@ -34,7 +34,7 @@ vim.api.nvim_create_user_command(
         end
       end
     end
-    files = Reverse(files);
+    files = table.reverse(files);
     for i = 1, #files do
       if i == 1 then
         vim.cmd('e '..files[i])
@@ -45,10 +45,3 @@ vim.api.nvim_create_user_command(
   end
   , { nargs = 0 }
 )
-function _G.Reverse(t)
-  local result = {}
-  for i=#t, 1, -1 do
-    result[#result+1] = t[i]
-  end
-  return result
-end
