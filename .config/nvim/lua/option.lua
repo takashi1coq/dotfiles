@@ -1,5 +1,6 @@
 -- 行番号
-vim.api.nvim_set_option('number', true)
+--vim.api.nvim_set_option('number', true)
+vim.cmd('set number')
 
 -- スワップファイルを作成しない
 vim.api.nvim_set_option('swapfile', false)
