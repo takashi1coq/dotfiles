@@ -57,9 +57,6 @@ vim.keymap.set('n', '<C-i>', '<C-o>zz')
 -- 選択業にdot command
 vim.keymap.set('v', '.', ":'<,'>normal .<CR>")
 
--- keywordにハイフンを含める
-vim.keymap.set('n', '--', function () vim.cmd('setlocal isk+=-') end)
-
 -- urlを開く
 vim.keymap.set('n', 'oo', function () vim.cmd('normal gx') end)
 

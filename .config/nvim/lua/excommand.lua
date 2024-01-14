@@ -85,6 +85,26 @@ vim.api.nvim_create_user_command(
   end
   , { nargs = 0 }
 )
+vim.api.nvim_create_user_command(
+  'ToggleKeywordHyphen'
+  , function ()
+    local bufnr = vim.fn.bufnr()
+    local iskeyword = vim.api.nvim_buf_get_option(bufnr, 'iskeyword')
+    local filterHyphenTable = table.filter(function (v)
+      return v == '-'
+    end, table.explode(iskeyword, ','))
+    if table.isEmpty(filterHyphenTable) then
+      vim.cmd('setlocal isk+=-')
+      local updateIskeyword = vim.api.nvim_buf_get_option(bufnr, 'iskeyword')
+      print('iskeyword => [ '..updateIskeyword..' ]')
+    else
+      vim.cmd('setlocal isk-=-')
+      local updateIskeyword = vim.api.nvim_buf_get_option(bufnr, 'iskeyword')
+      print('iskeyword => [ '..updateIskeyword..' ]')
+    end
+  end
+  , { nargs = 0 }
+)
 
 vim.api.nvim_create_user_command(
   'Messages'
