@@ -15,6 +15,14 @@ vim.api.nvim_create_user_command(
   end
   , { nargs = 0 }
 )
+vim.api.nvim_create_user_command(
+  'CopyFullPath'
+  , function ()
+    local filename = vim.fn.expand('%:p')
+    vim.fn.storeYank(filename, true)
+  end
+  , { nargs = 0 }
+)
 
 vim.api.nvim_create_user_command(
   'Capture'

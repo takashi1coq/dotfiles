@@ -145,23 +145,9 @@ vim.fn.openEmptyBuffer = function (opener)
   end
   vim.cmd(opener..' | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile')
 end
--- memo buffer
-vim.fn.memoBuffer = function (name, text)
-  local openBufnr = filterBuflistNumberByMatchingBufname(name)
-  if not(table.isEmpty(openBufnr)) then
-    table.myForeach(function (v)
-      vim.fn.openEmptyBuffer()
-      vim.cmd('b '..v)
-    end, openBufnr)
-  else
-    vim.fn.setreg('a', text)
-    vim.cmd('tabnew | setlocal buftype=nofile filetype=markdown | file '..name..' | normal "ap')
-  end
-end
 -- open browser
 vim.fn.openBrowser = function (url)
-  local command = '!open -a "Google Chrome" '..url
-  vim.cmd('silent '..command)
+  os.execute('open -a "Google Chrome" "'..url..'"')
 end
 -- create delimiter file
 vim.fn.createDelimiterFile = function (path, data, count, sep)
