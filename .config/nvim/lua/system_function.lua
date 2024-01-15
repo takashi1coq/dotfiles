@@ -40,6 +40,9 @@ os.permutation = function (t)
     return res
   end
 end
+os.openBrowser = function (url)
+  os.execute('open -a "Google Chrome" "'..url..'"')
+end
 
 -- table..
 table.explode = function (s, sep)

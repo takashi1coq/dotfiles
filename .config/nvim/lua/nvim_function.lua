@@ -145,10 +145,6 @@ vim.fn.openEmptyBuffer = function (opener)
   end
   vim.cmd(opener..' | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile')
 end
--- open browser
-vim.fn.openBrowser = function (url)
-  os.execute('open -a "Google Chrome" "'..url..'"')
-end
 -- create delimiter file
 vim.fn.createDelimiterFile = function (path, data, count, sep)
   if path == nil then
