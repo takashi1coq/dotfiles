@@ -48,6 +48,7 @@ vim.api.nvim_create_user_command(
       v = (v == 'period') and '\\.' or v
       v = (v == 'colon') and ':' or v
       v = (v == 'semicolon') and ';' or v
+      v = (v == 'empty') and '' or v
       return v
     end
     local prev = change(opts.fargs[1], true)
@@ -65,6 +66,7 @@ vim.api.nvim_create_user_command(
         , 'period'
         , 'colon'
         , 'semicolon'
+        , 'empty'
       }
     end
   }

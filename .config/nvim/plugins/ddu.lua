@@ -213,6 +213,10 @@ vim.keymap.set('n', '<Space>c', function ()
       , function () vim.fn.storeYank('docker system prune') end
     }
     , {
+      'Command : Docker prune [docker-compose build --no-cache] (yank)'
+      , function () vim.fn.storeYank('docker-compose build --no-cache') end
+    }
+    , {
       'Command : File permission chmod [chmod u+x <FILE>] (open bottom terminal)'
       , function () vim.fn.myTerminal('myCommand', 1, 'chmod u+x ', nil) end
     }
