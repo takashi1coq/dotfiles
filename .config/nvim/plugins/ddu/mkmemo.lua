@@ -49,5 +49,5 @@ vim.keymap.set('n', 'mn', function ()
 end)
 
 vim.keymap.set('n', 'ml', function ()
-  vim.fn.openDduSelect(createSelects(memoPath))
+  vim.fn.openCustomList(createSelects(memoPath), true)
 end)

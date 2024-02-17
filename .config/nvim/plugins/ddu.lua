@@ -45,9 +45,6 @@ vim.fn['ddu#custom#patch_global']({
     file = {
       defaultAction = 'open'
     }
-    , ui_select = {
-      defaultAction = 'select'
-    }
   }
 })
 
@@ -149,96 +146,6 @@ vim.keymap.set('n', '<Space>r', function () vim.fn['ddu#start']({
   ui = 'ff', resume = 1
   , uiParams = { ff = { startFilter = false } }
 }) end)
-
-vim.fn.openDduSelect = function (selects)
-  local selectName = table.map(selects, function(v) return v[1] end)
-  vim.ui.select(selectName, {}, function(_,i)
-    selects[i][2]()
-  end)
-  -- TODO error when not selected
-end
-
-vim.keymap.set('n', '<Space>c', function ()
-  vim.fn.openDduSelect({
-    {
-      'File : ~/.config/nvim/lua/local.lua'
-      , function () vim.fn.openFileInTab('~/.config/nvim/lua/local.lua') end
-    }
-    , {
-      'File : ~/.zshrc'
-      , function () vim.fn.openFileInTab('~/.zshrc') end
-    }
-    , {
-      'File : ~/.bashrc'
-      , function () vim.fn.openFileInTab('~/.bashrc') end
-    }
-    , {
-      'File : ~/.gitconfig.local'
-      , function () vim.fn.openFileInTab('~/.gitconfig.local') end
-    }
-    , {
-      'File : ~/.ssh/config'
-      , function () vim.fn.openFileInTab('~/.ssh/config') end
-    }
-    , {
-      'File : /etc/profile (read only)'
-      , function ()
-        local path = '/etc/profile'
-        vim.fn.storeYank('sudo nvim '..path)
-        vim.fn.openFileInTab(path)
-      end
-    }
-    , {
-      'File : /etc/hosts (read only)'
-      , function ()
-        local path = '/etc/hosts'
-        vim.fn.storeYank('sudo nvim '..path)
-        vim.fn.openFileInTab(path)
-      end
-    }
-    , {
-      'Dein : Dein Plugin Update'
-      , function () vim.cmd('call dein#update()') end
-    }
-    , {
-      'ExCmd : Toggle number setting :ToggleNumber'
-      , function () vim.cmd('ToggleNumber') end
-    }
-    , {
-      'Command : Find port prosess [lsof -i :<PORT>] (open bottom terminal)'
-      , function () vim.fn.myTerminal('myCommand', 1, 'lsof -i :', nil) end
-    }
-    , {
-      'Command : Docker prune [docker system prune] (yank)'
-      , function () vim.fn.storeYank('docker system prune') end
-    }
-    , {
-      'Command : Docker prune [docker-compose build --no-cache] (yank)'
-      , function () vim.fn.storeYank('docker-compose build --no-cache') end
-    }
-    , {
-      'Command : File permission chmod [chmod u+x <FILE>] (open bottom terminal)'
-      , function () vim.fn.myTerminal('myCommand', 1, 'chmod u+x ', nil) end
-    }
-    -- TODO create sort and diff function
-    , {
-      'Command : Sort File [LANG=C sort <Raw File> > <Sort File>] (yank)'
-      , function () vim.fn.storeYank('LANG=C sort ') end
-    }
-    , {
-      'Command : Outputs the difference in both file [comm -3 <A File> <B File>] (yank)'
-      , function () vim.fn.storeYank('comm -3 ') end
-    }
-    , {
-      'Command : Big file split [split -l 10000 <File>] (yank)'
-      , function () vim.fn.storeYank('split -l 10000 ') end
-    }
-    , {
-      [[Command : jq command [jq '.[]' *.json > filename.json] (yank)]]
-      , function () vim.fn.storeYank([[jq '.[]' *.json > filename.json]]) end
-    }
-  })
-end)
 
 fileType['ddu-ff'] = function ()
   vim.fn.bufferKeymapSet('n', '<CR>', function ()

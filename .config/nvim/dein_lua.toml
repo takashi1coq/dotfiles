@@ -58,6 +58,8 @@ repo = 'Shougo/ddu.vim'
 depends = ['denops.vim', 'pum.vim']
 hook_add = '''
 luafile ~/.config/nvim/plugins/ddu.lua
+luafile ~/.config/nvim/plugins/ddu/custom_list.lua
+luafile ~/.config/nvim/plugins/ddu/mkmemo.lua
 '''
 [[plugins]]
 repo = 'Shougo/ddu-ui-filer'
@@ -90,7 +92,7 @@ on_source = 'ddu.vim'
 repo = 'kuuote/ddu-source-mr'
 on_source = 'ddu.vim'
 [[plugins]]
-repo = 'matsui54/ddu-vim-ui-select'
+repo = 'liquidz/ddu-source-custom-list'
 on_source = 'ddu.vim'
 
 

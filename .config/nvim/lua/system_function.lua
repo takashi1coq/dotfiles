@@ -61,7 +61,7 @@ end
 table.map = function (t, fn)
   local result = {}
   for i = 1, #t do
-    table.insert(result, fn(t[i]))
+    table.insert(result, fn(t[i], i))
   end
   return result
 end

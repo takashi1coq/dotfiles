@@ -12,7 +12,6 @@ vim.api.nvim_create_user_command(
     local count = 1
     local exceptFiletype = {
       'markdown'
-      , 'lua'
       , 'csv'
       , 'json'
     }
