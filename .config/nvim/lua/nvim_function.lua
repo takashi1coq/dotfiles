@@ -111,7 +111,7 @@ vim.fn.myTerminal = function (name, openNum, cmd, path)
     '$SHELL;#'..name..openNum
     , {
       on_exit = function ()
-        vim.cmd('q')
+        vim.cmd('bd')
       end
       , on_stdout = function (id, data, event)
         -- TODO terminal log..?
