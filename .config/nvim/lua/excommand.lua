@@ -57,8 +57,10 @@ vim.api.nvim_create_user_command(
   end
   , {
     nargs = '*'
-    , complete = function ()
-      return {
+    , complete = function (arg_lead)
+      return vim.tbl_filter(function(item)
+        return vim.startswith(item, arg_lead)
+      end, {
         'tab'
         , 'enter'
         , 'space'
@@ -67,7 +69,7 @@ vim.api.nvim_create_user_command(
         , 'colon'
         , 'semicolon'
         , 'empty'
-      }
+      })
     end
   }
 )
