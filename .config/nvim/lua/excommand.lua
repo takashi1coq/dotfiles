@@ -58,18 +58,21 @@ vim.api.nvim_create_user_command(
   , {
     nargs = '*'
     , complete = function (arg_lead)
-      return vim.tbl_filter(function(item)
-        return vim.startswith(item, arg_lead)
-      end, {
-        'tab'
-        , 'enter'
-        , 'space'
-        , 'comma'
-        , 'period'
-        , 'colon'
-        , 'semicolon'
-        , 'empty'
-      })
+      return vim.tbl_filter(
+        function(item)
+          return vim.startswith(item, arg_lead)
+        end
+        , {
+          'tab'
+          , 'enter'
+          , 'space'
+          , 'comma'
+          , 'period'
+          , 'colon'
+          , 'semicolon'
+          , 'empty'
+        }
+      )
     end
   }
 )
