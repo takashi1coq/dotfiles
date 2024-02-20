@@ -33,6 +33,11 @@ repo = 'nvim-lualine/lualine.nvim'
 hook_add = '''
 luafile ~/.config/nvim/plugins/lualine.lua
 '''
+[[plugins]]
+repo = 'ds1sqe/Calendar.nvim'
+hook_add = '''
+luafile ~/.config/nvim/plugins/calendar.lua
+'''
 
 # ==========================================================
 # git

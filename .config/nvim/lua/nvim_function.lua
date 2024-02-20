@@ -26,6 +26,7 @@ vim.fn.openFloatingWindow = function ()
     , height = math.ceil(vim.o.lines / 2)
     , col = math.ceil((vim.o.columns / 2) - (vim.o.columns / 4))
     , row = math.ceil((vim.o.lines / 2) - (vim.o.lines / 4))
+    , style = 'minimal'
   }
   vim.api.nvim_open_win(buf, true, option)
   return buf
