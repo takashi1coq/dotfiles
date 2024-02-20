@@ -44,8 +44,10 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
   'LogCurrent'
   , function ()
-    vim.cmd('silent! /'..vim.fn.expand('%:t'))
-    vim.cmd('GinLog -- %')
+    local fileName = vim.fn.expand('%:t')
+    local fullPath = vim.fn.expand('%:p')
+    vim.cmd('silent! /'..fileName)
+    vim.cmd('tabnew | GinLog -- '..fullPath)
   end
   , { nargs = 0 }
 )
