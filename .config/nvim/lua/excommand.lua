@@ -27,9 +27,7 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
   'Capture'
   , function (opts)
-    local buf = vim.fn.openFloatingWindow()
-    local result = vim.fn.split(vim.fn.execute(opts.args), '\n')
-    vim.api.nvim_buf_set_lines(buf, 0, -1, false, result)
+    vim.fn.openFloatingWindowWithText(vim.fn.execute(opts.args))
   end
   , {
     nargs = '+'

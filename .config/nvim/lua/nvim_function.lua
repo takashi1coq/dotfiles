@@ -16,20 +16,35 @@ vim.fn.storeYank = function (word, printFlag)
   end
 end
 -- open floating window
-vim.fn.openFloatingWindow = function ()
+vim.fn.openFloatingWindowWithText = function (text)
+  local lines = vim.fn.split(text, '\n')
   local buf = vim.api.nvim_create_buf(false, true)
-  local option = {
-    relative = 'editor'
-    , anchor = 'NW'
-    , external = false
-    , width = math.ceil(vim.o.columns / 2)
-    , height = math.ceil(vim.o.lines / 2)
-    , col = math.ceil((vim.o.columns / 2) - (vim.o.columns / 4))
-    , row = math.ceil((vim.o.lines / 2) - (vim.o.lines / 4))
-    , style = 'minimal'
-  }
-  vim.api.nvim_open_win(buf, true, option)
-  return buf
+  local originalWinSize = vim.api.nvim_win_get_width(0)
+  local heightTable = {}
+  local max_width = 0
+  for _, line in ipairs(lines) do
+    local line_width = vim.fn.strdisplaywidth(line)
+    if line_width > max_width then
+        max_width = line_width
+    end
+    local index = 1
+    while index <= #line do
+      table.insert(heightTable, line:sub(index, index + originalWinSize - 1))
+      index = index + originalWinSize
+    end
+  end
+  local height = #heightTable
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+  local win_id = vim.api.nvim_open_win(buf, true, {
+      relative = 'editor',
+      width = (max_width == 0) and 1 or max_width,
+      height = (height == 0) and 1 or height,
+      row = 1,
+      col = originalWinSize - max_width,
+      style = 'minimal',
+      border = 'single',
+  })
+  vim.api.nvim_win_set_option(win_id, 'wrap', true)
 end
 -- get visual
 vim.fn.getVisual = function ()
