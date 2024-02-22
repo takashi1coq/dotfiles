@@ -28,7 +28,7 @@ vim.fn.openFloatingWindowWithText = function (text)
         max_width = line_width
     end
     local index = 1
-    while index <= #line do
+    while index <= vim.fn.strdisplaywidth(line) do
       table.insert(heightTable, line:sub(index, index + originalWinSize - 1))
       index = index + originalWinSize
     end
