@@ -51,6 +51,28 @@ vim.api.nvim_create_user_command(
   end
   , { nargs = 0 }
 )
+local function myGinDiff(preCommit, postCommit, path)
+  if preCommit == nil or postCommit == nil or path == nil then
+    print('myGinDiff nil error')
+    return
+  end
+  vim.cmd('GinEdit ++opener=tabnew '..preCommit..' '..path..'|diffthis')
+  vim.bo.filetype = 'gin-my-patch'
+  vim.cmd('GinEdit ++opener=vsplit '..postCommit..' '..path..'|diffthis')
+  vim.bo.filetype = 'gin-my-patch'
+end
+vim.api.nvim_create_user_command(
+  'LogCurrentBranch'
+  , function (opts)
+    local fullPath = vim.fn.expand('%:p')
+    local preBranchName = (opts.fargs[1] == nil) and 'master' or opts.fargs[1]
+    local postBranchName = table.commandResultAsTable('git rev-parse --abbrev-ref HEAD')[1]
+    local preCommit = table.commandResultAsTable([[git log -1 --format=%H ]]..preBranchName..[[ -- ]]..fullPath)[1]
+    local postCommit = table.commandResultAsTable([[git log -1 --format=%H ]]..postBranchName..[[ -- ]]..fullPath)[1]
+    myGinDiff(preCommit, postCommit, fullPath)
+  end
+  , { nargs = '*' }
+)
 vim.g.gin_log_disable_default_mappings = true
 fileType['gin-log'] = function ()
   vim.fn.bufferKeymapSet('n', 'a', '<Plug>(gin-action-choice)')
@@ -66,10 +88,7 @@ end
 fileType['gin-my-log-changes'] = function ()
   vim.fn.bufferKeymapSet('n', 'cc', function ()
     local path = vim.fn.getline('.')
-    vim.cmd('GinEdit ++opener=tabnew '..vim.g.changes_git_commit..'^ '..path..'|diffthis')
-    vim.bo.filetype = 'gin-my-patch'
-    vim.cmd('GinEdit ++opener=vsplit '..vim.g.changes_git_commit..' '..path..'|diffthis')
-    vim.bo.filetype = 'gin-my-patch'
+    myGinDiff(vim.g.changes_git_commit..'^', vim.g.changes_git_commit, path)
   end)
   vim.fn.bufferKeymapSet('n', '<CR>', function ()
     -- TODO first commit can not see..?
