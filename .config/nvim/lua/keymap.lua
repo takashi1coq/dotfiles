@@ -58,10 +58,10 @@ vim.keymap.set('n', '<C-i>', '<C-o>zz')
 vim.keymap.set('v', '.', ":'<,'>normal .<CR>")
 
 -- urlを開く
-vim.keymap.set('n', 'oo', function () vim.cmd('normal gx') end)
+vim.keymap.set('n', '<CR>', function () vim.cmd('normal gx') end)
 
 --[[==========================================================
- seach
+ search
 ============================================================]]
 
 -- 検索ハイライト
