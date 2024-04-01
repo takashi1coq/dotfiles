@@ -28,6 +28,43 @@ vim.fn.openCustomList = function (selects, sf)
     , uiParams = { ff = { startFilter = sf } }
   })
 end
+vim.fn.customFileCreate = function (header, filePath)
+  if string.isEmpty(header) then
+    return
+  end
+  if string.isEmpty(filePath) then
+    return
+  end
+  local file = io.open(filePath, "w")
+  if file then
+    file:write(header)
+    file:close()
+  end
+  vim.fn.openFileInTab(filePath)
+end
+vim.fn.openCustomDirectory = function (directoryPath, isFilter)
+  if string.isEmpty(directoryPath) then
+    return
+  end
+  local selects = {}
+  local files = table.commandResultAsTable('ls -t '..directoryPath)
+  table.myForeach(function (file)
+    local filePath = directoryPath..'/'..file
+    local fileHandle, err = io.open(filePath, 'r')
+    if fileHandle then
+      local firstLine = fileHandle:read()
+      fileHandle:close()
+      table.insert(selects, {
+        firstLine
+        , function () vim.fn.openFileInTab(filePath) end
+      })
+    else
+      os.dump('openCustomDirectory not file open. error code: '..err)
+    end
+  end, files)
+  vim.fn.openCustomList(selects, isFilter)
+end
+
 vim.keymap.set('n', '<Space>c', function ()
   vim.fn.openCustomList({
     {
