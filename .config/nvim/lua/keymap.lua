@@ -57,8 +57,8 @@ vim.keymap.set('n', '<C-i>', '<C-o>zz')
 -- 選択業にdot command
 vim.keymap.set('v', '.', ":'<,'>normal .<CR>")
 
--- urlを開く
-vim.keymap.set('n', '<CR>', function () vim.cmd('normal gx') end)
+-- normalでtabを上書き
+vim.keymap.set('n', '<TAB>', '4l')
 
 --[[==========================================================
  search
