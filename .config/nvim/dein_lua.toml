@@ -109,6 +109,14 @@ repo = 'mattn/vim-maketable'
 hook_add = '''
 luafile ~/.config/nvim/plugins/vim-maketable.lua
 '''
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+build = 'sh -c "cd app && npx --yes yarn install"'
+on_ft = ['markdown']
+hook_add = '''
+nnoremap <silent> <Space>p :<C-u>MarkdownPreview<CR>
+let g:mkdp_auto_close = 0
+'''
 
 # ==========================================================
 # lsp
