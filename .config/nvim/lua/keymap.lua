@@ -133,7 +133,7 @@ local function translate (slLang, tlLang)
   local visualStr = vim.fn.getVisual()
   visualStr = visualStr:gsub('"', '')
   local result = vim.fn.system('trans -b -sl='..slLang..' -tl='..tlLang..' '.. '"'.. visualStr.. '"')
-  vim.fn.openFloatingWindowWithText(result)
+  vim.fn.openFloatingWindowWithText(result, 'left')
 end
 vim.keymap.set('v', '<F1>', function () translate('en','ja') end)
 vim.keymap.set('v', '<F2>', function () translate('ja','en') end)

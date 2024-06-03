@@ -16,12 +16,13 @@ vim.fn.storeYank = function (word, printFlag)
   end
 end
 -- open floating window
-vim.fn.openFloatingWindowWithText = function (text)
+vim.fn.openFloatingWindowWithText = function (text, isLeftText)
   local lines = vim.fn.split(text, '\n')
   local buf = vim.api.nvim_create_buf(false, true)
   local originalWinSize = vim.api.nvim_win_get_width(0)
   local heightTable = {}
   local max_width = 0
+  local col = (isLeftText == 'left') and 1 or originalWinSize - max_width
   for _, line in ipairs(lines) do
     local line_width = vim.fn.strdisplaywidth(line)
     if line_width > max_width then
@@ -40,7 +41,7 @@ vim.fn.openFloatingWindowWithText = function (text)
       width = (max_width == 0) and 1 or max_width,
       height = (height == 0) and 1 or height,
       row = 1,
-      col = originalWinSize - max_width,
+      col = col,
       style = 'minimal',
       border = 'single',
   })
