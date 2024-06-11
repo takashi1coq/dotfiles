@@ -108,7 +108,9 @@ vim.keymap.set('n', '<C-h>', 'gT')
 -- "アクティブ以外閉じるをto
 vim.keymap.set('n', 'to', function () vim.cmd('tabo') end)
 
--- タブそのものを移動 TODO ボタン決める
+-- タブそのものを移動
+vim.keymap.set('n', '<S-Left>', function () vim.cmd('tabm -1') end)
+vim.keymap.set('n', '<S-Right>', function () vim.cmd('tabm +1') end)
 
 --[[==========================================================
  terminal
