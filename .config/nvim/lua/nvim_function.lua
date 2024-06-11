@@ -15,6 +15,20 @@ vim.fn.storeYank = function (word, printFlag)
     print('yank word => [ '..w..' ]')
   end
 end
+-- path
+vim.fn.projectFilePath = function ()
+  return string.replace(vim.fn.expand('%:p'), vim.fn.getcwd()..'/', '')
+end
+vim.fn.fileName = function ()
+  return table.explode(vim.fn.expand('%:t'), '.')[1]
+end
+vim.fn.fullFilePath = function ()
+  return vim.fn.expand('%:p')
+end
+vim.fn.fullDirectryPath = function ()
+  return vim.fn.expand('%:p:h')
+end
+
 -- open floating window
 vim.fn.openFloatingWindowWithText = function (text, isLeftText)
   local lines = vim.fn.split(text, '\n')

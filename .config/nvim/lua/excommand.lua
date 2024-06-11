@@ -1,25 +1,21 @@
 vim.api.nvim_create_user_command(
   'CopyPath'
   , function ()
-    local path = string.replace(vim.fn.expand('%:p'), vim.fn.getcwd()..'/', '')
-    vim.fn.storeYank(path, true)
+    vim.fn.storeYank(vim.fn.projectFilePath(), true)
   end
   , { nargs = 0 }
 )
 vim.api.nvim_create_user_command(
   'CopyFileName'
   , function ()
-    local filename = vim.fn.expand('%:t')
-    filename = table.explode(filename, '.')[1]
-    vim.fn.storeYank(filename, true)
+    vim.fn.storeYank(vim.fn.fileName(), true)
   end
   , { nargs = 0 }
 )
 vim.api.nvim_create_user_command(
   'CopyFullPath'
   , function ()
-    local filename = vim.fn.expand('%:p')
-    vim.fn.storeYank(filename, true)
+    vim.fn.storeYank(vim.fn.fullFilePath(), true)
   end
   , { nargs = 0 }
 )
