@@ -8,7 +8,7 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
   'CopyFileName'
   , function ()
-    vim.fn.storeYank(vim.fn.fileName(), true)
+    vim.fn.storeYank(vim.fn.fileNameExcludeExtension(), true)
   end
   , { nargs = 0 }
 )
