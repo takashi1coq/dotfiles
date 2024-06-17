@@ -113,7 +113,7 @@ vim.keymap.set('n', '<Space>c', function ()
     }
     , {
       'Command : Find port prosess [lsof -i :<PORT>] (open bottom terminal)'
-      , function () vim.fn.myTerminal('myCommand', 1, 'lsof -i :', nil) end
+      , function () vim.fn.myTerminal('myCommand', 'lsof -i :', nil, 'botright new') end
     }
     , {
       'Command : Docker prune [docker system prune] (yank)'
@@ -125,7 +125,7 @@ vim.keymap.set('n', '<Space>c', function ()
     }
     , {
       'Command : File permission chmod [chmod u+x <FILE>] (open bottom terminal)'
-      , function () vim.fn.myTerminal('myCommand', 1, 'chmod u+x ', nil) end
+      , function () vim.fn.myTerminal('myCommand', 'chmod u+x ', nil, 'botright new') end
     }
     -- TODO create sort and diff function
     , {

@@ -123,26 +123,23 @@ vim.fn.bufferKeymapSet = function (type, key, fn, option)
   vim.keymap.set(type, key, fn, option)
 end
 -- terminal
-vim.fn.myTerminal = function (name, openNum, cmd, path)
-  local bufOpenCmd = {
-    'botright new'
-    , '0tabnew'
-  }
+vim.fn.myTerminal = function (name, cmd, path, openCmd)
+  if openCmd == nil then
+    openCmd = '0tabnew'
+  end
   local openBufnr = filterBuflistNumberByMatchingBufname(name)
   if not(table.isEmpty(openBufnr)) then
     if string.isEmpty(vim.fn.input('already exists. open buffer? : ')) then
       table.myForeach(function (v)
-        local bufname = vim.fn.bufname(v)
-        local num = string.sub(bufname, string.len(bufname))
-        vim.fn.openEmptyBuffer(bufOpenCmd[tonumber(num)])
+        vim.cmd(openCmd)
         vim.cmd(v..'b')
       end, openBufnr)
       return
     end
   end
-  vim.cmd(bufOpenCmd[openNum])
+  vim.cmd(openCmd)
   vim.fn.termopen(
-    '$SHELL;#'..name..openNum
+    '$SHELL;#'..name..openCmd
     , {
       on_exit = function ()
         vim.cmd('bd')
@@ -155,8 +152,8 @@ vim.fn.myTerminal = function (name, openNum, cmd, path)
   )
   vim.api.nvim_put({cmd}, 'c', false, true)
 end
-vim.keymap.set('n', '<Space>j', function () vim.fn.myTerminal('terminal_'..vim.fn.getProjectDirName(), 1, nil, nil) end)
-vim.api.nvim_create_user_command('Terminal', function () vim.fn.myTerminal('Terminal', 2, nil, nil) end, { nargs = 0 })
+vim.keymap.set('n', '<Space>j', function () vim.fn.myTerminal('terminal_'..vim.fn.getProjectDirName(), nil, nil, 'botright new') end)
+vim.api.nvim_create_user_command('Terminal', function () vim.fn.myTerminal('Terminal', nil, nil) end, { nargs = 0 })
 -- quit
 vim.fn.myQuit = function ()
   local lastWinNr = vim.fn.winnr('$')
