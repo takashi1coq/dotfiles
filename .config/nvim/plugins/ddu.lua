@@ -208,7 +208,9 @@ vim.keymap.set('n', '<Space>d', function () vim.fn['ddu#start']({
 }) end)
 
 vim.fn['ddu#custom#action']('ui', 'filer', 'terminalOpen', function (args)
-  vim.fn.myTerminal('filerTerminalOpen', nil, args.context.path, 'botright new')
+  vim.fn['ddu#ui#filer#do_action']('quit')
+  local name = 'filerTerminalOpen_'..args.context.path
+  vim.fn.myTerminal(name, nil, args.context.path)
 end)
 vim.fn['ddu#custom#action']('ui', 'filer', 'explorerOpen', function (args)
   vim.cmd('silent !open '..args.context.path)

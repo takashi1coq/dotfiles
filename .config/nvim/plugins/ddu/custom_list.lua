@@ -144,5 +144,12 @@ vim.keymap.set('n', '<Space>c', function ()
       [[Command : jq command [jq '.[]' *.json > filename.json] (yank)]]
       , function () vim.fn.storeYank([[jq '.[]' *.json > filename.json]]) end
     }
+    , {
+      'Command : Create large file [dd if=/dev/zero of=<filename> bs=1M count=25] (yank)'
+      , function ()
+        vim.fn.storeYank('dd if=/dev/zero of=<filename> bs=1M count=25')
+        print('Please setup filename')
+      end
+    }
   })
 end)
