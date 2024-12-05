@@ -120,7 +120,7 @@ vim.keymap.set('n', '<Space>c', function ()
       , function () vim.fn.storeYank('docker system prune') end
     }
     , {
-      'Command : Docker prune [docker-compose build --no-cache] (yank)'
+      'Command : Docker prune [docker compose build --no-cache] (yank)'
       , function () vim.fn.storeYank('docker-compose build --no-cache') end
     }
     , {
@@ -143,6 +143,10 @@ vim.keymap.set('n', '<Space>c', function ()
     , {
       [[Command : jq command [jq '.[]' *.json > filename.json] (yank)]]
       , function () vim.fn.storeYank([[jq '.[]' *.json > filename.json]]) end
+    }
+    , {
+      [[Command : yq command csv to json [yq file.csv -p=csv -o=json > file.json] (yank)]]
+      , function () vim.fn.storeYank([[yq file.csv -p=csv -o=json > file.json]]) end
     }
     , {
       'Command : Create large file [dd if=/dev/zero of=<filename> bs=1M count=25] (yank)'
