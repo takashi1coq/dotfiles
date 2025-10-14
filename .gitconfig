@@ -6,3 +6,6 @@
 [alias]
   p = !git push origin `git rev-parse --abbrev-ref HEAD`
   pu = !git push -u origin `git rev-parse --abbrev-ref HEAD`
+[user]
+	name = takashi1coq
+	email = takashi@gmail.com
