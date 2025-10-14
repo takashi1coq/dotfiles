@@ -123,33 +123,31 @@ return {
   , create_permutation_grep_word = function (t)
     local b = {}
     for p in _G.TKC.plugins.ddu.permutation(t) do
-      local r = p
-      _G.TKC.utils.os.dump(r)
       local str = _G.TKC.utils.table.table_to_string(p, '.*')
       table.insert(b, str)
     end
     return '('.._G.TKC.utils.table.table_to_string(b, ')|(')..')'
   end
   , permutation = function (t)
+    local function permgen (a, n)
+      if n == 0 then
+        coroutine.yield(a)
+      else
+        for i=1,n do
+          -- put i-th element as the last one
+          a[n], a[i] = a[i], a[n]
+          -- generate all permutations of the other elements
+          permgen(a, n - 1)
+          -- restore i-th element
+          a[n], a[i] = a[i], a[n]
+        end
+      end
+    end
     local n = #t
-    local co = coroutine.create(function () _G.TKC.plugins.ddu.permgen(t, n) end)
+    local co = coroutine.create(function () permgen(t, n) end)
     return function ()   -- iterator
       local _, res = coroutine.resume(co)
       return res
-    end
-  end
-  , premgen = function (a, n)
-    if n == 0 then
-      coroutine.yield(a)
-    else
-      for i=1,n do
-        -- put i-th element as the last one
-        a[n], a[i] = a[i], a[n]
-        -- generate all permutations of the other elements
-        _G.TKC.plugins.ddu.permgen(a, n - 1)
-        -- restore i-th element
-        a[n], a[i] = a[i], a[n]
-      end
     end
   end
 }
