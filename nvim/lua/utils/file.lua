@@ -19,12 +19,7 @@ return {
     return vim.fn.expand('%:p:h')
   end
   , current_relative_path = function ()
-    local currentFilePath = _G.TKC.utils.file.current_file_path()
-    local replaceResult = _G.TKC.utils.string.replace(currentFilePath, vim.fn.getcwd(), '')
-    if replaceResult == currentFilePath then
-      return currentFilePath
-    end
-    return _G.TKC.utils.string.remove_first_n_chars(replaceResult, 1)
+    return vim.fn.fnamemodify(_G.TKC.utils.file.current_file_path(), ":.")
   end
   , current_file_stem = function ()
     local currentFileName = _G.TKC.utils.file.current_file_name()
@@ -98,5 +93,22 @@ return {
     local filename = prefix..'_'.._G.TKC.utils.datetime.yyyymmddhhmmss..'.tsv'
     local output = vim.fn.expand('~/work/playground/'..filename)
     vim.fn.writefile(result, output)
+  end
+  , create = function (path)
+    path = vim.fn.expand(path)
+    -- a : append
+    -- 438 : readable, writable
+    local fd = vim.loop.fs_open(path, 'a', 438)
+    if fd then
+      vim.loop.fs_close(fd)
+    else
+      _G.TKC.utils.message.error('utils.file.create : failed to create file')
+    end
+  end
+  , chenge_slash_for_windows = function (path)
+    return path:gsub("/", "\\")
+  end
+  , chenge_slash_for_unix = function (path)
+    return path:gsub("\\", "/")
   end
 }

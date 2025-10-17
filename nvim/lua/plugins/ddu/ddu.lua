@@ -87,7 +87,9 @@ vim.keymap.set('n', '<Space>b', function ()
   local buffers = vim.api.nvim_list_bufs()
   for _, buf in ipairs(buffers) do
     local name = vim.api.nvim_buf_get_name(buf)
-    if name ~= '' and vim.bo[buf].buflisted then
+    local listed = vim.bo[buf].buflisted
+    local loaded = vim.api.nvim_buf_is_loaded(buf)
+    if name ~= '' and listed and loaded then
       name = vim.fn.fnamemodify(name, ":.")
       local modified = vim.bo[buf].modified and '+' or ' '
       local current = (buf == vim.api.nvim_get_current_buf()) and '%' or ' '
@@ -154,7 +156,7 @@ vim.fn['ddu#custom#action']('ui', 'filer', 'explorerOpen', function (args)
 end)
 vim.fn['ddu#custom#action']('ui', 'filer', 'createMyRoot', function (args)
   local path = args.context.path..'/.myRoot'
-  vim.cmd('silent !touch '..path)
+  _G.TKC.utils.file.create(path)
   vim.fn['ddu#redraw'](vim.b['ddu_ui_name'], {refreshItems = 1})
 end)
 vim.fn['ddu#custom#action']('ui', 'filer', 'dduFilerDiff', function ()
@@ -289,5 +291,5 @@ _G.TKC.utils.nvim.create_augroup(require('plugins.ddu.augroup'), 'ddu_augroup')
 _G.TKC = _G.TKC or {}
 _G.TKC.plugins = _G.TKC.plugins or {}
 _G.TKC.plugins.ddu = require('plugins.ddu.function')
-
-
+-- set highlight
+vim.api.nvim_set_hl(0, "MyDduHighlight", { fg = "#ff0000", ctermfg = 1 })

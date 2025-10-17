@@ -1,9 +1,9 @@
 
 return {
-  error = function (message)
-    vim.notify(message, vim.log.levels.ERROR)
+  error = function (...)
+    vim.notify(_G.TKC.utils.os.inspect_and_join(...), vim.log.levels.ERROR)
   end
-  , warning = function (message)
-    vim.notify(message, vim.log.levels.WARN)
+  , warning = function (...)
+    vim.notify(_G.TKC.utils.os.inspect_and_join(...), vim.log.levels.WARN)
   end
 }

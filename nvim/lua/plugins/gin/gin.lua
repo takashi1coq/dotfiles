@@ -22,10 +22,10 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
   'LogCurrent'
   , function ()
-    local fileName = vim.fn.expand('%:t')
-    local fullPath = vim.fn.expand('%:p')
-    vim.cmd('silent! /'..fileName)
-    vim.cmd('tabnew | GinLog -- '..fullPath)
+    local relativePath = _G.TKC.utils.file.chenge_slash_for_unix(_G.TKC.utils.file.current_relative_path())
+    _G.TKC.plugins.gin.log_current_path = relativePath
+    _G.TKC.utils.os.dump(relativePath)
+    vim.cmd('tabnew | GinLog -- '.._G.TKC.utils.file.current_file_path())
   end
   , { nargs = 0 }
 )
@@ -41,9 +41,7 @@ _G.TKC.plugins.gin.my_gin_diff = function (preCommit, postCommit, path)
     return
   end
   vim.cmd('GinEdit ++opener=tabnew '..preCommit..' '..path..'|diffthis')
-  vim.bo.filetype = 'gin-my-patch'
   vim.cmd('GinEdit ++opener=vsplit '..postCommit..' '..path..'|diffthis')
-  vim.bo.filetype = 'gin-my-patch'
 end
 vim.api.nvim_create_user_command(
   'LogCurrentBranch'
@@ -87,3 +85,9 @@ vim.api.nvim_create_user_command('StashClear', function () vim.cmd('Gin stash cl
 
 -- set augroup keymap
 _G.TKC.utils.nvim.create_augroup(require('plugins.gin.augroup'), 'gin_augroup')
+-- set plugin erea
+_G.TKC = _G.TKC or {}
+_G.TKC.plugins = _G.TKC.plugins or {}
+_G.TKC.plugins.gin = _G.TKC.plugins.gin or {}
+-- set highlight
+vim.api.nvim_set_hl(0, "MyGinHighlight", { fg = "#ff0000", ctermfg = 1 })

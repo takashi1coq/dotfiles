@@ -8,7 +8,6 @@ return {
       vim.fn['ddu#ui#do_action']('openFilterWindow')
     end)
     _G.TKC.utils.nvim.buffer_keymap('n', 'dl', function ()
-      -- TODO mr delete ..
       vim.fn['ddu#ui#do_action']('itemAction', { name = 'delete' })
     end)
     _G.TKC.utils.nvim.buffer_keymap('n', 'q', function ()
@@ -46,7 +45,7 @@ return {
       vim.fn['ddu#ui#do_action']('itemAction', { name = 'newDirectory' })
     end)
     _G.TKC.utils.nvim.buffer_keymap('n', '.', function ()
-      vim.fn['ddu#ui##do_action']('createMyRoot')
+      vim.fn['ddu#ui#do_action']('createMyRoot')
     end)
     _G.TKC.utils.nvim.buffer_keymap('n', 'l', function ()
       vim.fn['ddu#ui#do_action']('itemAction', { name = 'narrow' })

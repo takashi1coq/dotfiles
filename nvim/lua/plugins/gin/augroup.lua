@@ -34,6 +34,12 @@ return {
       vim.cmd('GinBuffer ++opener=split diff '..commit..'^ '..commit..' --name-only')
       vim.bo.filetype = 'gin-my-log-changes'
       vim.g.changes_git_commit = commit
+      local fileName = _G.TKC.plugins.gin.log_current_path or ''
+      if fileName ~= '' then
+        vim.fn.matchadd('MyGinHighlight', fileName)
+      else
+        _G.TKC.utils.message.error('faild catch _G.TKC.plugins.gin.log_current_path')
+      end
     end)
   end
   , ['gin-my-log-changes'] = function ()

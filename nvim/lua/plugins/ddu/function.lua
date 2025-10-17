@@ -87,7 +87,6 @@ return {
   end
   , open_current_ddu_filer = function ()
     local filename = _G.TKC.utils.file.current_file_name()
-    vim.cmd([[highlight MyDduHighlight guifg=#ff0000 ctermfg=Red]])
     vim.fn.matchadd('MyDduHighlight', filename)
     _G.TKC.plugins.ddu.open_ddu_filer(vim.fn.expand('%:p:h'))
   end
