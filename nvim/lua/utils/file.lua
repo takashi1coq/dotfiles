@@ -54,7 +54,7 @@ return {
       end
     end
     if _G.TKC.utils.table.is_empty(result) then
-      _G.TKC.utils.os.dump('get_file_in_path empty result..')
+      _G.TKC.utils.message.error('utils.file.get_file_in_path: no file in the dir')
     end
     return result
   end

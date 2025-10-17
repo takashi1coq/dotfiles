@@ -1,6 +1,5 @@
 local home = os.getenv("HOME") or os.getenv("USERPROFILE")
 local deinCachePath = vim.fn.stdpath('cache')..[[/dein_lua]]
-print(deinCachePath)
 local deinDir = deinCachePath..'/repos/github.com/Shougo/dein.vim'
 local deinToml = vim.fn.stdpath("config")..[[/dein_lua.toml]]
 local deinLog = home..[[/dein.log]]

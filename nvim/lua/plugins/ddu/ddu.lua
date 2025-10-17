@@ -139,12 +139,18 @@ vim.keymap.set('n', '<Space>d', function () vim.fn['ddu#start']({
 }) end)
 
 vim.fn['ddu#custom#action']('ui', 'filer', 'terminalOpen', function (args)
-  vim.fn['ddu#ui#filer#do_action']('quit')
+  vim.fn['ddu#ui#do_action']('quit')
   local name = 'filerTerminalOpen_'..args.context.path
-  --_G.TKC.utils.terminal.my_terminal(name, nil, args.context.path)
+  _G.TKC.utils.terminal.my(name, nil, args.context.path)
 end)
 vim.fn['ddu#custom#action']('ui', 'filer', 'explorerOpen', function (args)
-  vim.cmd('silent !open '..args.context.path)
+  if vim.fn.has('mac') == 1 then
+    vim.cmd('silent !open '..args.context.path)
+  elseif vim.fn.has('win32') == 1 then
+    vim.cmd('silent !start '..args.context.path)
+  else
+    _G.TKC.utils.message.error('plugins.ddu.explorerOpen faild')
+  end
 end)
 vim.fn['ddu#custom#action']('ui', 'filer', 'createMyRoot', function (args)
   local path = args.context.path..'/.myRoot'
@@ -168,14 +174,14 @@ end)
 vim.api.nvim_create_user_command(
   'OpenTerminal'
   , function ()
-    vim.fn['ddu#ui#filer#do_action']('terminalOpen')
+    vim.fn['ddu#ui#do_action']('terminalOpen')
   end
   , { nargs = 0 }
 )
 vim.api.nvim_create_user_command(
   'OpenExplorer'
   , function ()
-    vim.fn['ddu#ui#filer#do_action']('explorerOpen')
+    vim.fn['ddu#ui#do_action']('explorerOpen')
   end
   , { nargs = 0 }
 )

@@ -21,7 +21,7 @@ return {
   end
   , open_floating_window_with_text = function (text, position)
     position = position or 'center'
-    local lines = _G.TKC.utils.table.string_to_table(text, [[\n]])
+    local lines = _G.TKC.utils.table.string_to_table(text, '\n')
     local max_width = 0
     for _, line in ipairs(lines) do
       local line_width = vim.fn.strdisplaywidth(line)

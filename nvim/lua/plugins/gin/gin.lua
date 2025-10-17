@@ -33,7 +33,11 @@ _G.TKC.plugins = _G.TKC.plugins or {}
 _G.TKC.plugins.gin = _G.TKC.plugins.gin or {}
 _G.TKC.plugins.gin.my_gin_diff = function (preCommit, postCommit, path)
   if preCommit == nil or postCommit == nil or path == nil then
-    _G.TKC.utils.os.dump('my_gin_diff nil error')
+    _G.TKC.utils.message.error('plugins.ddu.my_gin_diff some arg is nil', {
+      preCommit = preCommit or ''
+      , postCommit = postCommit or ''
+      , path = path or ''
+    })
     return
   end
   vim.cmd('GinEdit ++opener=tabnew '..preCommit..' '..path..'|diffthis')

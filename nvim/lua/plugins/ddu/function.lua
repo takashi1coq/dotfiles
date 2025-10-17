@@ -69,7 +69,7 @@ return {
           , function () _G.TKC.utils.nvim.open_tab(fullPath) end
         })
       else
-        _G.TKC.utils.os.dump('open_custom_directory not file open. : '..err)
+        _G.TKC.utils.message.error('plugins.ddu.open_custom_directory not file open. : '..err)
       end
     end
     _G.TKC.plugins.ddu.open_custom_list(selects, isFilter)
@@ -86,10 +86,9 @@ return {
     })
   end
   , open_current_ddu_filer = function ()
-    local filename = _G.TKC.utils.file.current_file_stem()
-    if filename then
-      vim.cmd('silent! /'..filename)
-    end
+    local filename = _G.TKC.utils.file.current_file_name()
+    vim.cmd([[highlight MyDduHighlight guifg=#ff0000 ctermfg=Red]])
+    vim.fn.matchadd('MyDduHighlight', filename)
     _G.TKC.plugins.ddu.open_ddu_filer(vim.fn.expand('%:p:h'))
   end
   , ddu_grep = function (inputTitle, path)
@@ -100,7 +99,9 @@ return {
         return
       end
     end
-    local grepWord = _G.TKC.plugins.ddu.create_permutation_grep_word(_G.TKC.utils.table.string_to_table(word, ' '))
+    local grepWord = _G.TKC.plugins.ddu.create_permutation_grep_word(
+      _G.TKC.utils.table.string_to_table(word, ' ')
+    )
     vim.fn['ddu#start']({
       ui = 'ff'
       , uiParams = {
