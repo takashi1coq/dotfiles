@@ -191,10 +191,6 @@ vim.api.nvim_create_user_command(
 vim.keymap.set('n', '<Space>c', function ()
   _G.TKC.plugins.ddu.open_custom_list({
     {
-      'File : ~/.config/nvim/lua/local.lua'
-      , function () _G.TKC.utils.nvim.open_tab('~/.config/nvim/lua/local.lua') end
-    }
-    , {
       'File : ~/.zshrc'
       , function () _G.TKC.utils.nvim.open_tab('~/.zshrc') end
     }
