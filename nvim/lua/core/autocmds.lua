@@ -4,7 +4,9 @@ vim.api.nvim_create_autocmd(
   , {
     pattern = '*'
     , callback = function ()
+      if not vim.wo.diff then
         _G.TKC.utils.nvim.win_one()
+      end
     end
   }
 )

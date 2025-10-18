@@ -1,6 +1,9 @@
 
 return {
   win_one = function ()
+    if vim.wo.diff then
+      return
+    end
     local currentWinId = vim.fn.win_getid()
     local winList = vim.fn.win_findbuf(vim.fn.bufnr('%'))
     for _, winId in ipairs(winList) do
@@ -66,7 +69,7 @@ return {
     local lastTabNr = vim.fn.tabpagenr('$')
     local isDiff = vim.wo.diff
     if lastWinNr == 1 or isDiff then
-      vim.cmd('tabclose')
+      vim.cmd('tabclose!')
     else
       vim.cmd('q')
     end

@@ -80,16 +80,23 @@ for _, item in ipairs({
   end
 end
 
-local current_name = vim.fn.system({'git', 'config', '--global', 'user.name'}):gsub("%s+$", "")
-local current_email = vim.fn.system({'git', 'config', '--global', 'user.email'}):gsub("%s+$", "")
+local gitconfig_local = vim.fn.expand(home..[[/.gitconfig.local]])
+local function get_git_config(key)
+  return vim.fn.system({'git', 'config', '--file', gitconfig_local, key}):gsub("%s+$", "")
+end
+local function set_git_config(key, value)
+  vim.fn.system({'git', 'config', '--file', gitconfig_local, key, value})
+end
+local current_name = get_git_config('user.name')
+local current_email = get_git_config('user.email')
 if current_name == '' then
   io.write("Git user.name を入力してください: ")
   local name = io.read()
-  vim.fn.system({'git', 'config', '--global', 'user.name', name})
+  set_git_config('user.name', name)
 end
 if current_email == '' then
   io.write("Git user.email を入力してください: ")
   local email = io.read()
-  vim.fn.system({'git', 'config', '--global', 'user.email', email})
+  set_git_config('user.email', email)
 end
 

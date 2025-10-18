@@ -3,8 +3,8 @@ return {
   ['gin-status'] = function ()
     _G.TKC.utils.nvim.buffer_keymap('n', 'dd'
       , function ()
-        vim.cmd([[execute "normal \<Plug>(gin-action-yank:path)"]])
-        local path = vim.fn.getreg('+')
+        vim.cmd([[execute "normal \"a\<Plug>(gin-action-yank:path)"]])
+        local path = vim.fn.getreg('a')
         vim.cmd('Gin checkout -- '..path)
         -- TODO untracked file...
       end
@@ -29,11 +29,11 @@ return {
     _G.TKC.utils.nvim.buffer_keymap('n', 'a', '<Plug>(gin-action-choice)')
     _G.TKC.utils.nvim.buffer_keymap('n', 'yy', '<Plug>(gin-action-yank:commit)')
     _G.TKC.utils.nvim.buffer_keymap('n', 'ch', function ()
-      vim.cmd([[execute "normal \<Plug>(gin-action-yank:commit)"]])
-      local commit = vim.fn.getreg('+')
+      vim.cmd([[execute "normal \"a\<Plug>(gin-action-yank:commit)"]])
+      local commit = vim.fn.getreg('a')
+      _G.TKC.plugins.gin.log_commit = commit
       vim.cmd('GinBuffer ++opener=split diff '..commit..'^ '..commit..' --name-only')
       vim.bo.filetype = 'gin-my-log-changes'
-      vim.g.changes_git_commit = commit
       local fileName = _G.TKC.plugins.gin.log_current_path or ''
       if fileName ~= '' then
         vim.fn.matchadd('MyGinHighlight', fileName)
@@ -45,12 +45,15 @@ return {
   , ['gin-my-log-changes'] = function ()
     _G.TKC.utils.nvim.buffer_keymap('n', 'cc', function ()
       local path = vim.fn.getline('.')
-      _G.TKC.plugins.gin.my_gin_diff(vim.g.changes_git_commit..'^', vim.g.changes_git_commit, path)
+      _G.TKC.plugins.gin.my_gin_diff(
+        _G.TKC.plugins.gin.log_commit..'^'
+        , _G.TKC.plugins.gin.log_commit
+        , path
+      )
     end)
     _G.TKC.utils.nvim.buffer_keymap('n', '<CR>', function ()
-      -- TODO first commit can not see..?
       local path = vim.fn.getline('.')
-      vim.cmd('GinEdit ++opener=tabnew '..vim.g.changes_git_commit..'^ '..path)
+      vim.cmd('GinEdit ++opener=tabnew '.._G.TKC.plugins.gin.log_commit..'^ '..path)
     end)
   end
   , ['gin-branch'] = function ()

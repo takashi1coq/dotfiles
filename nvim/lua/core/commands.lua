@@ -21,6 +21,13 @@ vim.api.nvim_create_user_command(
   , { nargs = 0 }
 )
 vim.api.nvim_create_user_command(
+  'CopyFullPath'
+  , function ()
+    _G.TKC.utils.nvim.clipboard(_G.TKC.utils.file.current_file_path(), true)
+  end
+  , { nargs = 0 }
+)
+vim.api.nvim_create_user_command(
   'Capture'
   , function (opts)
     _G.TKC.utils.nvim.open_floating_window_with_text(vim.fn.execute(opts.args), 'left')

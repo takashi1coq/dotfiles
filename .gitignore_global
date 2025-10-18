@@ -1,7 +1,7 @@
 # ctags
 tags
 
-# nodejs create files
+# node
 node_modules/
 
 # 直面してhttps://github.com/github/gitignoreにあるものだけ写す
