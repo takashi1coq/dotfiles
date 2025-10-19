@@ -32,4 +32,12 @@ return {
   , is_empty = function (list)
     return next(list) == nil
   end
+  , inspect_and_join = function (...)
+    local objects = {}
+    for i = 1, select('#', ...) do
+      local v = select(i, ...)
+      table.insert(objects, vim.inspect(v))
+    end
+    return objects
+  end
 }

@@ -76,4 +76,4 @@ _G.TKC = _G.TKC or {}
 _G.TKC.plugins = _G.TKC.plugins or {}
 _G.TKC.plugins.gin = require('plugins.gin.function')
 -- set highlight
-vim.api.nvim_set_hl(0, "MyGinHighlight", { fg = "#ff0000", ctermfg = 1 })
+vim.api.nvim_set_hl(0, "MyGinHighlight", { fg = "#ff6600", ctermfg = 1 })

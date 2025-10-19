@@ -36,6 +36,7 @@ return {
       vim.bo.filetype = 'gin-my-log-changes'
       local fileName = _G.TKC.plugins.gin.log_current_path or ''
       if fileName ~= '' then
+        vim.fn.clearmatches()
         vim.fn.matchadd('MyGinHighlight', fileName)
       else
         _G.TKC.utils.message.error('faild catch _G.TKC.plugins.gin.log_current_path')

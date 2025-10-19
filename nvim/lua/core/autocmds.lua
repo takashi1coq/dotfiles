@@ -4,9 +4,19 @@ vim.api.nvim_create_autocmd(
   , {
     pattern = '*'
     , callback = function ()
-      if not vim.wo.diff then
-        _G.TKC.utils.nvim.win_one()
-      end
+      vim.schedule(function()
+        if not vim.wo.diff then
+          local currentWinId = vim.fn.win_getid()
+          local winList = vim.fn.win_findbuf(vim.fn.bufnr('%'))
+          for _, winId in ipairs(winList) do
+            if winId ~= currentWinId then
+              vim.fn.win_gotoid(winId)
+              vim.cmd('q')
+            end
+          end
+          vim.fn.win_gotoid(currentWinId)
+        end
+      end)
     end
   }
 )

@@ -1,20 +1,6 @@
 
 return {
-  win_one = function ()
-    if vim.wo.diff then
-      return
-    end
-    local currentWinId = vim.fn.win_getid()
-    local winList = vim.fn.win_findbuf(vim.fn.bufnr('%'))
-    for _, winId in ipairs(winList) do
-      if winId ~= currentWinId then
-        vim.fn.win_gotoid(winId)
-        vim.cmd('q')
-      end
-    end
-    vim.fn.win_gotoid(currentWinId)
-  end
-  , clipboard = function (word, showMessage)
+  clipboard = function (word, showMessage)
     local w = tostring(word)
     vim.fn.setreg('+', w)
     vim.fn.setreg('"', w)
@@ -64,18 +50,63 @@ return {
     vim.cmd(opener..' | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile')
   end
   , quit = function ()
-    local lastWinNr = vim.fn.winnr('$')
-    local targetTabNr = vim.fn.tabpagenr()
-    local lastTabNr = vim.fn.tabpagenr('$')
+    local bufNumber = vim.api.nvim_get_current_buf()
+    local lastWinNumber = vim.fn.winnr('$')
+    local lastTabNumber = vim.fn.tabpagenr('$')
+    local targetTabNumber = vim.fn.tabpagenr()
     local isDiff = vim.wo.diff
-    if lastWinNr == 1 or isDiff then
+    local isModified = vim.bo[bufNumber].modified
+    local function tabclose()
       vim.cmd('tabclose!')
-    else
-      vim.cmd('q')
+      if
+        -- tab exists after current tab
+        targetTabNumber < lastTabNumber
+        -- current tab is not leftmost tab
+        and not (targetTabNumber == 1)
+        -- multiple tabs open
+        and not (lastTabNumber == 1)
+        -- only window, or diff mode
+        and (lastWinNumber == 1 or isDiff)
+      then
+        vim.cmd('tabprev')
+      end
     end
-    if (lastWinNr == 1 or isDiff) and not(targetTabNr == 1) and not(lastTabNr == 1) and targetTabNr < lastTabNr then
-      vim.cmd('tabprev')
+    local function last_tab_close()
+      local quitChoice = vim.fn.confirm("This is the last tab. Quit Neovim?", "&Yes\n&No", 1)
+      if quitChoice == 1 then
+        vim.cmd('qa!')
+      end
     end
+    -- if diff mode
+    if isDiff then
+      if lastTabNumber == 1 then
+        last_tab_close()
+        return
+      end
+      tabclose()
+      return
+    end
+    -- Buffer is modified
+    if isModified then
+      local choice = vim.fn.confirm('Buffer is modified. Save before closing?', '&Yes\n&No\n&Cancel', 1)
+      if choice == 1 then
+        vim.cmd('write')
+      elseif choice == 3 then
+        return
+      end
+    end
+    -- nomal
+    if lastWinNumber > 1 then
+      vim.cmd('close')
+      return
+    end
+    -- last tab
+    if lastTabNumber == 1 then
+      last_tab_close()
+      return
+    end
+    -- tabclose and tabprev
+    tabclose()
   end
   , get_visual = function ()
     local result = ''
@@ -167,5 +198,10 @@ return {
       vim.cmd('vsplit '..right..'|diffthis')
     end
     vim.cmd('wincmd w')
+    _G.TKC.utils.message.open_floating_message_window(
+      'Show diff of the following file'
+      , left
+      , right
+    )
   end
 }
