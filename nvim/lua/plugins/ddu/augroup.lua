@@ -2,15 +2,14 @@
 return {
   ['ddu-ff'] = function ()
     _G.TKC.utils.nvim.buffer_keymap('n', '<CR>', function ()
+      _G.TKC.plugins.ddu.disable_open_filter_window()
       vim.fn['ddu#ui#do_action']('itemAction', { params = { command = 'tabedit' } })
     end)
     _G.TKC.utils.nvim.buffer_keymap('n', 'i', function ()
       vim.fn['ddu#ui#do_action']('openFilterWindow')
     end)
-    _G.TKC.utils.nvim.buffer_keymap('n', 'dl', function ()
-      vim.fn['ddu#ui#do_action']('itemAction', { name = 'delete' })
-    end)
     _G.TKC.utils.nvim.buffer_keymap('n', 'q', function ()
+      _G.TKC.plugins.ddu.disable_open_filter_window()
       vim.fn['ddu#ui#do_action']('quit')
     end)
   end

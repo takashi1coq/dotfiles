@@ -150,6 +150,26 @@ return {
       return res
     end
   end
+  , open_filter_window_autocmd_id = nil
+  , enable_open_filter_window = function ()
+    if _G.TKC.plugins.ddu.open_filter_window_autocmd_id then
+      return
+    end
+    _G.TKC.plugins.ddu.open_filter_window_autocmd_id = vim.api.nvim_create_autocmd("User", {
+      pattern = "Ddu:uiDone",
+      nested = true,
+      callback = function()
+        vim.fn['ddu#ui#async_action']('openFilterWindow')
+      end,
+    })
+  end
+  , disable_open_filter_window = function ()
+    if _G.TKC.plugins.ddu.open_filter_window_autocmd_id then
+      vim.api.nvim_del_autocmd(_G.TKC.plugins.ddu.open_filter_window_autocmd_id)
+      _G.TKC.plugins.ddu.open_filter_window_autocmd_id = nil
+    end
+  end
+  , diff_left_path = nil
 }
 
 

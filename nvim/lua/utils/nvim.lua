@@ -153,4 +153,19 @@ return {
   , open_tab = function (path)
     vim.cmd('tabe '..vim.fn.expand(path))
   end
+  , diff = function (left, right)
+    left = left or 'left'
+    right = right or 'right'
+    if left == 'left' then
+      _G.TKC.utils.nvim.open_empty_buffer('tabnew '..left..'|diffthis')
+    else
+      vim.cmd('tabnew '..left..'|diffthis')
+    end
+    if right == 'right' then
+      _G.TKC.utils.nvim.open_empty_buffer('vsplit '..right..'|diffthis')
+    else
+      vim.cmd('vsplit '..right..'|diffthis')
+    end
+    vim.cmd('wincmd w')
+  end
 }

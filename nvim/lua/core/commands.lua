@@ -91,9 +91,7 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
   'DiffCheck'
   , function ()
-    _G.TKC.utils.nvim.open_empty_buffer('tabnew DiffA')
-    _G.TKC.utils.nvim.open_empty_buffer('vert diffsplit DiffB')
-    vim.cmd('wincmd w')
+    _G.TKC.utils.nvim.diff(nil, nil)
   end
   , { nargs = 0 }
 )

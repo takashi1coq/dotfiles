@@ -61,27 +61,32 @@ vim.keymap.set('n', '<Space>u', function ()
       }
     }
   })
+  _G.TKC.plugins.ddu.enable_open_filter_window()
 end)
-vim.keymap.set('n', '<Space>U', function () vim.fn['ddu#start']({
-  ui = 'ff'
-  , sources = {{ name = 'file_rec' }}
-  , sourceOptions = {
-    file_rec = {
-      path = vim.fn.expand('%:p:h')
+vim.keymap.set('n', '<Space>U', function ()
+  vim.fn['ddu#start']({
+    ui = 'ff'
+    , sources = {{ name = 'file_rec' }}
+    , sourceOptions = {
+      file_rec = {
+        path = vim.fn.expand('%:p:h')
+      }
     }
-  }
-  , uiParams = { ff = { startFilter = true } }
-}) end)
-vim.keymap.set('n', '<Space>v', function () vim.fn['ddu#start']({
-  ui = 'ff'
-  , sources = {{ name = 'file_rec' }}
-  , sourceOptions = {
-    file_rec = {
-      path = vim.fn.expand('~/dotfiles')
+  })
+  _G.TKC.plugins.ddu.enable_open_filter_window()
+end)
+vim.keymap.set('n', '<Space>v', function ()
+  vim.fn['ddu#start']({
+    ui = 'ff'
+    , sources = {{ name = 'file_rec' }}
+    , sourceOptions = {
+      file_rec = {
+        path = vim.fn.expand('~/dotfiles')
+      }
     }
-  }
-  , uiParams = { ff = { startFilter = true } }
-}) end)
+  })
+  _G.TKC.plugins.ddu.enable_open_filter_window()
+end)
 vim.keymap.set('n', '<Space>b', function ()
   local selects = {}
   local buffers = vim.api.nvim_list_bufs()
@@ -116,7 +121,6 @@ vim.keymap.set({'n', 'v'}, '<Space>g', function () _G.TKC.plugins.ddu.ddu_grep('
 vim.keymap.set({'n', 'v'}, '<Space>G', function () _G.TKC.plugins.ddu.ddu_grep('under grep: ', vim.fn.expand('%:p:h')) end)
 vim.keymap.set('n', '<Space>r', function () vim.fn['ddu#start']({
   ui = 'ff', resume = 1
-  , uiParams = { ff = { startFilter = false } }
 }) end)
 
 -- ##################################
@@ -161,15 +165,14 @@ vim.fn['ddu#custom#action']('ui', 'filer', 'createMyRoot', function (args)
 end)
 vim.fn['ddu#custom#action']('ui', 'filer', 'dduFilerDiff', function ()
   local path = vim.fn['ddu#ui#get_item']().treePath
-  if (_G.TKC.utils.string.is_empty(vim.g.diffA)) or vim.g.diffA == path then
-    vim.g.diffA = path
-    print('diffA => [ '..vim.g.diffA..' ]')
-  else
-    vim.cmd('tabnew '..vim.g.diffA..'|diffthis')
-    vim.cmd('vsplit '..path..'|diffthis')
-    vim.g.diffA = ''
-    print('diffA => [ '..vim.g.diffA..' ]')
+  local leftPath = _G.TKC.plugins.ddu.diff_left_path
+  if leftPath == nil or leftPath == path then
+    _G.TKC.plugins.ddu.diff_left_path = path
+    _G.TKC.utils.message.info('Ddu diff left => [ '..path..' ]')
+    return
   end
+  _G.TKC.plugins.ddu.diff_left_path = nil
+  _G.TKC.utils.nvim.diff(leftPath, path)
 end)
 
 -- TODO
