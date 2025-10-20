@@ -228,6 +228,10 @@ vim.keymap.set('n', '<Space>c', function ()
       , function () vim.cmd('ToggleNumber') end
     }
     , {
+      'Command : Cancel git merge due to conflicts: [git merge --abort] (yank)'
+      , function () _G.TKC.utils.nvim.clipboard('git merge --abort') end
+    }
+    , {
       'Command : Find port prosess [lsof -i :<PORT>] (open bottom terminal)'
       , function ()
         _G.TKC.utils.terminal.my('myCommand', 'lsof -i :', nil, 'botright new')

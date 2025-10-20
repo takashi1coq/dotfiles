@@ -25,7 +25,6 @@ return {
       cwd = path
       , term = true
       , on_exit = function ()
-        vim.cmd('bd')
       end
       , on_stdout = function (id, data, event)
       end
