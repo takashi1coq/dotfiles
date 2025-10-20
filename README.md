@@ -34,3 +34,11 @@ git clone https://github.com/takashi1coq/dotfiles dotfiles
 nvim --headless -c "lua dofile(vim.fn.expand('~/dotfiles/setup.lua'))" -c "qa"
 ```
 
+### upgrade
+
+```
+brew update
+brew upgrade
+deno upgrade
+```
+

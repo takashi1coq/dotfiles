@@ -150,13 +150,7 @@ vim.fn['ddu#custom#action']('ui', 'filer', 'terminalOpen', function (args)
   _G.TKC.utils.terminal.my(name, nil, args.context.path)
 end)
 vim.fn['ddu#custom#action']('ui', 'filer', 'explorerOpen', function (args)
-  if vim.fn.has('mac') == 1 then
-    vim.cmd('silent !open '..args.context.path)
-  elseif vim.fn.has('win32') == 1 then
-    vim.cmd('silent !start '..args.context.path)
-  else
-    _G.TKC.utils.message.error('plugins.ddu.explorerOpen faild')
-  end
+  _G.TKC.utils.os.open_explorer(args.context.path)
 end)
 vim.fn['ddu#custom#action']('ui', 'filer', 'createMyRoot', function (args)
   local path = args.context.path..'/.myRoot'
