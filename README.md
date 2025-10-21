@@ -26,7 +26,7 @@ ssh-keygen -t RSA -b 4096
 
 ### setup
 
-on windows, please run as administrator.
+on windows, run Administrator.
 
 ```
 cd
