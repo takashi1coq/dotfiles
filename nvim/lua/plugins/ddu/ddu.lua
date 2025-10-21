@@ -150,13 +150,7 @@ vim.fn['ddu#custom#action']('ui', 'filer', 'terminalOpen', function (args)
   _G.TKC.utils.terminal.my(name, nil, args.context.path)
 end)
 vim.fn['ddu#custom#action']('ui', 'filer', 'explorerOpen', function (args)
-  if vim.fn.has('mac') == 1 then
-    vim.cmd('silent !open '..args.context.path)
-  elseif vim.fn.has('win32') == 1 then
-    vim.cmd('silent !start '..args.context.path)
-  else
-    _G.TKC.utils.message.error('plugins.ddu.explorerOpen faild')
-  end
+  _G.TKC.utils.os.open_explorer(args.context.path)
 end)
 vim.fn['ddu#custom#action']('ui', 'filer', 'createMyRoot', function (args)
   local path = args.context.path..'/.myRoot'
@@ -232,6 +226,10 @@ vim.keymap.set('n', '<Space>c', function ()
     , {
       'ExCmd : Toggle number setting :ToggleNumber'
       , function () vim.cmd('ToggleNumber') end
+    }
+    , {
+      'Command : Cancel git merge due to conflicts: [git merge --abort] (yank)'
+      , function () _G.TKC.utils.nvim.clipboard('git merge --abort') end
     }
     , {
       'Command : Find port prosess [lsof -i :<PORT>] (open bottom terminal)'

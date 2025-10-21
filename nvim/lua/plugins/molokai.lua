@@ -2,7 +2,7 @@
 vim.cmd.colorscheme('molokai')
 
 local highlight = {
-  Comment = {ctermfg = 63}
+  Comment = {ctermfg = 101}
   , CursorLine = {ctermbg = 236}
   , Search = {ctermbg = 55, ctermfg = 226}
   , Visual = {ctermbg = 239}

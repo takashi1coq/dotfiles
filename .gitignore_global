@@ -4,11 +4,7 @@ tags
 # node
 node_modules/
 
-# 直面してhttps://github.com/github/gitignoreにあるものだけ写す
-
-#
-# python
-#
+# ↓ https://github.com/github/gitignore
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -16,3 +12,5 @@ __pycache__/
 # Distribution / packaging
 *.egg-info/
 
+# macOS
+.DS_Store
