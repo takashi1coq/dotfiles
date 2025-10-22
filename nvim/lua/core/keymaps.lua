@@ -16,8 +16,8 @@ vim.keymap.set('n', '//', 'q/')
 vim.keymap.set({'i','c'}, '<C-v>', '<C-r>+')
 vim.keymap.set('t', '<C-v>', [[<C-\><C-n>pi]])
 
--- Ctrl-p で差し替え後もペースト
-vim.keymap.set('v', '<C-p>', '"0p<CR>')
+-- p doesn't change the register
+vim.keymap.set('x', 'p', 'pgvy')
 
 -- insert date time
 vim.keymap.set(
