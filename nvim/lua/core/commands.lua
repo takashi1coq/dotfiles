@@ -123,6 +123,13 @@ vim.api.nvim_create_user_command(
   end
   , { nargs = 0 }
 )
+vim.api.nvim_create_user_command(
+  'RandomString'
+  , function ()
+    _G.TKC.utils.nvim.clipboard(_G.TKC.utils.string.random(10))
+  end
+  , { nargs = 0 }
+)
 
 --vim.api.nvim_create_user_command(
 --  'ToggleKeywordHyphen'
