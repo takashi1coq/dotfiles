@@ -50,26 +50,20 @@ vim.api.nvim_create_user_command(
     local prev = change(opts.fargs[1], true)
     local next = change(opts.fargs[2], false)
     vim.fn.execute('%s/'..prev..'/'..next..'/g')
+    vim.cmd('nohlsearch')
   end
   , {
     nargs = '*'
-    , complete = function (arg_lead)
-      return vim.tbl_filter(
-        function(item)
-          return vim.startswith(item, arg_lead)
-        end
-        , {
-          'tab'
-          , 'enter'
-          , 'space'
-          , 'comma'
-          , 'period'
-          , 'colon'
-          , 'semicolon'
-          , 'empty'
-        }
-      )
-    end
+    , complete = _G.TKC.utils.nvim.command_complete({
+      'tab'
+      , 'enter'
+      , 'space'
+      , 'comma'
+      , 'period'
+      , 'colon'
+      , 'semicolon'
+      , 'empty'
+    })
   }
 )
 vim.api.nvim_create_user_command(
