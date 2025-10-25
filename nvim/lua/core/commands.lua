@@ -1,36 +1,32 @@
 
 vim.api.nvim_create_user_command(
-  'CopyRelativePath'
-  , function ()
-    _G.TKC.utils.nvim.clipboard(_G.TKC.utils.file.current_relative_path(), true)
-  end
-  , { nargs = 0 }
-)
-vim.api.nvim_create_user_command(
-  'CopyFileStem'
-  , function ()
-    _G.TKC.utils.nvim.clipboard(_G.TKC.utils.file.current_file_stem(), true)
-  end
-  , { nargs = 0 }
-)
-vim.api.nvim_create_user_command(
-  'CopyDirectoryPath'
-  , function ()
-    _G.TKC.utils.nvim.clipboard(_G.TKC.utils.file.current_directory_path(), true)
-  end
-  , { nargs = 0 }
-)
-vim.api.nvim_create_user_command(
-  'CopyFullPath'
-  , function ()
-    _G.TKC.utils.nvim.clipboard(_G.TKC.utils.file.current_file_path(), true)
-  end
-  , { nargs = 0 }
-)
-vim.api.nvim_create_user_command(
-  'Capture'
+  'CopyPath'
   , function (opts)
-    _G.TKC.utils.nvim.open_floating_window_with_text(vim.fn.execute(opts.args), 'left')
+    local arg = (opts.args ~= "" and opts.args) or 'relative_path'
+    if arg == 'relative_path' then
+      _G.TKC.utils.nvim.clipboard(_G.TKC.utils.file.current_relative_path(), true)
+    elseif arg == 'file_stem' then
+      _G.TKC.utils.nvim.clipboard(_G.TKC.utils.file.current_file_stem(), true)
+    elseif arg == 'directory' then
+      _G.TKC.utils.nvim.clipboard(_G.TKC.utils.file.current_directory_path(), true)
+    elseif arg == 'full_path' then
+      _G.TKC.utils.nvim.clipboard(_G.TKC.utils.file.current_file_path(), true)
+    end
+  end
+  , {
+    nargs = '?'
+    , complete = _G.TKC.utils.nvim.command_complete({
+      'relative_path'
+      , 'file_stem'
+      , 'directory'
+      , 'full_path'
+    })
+  }
+)
+vim.api.nvim_create_user_command(
+  'OutputInAFloating'
+  , function (opts)
+    _G.TKC.utils.nvim.open_floating_window_with_text(vim.fn.execute(opts.args))
   end
   , {
     nargs = '+'
@@ -84,11 +80,6 @@ vim.api.nvim_create_user_command(
   , { nargs = 0 }
 )
 vim.api.nvim_create_user_command(
-  'Messages'
-  , function () vim.cmd('Capture messages') end
-  , { nargs = 0 }
-)
-vim.api.nvim_create_user_command(
   'DiffCheck'
   , function ()
     _G.TKC.utils.nvim.diff(nil, nil)
@@ -126,29 +117,7 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
   'RandomString'
   , function ()
-    _G.TKC.utils.nvim.clipboard(_G.TKC.utils.string.random(10))
+    _G.TKC.utils.nvim.clipboard(_G.TKC.utils.string.random(10), true)
   end
   , { nargs = 0 }
 )
-
---vim.api.nvim_create_user_command(
---  'ToggleKeywordHyphen'
---  , function ()
---    local bufnr = vim.fn.bufnr()
---    local iskeyword = vim.api.nvim_buf_get_option(bufnr, 'iskeyword')
---    local filterHyphenTable = table.filter(function (v)
---      return v == '-'
---    end, table.explode(iskeyword, ','))
---    if table.isEmpty(filterHyphenTable) then
---      vim.cmd('setlocal isk+=-')
---      local updateIskeyword = vim.api.nvim_buf_get_option(bufnr, 'iskeyword')
---      print('iskeyword => [ '..updateIskeyword..' ]')
---    else
---      vim.cmd('setlocal isk-=-')
---      local updateIskeyword = vim.api.nvim_buf_get_option(bufnr, 'iskeyword')
---      print('iskeyword => [ '..updateIskeyword..' ]')
---    end
---  end
---  , { nargs = 0 }
---)
-

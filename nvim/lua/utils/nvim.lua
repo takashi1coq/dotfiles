@@ -8,10 +8,12 @@ return {
       print('Yanked to clipboard => [ '..w..' ]')
     end
   end
+  , floating_window_default_width = 60
+  , floating_window_default_height = 5
   , open_floating_window_with_text = function (text, position)
     position = position or 'center'
     local lines = _G.TKC.utils.table.string_to_table(text, '\n')
-    local max_width = 0
+    local max_width = _G.TKC.utils.nvim.floating_window_default_width
     for _, line in ipairs(lines) do
       local line_width = vim.fn.strdisplaywidth(line)
       if line_width > max_width then
@@ -20,8 +22,11 @@ return {
     end
     local editor_width = vim.o.columns
     local editor_height = vim.o.lines
-    local width = max_width + 2
-    local height = #lines + 2
+    local width = max_width
+    local height = math.max(
+      math.min(#lines, editor_height - 10)
+      , _G.TKC.utils.nvim.floating_window_default_height
+    )
     local row = math.floor((editor_height - height) / 2)
     local col = 0
     if position == 'left' then
@@ -43,7 +48,6 @@ return {
       , border = 'rounded'
     })
     vim.api.nvim_win_set_option(window_id, 'wrap', false)
-    return window_id
   end
   , open_empty_buffer = function (opener)
     opener = opener or 'tabnew'
@@ -61,9 +65,9 @@ return {
       if
         -- tab exists after current tab
         targetTabNumber < lastTabNumber
-        -- current tab is not leftmost tab
+        -- not current tab is not leftmost tab
         and not (targetTabNumber == 1)
-        -- multiple tabs open
+        -- not multiple tabs open
         and not (lastTabNumber == 1)
         -- only window, or diff mode
         and (lastWinNumber == 1 or isDiff)
@@ -71,7 +75,7 @@ return {
         vim.cmd('tabprev')
       end
     end
-    local function last_tab_close()
+    local function last_tabclose()
       local quitChoice = vim.fn.confirm("This is the last tab. Quit Neovim?", "&Yes\n&No", 1)
       if quitChoice == 1 then
         vim.cmd('qa!')
@@ -80,7 +84,7 @@ return {
     -- if diff mode
     if isDiff then
       if lastTabNumber == 1 then
-        last_tab_close()
+        last_tabclose()
         return
       end
       tabclose()
@@ -102,7 +106,7 @@ return {
     end
     -- last tab
     if lastTabNumber == 1 then
-      last_tab_close()
+      last_tabclose()
       return
     end
     -- tabclose and tabprev
@@ -203,5 +207,15 @@ return {
       , left
       , right
     )
+  end
+  , command_complete = function (t)
+    return function (arg_lead)
+      return vim.tbl_filter(
+        function(item)
+          return vim.startswith(item, arg_lead)
+        end
+        , t
+      )
+    end
   end
 }

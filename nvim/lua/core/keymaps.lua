@@ -12,6 +12,9 @@ vim.keymap.set('n', ';;', 'q:')
 -- 検索履歴
 vim.keymap.set('n', '//', 'q/')
 
+-- command output in a floating window
+vim.keymap.set('n', '<Space>;', ':OutputInAFloating ')
+
 -- 貼り付け
 vim.keymap.set({'i','c'}, '<C-v>', '<C-r>+')
 vim.keymap.set('t', '<C-v>', [[<C-\><C-n>pi]])
