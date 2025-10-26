@@ -13,7 +13,7 @@ vim.keymap.set('n', ';;', 'q:')
 vim.keymap.set('n', '//', 'q/')
 
 -- command output in a floating window
-vim.keymap.set('n', '<Space>;', ':OutputInAFloating ')
+vim.keymap.set('n', '<Space>;', ':OutputInFloating ')
 
 -- 貼り付け
 vim.keymap.set({'i','c'}, '<C-v>', '<C-r>+')

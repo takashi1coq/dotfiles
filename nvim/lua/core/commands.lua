@@ -24,7 +24,7 @@ vim.api.nvim_create_user_command(
   }
 )
 vim.api.nvim_create_user_command(
-  'OutputInAFloating'
+  'OutputInFloating'
   , function (opts)
     _G.TKC.utils.nvim.open_floating_window_with_text(vim.fn.execute(opts.args))
   end
