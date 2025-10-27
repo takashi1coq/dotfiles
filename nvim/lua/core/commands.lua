@@ -81,18 +81,27 @@ vim.api.nvim_create_user_command(
   , { nargs = 0 }
 )
 vim.api.nvim_create_user_command(
-  'MarkStart'
-  , function ()
-    vim.api.nvim_feedkeys('qm', 'n', true)
+  'Mark'
+  , function (opts)
+    local arg = (opts.args ~= "" and opts.args) or 'end'
+    if arg == 'start' then
+      vim.api.nvim_feedkeys('qm', 'n', true)
+    elseif arg == 'run' then
+      vim.api.nvim_feedkeys('@m', 'n', true)
+    elseif arg == 'stop' then
+      if vim.fn.reg_recording() ~= '' then
+        vim.api.nvim_feedkeys('q', 'n', true)
+      end
+    end
   end
-  , { nargs = 0 }
-)
-vim.api.nvim_create_user_command(
-  'MarkRun'
-  , function ()
-    vim.api.nvim_feedkeys('@m', 'n', true)
-  end
-  , { nargs = 0 }
+  , {
+    nargs = '?'
+    , complete = _G.TKC.utils.nvim.command_complete({
+      'start'
+      , 'run'
+      , 'stop'
+    })
+  }
 )
 vim.api.nvim_create_user_command(
   'ReloadAll'
@@ -104,7 +113,7 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
   'Terminal'
   , function ()
-    _G.TKC.utils.terminal.my('Vanilla', nil, nil)
+    _G.TKC.utils.terminal.my('Vanilla')
   end
   , { nargs = 0 }
 )
