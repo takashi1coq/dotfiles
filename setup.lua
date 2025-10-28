@@ -90,12 +90,12 @@ end
 local current_name = get_git_config('user.name')
 local current_email = get_git_config('user.email')
 if current_name == '' then
-  io.write("Git user.name を入力してください: ")
+  io.write("Set .gitconfig.local user.name: ")
   local name = io.read()
   set_git_config('user.name', name)
 end
 if current_email == '' then
-  io.write("Git user.email を入力してください: ")
+  io.write("Set .gitconfig.local user.email: ")
   local email = io.read()
   set_git_config('user.email', email)
 end
