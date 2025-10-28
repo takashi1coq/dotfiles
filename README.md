@@ -36,9 +36,21 @@ nvim --headless -c "lua dofile(vim.fn.expand('~/dotfiles/setup.lua'))" -c "qa"
 
 ### upgrade
 
+for mac
+
 ```
 brew update
 brew upgrade
+```
+
+for windows
+
+```
+```
+
+Depending on how it's installed,,
+
+```
 deno upgrade
 ```
 
