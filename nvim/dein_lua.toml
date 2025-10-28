@@ -1,0 +1,110 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+hook_add = '''
+let g:dein#auto_recache = 1
+'''
+
+# ==========================================================
+# base
+# ==========================================================
+[[plugins]]
+repo = 'airblade/vim-rooter'
+hook_add = '''
+let g:rooter_patterns = ['.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/', '.myRoot']
+'''
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+[[plugins]]
+repo = 'Shougo/pum.vim'
+[[plugins]]
+repo = 'lambdalisue/mr.vim'
+hook_add = '''
+lua dofile(vim.fn.stdpath("config") .. "/lua/plugins/mr/setting.lua")
+'''
+
+# ==========================================================
+# looks
+# ==========================================================
+[[plugins]]
+repo = 'tomasr/molokai'
+hook_add = '''
+lua dofile(vim.fn.stdpath("config") .. "/lua/plugins/molokai.lua")
+'''
+[[plugins]]
+repo = 'nvim-lualine/lualine.nvim'
+hook_add = '''
+lua dofile(vim.fn.stdpath("config") .. "/lua/plugins/lualine.lua")
+'''
+[[plugins]]
+repo = 'ds1sqe/Calendar.nvim'
+hook_add = '''
+lua dofile(vim.fn.stdpath("config") .. "/lua/plugins/calendar.lua")
+'''
+
+# ==========================================================
+# git
+# ==========================================================
+[[plugins]]
+repo = 'lambdalisue/gin.vim'
+hook_add = '''
+lua dofile(vim.fn.stdpath("config") .. "/lua/plugins/gin/gin.lua")
+'''
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+set updatetime=100
+nnoremap <silent> > :GitGutterNextHunk<CR>zz
+nnoremap <silent> < :GitGutterPrevHunk<CR>zz
+'''
+
+# ==========================================================
+# ddu
+# ==========================================================
+[[plugins]]
+repo = 'Shougo/ddu.vim'
+depends = ['denops.vim', 'pum.vim']
+hook_add = '''
+lua dofile(vim.fn.stdpath("config") .. "/lua/plugins/ddu/ddu.lua")
+lua dofile(vim.fn.stdpath("config") .. "/lua/plugins/ddu/mkmemo.lua")
+'''
+[[plugins]]
+repo = 'Shougo/ddu-ui-filer'
+on_source = 'ddu.vim'
+[[plugins]]
+repo = 'Shougo/ddu-source-file'
+on_source = 'ddu.vim'
+[[plugins]]
+repo = 'Shougo/ddu-kind-file'
+on_source = 'ddu.vim'
+[[plugins]]
+repo = 'Shougo/ddu-column-filename'
+on_source = 'ddu.vim'
+[[plugins]]
+repo = 'Shougo/ddu-ui-ff'
+on_source = 'ddu.vim'
+[[plugins]]
+repo = 'Shougo/ddu-source-file_rec'
+on_source = 'ddu.vim'
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_substring'
+on_source = 'ddu.vim'
+[[plugins]]
+repo = 'shun/ddu-source-rg'
+on_source = 'ddu.vim'
+[[plugins]]
+repo = 'liquidz/ddu-source-custom-list'
+on_source = 'ddu.vim'
+
+# ==========================================================
+# syntax
+# ==========================================================
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+hook_add = '''
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_new_list_item_indent = 2
+'''
+[[plugins]]
+repo = 'peitalin/vim-jsx-typescript'

@@ -4,61 +4,53 @@
 
 ### brew install
 
+- for mac
 ```
-brew install neovim
-brew install deno
-brew install anyenv
-brew install ripgrep
+brew install neovim deno ripgrep
 ```
-
-### anyenv
+- for windows
 ```
-anyenv init
-anyenv install --init
-* echo 'eval "$(anyenv init -)" >> ~~~'
+winget install Git
+winget install Neovim.Neovim
+winget install DenoLand.Deno
+winget install BurntSushi.ripgrep
 ```
 
-### nodenv
+### ssh-keygen
+
+setting up ssh for github
 
 ```
-anyenv install nodenv
-nodenv install --list
-nodenv install xx.xx.xx
-nodenv global xx.xx.xx
+ssh-keygen -t RSA -b 4096
 ```
-
-### install yarn
-
-```
-npm install -g yarn
-```
-
-### install tools
-
-- trans google
-```
-git clone https://github.com/soimort/translate-shell
-cd translate-shell/
-make
-sudo make install
-```
-- words (check `look` is installed)
-  - look only works on `md` and `gitcommit`
 
 ### setup
 
-```
-git clone https://github.com/takashi1coq/dotfiles dotfiles
-sh ~/dotfiles/setup.sh
-```
-### Arch linux ...
+on windows, run Administrator.
 
-- neovim clipboard (:h clipboard-tool)
-- X WindowSystem requied (not required on server)
 ```
-sudo pacman -S xsel
+cd
+git clone https://github.com/takashi1coq/dotfiles dotfiles
+nvim --headless -c "lua dofile(vim.fn.expand('~/dotfiles/setup.lua'))" -c "qa"
 ```
-- words
+
+### upgrade
+
+for mac
+
 ```
-sudo pacman -S words
+brew update
+brew upgrade
 ```
+
+for windows
+
+```
+```
+
+Depending on how it's installed,,
+
+```
+deno upgrade
+```
+
