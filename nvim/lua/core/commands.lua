@@ -76,7 +76,7 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
   'DiffCheck'
   , function ()
-    _G.TKC.utils.nvim.diff(nil, nil)
+    _G.TKC.utils.nvim.diff()
   end
   , { nargs = 0 }
 )
