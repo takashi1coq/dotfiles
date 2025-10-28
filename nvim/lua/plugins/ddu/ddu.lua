@@ -153,7 +153,7 @@ vim.fn['ddu#custom#action']('ui', 'filer', 'explorerOpen', function (args)
   _G.TKC.utils.os.open_explorer(args.context.path)
 end)
 vim.fn['ddu#custom#action']('ui', 'filer', 'createMyRoot', function (args)
-  local path = args.context.path..'/.myRoot'
+  local path = args.context.path..'/'.._G.TKC.utils.file.myRoot
   _G.TKC.utils.file.create(path)
   vim.fn['ddu#redraw'](vim.b['ddu_ui_name'], {refreshItems = 1})
 end)

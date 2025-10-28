@@ -1,6 +1,7 @@
 
 return {
-  has_extension = function (filePath, extensionsTable)
+  myRoot = '.myRoot'
+  , has_extension = function (filePath, extensionsTable)
     for _, extension in ipairs(extensionsTable) do
       local fileEnd = filePath:sub(-#extension)
       if extension == fileEnd then
@@ -31,11 +32,26 @@ return {
   , get_file_info_in_path = function (path, result)
     result = result or {}
     path = vim.fn.expand(path)
+    exclude = {
+      '.git'
+      , 'node_modules'
+      , _G.TKC.utils.file.myRoot
+    }
     local fs = vim.loop.fs_scandir(path)
     if not fs then return result end
     while true do
       local name, ftype = vim.loop.fs_scandir_next(fs)
       if not name then break end
+      local skip = false
+      for _, excludeName in ipairs(exclude) do
+        if name == excludeName then
+          skip = true
+          break
+        end
+      end
+      if skip then
+        goto continue
+      end
       local fullPath = vim.fn.expand(path..'/'..name)
       if ftype == 'file' then
         local stat = vim.loop.fs_stat(fullPath)
@@ -47,6 +63,7 @@ return {
       elseif ftype == 'directory' then
         _G.TKC.utils.file.get_file_info_in_path(fullPath, result)
       end
+      ::continue::
     end
     if _G.TKC.utils.table.is_empty(result) then
       _G.TKC.utils.message.error('utils.file.get_file_in_path: no file in the dir')

@@ -19,21 +19,6 @@ pcall_require('dein_init')
 
 pcall_require('local')
 
-vim.schedule(function()
-  local openCount = _G.TKC.openCount or 1
-  local excludedFiletypes = _G.TKC.excludedFiletypes or {
-    'csv'
-    , 'json'
-  }
-  local excludedExtensions = _G.TKC.excludedExtensions or {
-    'log'
-  }
-  local ok, mr_function = pcall(require, 'plugins.mr.function')
-  if ok then
-    mr_function.open_mrw_file(openCount, excludedFiletypes, excludedExtensions)
-  else
-    vim.notify('mr function not found', vim.log.levels.ERROR)
-  end
-end)
+vim.schedule(function() _G.TKC.plugins.mr.open_mrw_file() end)
 
 math.randomseed(os.time())

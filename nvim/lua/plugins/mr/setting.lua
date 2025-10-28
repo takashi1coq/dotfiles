@@ -9,3 +9,7 @@ vim.g['mr#mrw#predicates'] = {
     return bufnr ~= -1 and vim.bo[bufnr].filetype ~= "markdown"
   end
 }
+-- set function
+_G.TKC = _G.TKC or {}
+_G.TKC.plugins = _G.TKC.plugins or {}
+_G.TKC.plugins.mr = require('plugins.mr.function')

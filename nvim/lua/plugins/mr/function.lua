@@ -1,10 +1,19 @@
 
 return {
-  open_mrw_file = function(openCount, excludedFiletypes, excludedExtensions)
+  openCount = 1
+  , excludedFiletypes = { 'csv', 'json' }
+  , excludedExtensions = { 'log' }
+  , open_mrw_file = function()
     local list = vim.fn['mr#mrw#list']()
     local transformList = _G.TKC.utils.table.transform(function(_, filePath)
-      local isExcludedFiletype = _G.TKC.utils.table.find(excludedFiletypes, vim.filetype.match({filename = filePath}))
-      local isExcludedExtension = _G.TKC.utils.file.has_extension(filePath, excludedExtensions)
+      local isExcludedFiletype = _G.TKC.utils.table.find(
+        _G.TKC.plugins.mr.excludedFiletypes
+        , vim.filetype.match({filename = filePath})
+      )
+      local isExcludedExtension = _G.TKC.utils.file.has_extension(
+        filePath
+        , _G.TKC.plugins.mr.excludedExtensions
+      )
       if not isExcludedFiletype and not isExcludedExtension then
         return filePath
       end
@@ -12,7 +21,10 @@ return {
     if #transformList == 0 then
       return
     end
-    local safeOpenCount = math.min(openCount, #transformList)
+    local safeOpenCount = math.min(
+      _G.TKC.plugins.mr.openCount
+      , #transformList
+    )
     local slicedList = {}
     table.move(transformList, 1, safeOpenCount, 1, slicedList)
     local result = {}
