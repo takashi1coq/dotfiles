@@ -169,14 +169,18 @@ vim.keymap.set(
     local visualText = _G.TKC.utils.nvim.get_visual()
     local buf = vim.api.nvim_create_buf(false, true)
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, {visualText, ""})
+    local width = math.max(
+      _G.TKC.utils.nvim.floating_window_default_width
+      , #visualText + 5
+    )
     local win = vim.api.nvim_open_win(buf, true, {
-      relative = 'editor',
-      width = math.max(50, #visualText + 5),
-      height = 2,
-      row = math.floor(vim.o.lines / 2) - 1,
-      col = math.floor((vim.o.columns - math.max(50, #visualText + 5)) / 2),
-      style = 'minimal',
-      border = 'single',
+      relative = 'editor'
+      , width = width
+      , height = 2
+      , row = math.floor(vim.o.lines / 2) - 1
+      , col = math.floor((vim.o.columns - width) / 2)
+      , style = 'minimal'
+      , border = 'single'
     })
     vim.api.nvim_win_set_cursor(win, {2, 0})
     vim.cmd('startinsert')
