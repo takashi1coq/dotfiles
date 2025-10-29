@@ -128,4 +128,18 @@ return {
   , chenge_slash_for_unix = function (path)
     return path:gsub("\\", "/")
   end
+  , create_with_header = function (header, filePath)
+    if _G.TKC.utils.string.is_empty(header) then
+      return
+    end
+    if _G.TKC.utils.string.is_empty(filePath) then
+      return
+    end
+    local file = io.open(filePath, "w")
+    if file then
+      file:write(header)
+      file:close()
+    end
+    _G.TKC.utils.nvim.open_tab(filePath)
+  end
 }

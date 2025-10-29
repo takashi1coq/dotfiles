@@ -10,7 +10,7 @@ vim.keymap.set('n', 'mn', function ()
     , [[==========]]
   }, '\n')
   local filePath = vim.fn.expand(memoPath..'/'.._G.TKC.utils.datetime.yyyymmddhhmmss()..'.md')
-  _G.TKC.plugins.ddu.custom_file_create(header, filePath)
+  _G.TKC.utils.file.create_with_header(header, filePath)
 end)
 
 vim.keymap.set('n', 'ml', function ()

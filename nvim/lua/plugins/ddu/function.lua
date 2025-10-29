@@ -38,20 +38,6 @@ return {
       , uiParams = { ff = { startFilter = sf } }
     })
   end
-  , custom_file_create = function (header, filePath)
-    if _G.TKC.utils.string.is_empty(header) then
-      return
-    end
-    if _G.TKC.utils.string.is_empty(filePath) then
-      return
-    end
-    local file = io.open(filePath, "w")
-    if file then
-      file:write(header)
-      file:close()
-    end
-    _G.TKC.utils.nvim.open_tab(filePath)
-  end
   , open_custom_directory = function (directoryPath, isFilter)
     local selects = {}
     local fileInfo = _G.TKC.utils.file.get_file_info_in_path(directoryPath)
