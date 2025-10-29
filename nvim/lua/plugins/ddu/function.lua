@@ -1,7 +1,7 @@
 
 return {
   open_custom_list = function (selects, sf)
-    sf = sf and false or sf
+    sf = sf or false
     selects = _G.TKC.utils.table.transform(function (key, value)
       local num = string.format("%03d", key)
       return {
@@ -35,8 +35,10 @@ return {
           defaultAction = 'callback'
         }
       }
-      , uiParams = { ff = { startFilter = sf } }
     })
+    if sf then
+      _G.TKC.plugins.ddu.enable_open_filter_window()
+    end
   end
   , open_custom_directory = function (directoryPath, isFilter)
     local selects = {}
