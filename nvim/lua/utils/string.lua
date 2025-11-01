@@ -31,4 +31,5 @@ return {
     end
     return _G.TKC.utils.table.table_to_string(result)
   end
+  , separator = ' : '
 }

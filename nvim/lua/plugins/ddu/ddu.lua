@@ -224,8 +224,27 @@ vim.keymap.set('n', '<Space>c', function ()
       , function () vim.cmd('call dein#update()') end
     }
     , {
-      'ExCmd : Toggle number setting :ToggleNumber'
-      , function () vim.cmd('ToggleNumber') end
+      'ExCommand : Custom Ex Commands list'
+      , function ()
+        local commands = vim.api.nvim_get_commands({builtin = false})
+        local selects = {}
+        for _, c in pairs(commands) do
+          if string.find(c.definition, _G.TKC.utils.string.separator) then
+            local fnc = c.nargs == '0'
+              and function()
+                vim.cmd(c.name)
+              end
+              or function()
+                vim.fn.feedkeys(':'..c.name..' ', 'n')
+              end
+            table.insert(selects, {
+              c.name..c.definition
+              , fnc
+            })
+          end
+        end
+        _G.TKC.plugins.ddu.open_custom_list(selects)
+      end
     }
     , {
       'Command : Cancel git merge due to conflicts: [git merge --abort] (yank)'

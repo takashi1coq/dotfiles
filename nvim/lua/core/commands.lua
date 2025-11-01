@@ -1,4 +1,7 @@
 
+local function create_desc(text)
+  return _G.TKC.utils.string.separator..text
+end
 vim.api.nvim_create_user_command(
   'CopyPath'
   , function (opts)
@@ -21,6 +24,7 @@ vim.api.nvim_create_user_command(
       , 'directory'
       , 'full_path'
     })
+    , desc = create_desc('get current file path in multiple formats')
   }
 )
 vim.api.nvim_create_user_command(
@@ -31,10 +35,11 @@ vim.api.nvim_create_user_command(
   , {
     nargs = '+'
     , complete = 'command'
+    , desc = create_desc('excommand result putput in floating')
   }
 )
 vim.api.nvim_create_user_command(
-  'SeparatorChange'
+  'ChengeSeparator'
   , function (opts)
     local function change(v, isPrev)
       v = (v == 'enter') and ((isPrev) and [[\n]] or [[\r]]) or v
@@ -64,6 +69,7 @@ vim.api.nvim_create_user_command(
       , 'semicolon'
       , 'empty'
     })
+    , desc = create_desc('change separator of current buffer')
   }
 )
 vim.api.nvim_create_user_command(
@@ -71,17 +77,23 @@ vim.api.nvim_create_user_command(
   , function ()
       vim.cmd('setlocal relativenumber!')
   end
-  , { nargs = 0 }
+  , {
+    nargs = 0
+    , desc = create_desc('toggle relativenumber')
+  }
 )
 vim.api.nvim_create_user_command(
   'DiffCheck'
   , function ()
     _G.TKC.utils.nvim.diff()
   end
-  , { nargs = 0 }
+  , {
+    nargs = 0
+    , desc = create_desc('open two empty buffers and perform diff')
+  }
 )
 vim.api.nvim_create_user_command(
-  'Mark'
+  'Macro'
   , function (opts)
     local arg = (opts.args ~= "" and opts.args) or 'end'
     if arg == 'start' then
@@ -101,6 +113,7 @@ vim.api.nvim_create_user_command(
       , 'run'
       , 'stop'
     })
+    , desc = create_desc('macro start, run, stop')
   }
 )
 vim.api.nvim_create_user_command(
@@ -108,19 +121,28 @@ vim.api.nvim_create_user_command(
   , function ()
     _G.TKC.utils.nvim.reload()
   end
-  , { nargs = 0 }
+  , {
+    nargs = 0
+    , desc = create_desc('vim reload (unsafe method)')
+  }
 )
 vim.api.nvim_create_user_command(
   'Terminal'
   , function ()
     _G.TKC.utils.terminal.my('Vanilla')
   end
-  , { nargs = 0 }
+  , {
+    nargs = 0
+    , desc = create_desc('open terminal in tab')
+  }
 )
 vim.api.nvim_create_user_command(
   'RandomString'
   , function ()
     _G.TKC.utils.nvim.clipboard(_G.TKC.utils.string.random(10), true)
   end
-  , { nargs = 0 }
+  , {
+    nargs = 0
+    , desc = create_desc('copy 10 character rundom string to clipboard')
+  }
 )
