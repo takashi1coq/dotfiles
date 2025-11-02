@@ -146,3 +146,13 @@ vim.api.nvim_create_user_command(
     , desc = create_desc('copy 10 character rundom string to clipboard')
   }
 )
+vim.api.nvim_create_user_command(
+  'DeinUpdate'
+  , function ()
+    vim.cmd('call dein#update()')
+  end
+  , {
+    nargs = 0
+    , desc = create_desc('Dein Plugin Update')
+  }
+)

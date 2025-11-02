@@ -6,6 +6,20 @@ return {
     end
     return false
   end
+  , join = function (...)
+    local result = {}
+    local args = { ... }
+    for _, t in ipairs(args) do
+      if type(t) == 'table' then
+        for _, v in ipairs(t) do
+          table.insert(result, v)
+        end
+      else
+        _G.TKC.utils.message.warning('utils.table.join : non table arg', t)
+      end
+    end
+    return result
+  end
   , table_to_string = function (list, separator)
     return table.concat(list, separator)
   end

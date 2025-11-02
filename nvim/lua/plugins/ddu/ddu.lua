@@ -186,25 +186,45 @@ vim.api.nvim_create_user_command(
 )
 
 vim.keymap.set('n', '<Space>c', function ()
-  _G.TKC.plugins.ddu.open_custom_list({
+  local commands = vim.api.nvim_get_commands({builtin = false})
+  local commandSelects = {}
+  for _, c in pairs(commands) do
+    if string.find(c.definition, _G.TKC.utils.string.separator) then
+      local fnc = c.nargs == '0'
+        and function()
+          vim.cmd(c.name)
+        end
+        or function()
+          vim.fn.feedkeys(':'..c.name..' ', 'n')
+        end
+      table.insert(commandSelects, {
+        c.name..c.definition
+        , fnc
+      })
+    end
+  end
+  local set_file_title = function (text)
+    return 'File'.._G.TKC.utils.string.separator..text
+  end
+  local fileSelects = {
     {
-      'File : ~/.zshrc'
+      set_file_title('~/.zshrc')
       , function () _G.TKC.utils.nvim.open_tab('~/.zshrc') end
     }
     , {
-      'File : ~/.bashrc'
+      set_file_title('~/.bashrc')
       , function () _G.TKC.utils.nvim.open_tab('~/.bashrc') end
     }
     , {
-      'File : ~/.gitconfig.local'
+      set_file_title('~/.gitconfig.local')
       , function () _G.TKC.utils.nvim.open_tab('~/.gitconfig.local') end
     }
     , {
-      'File : ~/.ssh/config'
+      set_file_title('~/.ssh/config')
       , function () _G.TKC.utils.nvim.open_tab('~/.ssh/config') end
     }
     , {
-      'File : /etc/profile (read only)'
+      set_file_title('/etc/profile (read only)')
       , function ()
         local path = '/etc/profile'
         _G.TKC.utils.nvim.clipboard('sudo nvim '..path)
@@ -212,93 +232,88 @@ vim.keymap.set('n', '<Space>c', function ()
       end
     }
     , {
-      'File : /etc/hosts (read only)'
+      set_file_title('/etc/hosts (read only)')
       , function ()
         local path = '/etc/hosts'
         _G.TKC.utils.nvim.clipboard('sudo nvim '..path)
         _G.TKC.utils.nvim.open_tab(path)
       end
     }
-    , {
-      'Dein : Dein Plugin Update'
-      , function () vim.cmd('call dein#update()') end
-    }
-    , {
-      'ExCommand : Custom Ex Commands list'
-      , function ()
-        local commands = vim.api.nvim_get_commands({builtin = false})
-        local selects = {}
-        for _, c in pairs(commands) do
-          if string.find(c.definition, _G.TKC.utils.string.separator) then
-            local fnc = c.nargs == '0'
-              and function()
-                vim.cmd(c.name)
-              end
-              or function()
-                vim.fn.feedkeys(':'..c.name..' ', 'n')
-              end
-            table.insert(selects, {
-              c.name..c.definition
-              , fnc
-            })
-          end
-        end
-        _G.TKC.plugins.ddu.open_custom_list(selects)
-      end
-    }
-    , {
-      'Command : Cancel git merge due to conflicts: [git merge --abort] (yank)'
+  }
+  local set_git_command_tiltle = function (text)
+    return 'Git : '..text
+  end
+  local gitSelects = {
+    {
+      set_git_command_tiltle('Cancel git merge due to conflicts: [git merge --abort] (yank)')
       , function () _G.TKC.utils.nvim.clipboard('git merge --abort') end
     }
+  }
+  local set_docker_command_title = function (text)
+    return 'Docker : '..text
+  end
+  local dockerSelects = {
+    {
+      set_docker_command_title('Prune [docker system prune] (yank)')
+      , function () _G.TKC.utils.nvim.clipboard('docker system prune') end
+    }
     , {
-      'Command : Find port prosess [lsof -i :<PORT>] (open bottom terminal)'
+      set_docker_command_title('Compose rebuild [docker compose build --no-cache] (yank)')
+      , function () _G.TKC.utils.nvim.clipboard('docker-compose build --no-cache') end
+    }
+  }
+  local set_sh_command_title = function (text)
+    return 'Sh Command : '..text
+  end
+  local shCommandSelects = {
+    {
+      set_sh_command_title('Find port prosess [lsof -i :<PORT>] (open bottom terminal)')
       , function ()
         _G.TKC.utils.terminal.my('myCommand', 'lsof -i :', nil, 'botright new')
       end
     }
     , {
-      'Command : Docker prune [docker system prune] (yank)'
-      , function () _G.TKC.utils.nvim.clipboard('docker system prune') end
-    }
-    , {
-      'Command : Docker prune [docker compose build --no-cache] (yank)'
-      , function () _G.TKC.utils.nvim.clipboard('docker-compose build --no-cache') end
-    }
-    , {
-      'Command : File permission chmod [chmod u+x <FILE>] (open bottom terminal)'
+      set_sh_command_title('File permission chmod [chmod u+x <FILE>] (open bottom terminal)')
       , function ()
         _G.TKC.utils.terminal.my('myCommand', 'chmod u+x ', nil, 'botright new')
       end
     }
     -- TODO create sort and diff function
     , {
-      'Command : Sort File [LANG=C sort <Raw File> > <Sort File>] (yank)'
+      set_sh_command_title('Sort File [LANG=C sort <Raw File> > <Sort File>] (yank)')
       , function () _G.TKC.utils.nvim.clipboard('LANG=C sort ') end
     }
     , {
-      'Command : Outputs the difference in both file [comm -3 <A File> <B File>] (yank)'
+      set_sh_command_title('Outputs the difference in both file [comm -3 <A File> <B File>] (yank)')
       , function () _G.TKC.utils.nvim.clipboard('comm -3 ') end
     }
     , {
-      'Command : Big file split [split -l 10000 <File>] (yank)'
+      set_sh_command_title('Big file split [split -l 10000 <File>] (yank)')
       , function () _G.TKC.utils.nvim.clipboard('split -l 10000 ') end
     }
     , {
-      [[Command : jq command [jq '.[]' *.json > filename.json] (yank)]]
+      set_sh_command_title([[jq command [jq '.[]' *.json > filename.json] (yank)]])
       , function () _G.TKC.utils.nvim.clipboard([[jq '.[]' *.json > filename.json]]) end
     }
     , {
-      [[Command : yq command csv to json [yq file.csv -p=csv -o=json > file.json] (yank)]]
+      set_sh_command_title([[yq command csv to json [yq file.csv -p=csv -o=json > file.json] (yank)]])
       , function () _G.TKC.utils.nvim.clipboard([[yq file.csv -p=csv -o=json > file.json]]) end
     }
     , {
-      'Command : Create large file [dd if=/dev/zero of=<filename> bs=1M count=25] (yank)'
+      set_sh_command_title('Create large file [dd if=/dev/zero of=<filename> bs=1M count=25] (yank)')
       , function ()
         _G.TKC.utils.nvim.clipboard('dd if=/dev/zero of=<filename> bs=1M count=25')
         print('Please setup filename')
       end
     }
-  })
+  }
+  _G.TKC.plugins.ddu.open_custom_list(_G.TKC.utils.table.join(
+    fileSelects
+    , commandSelects
+    , shCommandSelects
+    , gitSelects
+    , dockerSelects
+  ))
 end)
 
 -- set augroup
