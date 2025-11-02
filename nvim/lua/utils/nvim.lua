@@ -218,4 +218,11 @@ return {
       )
     end
   end
+  , search = function(text)
+    vim.fn.setreg('/', text)
+    vim.cmd('normal! n')
+  end
+  , disable_search_highlight = function()
+    vim.cmd('nohlsearch')
+  end
 }

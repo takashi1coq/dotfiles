@@ -167,6 +167,7 @@ vim.keymap.set(
   'v', 'rr'
   , function ()
     local visualText = _G.TKC.utils.nvim.get_visual()
+    _G.TKC.utils.nvim.search(visualText)
     local buf = vim.api.nvim_create_buf(false, true)
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, {visualText, ""})
     local width = math.max(
@@ -191,6 +192,11 @@ vim.keymap.set(
       vim.api.nvim_win_close(win, true)
       vim.cmd('stopinsert')
       _G.TKC.utils.nvim.replace_in_buffer(what, with)
+      _G.TKC.utils.nvim.disable_search_highlight();
+    end, { buffer = buf })
+    vim.keymap.set('n', 'q', function()
+      _G.TKC.utils.nvim.quit()
+      _G.TKC.utils.nvim.disable_search_highlight();
     end, { buffer = buf })
   end
 )
