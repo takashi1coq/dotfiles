@@ -1,6 +1,9 @@
 
 return {
   my = function (name, cmd, path, openCmd)
+    if path == nil and not string.match(vim.fn.expand("%:p:h"), vim.loop.cwd()) then
+      path = vim.fn.expand("%:p:h")
+    end
     name = name..'_Terminal'
     openCmd = openCmd or '0tabnew'
     local bufferNumbers = vim.api.nvim_list_bufs()
