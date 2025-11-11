@@ -32,4 +32,16 @@ return {
     return _G.TKC.utils.table.table_to_string(result)
   end
   , separator = ' : '
+  , camel_to_snake_case = function (str)
+    return str
+      :gsub('(%l)(%u)', '%1_%2')
+      :gsub('(%l)(%u%l)', '%1_%2')
+      :lower()
+  end
+  , snake_to_camel_case = function (str)
+    return str
+      :gsub('_%a', function(s)
+        return s:sub(2):upper()
+      end)
+  end
 }
