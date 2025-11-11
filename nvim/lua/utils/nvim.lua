@@ -76,9 +76,11 @@ return {
       end
     end
     local function last_tabclose()
-      local quitChoice = vim.fn.confirm("This is the last tab. Quit Neovim?", "&Yes\n&No", 1)
+      local quitChoice = vim.fn.confirm("This is the last tab. Quit Neovim?", "&Yes\n&No", 2)
       if quitChoice == 1 then
         vim.cmd('qa!')
+      elseif quitChoice == 2 then
+        return
       end
     end
     -- if diff mode
@@ -92,10 +94,10 @@ return {
     end
     -- Buffer is modified
     if isModified then
-      local choice = vim.fn.confirm('Buffer is modified. Save before closing?', '&Yes\n&No\n&Cancel', 1)
+      local choice = vim.fn.confirm('Buffer is modified. Save before closing?', '&Yes\n&No', 2)
       if choice == 1 then
         vim.cmd('write')
-      elseif choice == 3 then
+      elseif choice == 2 then
         return
       end
     end
