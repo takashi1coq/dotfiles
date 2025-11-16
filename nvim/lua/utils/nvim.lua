@@ -49,9 +49,15 @@ return {
     })
     vim.api.nvim_win_set_option(window_id, 'wrap', false)
   end
-  , open_empty_buffer = function (opener)
-    opener = opener or 'tabnew'
-    vim.cmd(opener..' | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile')
+  , open_empty_buffer = function (openCmd)
+    openCmd = openCmd or 'tabnew'
+    local buffer = vim.api.nvim_create_buf(false, true)
+    vim.cmd(openCmd)
+    vim.api.nvim_win_set_buf(0, buffer)
+    vim.api.nvim_buf_set_option(buffer, 'buftype', 'nofile')
+    vim.api.nvim_buf_set_option(buffer, 'bufhidden', 'wipe')
+    vim.api.nvim_buf_set_option(buffer, 'swapfile', false)
+    vim.api.nvim_buf_set_option(buffer, 'buflisted', false)
   end
   , quit = function ()
     local bufNumber = vim.api.nvim_get_current_buf()

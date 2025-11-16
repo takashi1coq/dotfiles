@@ -104,13 +104,47 @@ vim.keymap.set('n', 'q', function () _G.TKC.utils.nvim.quit() end)
 -- equalize window size
 vim.keymap.set('n', '==', '<C-w>=')
 
+--[[==========================================================
+ buffer
+============================================================]]
+
+-- oepn empty buffer above,below,left,right
+vim.keymap.set(
+  'n', 'bk'
+  , function ()
+    _G.TKC.utils.nvim.open_empty_buffer('aboveleft split')
+  end
+)
+vim.keymap.set(
+  'n', 'bj'
+  , function ()
+    _G.TKC.utils.nvim.open_empty_buffer('belowright split')
+  end
+)
+vim.keymap.set(
+  'n', 'bh'
+  , function ()
+    _G.TKC.utils.nvim.open_empty_buffer('topleft vsplit')
+  end
+)
+vim.keymap.set(
+  'n', 'bl'
+  , function ()
+    _G.TKC.utils.nvim.open_empty_buffer('botright vsplit')
+  end
+)
 
 --[[==========================================================
  tabpage
 ============================================================]]
 
 -- tt for open new tab
-vim.keymap.set('n', 'tt', function () _G.TKC.utils.nvim.open_empty_buffer() end)
+vim.keymap.set(
+  'n', 'tt'
+  , function ()
+    _G.TKC.utils.nvim.open_empty_buffer()
+  end
+)
 
 -- C-l,h for tab move
 vim.keymap.set('n', '<C-l>', 'gt')
