@@ -2,27 +2,27 @@
  main
 ============================================================]]
 
--- n,vモード時のみ;と:を入れ替える
+-- n,v mode swap ; and :
 vim.keymap.set({'n','v'}, ';', ':')
 vim.keymap.set({'n','v'}, ':', ';')
 
--- コマンド履歴
+-- use ;; to open command history
 vim.keymap.set('n', ';;', 'q:')
 
--- 検索履歴
+-- use // to open search history
 vim.keymap.set('n', '//', 'q/')
 
 -- command output in a floating window
 vim.keymap.set('n', '<Space>;', ':OutputInFloating ')
 
--- 貼り付け
+-- paste
 vim.keymap.set({'i','c'}, '<C-v>', '<C-r>+')
 vim.keymap.set('t', '<C-v>', [[<C-\><C-n>pi]])
 
 -- p doesn't change the register
 vim.keymap.set('x', 'p', 'pgvy')
 
--- insert date time
+-- insert datetime
 vim.keymap.set(
   'i', '<C-d>'
   , function ()
@@ -33,27 +33,27 @@ vim.keymap.set(
   end
 )
 
--- コード変換をC-t
+-- C-t for insert untypable characters (literal input)
 vim.keymap.set({'i','c'}, '<C-t>', '<C-v>')
 
--- "aaで全選択
+-- aa for select all
 vim.keymap.set('n', 'aa', 'ggVG$')
 
--- 選択範囲を囲む
+-- wrap the selected text with delimiters ',",(,{,[
 vim.keymap.set('v', "'", "c''<ESC>P")
 vim.keymap.set('v', '"', 'c""<ESC>P')
 vim.keymap.set('v', "(", "c()<ESC>P")
 vim.keymap.set('v', '{', 'c{}<ESC>P')
 vim.keymap.set('v', '[', 'c[]<ESC>P')
 
--- x削除でレジスタに格納しない
+-- non-yanking delete with x
 vim.keymap.set('n', 'x', '"_x')
 
--- wrap設定の場合、一行づつ移動する
+-- move one line at a time, even on wrapped lines
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
 
--- 移動
+-- move
 vim.keymap.set({'n','v'}, 'H', 'b')
 vim.keymap.set({'n','v'}, 'L', 'w')
 vim.keymap.set({'n','v'}, 'J', '10j')
@@ -61,28 +61,28 @@ vim.keymap.set({'n','v'}, 'K', '10k')
 vim.keymap.set('n', '<C-f>', '13<C-e>')
 vim.keymap.set('n', '<C-u>', '13<C-y>')
 
--- 進む、戻るを逆に
+-- exchange jump backward,forward
 vim.keymap.set('n', '<C-o>', '<C-i>zz')
 vim.keymap.set('n', '<C-i>', '<C-o>zz')
 
--- 選択業にdot command
+-- dot commnad to selected renge
 vim.keymap.set('v', '.', ":'<,'>normal .<CR>")
 
--- normalでtabを上書き
+-- overwrite TAB in normal mode
 vim.keymap.set('n', '<TAB>', '4l')
 
 --[[==========================================================
  search
 ============================================================]]
 
--- 検索ハイライト
+-- set highlight and, use <ESC><ESC> to clear highlight
 vim.cmd('set hlsearch')
 vim.keymap.set('n', '<ESC><ESC>', function () vim.cmd('nohlsearch') end)
 
--- *で単語検索
+-- * for word search
 vim.keymap.set('v', '*', '"zy:let @/ = @z<CR>n')
 
--- 検索結果を中央表示
+-- center the search result
 vim.keymap.set('n', 'n', 'nzz')
 vim.keymap.set('n', 'N', 'Nzz')
 vim.keymap.set('n', '*', '*zz')
@@ -92,16 +92,16 @@ vim.keymap.set('n', '#', '#zz')
  window
 ============================================================]]
 
--- サイズ変更
+-- change window size
 vim.keymap.set('n', '<Up>', '<C-w>-')
 vim.keymap.set('n', '<Down>', '<C-w>+')
 vim.keymap.set('n', '<Right>', '<C-w><')
 vim.keymap.set('n', '<Left>', '<C-w>>')
 
--- 閉じる
+-- window (buffer) close
 vim.keymap.set('n', 'q', function () _G.TKC.utils.nvim.quit() end)
 
--- windowサイズをそろえる
+-- equalize window size
 vim.keymap.set('n', '==', '<C-w>=')
 
 
@@ -109,17 +109,17 @@ vim.keymap.set('n', '==', '<C-w>=')
  tabpage
 ============================================================]]
 
--- 新しいタブ
+-- tt for open new tab
 vim.keymap.set('n', 'tt', function () _G.TKC.utils.nvim.open_empty_buffer() end)
 
--- タブ移動
+-- C-l,h for tab move
 vim.keymap.set('n', '<C-l>', 'gt')
 vim.keymap.set('n', '<C-h>', 'gT')
 
--- "アクティブ以外閉じるをto
+-- close all other tabs
 vim.keymap.set('n', 'to', function () vim.cmd('tabo') end)
 
--- タブそのものを移動
+-- move tab to another position
 vim.keymap.set('n', '<S-Left>', function () vim.cmd('tabm -1') end)
 vim.keymap.set('n', '<S-Right>', function () vim.cmd('tabm +1') end)
 
@@ -127,7 +127,7 @@ vim.keymap.set('n', '<S-Right>', function () vim.cmd('tabm +1') end)
  terminal
 ============================================================]]
 
--- escでinsert modeから抜ける
+-- use ESC to exit insert mode
 vim.keymap.set('t', '<ESC>', [[<C-\><C-n>]])
 -- open terminal in current project
 vim.keymap.set(
@@ -145,6 +145,8 @@ vim.keymap.set(
 --[[==========================================================
  custom operation
 ============================================================]]
+
+-- Calculate selected range
 vim.keymap.set(
   'v', '=='
   , function ()
@@ -163,6 +165,7 @@ vim.keymap.set(
   end
 )
 
+-- exchange selected renge
 vim.keymap.set(
   'v', 'rr'
   , function ()
@@ -201,6 +204,7 @@ vim.keymap.set(
   end
 )
 
+-- snake case to camel case
 vim.keymap.set(
   'v', 'sc'
   , function ()
@@ -211,6 +215,8 @@ vim.keymap.set(
     )
   end
 )
+
+-- camel case to snake case
 vim.keymap.set(
   'v', 'cs'
   , function ()
