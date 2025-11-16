@@ -200,3 +200,24 @@ vim.keymap.set(
     end, { buffer = buf })
   end
 )
+
+vim.keymap.set(
+  'v', 'sc'
+  , function ()
+    _G.TKC.utils.nvim.set_visual(
+      _G.TKC.utils.string.snake_to_camel_case(
+        _G.TKC.utils.nvim.get_visual()
+      )
+    )
+  end
+)
+vim.keymap.set(
+  'v', 'cs'
+  , function ()
+    _G.TKC.utils.nvim.set_visual(
+      _G.TKC.utils.string.camel_to_snake_case(
+        _G.TKC.utils.nvim.get_visual()
+      )
+    )
+  end
+)

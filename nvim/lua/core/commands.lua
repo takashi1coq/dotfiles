@@ -156,3 +156,19 @@ vim.api.nvim_create_user_command(
     , desc = create_desc('Dein Plugin Update')
   }
 )
+
+vim.api.nvim_create_user_command(
+  'CheckInstallPath'
+  , function ()
+    _G.TKC.utils.message.open_floating_message_window(
+      'cache path : '
+      , vim.fn.stdpath('cache')
+      , 'config path : '
+      , vim.fn.stdpath("config")
+    )
+  end
+  , {
+    nargs = 0
+    , desc = create_desc('Check install path')
+  }
+)
