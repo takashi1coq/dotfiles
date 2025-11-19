@@ -114,12 +114,19 @@ return {
   , create = function (path)
     path = vim.fn.expand(path)
     -- a : append
-    -- 438 : readable, writable
+    -- 438 : readable, writable, 0666
     local fd = vim.loop.fs_open(path, 'a', 438)
     if fd then
       vim.loop.fs_close(fd)
     else
       _G.TKC.utils.message.error('utils.file.create : failed to create file')
+    end
+  end
+  , create_directory_if_not_exists = function (path)
+    path = vim.fn.expand(path)
+    local stat = vim.loop.fs_stat(path)
+    if not stat then
+      vim.loop.fs_mkdir(path, 493) -- 0755
     end
   end
   , chenge_slash_for_windows = function (path)
@@ -141,5 +148,32 @@ return {
       file:close()
     end
     _G.TKC.utils.nvim.open_tab(filePath)
+  end
+  , copy_directory_content = function (src, dest)
+    src = vim.fn.expand(src)
+    dest = vim.fn.expand(dest)
+    _G.TKC.utils.file.create_directory_if_not_exists(dest)
+    local req = vim.loop.fs_scandir(src)
+    if not req then
+      _G.TKC.utils.message.error('source file not find')
+      return
+    end
+    while true do
+      local name, t = vim.loop.fs_scandir_next(req)
+      if not name then break end
+      local src_path = src .. "/" .. name
+      local dest_path = dest .. "/" .. name
+      if t == "directory" then
+        copy_recursive(src_path, dest_path)
+      else
+        local fd = vim.loop.fs_open(src_path, "r", 438) -- 0666
+        local data = vim.loop.fs_read(fd, vim.loop.fs_stat(src_path).size, 0)
+        vim.loop.fs_close(fd)
+        local wfd = vim.loop.fs_open(dest_path, "w", 438)
+        vim.loop.fs_write(wfd, data, 0)
+        vim.loop.fs_close(wfd)
+      end
+    end
+    _G.TKC.utils.message.info('copy_directory_content end!')
   end
 }
