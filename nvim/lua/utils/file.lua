@@ -164,7 +164,7 @@ return {
       local src_path = src .. "/" .. name
       local dest_path = dest .. "/" .. name
       if t == "directory" then
-        copy_recursive(src_path, dest_path)
+        _G.TKC.utils.file.copy_directory_content(src_path, dest_path)
       else
         local fd = vim.loop.fs_open(src_path, "r", 438) -- 0666
         local data = vim.loop.fs_read(fd, vim.loop.fs_stat(src_path).size, 0)
@@ -174,6 +174,5 @@ return {
         vim.loop.fs_close(wfd)
       end
     end
-    _G.TKC.utils.message.info('copy_directory_content end!')
   end
 }
