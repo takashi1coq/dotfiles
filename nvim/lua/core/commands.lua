@@ -39,7 +39,7 @@ vim.api.nvim_create_user_command(
   }
 )
 vim.api.nvim_create_user_command(
-  'ChengeSeparator'
+  'ChangeSeparator'
   , function (opts)
     local function change(v, isPrev)
       v = (v == 'enter') and ((isPrev) and [[\n]] or [[\r]]) or v
