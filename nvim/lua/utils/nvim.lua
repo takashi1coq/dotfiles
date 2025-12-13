@@ -200,15 +200,17 @@ return {
     left = left or 'left'
     right = right or 'right'
     if left == 'left' then
-      _G.TKC.utils.nvim.open_empty_buffer('tabnew '..left..'|diffthis')
+      _G.TKC.utils.nvim.open_empty_buffer('tabnew')
     else
-      vim.cmd('tabnew '..left..'|diffthis')
+      vim.cmd('tabnew '..left)
     end
+    vim.cmd('diffthis')
     if right == 'right' then
-      _G.TKC.utils.nvim.open_empty_buffer('vsplit '..right..'|diffthis')
+      _G.TKC.utils.nvim.open_empty_buffer('vsplit')
     else
-      vim.cmd('vsplit '..right..'|diffthis')
+      vim.cmd('vsplit '..right)
     end
+    vim.cmd('diffthis')
     vim.cmd('wincmd w')
     _G.TKC.utils.message.open_floating_message_window(
       'Show diff of the following file'

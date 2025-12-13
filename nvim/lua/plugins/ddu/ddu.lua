@@ -162,7 +162,7 @@ vim.fn['ddu#custom#action']('ui', 'filer', 'dduFilerDiff', function ()
   local leftPath = _G.TKC.plugins.ddu.diff_left_path
   if leftPath == nil or leftPath == path then
     _G.TKC.plugins.ddu.diff_left_path = path
-    _G.TKC.utils.message.info('Set ddu global diff pash')
+    _G.TKC.utils.message.info('left path : [ '..path..' ]')
     return
   end
   _G.TKC.plugins.ddu.diff_left_path = nil
