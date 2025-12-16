@@ -175,4 +175,22 @@ return {
       end
     end
   end
+  , get_file_line = function (path)
+    if not path then
+      return nil
+    end
+    path = vim.fn.expand(path)
+    if vim.fn.isdirectory(path) == 1 then
+      _G.TKC.utils.message.error('get_file_line faild path is directory', err, path)
+      return nil
+    end
+    local file, err = io.open(path, 'r')
+    if not file then
+      _G.TKC.utils.message.error('get_file_line faild io.open', err)
+      return nil
+    end
+    local content = file:read('*a')
+    file:close()
+    return content
+  end
 }

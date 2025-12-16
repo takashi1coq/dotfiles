@@ -196,26 +196,28 @@ return {
   , open_tab = function (path)
     vim.cmd('tabe '..vim.fn.expand(path))
   end
-  , diff = function (left, right)
-    left = left or 'left'
-    right = right or 'right'
-    if left == 'left' then
-      _G.TKC.utils.nvim.open_empty_buffer('tabnew')
-    else
-      vim.cmd('tabnew '..left)
+  , diff = function (leftPath, rightPath)
+    local leftContents = _G.TKC.utils.file.get_file_line(leftPath)
+    local rightContents = _G.TKC.utils.file.get_file_line(rightPath)
+    local memo = vim.fn.getreginfo('z')
+    _G.TKC.utils.nvim.open_empty_buffer('tabnew')
+    if leftContents then
+      vim.fn.setreg('z', leftContents)
+      vim.cmd('noautocmd normal! "zp')
     end
     vim.cmd('diffthis')
-    if right == 'right' then
-      _G.TKC.utils.nvim.open_empty_buffer('vsplit')
-    else
-      vim.cmd('vsplit '..right)
+    _G.TKC.utils.nvim.open_empty_buffer('vsplit')
+    if rightContents then
+      vim.fn.setreg('z', rightContents)
+      vim.cmd('noautocmd normal! "zp')
     end
     vim.cmd('diffthis')
     vim.cmd('wincmd w')
+    vim.fn.setreg('z', memo)
     _G.TKC.utils.message.open_floating_message_window(
       'Show diff of the following file'
-      , left
-      , right
+      , leftPath or 'left file empty!'
+      , rightPath or 'right file empty!'
     )
   end
   , command_complete = function (t)
