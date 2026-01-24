@@ -43,9 +43,10 @@ brew update
 brew upgrade
 ```
 
-for windows
+for windows, run Administrator.
 
 ```
+winget upgrade --all
 ```
 
 Depending on how it's installed,,

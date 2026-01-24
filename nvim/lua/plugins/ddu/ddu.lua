@@ -198,11 +198,12 @@ vim.keymap.set('n', '<Space>c', function ()
           vim.fn.feedkeys(':'..c.name..' ', 'n')
         end
       table.insert(commandSelects, {
-        c.name..c.definition
+        'Ex Command : '..c.name..c.definition
         , fnc
       })
     end
   end
+  table.sort(commandSelects, function (a, b) return a[1] < b[1] end)
   local set_file_title = function (text)
     return 'File'.._G.TKC.utils.string.separator..text
   end
@@ -309,10 +310,10 @@ vim.keymap.set('n', '<Space>c', function ()
   }
   _G.TKC.plugins.ddu.open_custom_list(_G.TKC.utils.table.join(
     fileSelects
-    , commandSelects
     , shCommandSelects
     , gitSelects
     , dockerSelects
+    , commandSelects
   ))
 end)
 
